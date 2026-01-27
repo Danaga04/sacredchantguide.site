@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access With Discount</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 520px;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 22px 20px 26px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .headline {
+      background: #d90429;
+      color: #ffffff;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+
+    .text {
+      color: #111111;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .counter-box {
+      background: #f5f5f5;
+      border: 1px dashed #cfcfcf;
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+      margin: 18px 0 6px;
+    }
+
+    .counter-title {
+      font-size: 0.85rem;
+      color: #444;
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .counter-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    .counter-number span {
+      color: #d90429;
+    }
+
+    .button-wrapper {
+      margin: 22px 0 16px;
+    }
+
+    .pulse-btn {
+      width: 100%;
+      background: #14b814;
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      padding: 18px 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      animation: pulse 1.4s infinite;
+      box-shadow: 0 0 0 rgba(20, 184, 20, 0.7);
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(20, 184, 20, 0.8);
+      }
+      70% {
+        box-shadow: 0 0 0 18px rgba(20, 184, 20, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(20, 184, 20, 0);
+      }
+    }
+
+    .warning {
+      background: #fff6cc;
+      color: #5a4a00;
+      border-radius: 10px;
+      padding: 14px 14px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 420px) {
+      .headline {
+        font-size: 0.95rem;
+      }
+
+      .text {
+        font-size: 0.9rem;
+      }
+
+      .counter-number {
+        font-size: 2rem;
+      }
+
+      .pulse-btn {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="headline">
+      Please, my son. Don't let the forces of evil influence your choices, don't leave this page.
+    </div>
+
+    <div class="text">
+      If you've come this far, it means you've been touched, and that's a sign.
+    </div>
+
+    <div class="text">
+      So if you haven't secured your access, whether because you don't have the money for this small investment, we'll help you and give you a divine discount of +60%.
+    </div>
+
+    <div class="text">
+      Try it for 7 days by clicking the button below, and remember that you are included in our premium guarantee, so there is no risk.
+    </div>
+
+    <div class="text">
+      Click on the green button below that says “ACCESS WITH DISCOUNT NOW $9” and secure your access.
+    </div>
+
+    <div class="counter-box">
+      <div class="counter-title">Available spots right now</div>
+      <div class="counter-number"><span id="spots">200</span> SPOTS</div>
+    </div>
+
+    <div class="button-wrapper">
+      <a href="https://pay.kiwify.com/6Mig9hm" target="_blank" style="text-decoration:none;">
+        <button class="pulse-btn">ACCESS WITH DISCOUNT NOW $9</button>
+      </a>
+    </div>
+
+    <div class="warning">
+      This discount is only for those who did not secure access at the original price. If you purchased your access at the original price, if you try to make another purchase, it will be refused and you may be left without access, so be careful.
+    </div>
+
+  </div>
+
+  <script>
+    let spots = 200;
+    const minSpots = 12;
+    const spotsElement = document.getElementById('spots');
+
+    spotsElement.textContent = spots;
+
+    const interval = setInterval(() => {
+      if (spots > minSpots) {
+        spots--;
+        spotsElement.textContent = spots;
+      } else {
+        clearInterval(interval);
+      }
+    }, 11000);
+  </script>
+
+
+    <script
+      src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+      data-utmify-prevent-xcod-sck
+      data-utmify-prevent-subids
+      data-utmify-ignore-iframe
+      data-utmify-is-cartpanda
+      async
+      defer
+    ></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
