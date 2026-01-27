@@ -1,173 +1,412 @@
-<!doctype html>
-<html lang="es">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Upsell — Cuerpo Santo</title>
-  <style>
-    :root {
-      --bg: #f7fbf7;
-      --card: #ffffff;
-      --accent: #2f855a;
-      --muted: #6b7280;
-      --danger: #b91c1c;
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>(1) Guardian Angel</title>
+
+<link rel="stylesheet" type="text/css" href="css/personalizado.css">
+<link rel="stylesheet" type="text/css" href="css/personalizado_02.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/groove.css">
+
+<style>
+    /* Estilos da Seção de Comentários */
+    .fb-comments-section {
+        background-color: #fff;
+        max-width: 100%;
+        width: 800px;
+        margin: 30px auto;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
     }
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
-      background: var(--bg);
-      color: #111;
+
+    .fb-header-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ced0d4;
+        padding-bottom: 10px;
     }
-    .container {
-      min-height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
+    
+    .fb-count-text {
+        color: #65676b;
+        font-weight: 600;
+        font-size: 15px;
     }
-    .card {
-      width: 100%;
-      max-width: 720px;
-      background: var(--card);
-      border-radius: 16px;
-      box-shadow: 0 8px 40px rgba(16, 24, 40, 0.1);
-      padding: 40px 32px;
-      text-align: center;
-      position: relative;
+
+    .fb-comment-container {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 12px;
     }
-    .alert {
-      background: var(--danger);
-      color: #fff;
-      font-weight: 700;
-      padding: 12px 0;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 16px;
-      border-radius: 10px 10px 0 0;
-      margin-bottom: 20px;
+
+    .fb-reply-thread {
+        margin-left: 50px;
+        border-left: 2px solid #f0f2f5;
+        padding-left: 5px;
     }
-    .eyebrow {
-      font-size: 14px;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 8px;
-      text-transform: uppercase;
+
+    .fb-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        object-fit: cover;
+        flex-shrink: 0;
     }
-    h1 {
-      margin: 0 0 16px 0;
-      font-size: 30px;
-      line-height: 1.2;
-      font-weight: 700;
+    
+    .fb-reply-thread .fb-avatar {
+        width: 32px;
+        height: 32px;
     }
-    .price {
-      font-size: 22px;
-      color: var(--accent);
-      font-weight: 700;
-      margin: 8px 0 20px;
+
+    .fb-comment-bubble-wrapper {
+        max-width: 90%;
+        position: relative;
     }
-    p.lead {
-      margin: 0 0 20px 0;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.6;
+
+    .fb-comment-bubble {
+        background-color: #f0f2f5;
+        border-radius: 18px;
+        padding: 10px 14px;
+        color: #050505;
+        font-size: 15px;
+        line-height: 1.4;
+        position: relative;
     }
-    ul.benef {
-      text-align: left;
-      margin: 0 auto 24px;
-      max-width: 560px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.6;
+
+    .fb-author {
+        font-weight: 700;
+        font-size: 13px;
+        color: #050505;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 2px;
+        cursor: default;
+        text-decoration: none;
     }
-    .actions {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 24px;
+
+    /* Ícone de Verificado */
+    .verified-badge {
+        width: 14px;
+        height: 14px;
+        fill: #1877f2;
     }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px 20px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-      transition: 0.25s all;
+
+    .fb-comment-actions {
+        display: flex;
+        gap: 12px;
+        margin-left: 14px;
+        margin-top: 4px;
+        font-size: 12px;
+        color: #65676b;
+        font-weight: 700;
     }
-    .btn-accept {
-      background: var(--accent);
-      color: white;
+
+    .fb-action-link { cursor: pointer; text-decoration: none; color: #65676b; }
+    .fb-action-link:hover { text-decoration: underline; }
+
+    .fb-reaction-badge {
+        position: absolute;
+        bottom: -8px;
+        right: -5px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        padding: 2px 6px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        z-index: 2;
+        font-size: 14px;
     }
-    .btn-accept:hover {
-      background: #276749;
+
+    .fb-reaction-count {
+        font-size: 12px;
+        color: #65676b;
+        margin-left: 4px;
+        font-weight: 400;
     }
-    .btn-decline {
-      background: transparent;
-      border: 2px solid #e6e7ea;
-      color: #111;
+
+    .fb-load-more {
+        font-weight: 700;
+        color: #65676b;
+        cursor: pointer;
+        padding: 15px 0;
+        display: block;
+        font-size: 15px;
+        text-align: left;
     }
-    .btn-decline:hover {
-      background: #f1f1f1;
+    
+    .footer {
+        background-color: #f5f5f5;
+        text-align: center;
+        font-family: "Roboto", sans-serif;
+        font-size: 13px;
+        color: #777;
+        padding: 25px 10px;
+        line-height: 1.6;
     }
-    .small {
-      font-size: 13px;
-      color: var(--muted);
-      margin-top: 18px;
+
+    @media (max-width: 600px) {
+        .fb-comments-section { width: 95%; margin: 20px auto; }
+        .fb-reply-thread { margin-left: 30px; }
     }
-    @media (max-width: 480px) {
-      .card { padding: 24px; }
-      h1 { font-size: 24px; }
-      .price { font-size: 20px; }
-    }
-  </style>
+</style>
+
+<script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
 </head>
+
 <body>
-  <div class="container">
-    <div class="card" role="main" aria-labelledby="titulo">
-      <div class="alert">⚠️ NO SALGAS DE ESTA PÁGINA</div>
 
-      <div class="eyebrow">Oferta Exclusiva Única</div>
-      <h1 id="titulo">Activa la Rutina Milagrosa del <span style="color:var(--accent)">Cuerpo Santo</span></h1>
-      <div class="price">Solo por <span style="font-size:26px;">US$67</span></div>
+<section class="principal">
+    <div class="area_video">
+        <vturb-smartplayer id="vid-697646369dfa74e6e54d2120" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/697646369dfa74e6e54d2120/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
 
-      <p class="lead">Esta rutina espiritual fue revelada por fuerzas celestiales para guiarte hacia la purificación de tu cuerpo, mente y espíritu. Miles de personas ya la practican cada mañana para atraer protección, paz interior y energía divina.</p>
+        <div style="display:flex;justify-content:center;align-items:center;width:100%;margin-top:20px;margin-bottom:20px;">
+            <p style="font-family:'Poppins',sans-serif;font-size:18px;color:#000;text-align:center;">
+                <span id="number"></span> people watching now
+            </p>
+        </div>
 
-      <p class="lead">Con simples ejercicios de respiración, afirmaciones y conexión, sentirás cómo tu cuerpo se vuelve un templo sagrado, capaz de recibir y canalizar la luz celestial.</p>
-
-      <ul class="benef">
-        <li>✨ Limpieza espiritual y equilibrio energético diario.</li>
-        <li>🕊️ Mayor conexión con tu alma y tu propósito divino.</li>
-        <li>🌿 Guía paso a paso con instrucciones simples y poderosas.</li>
-      </ul>
-
-<div style="text-align:center" id="kiwify-upsell-9DMnqnq" data-upsell-url="https://blog.trendskalla.site/up2cartpaingles/" data-downsell-url="https://blog.trendskalla.site/up2cartpaingles/">
-          <button id="kiwify-upsell-trigger-9DMnqnq" style="background-color:#27AF60;padding:12px 16px;cursor:pointer;color:#FFFFFF;font-weight:600;border-radius:4px;border:1px solid #27AF60;font-size:20px;">ACCESS NOW</button>
-          <div id="kiwify-upsell-cancel-trigger-9DMnqnq" style="margin-top:1rem;cursor:pointer;font-size:16px;text-decoration:underline;font-family:sans-serif;">do not access and pay full price</div>
-        </div><script src="https://snippets.kiwify.com/upsell/upsell.min.js"></script>
-
-      <p class="small">Al aceptar, la rutina del Cuerpo Santo se añadirá automáticamente a tu pedido actual.</p>
+        <script>
+            let number;
+            function add(){number+=Math.floor((Math.random()*6)+1);document.getElementById("number").innerHTML=number;setTimeout(add,10000);}
+            function generate(){number=Math.floor(Math.random()*1143)+1578;document.getElementById("number").innerHTML=number;add();}
+            generate();
+        </script>
     </div>
-  </div>
+</section>
 
-  <script type="text/javascript" src="https://assets.mycartpanda.com/cartx-ecomm-ui-assets/js/cpsales.js"></script>
-  
-  <script src="https://assets.mycartpanda.com/cartx-ecomm-ui-assets/js/libs/ocu-external.js"></script>
-  <script>new OcuExternal();</script>
+<div class="fb-comments-section">
+    <div class="fb-header-info">
+        <span class="fb-count-text">Showing 18 of 322 comments</span>
+    </div>
 
-<script type="text/javascript" src="https://assets.mycartpanda.com/cartx-ecomm-ui-assets/js/cpsales.js"></script>
-<script type="text/javascript" src="https://assets.mycartpanda.com/cartx-ecomm-ui-assets/js/cpsales.js"></script>
-  
+    <div class="fb-comment-container">
+        <img src="https://i.postimg.cc/5N9L7BwL/images.jpg" class="fb-avatar" alt="Fr. Mike Schmitz">
+        <div class="fb-comment-bubble-wrapper">
+            <div class="fb-comment-bubble">
+                <span class="fb-author">
+                    Fr. Mike Schmitz
+                    <svg class="verified-badge" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.02-2.147 3.6 0 1.457.746 2.74 1.863 3.494C2.888 16.634 2.5 17.5 2.5 18.5c0 2.21 1.786 4 3.99 4 .494 0 .963-.086 1.397-.24.646 1.258 1.967 2.146 3.513 2.146 1.74 0 3.21-.997 3.868-2.45.31.066.63.1.954.1 2.208 0 4-1.79 4-4 0-.853-.267-1.637-.718-2.285 1.16-.76 1.942-2.016 1.996-3.27z" fill="#1877f2"/><path d="M10.835 16l-3.35-3.56c-.347-.367-.318-.95.064-1.284.382-.334.966-.305 1.314.064l2.126 2.26 4.793-6.66c.315-.436.92-.533 1.353-.217.433.315.53.918.214 1.355l-5.32 7.393c-.165.23-.434.366-.717.363-.284-.003-.55-.152-.705-.395l-.772-1.077z" fill="#fff"/></svg>
+                </span>
+                The Saint Michael Prayer is a powerful spiritual weapon. When I started dedicating time to this devotion, I noticed a profound shift not just in my own life, but in my parish. If you are seeing this, consider it a gentle nudge from your guardian angel. God bless you all.
+            </div>
+            <div class="fb-reaction-badge">
+                <span>👍 ❤️</span>
+                <span class="fb-reaction-count">2.1K</span>
+            </div>
+            <div class="fb-comment-actions">
+                <span class="fb-action-link">Like</span>
+                <span class="fb-action-link">Reply</span>
+                <span>2h</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fb-comment-container fb-reply-thread">
+        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face" class="fb-avatar" alt="Mary Johnson">
+        <div class="fb-comment-bubble-wrapper">
+            <div class="fb-comment-bubble">
+                <span class="fb-author">Mary Johnson</span>
+                <span style="color:#1877f2;">@FrMikeSchmitz</span>, I started this novena yesterday and I woke up with a peace I hadn't felt in years. Thank you, Father!
+            </div>
+            <div class="fb-reaction-badge">
+                <span>❤️</span>
+                <span class="fb-reaction-count">1.1K</span>
+            </div>
+            <div class="fb-comment-actions">
+                <span class="fb-action-link">Like</span>
+                <span class="fb-action-link">Reply</span>
+                <span>2h</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fb-comment-container">
+        <img src="https://i.postimg.cc/tJ4dxWkY/c617e9b7f5fb-mark-wahlberg-the-union-jpg.webp" class="fb-avatar" alt="Mark Wahlberg">
+        <div class="fb-comment-bubble-wrapper">
+            <div class="fb-comment-bubble">
+                <span class="fb-author">
+                    Mark Wahlberg
+                    <svg class="verified-badge" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.02-2.147 3.6 0 1.457.746 2.74 1.863 3.494C2.888 16.634 2.5 17.5 2.5 18.5c0 2.21 1.786 4 3.99 4 .494 0 .963-.086 1.397-.24.646 1.258 1.967 2.146 3.513 2.146 1.74 0 3.21-.997 3.868-2.45.31.066.63.1.954.1 2.208 0 4-1.79 4-4 0-.853-.267-1.637-.718-2.285 1.16-.76 1.942-2.016 1.996-3.27z" fill="#1877f2"/><path d="M10.835 16l-3.35-3.56c-.347-.367-.318-.95.064-1.284.382-.334.966-.305 1.314.064l2.126 2.26 4.793-6.66c.315-.436.92-.533 1.353-.217.433.315.53.918.214 1.355l-5.32 7.393c-.165.23-.434.366-.717.363-.284-.003-.55-.152-.705-.395l-.772-1.077z" fill="#fff"/></svg>
+                </span>
+                Faith is the most important part of my life. This prayer touched my heart in a way I can't explain. I hope more people get this chance. Stay prayed up. 🙏
+            </div>
+            <div class="fb-reaction-badge">
+                <span>❤️ 👍</span>
+                <span class="fb-reaction-count">3.8K</span>
+            </div>
+            <div class="fb-comment-actions">
+                <span class="fb-action-link">Like</span>
+                <span class="fb-action-link">Reply</span>
+                <span>3h</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fb-comment-container fb-reply-thread">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" class="fb-avatar" alt="Chris Davis">
+        <div class="fb-comment-bubble-wrapper">
+            <div class="fb-comment-bubble">
+                <span class="fb-author">Chris Davis</span>
+                <span style="color:#1877f2;">@MarkWahlberg</span> my dad actually cried while listening to this. He had been away from the church for years. Today he asked to pray with me.
+            </div>
+            <div class="fb-reaction-badge">
+                <span>❤️</span>
+                <span class="fb-reaction-count">1.5K</span>
+            </div>
+            <div class="fb-comment-actions">
+                <span class="fb-action-link">Like</span>
+                <span class="fb-action-link">Reply</span>
+                <span>3h</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fb-comment-container">
+        <img src="https://i.postimg.cc/wMrNRP7d/channels4-profile.jpg" class="fb-avatar" alt="Bishop Robert Barron">
+        <div class="fb-comment-bubble-wrapper">
+            <div class="fb-comment-bubble">
+                <span class="fb-author">
+                    Bishop Robert Barron
+                    <svg class="verified-badge" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.02-2.147 3.6 0 1.457.746 2.74 1.863 3.494C2.888 16.634 2.5 17.5 2.5 18.5c0 2.21 1.786 4 3.99 4 .494 0 .963-.086 1.397-.24.646 1.258 1.967 2.146 3.513 2.146 1.74 0 3.21-.997 3.868-2.45.31.066.63.1.954.1 2.208 0 4-1.79 4-4 0-.853-.267-1.637-.718-2.285 1.16-.76 1.942-2.016 1.996-3.27z" fill="#1877f2"/><path d="M10.835 16l-3.35-3.56c-.347-.367-.318-.95.064-1.284.382-.334.966-.305 1.314.064l2.126 2.26 4.793-6.66c.315-.436.92-.533 1.353-.217.433.315.53.918.214 1.355l-5.32 7.393c-.165.23-.434.366-.717.363-.284-.003-.55-.152-.705-.395l-.772-1.077z" fill="#fff"/></svg>
+                </span>
+                What you see in this video is not just media; it is a real encounter with the Divine. Saint Michael defends us in battle. Whoever prays this with faith will feel the change. Watch until the end and allow yourself to live this experience!
+            </div>
+            <div class="fb-reaction-badge">
+                <span>👍 ❤️</span>
+                <span class="fb-reaction-count">2K</span>
+            </div>
+            <div class="fb-comment-actions">
+                <span class="fb-action-link">Like</span>
+                <span class="fb-action-link">Reply</span>
+                <span>1d</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fb-comment-container fb-reply-thread">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iNmrI10Fi5PTDxTFSYav7y-DDAEX4xdD8g&s" class="fb-avatar" alt="Sarah Jenkins">
+        <div class="fb-comment-bubble-wrapper">
+            <div class="fb-comment-bubble">
+                <span class="fb-author">Sarah Jenkins</span>
+                <span style="color:#1877f2;">@BishopBarron</span> at the end I could only cry. It's so powerful. Thank you for confirming what I felt!
+            </div>
+            <div class="fb-reaction-badge">
+                <span>❤️</span>
+                <span class="fb-reaction-count">950</span>
+            </div>
+            <div class="fb-comment-actions">
+                <span class="fb-action-link">Like</span>
+                <span class="fb-action-link">Reply</span>
+                <span>21h</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fb-comment-container">
+        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" class="fb-avatar" alt="John Peterson">
+        <div class="fb-comment-bubble-wrapper">
+            <div class="fb-comment-bubble">
+                <span class="fb-author">John Peterson</span>
+                I started the prayer and a light flooded my room, it was beautiful!
+            </div>
+            <div class="fb-reaction-badge">
+                <span>👍</span>
+                <span class="fb-reaction-count">840</span>
+            </div>
+            <div class="fb-comment-actions">
+                <span class="fb-action-link">Like</span>
+                <span class="fb-action-link">Reply</span>
+                <span>21h</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fb-comment-container">
+        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" class="fb-avatar" alt="Patricia Lewis">
+        <div class="fb-comment-bubble-wrapper">
+            <div class="fb-comment-bubble">
+                <span class="fb-author">Patricia Lewis</span>
+                My husband finally found a job after saying the prayer 7 days in a row! God is faithful!
+            </div>
+            <div class="fb-reaction-badge">
+                <span>❤️</span>
+                <span class="fb-reaction-count">1K</span>
+            </div>
+            <div class="fb-comment-actions">
+                <span class="fb-action-link">Like</span>
+                <span class="fb-action-link">Reply</span>
+                <span>21h</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fb-load-more">
+        View more comments
+    </div>
+</div>
+
+<footer class="footer">
+  <p>
+    This site is not part of Facebook or Meta Platforms, Inc. Furthermore, this site is not endorsed by Facebook in any way.  
+    Facebook is a registered trademark of Meta Platforms, Inc.
+  </p>
+  <p>© 2025 Guardian Angel — All rights reserved.</p>
+</footer>
+
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+
+      
+  <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '703344576178272');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=703344576178272&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+<script>
+  const link = 'https://blog.trendskalla.site/bccs/';
+  function setBackRedirect(url) {
+    let urlBackRedirect = url + (url.indexOf('?') > 0 ? '&' : '?') + document.location.search.replace('?', '');
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+    window.addEventListener('popstate', () => {
+      setTimeout(() => { location.href = urlBackRedirect; }, 1);
+    });
+  }
+  setBackRedirect(link);
+</script>
+
 </body>
 </html>
-
-
-
-
-
-
-
