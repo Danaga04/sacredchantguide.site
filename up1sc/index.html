@@ -8,15 +8,40 @@
   <style>
     body { margin: 0; padding: 0; font-family: "Poppins", sans-serif; background: #000; color: #fff; line-height: 1.4; text-align: center; }
     .header { background: linear-gradient(90deg, #d80000, #7a0000); color: #fff; text-align: center; padding: 20px 10px; }
-    .header span { background: #fff; color: #d80000; font-weight: 800; font-size: 22px; padding: 5px 10px; display: inline-block; }
-    .header p { margin-top: 10px; font-size: 16px; font-style: italic; }
+    .header span.title-tag { background: #fff; color: #d80000; font-weight: 800; font-size: 22px; padding: 5px 10px; display: inline-block; }
+    
+    /* CSS Atualizado para o aviso de e-mail */
+    .header-msg { margin-top: 15px; font-size: 15px; font-weight: 500; }
+    .email-container { 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        gap: 8px; 
+        margin-top: 5px; 
+        flex-wrap: wrap; 
+    }
+    .email-text { font-weight: 700; text-decoration: underline; }
+    .copy-btn {
+        background-color: #fff;
+        color: #d80000;
+        border: none;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 12px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: transform 0.1s;
+    }
+    .copy-btn:active { transform: scale(0.95); }
+
     .step { text-align: center; font-size: 18px; font-weight: 700; margin: 20px 0 10px; }
     .progress { width: 90%; margin: 0 auto; height: 30px; border: 1px solid #000; border-radius: 5px; overflow: hidden; }
     .progress-bar { width: 75%; height: 100%; background: linear-gradient(90deg, #16a34a, #0d6b3a); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; }
     .warning { font-size: 14px; margin: 10px 0; text-align: center; }
     .warning span { color: #ffcc00; font-size: 18px; }
     
-    /* Estilos do Botão Kiwify */
+    /* Estilos do Botão Kiwify (O botão novo usa estilos inline, mas mantive o CSS antigo para não quebrar a regra de 'não alterar mais nada') */
     #kiwify-upsell-trigger-9DMnqnq {
         background-color:#27AF60;
         padding:18px 25px;
@@ -40,8 +65,14 @@
 <body>
 
   <div class="header">
-    <span>CONGRATULATIONS:</span>
-    <p>IMPORTANT: your access will be on the next page.</p>
+    <span class="title-tag">CONGRATULATIONS:</span>
+    <div class="header-msg">
+      DO NOT REQUEST A CHARGEBACK, the invoice will appear as "SacredSong" and the support email is:
+      <div class="email-container">
+          <span class="email-text">danagapreto@gmail.com</span>
+          <button class="copy-btn" onclick="copyEmail(this)">COPY</button>
+      </div>
+    </div>
   </div>
 
   <div class="step">STEP 3 OF 4</div>
@@ -54,20 +85,18 @@
     <span>⚠</span> Watch the video below 👇 access will be sent to your email.
   </div>
 
-<vturb-smartplayer id="vid-6977f19314d220c3d64e40a5" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/6977f19314d220c3d64e40a5/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+<vturb-smartplayer id="vid-6964480823fc590cf36324ca" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/6964480823fc590cf36324ca/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
 
+  
+<div style="text-align:center" id="kiwify-upsell-Vf0cS9B" data-upsell-url="https://sacredchantguide.site/up2sc/" data-downsell-url="https://sacredchantguide.site/up2sc/">
+          <button id="kiwify-upsell-trigger-Vf0cS9B" style="background-color:#27AF60;padding:12px 16px;cursor:pointer;color:#FFFFFF;font-weight:600;border-radius:4px;border:1px solid #27AF60;font-size:20px;">ACCESS NOW</button>
+          <div id="kiwify-upsell-cancel-trigger-Vf0cS9B" style="margin-top:1rem;cursor:pointer;font-size:16px;text-decoration:underline;font-family:sans-serif;">refuse and pay the original price.</div>
+        </div><script src="https://snippets.kiwify.com/upsell/upsell.min.js"></script>
 
 
 
   
-  <div style="text-align:center; margin-top: 30px;" id="kiwify-upsell-9DMnqnq" data-upsell-url="https://blog.trendskalla.site/up2cartpaingles/" data-downsell-url="https://blog.trendskalla.site/up2cartpaingles/">
-      <button id="kiwify-upsell-trigger-9DMnqnq">ACCESS NOW</button>
-      <div id="kiwify-upsell-cancel-trigger-9DMnqnq" style="margin-top:1.5rem;cursor:pointer;font-size:16px;text-decoration:underline;color:#ccc;">refuse and pay the original price.</div>
-  </div>
-
-  <script src="https://snippets.kiwify.com/upsell/upsell.min.js"></script>
-
-  <script>
+<script>
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         const confirmBtn = document.getElementById('kiwify-upsell-modal-charge');
@@ -92,6 +121,21 @@
     const jsConfetti = new JSConfetti({ canvasId: 'confetti' });
     window.onload = () => { jsConfetti.addConfetti(); };
   </script>
+  
+  <script>
+    function copyEmail(btn) {
+        const email = "danagapreto@gmail.com";
+        navigator.clipboard.writeText(email).then(() => {
+            const originalText = btn.innerText;
+            btn.innerText = "COPIED!";
+            setTimeout(() => {
+                btn.innerText = originalText;
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy', err);
+        });
+    }
+  </script>
 
   <style>
     #confetti { position: fixed; height: 100%; width: 100%; top: 0; left: 0; z-index: 999; pointer-events: none; }
@@ -99,9 +143,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
