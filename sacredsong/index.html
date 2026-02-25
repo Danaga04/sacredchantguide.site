@@ -1,423 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>check this</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>(1) </title>
+
+<link rel="stylesheet" type="text/css" href="css/personalizado.css">
+<link rel="stylesheet" type="text/css" href="css/personalizado_02.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="css/groove.css">
+
+<style>
+    /* Estilos da Seção de Comentários */
+    .fb-comments-section {
+        background-color: #fff;
+        max-width: 100%;
+        width: 800px;
+        margin: 30px auto;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    .fb-header-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ced0d4;
+        padding-bottom: 10px;
+    }
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+    .fb-count-text {
+        color: #65676b;
+        font-weight: 600;
+        font-size: 15px;
+    }
+
+    .fb-comment-container {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 12px;
+    }
+
+    .fb-reply-thread {
+        margin-left: 50px;
+        border-left: 2px solid #f0f2f5;
+        padding-left: 5px;
+    }
+
+    .fb-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+        object-fit: cover;
+        flex-shrink: 0;
+    }
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    .fb-reply-thread .fb-avatar {
+        width: 32px;
+        height: 32px;
+    }
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    .fb-comment-bubble-wrapper {
+        max-width: 90%;
+        position: relative;
+    }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    .fb-comment-bubble {
+        background-color: #f0f2f5;
+        border-radius: 18px;
+        padding: 10px 14px;
+        color: #050505;
+        font-size: 15px;
+        line-height: 1.4;
+        position: relative;
+    }
 
-        /* --- RED ALERT BANNER --- */
-        #alert-banner {
-            background-color: #d32f2f; /* Bright warning red */
-            color: #ffffff;
-            text-align: center;
-            padding: 12px 20px;
-            font-weight: 700;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
+    .fb-author {
+        font-weight: 700;
+        font-size: 13px;
+        color: #050505;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 2px;
+        cursor: default;
+        text-decoration: none;
+    }
 
-        /* --- LAYOUT CONTAINER --- */
-        .container {
-            display: flex;
-            flex: 1;
-            height: 100%;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+    /* Ícone de Verificado */
+    .verified-badge {
+        width: 14px;
+        height: 14px;
+        fill: #1877f2;
+    }
 
-        /* --- SIDEBAR (Left) --- */
-        .sidebar {
-            width: 260px;
-            background-color: #ba3526; /* BibleGateway Red */
-            color: white;
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-        }
+    .fb-comment-actions {
+        display: flex;
+        gap: 12px;
+        margin-left: 14px;
+        margin-top: 4px;
+        font-size: 12px;
+        color: #65676b;
+        font-weight: 700;
+    }
 
-        .logo-area {
-            padding: 20px;
-            font-family: 'Merriweather', serif;
-            font-size: 24px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+    .fb-action-link { cursor: pointer; text-decoration: none; color: #65676b; }
+    .fb-action-link:hover { text-decoration: underline; }
 
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin-top: 10px;
-        }
+    .fb-reaction-badge {
+        position: absolute;
+        bottom: -8px;
+        right: -5px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        padding: 2px 6px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        z-index: 2;
+        font-size: 14px;
+    }
 
-        .nav-links li {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+    .fb-reaction-count {
+        font-size: 12px;
+        color: #65676b;
+        margin-left: 4px;
+        font-weight: 400;
+    }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 14px;
-            font-weight: 500;
-            text-transform: uppercase;
-            transition: background 0.2s;
-        }
+    .fb-load-more {
+        font-weight: 700;
+        color: #65676b;
+        cursor: pointer;
+        padding: 15px 0;
+        display: block;
+        font-size: 15px;
+        text-align: left;
+    }
+    
+    .footer {
+        background-color: #f5f5f5;
+        text-align: center;
+        font-family: "Roboto", sans-serif;
+        font-size: 13px;
+        color: #777;
+        padding: 25px 10px;
+        line-height: 1.6;
+    }
 
-        .nav-links a:hover {
-            background-color: #a12b1e;
-        }
+    @media (max-width: 600px) {
+        .fb-comments-section { width: 95%; margin: 20px auto; }
+        .fb-reply-thread { margin-left: 30px; }
+    }
+</style>
 
-        .nav-links i {
-            width: 20px;
-            text-align: center;
-        }
-
-        /* --- MAIN CONTENT (Right) --- */
-        .main-content {
-            flex: 1;
-            padding: 20px 40px;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Search Bar Mockup */
-        .search-container {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-            background: #f2f2f2;
-            padding: 10px;
-            border-radius: 4px;
-            width: 100%;
-            max-width: 900px;
-        }
-
-        .search-input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            min-width: 0; /* Prevents overflow */
-        }
-
-        .search-select {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background: white;
-            color: #333;
-        }
-
-        .search-btn {
-            background-color: #ba3526;
-            color: white;
-            border: none;
-            padding: 0 25px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 18px;
-        }
-
-        /* Content Card Section */
-        .content-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            padding: 30px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        /* Viewer Count Styling */
-        .viewer-count-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 20px;
-            font-family: 'Roboto', sans-serif;
-            font-size: 16px;
-            color: #d32f2f; /* Red color to imply 'Live' */
-            font-weight: 600;
-        }
-
-        .live-dot {
-            height: 10px;
-            width: 10px;
-            background-color: #d32f2f;
-            border-radius: 50%;
-            display: inline-block;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
-            100% { opacity: 1; transform: scale(1); }
-        }
-
-        /* Video Container */
-        .video-wrapper {
-            margin: 0 auto 20px auto;
-            width: 100%;
-            /* Ensure the video doesn't get too wide on desktop, but fits mobile */
-            max-width: 100%; 
-        }
-        
-        /* Email Subscribe Mockup */
-        .subscribe-box {
-            margin-top: 30px;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
-            text-align: left;
-        }
-
-        .subscribe-box h4 {
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-
-        .sub-input-group {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .sub-input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .sub-btn {
-            background-color: #ba3526;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* Footer */
-        .bg-footer {
-            margin-top: auto;
-            padding: 20px;
-            background-color: #f2f2f2;
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-            border-top: 1px solid #ddd;
-        }
-
-        /* Mobile Header */
-        .mobile-header {
-            display: none;
-            background-color: #ba3526;
-            color: white;
-            padding: 15px;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* --- RESPONSIVENESS (MOBILE) --- */
-        @media (max-width: 900px) {
-            .container {
-                flex-direction: column;
-            }
-            .sidebar {
-                display: none; /* Hide sidebar on mobile/tablet */
-            }
-            .mobile-header {
-                display: flex;
-            }
-            .main-content {
-                padding: 15px;
-            }
-            .content-card {
-                padding: 15px;
-            }
-            #alert-banner {
-                font-size: 13px;
-                padding: 10px;
-            }
-            .search-select {
-                display: none; /* Hide drop down on small screens to save space */
-            }
-            .search-container {
-                margin-bottom: 20px;
-            }
-            .sub-btn {
-                padding: 10px 15px;
-            }
-        }
-    </style>
+<script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
 </head>
+
 <body>
 
-    <div id="alert-banner">
-        </div>
+<section class="principal">
+    <div class="area_video">
 
-    <div class="mobile-header">
-        <div style="font-family: 'Merriweather', serif; font-weight: 700; font-size: 20px;">
-            <i class="fas fa-book-open"></i> BibleGateway
-        </div>
-        <i class="fas fa-bars" style="font-size: 24px;"></i>
-    </div>
+        
+<vturb-smartplayer id="vid-6996f3c3c9b31b2e92fd274f" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/6996f3c3c9b31b2e92fd274f/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
 
-    <div class="container">
-        <aside class="sidebar">
-            <div class="logo-area">
-                <i class="fas fa-book-open"></i>
-                <span>BibleGateway</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#"><i class="fas fa-book"></i> Read the Bible</a></li>
-                <li><a href="#"><i class="fas fa-microscope"></i> Study Tools</a></li>
-                <li><a href="#"><i class="fas fa-plus-circle"></i> Bible Gateway Plus</a></li>
-                <li><a href="#"><i class="far fa-newspaper"></i> Bible News</a></li>
-                <li><a href="#"><i class="fas fa-compass"></i> Explore More</a></li>
-                <li><a href="#"><i class="fas fa-store"></i> Store</a></li>
-            </ul>
-        </aside>
-
-      
-
-            <section class="content-card">
-                
-                <div class="viewer-count-container">
-                    <span class="live-dot"></span>
-                    <span id="viewer-count-text">1181 people are viewing this presentation.</span>
-                </div>
-
-                <div class="video-wrapper">
-            
-<vturb-smartplayer id="vid-699314169256726183d0287f" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/699314169256726183d0287f/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
-
-                    
-
-                    <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
-<link rel="preload" href="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69934b9f7a04c8d380ddd16f/v4/player.js" as="script">
+<script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+<link rel="preload" href="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/6996f3c3c9b31b2e92fd274f/v4/player.js" as="script">
 <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-<link rel="preload" href="https://cdn.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/6993495aaa67549cb8eb0826/main.m3u8" as="fetch">
+<link rel="preload" href="https://cdn.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/6996f1e2dcfb6904915d00bf/main.m3u8" as="fetch">
 <link rel="dns-prefetch" href="https://cdn.converteai.net">
 <link rel="dns-prefetch" href="https://scripts.converteai.net">
 <link rel="dns-prefetch" href="https://images.converteai.net">
 <link rel="dns-prefetch" href="https://api.vturb.com.br">
-
-                    
-                </div>
-
-              
-            </section>
-        </main>
-    </div>
-
-    <footer class="bg-footer">
-        <p>© 1993-2026 Bible Gateway, all rights reserved.</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- 1. Date Logic ---
-            const dateElement = document.getElementById('alert-banner');
-            const today = new Date();
-            const options = { month: 'long', day: 'numeric', year: 'numeric' }; // e.g. February 16, 2026
-            const formattedDate = today.toLocaleDateString('en-US', options);
-            dateElement.innerHTML = `JESUS CHOSE YOU TODAY <span style="text-decoration: underline;">${formattedDate}</span> AND IT IS YOUR DUTY TO LISTEN TO HIM.`;
-
-            // --- 2. Random Viewer Count Logic ---
-            let currentViewers = 1181;
-            const viewerTextElement = document.getElementById('viewer-count-text');
-
-            function updateViewers() {
-                // Randomly determine if we add or subtract (biased slightly towards staying high)
-                const change = Math.floor(Math.random() * 15) - 6; // Range: -6 to +8
-                
-                currentViewers += change;
-
-                // Safety check: don't let it drop too low or go insanely high
-                if (currentViewers < 950) currentViewers = 980;
-                if (currentViewers > 1400) currentViewers = 1350;
-
-                // Format number with commas (e.g., 1,181)
-                const formattedNumber = currentViewers.toLocaleString('en-US');
-                
-                viewerTextElement.innerText = `${formattedNumber} people are viewing this presentation.`;
-            }
-
-            // Run update every 2.5 seconds
-            setInterval(updateViewers, 2500);
-        });
         
-        // Prevent Context Menu (Right Click)
-        document.addEventListener('contextmenu', event => event.preventDefault());
-    </script>
 
+        
+        <div style="display:flex;justify-content:center;align-items:center;width:100%;margin-top:20px;margin-bottom:20px;">
+            <p style="font-family:'Poppins',sans-serif;font-size:18px;color:#000;text-align:center;">
+                <span id="number"></span> people watching now
+            </p>
+        </div>
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1871216566844765');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1871216566844765&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+        <script>
+            let number;
+            function add(){number+=Math.floor((Math.random()*6)+1);document.getElementById("number").innerHTML=number;setTimeout(add,10000);}
+            function generate(){number=Math.floor(Math.random()*1143)+1578;document.getElementById("number").innerHTML=number;add();}
+            generate();
+        </script>
+    </div>
+</section>
 
 
 
-    
+<footer class="footer">
+  <p>
+    This site is not part of Facebook or Meta Platforms, Inc. Furthermore, this site is not endorsed by Facebook in any way.  
+    Facebook is a registered trademark of Meta Platforms, Inc.
+  </p>
+  <p>© 2025 Guardian Angel — All rights reserved.</p>
+</footer>
+
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+
+      
+
+
+
 </body>
 </html>
+
+
 
 
 
