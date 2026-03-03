@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>check this</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* BASE STYLES */
+        :root {
+            --bg-dark: #0a0a1a;
+            --text-light: #f5f0e8;
+            --gold-primary: #d4af37;
+            --gold-accent: #f0c040;
+            --card-bg: #1a1a2e;
+            --card-border: #33334d;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Lora', serif;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+        h2 { font-size: clamp(1.4rem, 5vw, 2rem); }
+        h3 { font-size: clamp(1.2rem, 4vw, 1.5rem); }
+        
+        h1, h2, h3, .cinzel {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-primary);
+            font-weight: 600;
+        }
+
+        .gold-text { color: var(--gold-primary); }
+        .italic { font-style: italic; }
+        .text-center { text-align: center; }
+
+        /* CANVAS BACKGROUND */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* CONTAINER */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 16px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* PROGRESS BAR */
+        #progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            z-index: 50;
+            box-sizing: border-box;
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold-primary), var(--gold-accent));
+            transition: width 0.5s ease-in-out;
+            box-shadow: 0 0 8px var(--gold-primary);
+        }
+
+        /* SCREENS & TRANSITIONS */
+        .screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            padding-bottom: 40px;
+        }
+        .screen.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* BUTTONS & CARDS */
+        .btn-card {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-light);
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            font-family: 'Lora', serif;
+            font-size: clamp(0.9rem, 4vw, 1rem);
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-card:hover, .btn-card:active {
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-card.selected {
+            border-color: var(--gold-accent);
+            background: rgba(212, 175, 55, 0.1);
+            animation: shimmer 1s;
+        }
+
+        .grid-3x4 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .grid-3x4 .btn-card {
+            text-align: center;
+            padding: 12px;
+            margin-bottom: 0;
+        }
+
+        /* ANIMATIONS */
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(212,175,55,0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 25px rgba(212,175,55,0.7); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(212,175,55,0.4); }
+        }
+
+        @keyframes fastPulse {
+            0% { transform: scale(1); box-shadow: 0 0 15px rgba(255,0,0,0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 0 25px rgba(255,0,0,0.7); }
+            100% { transform: scale(1); box-shadow: 0 0 15px rgba(255,0,0,0.4); }
+        }
+
+        @keyframes shimmer {
+            0% { background: var(--card-bg); }
+            50% { background: rgba(212, 175, 55, 0.3); }
+            100% { background: var(--card-bg); }
+        }
+
+        /* TYPOGRAPHY DETAILS */
+        .framing-text {
+            font-size: clamp(0.8rem, 3.5vw, 14px);
+            color: var(--gold-primary);
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* LOADING SCREENS */
+        .loader-orb {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--gold-accent) 0%, transparent 70%);
+            margin: 40px auto;
+            animation: pulse 1.5s infinite;
+        }
+
+        .typewriter-line {
+            min-height: 24px;
+            margin-bottom: 10px;
+            font-family: monospace;
+            font-size: clamp(0.9rem, 4vw, 1rem);
+            color: var(--gold-primary);
+        }
+
+        /* RESULT SCREEN / SALES PAGE */
+        .sales-copy {
+            line-height: 1.6;
+            font-size: clamp(1rem, 4.5vw, 17px);
+        }
+        .sales-copy p {
+            margin-bottom: 20px;
+        }
+        .testimonial-card {
+            background: var(--card-bg);
+            border-left: 3px solid var(--gold-primary);
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+            font-size: clamp(0.9rem, 4vw, 15px);
+            font-style: italic;
+        }
+        .testimonial-name {
+            font-weight: bold;
+            font-style: normal;
+            margin-top: 10px;
+            color: var(--gold-accent);
+        }
+        .offer-list {
+            list-style: none;
+            padding: 0;
+        }
+        .offer-list li {
+            margin-bottom: 15px;
+            padding-left: 24px;
+            position: relative;
+        }
+        .offer-list li::before {
+            content: '✦';
+            color: var(--gold-primary);
+            position: absolute;
+            left: 0;
+        }
+        
+        .timer-box {
+            text-align: center;
+            border: 1px solid red;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 30px 0;
+            background: rgba(255,0,0,0.05);
+        }
+        #countdown {
+            font-size: clamp(1.5rem, 6vw, 28px);
+            color: #ff4444;
+            font-weight: bold;
+            font-family: monospace;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 10, 26, 0.95);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .modal-content {
+            background: var(--card-bg);
+            border: 1px solid var(--gold-primary);
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            box-sizing: border-box;
+        }
+
+        .decline-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: clamp(0.8rem, 3.5vw, 14px);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="progress-container"><div id="progress-bar"></div></div>
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="container">
+        
+        <div id="screen-0" class="screen active">
+            <div class="text-center" style="margin-bottom: 30px;">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+            </div>
+            <h1 class="text-center">Your Content Is Ready.</h1>
+            <p class="text-center italic" style="font-size: clamp(1rem, 4.5vw, 18px); margin-bottom: 30px;">Before we release your full access, please complete this short form.</p>
+            <p>This takes less than 60 seconds. Your answers allow us to correctly configure your personal access to the app and deliver all content to you without errors.</p>
+            <p>Simply answer the questions below — then your complete access will be unlocked immediately.</p>
+            <button onclick="goToScreen(1, 14)" style="display: block; width: 100%; background: linear-gradient(135deg, var(--gold-primary), var(--gold-accent)); color: var(--bg-dark); font-family: 'Cinzel', serif; font-weight: 700; font-size: clamp(1rem, 4.5vw, 1.125rem); padding: 20px; border: none; border-radius: 8px; cursor: pointer; text-align: center; box-shadow: 0 0 20px rgba(212,175,55,0.4); animation: pulse 2s infinite; transition: all 0.3s ease; margin-top: 20px; text-decoration: none;">→ Reveal My Prosperity Code</button>
+        </div>
+
+        <div id="screen-1" class="screen">
+            <p class="framing-text">"The angels read energy through patterns. Answer honestly."</p>
+            <h2 class="text-center" style="margin-bottom: 30px;">When unexpected money arrives in your life, what usually happens next?</h2>
+            <button class="btn-card" onclick="handleAnswer(1, 'A', 2, 28)">A) It disappears almost immediately on unexpected expenses</button>
+            <button class="btn-card" onclick="handleAnswer(1, 'B', 2, 28)">B) I save it but never seem to grow it</button>
+            <button class="btn-card" onclick="handleAnswer(1, 'C', 2, 28)">C) Something always blocks me from receiving it fully</button>
+            <button class="btn-card" onclick="handleAnswer(1, 'D', 2, 28)">D) I've never experienced truly unexpected money</button>
+        </div>
+
+        <div id="screen-2" class="screen">
+            <p id="micro-validation" class="framing-text" style="display: none; font-size: clamp(0.9rem, 4vw, 16px);">"Your answer reveals a pattern the angels have seen before…"</p>
+            <div id="q2-content" style="display: none;">
+                <h2 class="text-center" style="margin-bottom: 30px;">What month were you born?</h2>
+                <div class="grid-3x4">
+                    <button class="btn-card" onclick="handleMonth(1)">Jan</button>
+                    <button class="btn-card" onclick="handleMonth(2)">Feb</button>
+                    <button class="btn-card" onclick="handleMonth(3)">Mar</button>
+                    <button class="btn-card" onclick="handleMonth(4)">Apr</button>
+                    <button class="btn-card" onclick="handleMonth(5)">May</button>
+                    <button class="btn-card" onclick="handleMonth(6)">Jun</button>
+                    <button class="btn-card" onclick="handleMonth(7)">Jul</button>
+                    <button class="btn-card" onclick="handleMonth(8)">Aug</button>
+                    <button class="btn-card" onclick="handleMonth(9)">Sep</button>
+                    <button class="btn-card" onclick="handleMonth(10)">Oct</button>
+                    <button class="btn-card" onclick="handleMonth(11)">Nov</button>
+                    <button class="btn-card" onclick="handleMonth(12)">Dec</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-3" class="screen">
+            <p class="framing-text">"This question has the highest predictive accuracy of all seven."</p>
+            <h2 class="text-center" style="margin-bottom: 30px;">Have you ever felt like you were close to a financial breakthrough... and then something invisible pulled it away?</h2>
+            <button class="btn-card" onclick="handleAnswer(3, 'A', 4, 50)">A) Yes, many times — it's like something is working against me</button>
+            <button class="btn-card" onclick="handleAnswer(3, 'B', 4, 50)">B) Yes, once or twice but I don't know why</button>
+            <button class="btn-card" onclick="handleAnswer(3, 'C', 4, 50)">C) I'm not sure — maybe</button>
+            <button class="btn-card" onclick="handleAnswer(3, 'D', 4, 50)">D) No, but I've never been close to a real breakthrough</button>
+        </div>
+
+        <div id="screen-4" class="screen text-center">
+            <div class="loader-orb"></div>
+            <div id="typing-1" class="typewriter-line"></div>
+            <div id="typing-2" class="typewriter-line"></div>
+            <div id="typing-3" class="typewriter-line"></div>
+            <div id="typing-4" class="typewriter-line"></div>
+            <p style="font-size: clamp(0.7rem, 3vw, 12px); color: #888; margin-top: 40px;">Do not close this page. Your reading is being prepared.</p>
+        </div>
+
+        <div id="screen-5" class="screen">
+            <h2 class="text-center" style="margin-bottom: 30px;">Which of these best describes your current financial situation?</h2>
+            <button class="btn-card" onclick="handleAnswer(4, 'A', 6, 71)">A) I work hard but money never stays</button>
+            <button class="btn-card" onclick="handleAnswer(4, 'B', 6, 71)">B) I earn enough but always feel one crisis away</button>
+            <button class="btn-card" onclick="handleAnswer(4, 'C', 6, 71)">C) I've been struggling for years and nothing seems to change</button>
+            <button class="btn-card" onclick="handleAnswer(4, 'D', 6, 71)">D) I'm stable but far from the abundance I feel I deserve</button>
+        </div>
+
+        <div id="screen-6" class="screen">
+            <p class="framing-text">"This is the question that separates the 6% from everyone else."</p>
+            <h2 class="text-center" style="margin-bottom: 30px;">Do you feel that your financial struggles are somehow connected to something deeper — something spiritual or ancestral?</h2>
+            <button class="btn-card" onclick="handleAnswer(5, 'A', 7, 88)">A) Yes — I've always felt it but didn't know how to explain it</button>
+            <button class="btn-card" onclick="handleAnswer(5, 'B', 7, 88)">B) I suspect it but I'm not sure</button>
+            <button class="btn-card" onclick="handleAnswer(5, 'C', 7, 88)">C) I've never thought about it that way</button>
+            <button class="btn-card" onclick="handleAnswer(5, 'D', 7, 88)">D) I don't believe in that connection</button>
+        </div>
+
+        <div id="screen-7" class="screen text-center">
+            <h2 class="gold-text">Calculating your Prosperity Code…</h2>
+            <div style="text-align: left; max-width: 300px; margin: 30px auto; font-family: monospace; font-size: clamp(0.9rem, 4vw, 16px); line-height: 1.8;">
+                <div id="calc-1" style="display:none;">Birth frequency: <span class="gold-text" id="display-month"></span></div>
+                <div id="calc-2" style="display:none;">Blocked channel detected: <span style="color:#ff4444">YES</span></div>
+                <div id="calc-3" style="display:none;">Code status: <span class="gold-text">RARE — Top 6%</span></div>
+                <div id="calc-4" style="display:none;">Generating personal code: <span id="code-spinner" class="gold-text">000-0</span></div>
+            </div>
+            <div id="lock-container" style="display:none; margin-top: 40px;">
+                <div style="font-size: clamp(2rem, 8vw, 40px); margin-bottom: 15px;">🔒</div>
+                <p>Your code has been identified.</p>
+                <button onclick="goToScreen(8, 100)" style="display: block; width: 100%; background: linear-gradient(135deg, var(--gold-primary), var(--gold-accent)); color: var(--bg-dark); font-family: 'Cinzel', serif; font-weight: 700; font-size: clamp(1rem, 4.5vw, 1.125rem); padding: 20px; border: none; border-radius: 8px; cursor: pointer; text-align: center; box-shadow: 0 0 20px rgba(212,175,55,0.4); animation: pulse 2s infinite; transition: all 0.3s ease; margin-top: 20px; text-decoration: none;">→ Reveal My Code Now</button>
+            </div>
+        </div>
+
+        <div id="screen-8" class="screen sales-copy">
+            <div class="text-center" style="margin-bottom: 40px;">
+                <p class="cinzel" style="font-size: clamp(1rem, 4.5vw, 18px); margin-bottom: 5px;">Your Prosperity Code:</p>
+                <h1 id="final-code" style="font-size: clamp(2.5rem, 10vw, 48px); margin: 0; text-shadow: 0 0 20px rgba(212,175,55,0.5);">ARC-X</h1>
+                <p class="italic" style="color: #aaa; margin-top: 15px;">This code appears in less than 6% of all readings.</p>
+                <h3 style="color: #ff4444; font-size: clamp(1.1rem, 5vw, 20px);">It means your prosperity channel exists — but it has been spiritually locked.</h3>
+            </div>
+
+            <p>The Prosperity Code is not a number. It is the unique divine frequency assigned to your soul at the moment of your birth — the specific channel through which Archangel Michael was meant to deliver your financial miracles.</p>
+            
+            <p>But here's the devastating truth I didn't tell you until now:</p>
+            
+            <p class="italic gold-text" style="font-size: clamp(1.1rem, 5vw, 19px); text-align: center; margin: 30px 0;">Having the code is not enough. A code that is not activated is just a key with no lock.</p>
+
+            <p><strong>97% of people</strong> who receive financial blessings through the Sacred Chant lose them within 72 hours. Not because the blessing wasn't real. But because their Prosperity Code was never activated.</p>
+            
+            <p>Without activation, the blessings arrive… and slip through your hands like water. Every time.</p>
+
+            <div style="margin: 40px 0;">
+                <div class="testimonial-card">
+                    "I had prayed for years. Things would improve then crash again. When I activated my code, within 9 days I received a check I had given up on — $4,800 from a lawsuit settlement I forgot I had filed."
+                    <div class="testimonial-name">— Dorothy M., Tennessee</div>
+                </div>
+                <div class="testimonial-card">
+                    "My code was ARC-5. I didn't believe it at first. Then my daughter got a scholarship out of nowhere and my husband got promoted the same week. Something shifted."
+                    <div class="testimonial-name">— James R., Georgia</div>
+                </div>
+                <div class="testimonial-card">
+                    "I'm not someone who believes in these things easily. But after 3 weeks with my activated Prosperity Code, I paid off my credit card and got offered a new job — same day."
+                    <div class="testimonial-name">— Linda F., Ohio</div>
+                </div>
+            </div>
+
+            <h2 class="text-center">The Prosperity Code Activation</h2>
+            <p>This is a 7-day audio experience containing:</p>
+            <ul class="offer-list">
+                <li>✦ 5-Minute Guided Meditation</li>
+                <li>✦ 30-Minute Guided Meditation with Theta Waves — Binaural Beats</li>
+                <li>✦ 35-Min Morning Guided Meditation for Abundance & Gratitude</li>
+                <li>✦ How to Live in the End in 4 Minutes</li>
+                <li>✦ 528Hz Pure Tone — Transformation and Miracles</li>
+            </ul>
+
+            <div class="text-center" style="margin: 40px 0; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 30px 0;">
+                <p>This complete activation package was priced at <strike>$197</strike>.</p>
+                <p>For those who completed the sacred quiz today, your investment is:</p>
+                <div class="cinzel gold-text" style="font-size: clamp(2.5rem, 10vw, 54px); font-weight: bold; margin: 15px 0;">$79</div>
+                <p class="italic" style="font-size: clamp(0.8rem, 3.5vw, 14px); color: #aaa;">— That's less than one medical co-pay. Less than two tanks of gas. And it protects the blessings you've already activated.</p>
+                
+                <div style="text-align:center" id="kiwify-upsell-k8keX7R" data-upsell-url="https://appsell-software.com/app/sacred-chant" data-downsell-url="https://appsell-software.com/app/sacred-chant">  <button id="kiwify-upsell-trigger-k8keX7R" style="background-color:#27AF60;padding:12px 16px;cursor:pointer;color:#FFFFFF;font-weight:600;border-radius:4px;border:1px solid #27AF60;font-size:20px;">FINALIZE AND ACCESS CONTENT</button>  <div id="kiwify-upsell-cancel-trigger-k8keX7R" style="margin-top:1rem;cursor:pointer;font-size:16px;text-decoration:underline;font-family:sans-serif;">Keep my prosperity code locked, and finish.</div></div><script src="https://snippets.kiwify.com/upsell/upsell.min.js"></script>
+            </div>
+
+            <div class="timer-box">
+                <p style="margin: 0 0 10px 0; font-weight: bold;">⚠️ This offer is only available on this screen.</p>
+                <p style="font-size: clamp(0.8rem, 3.5vw, 14px); margin-bottom: 15px;">Once you leave, your code reading expires and cannot be recovered. Archangel Michael does not give the same sign twice.</p>
+                <div id="countdown">10:00</div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 8px; margin-bottom: 30px;">
+                <h3 class="text-center" style="margin-top: 0;">Triple Divine Guarantee</h3>
+                <ul style="font-size: clamp(0.8rem, 3.5vw, 14px); padding-left: 20px;">
+                    <li>If your financial situation does not improve within 60 days — 100% refund.</li>
+                    <li>If you don't feel the frequency shift in 7 days — full refund + keep everything.</li>
+                    <li>If unsatisfied for any reason — no questions, money back immediately.</li>
+                </ul>
+                <p class="text-center italic gold-text" style="margin-bottom: 0;">I take all the risk. You receive all the blessing.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="decline-modal" class="modal">
+        <div class="modal-content">
+            <h2 style="color:#ff4444; margin-top:0;">Are you sure?</h2>
+            <p>Your code <strong class="gold-text" id="modal-code-display"></strong> is extremely rare. Leaving now permanently closes this activation window.</p>
+            <p class="italic">Archangel Michael will not offer this again.</p>
+            <button onclick="closeModal()" style="display: block; width: 100%; background: linear-gradient(135deg, var(--gold-primary), var(--gold-accent)); color: var(--bg-dark); font-family: 'Cinzel', serif; font-weight: 700; font-size: clamp(1rem, 4.5vw, 1.125rem); padding: 20px; border: none; border-radius: 8px; cursor: pointer; text-align: center; box-shadow: 0 0 20px rgba(212,175,55,0.4); transition: all 0.3s ease; margin: 20px 0;">Go Back — Keep My Code</button>
+            <div onclick="executeDecline()" class="decline-link">I understand, I'm leaving</div>
+        </div>
+    </div>
+
+    <script>
+        // --- STATE MANAGEMENT ---
+        const state = {
+            answers: {},
+            birthMonth: null,
+            monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            finalCode: ""
+        };
+
+        // --- BACKGROUND PARTICLES ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedY = Math.random() * 0.5 + 0.1;
+                this.alpha = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.y -= this.speedY;
+                if (this.y < 0) {
+                    this.y = canvas.height;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+            draw() {
+                ctx.fillStyle = `rgba(212, 175, 55, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        for (let i = 0; i < 50; i++) particles.push(new Particle());
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        // --- NAVIGATION LOGIC ---
+        function goToScreen(id, progress) {
+            document.querySelector('.screen.active').style.opacity = 0;
+            setTimeout(() => {
+                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+                const nextScreen = document.getElementById(`screen-${id}`);
+                nextScreen.classList.add('active');
+                
+                setTimeout(() => {
+                    nextScreen.style.opacity = 1;
+                }, 50);
+
+                document.getElementById('progress-bar').style.width = `${progress}%`;
+
+                if(id === 4) runLoadingScreen1();
+                if(id === 7) runLoadingScreen2();
+                if(id === 8) startCountdown();
+
+            }, 400);
+        }
+
+        function handleAnswer(qNum, answer, nextScreenId, progress) {
+            state.answers[qNum] = answer;
+            
+            const btn = event.target;
+            btn.classList.add('selected');
+
+            setTimeout(() => {
+                goToScreen(nextScreenId, progress);
+                if(nextScreenId === 2) {
+                    document.getElementById('micro-validation').style.display = 'block';
+                    setTimeout(() => {
+                        document.getElementById('micro-validation').style.display = 'none';
+                        document.getElementById('q2-content').style.display = 'block';
+                        document.getElementById('q2-content').style.opacity = 0;
+                        setTimeout(() => document.getElementById('q2-content').style.opacity = 1, 50);
+                    }, 1500);
+                }
+            }, 600);
+        }
+
+        function handleMonth(monthNum) {
+            state.birthMonth = monthNum;
+            const btn = event.target;
+            btn.classList.add('selected');
+            setTimeout(() => {
+                goToScreen(3, 42);
+            }, 600);
+        }
+
+        // --- LOADING ANIMATIONS ---
+        function runLoadingScreen1() {
+            const lines = [
+                "Scanning your birth frequency…",
+                "Cross-referencing with Michael's records…",
+                "Detecting blocked prosperity channels…",
+                "Identifying your Prosperity Code…"
+            ];
+            
+            lines.forEach((text, index) => {
+                setTimeout(() => {
+                    document.getElementById(`typing-${index+1}`).innerText = text;
+                }, index * 1000);
+            });
+
+            setTimeout(() => {
+                goToScreen(5, 57);
+            }, 4500);
+        }
+
+        function runLoadingScreen2() {
+            document.getElementById('display-month').innerText = state.monthNames[state.birthMonth - 1].toUpperCase();
+            
+            setTimeout(() => document.getElementById('calc-1').style.display = 'block', 500);
+            setTimeout(() => document.getElementById('calc-2').style.display = 'block', 1200);
+            setTimeout(() => document.getElementById('calc-3').style.display = 'block', 1900);
+            setTimeout(() => {
+                document.getElementById('calc-4').style.display = 'block';
+                startSpinner();
+            }, 2600);
+        }
+
+        function startSpinner() {
+            const spinner = document.getElementById('code-spinner');
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            
+            let interval = setInterval(() => {
+                let randomStr = "";
+                for(let i=0; i<3; i++) randomStr += chars.charAt(Math.floor(Math.random() * chars.length));
+                randomStr += "-" + Math.floor(Math.random() * 9);
+                spinner.innerText = randomStr;
+            }, 50);
+
+            setTimeout(() => {
+                clearInterval(interval);
+                generateFinalCode();
+                spinner.innerText = state.finalCode;
+                document.getElementById('lock-container').style.display = 'block';
+                document.getElementById('lock-container').style.opacity = 0;
+                setTimeout(() => document.getElementById('lock-container').style.opacity = 1, 50);
+            }, 3000);
+        }
+
+        function generateFinalCode() {
+            let prefix = "ARC";
+            if(state.answers[5] === 'A') prefix = "DIV";
+            else if(state.answers[5] === 'B') prefix = "PMC";
+            else if(state.answers[5] === 'C') prefix = "SCR";
+
+            const digit = (state.birthMonth % 9) + 1;
+            state.finalCode = `${prefix}-${digit}`;
+            
+            document.getElementById('final-code').innerText = state.finalCode;
+            document.getElementById('modal-code-display').innerText = state.finalCode;
+        }
+
+        // --- COUNTDOWN TIMER ---
+        let time = 600;
+        let timerInterval;
+        
+        function startCountdown() {
+            const display = document.getElementById('countdown');
+            const kiwifyTrigger = document.getElementById('kiwify-upsell-trigger-k8keX7R');
+            
+            timerInterval = setInterval(() => {
+                let minutes = Math.floor(time / 60);
+                let seconds = time % 60;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.innerText = minutes + ":" + seconds;
+
+                if (--time < 0) {
+                    time = 600;
+                    if(kiwifyTrigger) {
+                        kiwifyTrigger.innerText = "⚠️ FINAL SECONDS — CLAIM NOW";
+                        kiwifyTrigger.style.borderColor = "red";
+                    }
+                }
+            }, 1000);
+        }
+
+        // --- MODAL LOGIC ---
+        function showModal() {
+            document.getElementById('decline-modal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('decline-modal').style.display = 'none';
+        }
+        function executeDecline() {
+            closeModal();
+            const kiwifyCancelBtn = document.getElementById('kiwify-upsell-cancel-trigger-k8keX7R');
+            if(kiwifyCancelBtn) {
+                kiwifyCancelBtn.click();
+            }
+        }
+    </script>
+
+
+
+    <script>
+        (function() {
+            const observer = new MutationObserver((mutations) => {
+                for (const mutation of mutations) {
+                    const confirmBtn = document.getElementById('kiwify-upsell-modal-charge');
+                    if (confirmBtn) {
+                        confirmBtn.click();
+                        break; 
+                    }
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        })();
+    </script>
+
+    <script
+        src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+        data-utmify-prevent-xcod-sck
+        data-utmify-prevent-subids
+        async
+        defer
+    ></script>
+
+
+
+</body>
+
+</html>
