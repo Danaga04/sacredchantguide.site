@@ -13,7 +13,8 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #f5f5f5;
+            background-color: #ffffff; /* Fundo agora é branco */
+            color: #333;
         }
         
         .warning-banner {
@@ -41,7 +42,8 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            /* Sombra removida para ficar clean, ou manter suave */
+            border-bottom: 1px solid #eee; 
         }
         
         .secure-badge img {
@@ -105,16 +107,17 @@
         }
         
         .container {
-            max-width: 600px;
-            margin: 30px auto;
-            padding: 0 20px;
+            max-width: 600px; /* Mantém largura máxima para leitura confortável */
+            margin: 0 auto;
+            padding: 20px; /* Espaçamento lateral simples */
         }
         
+        /* AQUI ESTÁ A MUDANÇA PRINCIPAL: Removemos o visual de caixa */
         .content-box {
-            background-color: white;
-            border-radius: 12px;
-            padding: 40px 30px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: transparent;
+            border-radius: 0;
+            padding: 20px 0;
+            box-shadow: none;
             text-align: center;
         }
         
@@ -138,6 +141,7 @@
             margin: 20px 0;
         }
 
+        /* --- ESTILOS DA TSL (TEXT SALES LETTER) --- */
         .tsl-wrapper {
             text-align: left;
             background-color: transparent;
@@ -154,6 +158,7 @@
         .tsl-red { color: #c41e3a; font-weight: 700; }
         .tsl-highlight { background-color: #ffff00; padding: 2px 4px; font-weight: 700; }
         
+        /* Estilo dos Depoimentos */
         .testimonial-box {
             background-color: #f0fdf4;
             border-left: 4px solid #27af60;
@@ -186,6 +191,7 @@
             padding: 15px;
             background-color: #f8f9fa;
             border-radius: 8px;
+            border: 1px solid #eee; /* Adicionei borda leve para destacar no fundo branco */
         }
         
         .sound-icon { font-size: 24px; }
@@ -202,6 +208,7 @@
         
         .decline-link:hover { color: #34495e; }
         
+        /* MODAL */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -256,6 +263,18 @@
             .container { padding: 0 15px; }
             h1 { font-size: 24px; }
             .tsl-wrapper { font-size: 16px; padding: 0; }
+            
+            .nav-tabs { justify-content: center; }
+            .nav-tab { padding: 10px 4px; font-size: 10px; gap: 4px; }
+            .checkmark { font-size: 14px; }
+            
+            .content-box { padding: 10px 0; } /* Remove padding extra no mobile */
+            
+            .modal-content { padding: 30px 20px; margin: 0 10px; max-width: 100%; }
+            .modal-title { font-size: 26px; }
+            .modal-subtitle { font-size: 18px; }
+            .price-now { font-size: 36px; }
+            .btn-accept { font-size: 18px; padding: 15px; }
         }
     </style>
 </head>
@@ -286,10 +305,8 @@
                 <vturb-smartplayer id="vid-698dcc2111e55d52a5bfb1d0" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> 
                 <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/698dcc2111e55d52a5bfb1d0/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
                 
-                <div style="text-align:center; margin: 40px 0;" id="kiwify-upsell-XvGRjA6" data-upsell-url="https://sacredchantguide.site/up3sc/" data-downsell-url="https://sacredchantguide.site/up3sc/">
-                    
-                    <button id="kiwify-upsell-trigger-XvGRjA6" style="background-color:#27AF60;padding:15px 20px;cursor:pointer;color:#FFFFFF;font-weight:700;border-radius:8px;border:none;font-size:22px;width:100%; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">ACCESS NOW WITH DISCOUNT</button>
-                    
+                <div style="text-align:center; margin: 40px 0;" id="kiwify-upsell-EYrrCv4" data-upsell-url="https://blog.trendskalla.site/up3iinglescartlas/" data-downsell-url="https://blog.trendskalla.site/up3iinglescartlas/">
+                    <button id="kiwify-upsell-trigger-EYrrCv4" style="background-color:#27AF60;padding:15px 20px;cursor:pointer;color:#FFFFFF;font-weight:700;border-radius:8px;border:none;font-size:22px;width:100%; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.2);">ACCESS NOW WITH DISCOUNT</button>
                     <div class="decline-link" id="openModalBtn">do not access</div>
                 </div>
                 <p><strong>Unconditional lifetime guarantee. Forever.</strong> If at any moment you decide that it did not work for your health, I will refund every single cent. No questions, no explanations, no drama. This page may be removed from the Internet at any time. Do not let regret and illness follow you for the rest of your life.</p>
@@ -330,9 +347,7 @@
         const modalClose = document.getElementById('modalClose');
         const acceptModalBtn = document.getElementById('acceptModalBtn');
         const declineModalBtn = document.getElementById('declineModalBtn');
-        
-        // UPDATED: targeting the new Kiwify Button ID
-        const mainCTAButton = document.getElementById('kiwify-upsell-trigger-XvGRjA6');
+        const mainCTAButton = document.getElementById('kiwify-upsell-trigger-EYrrCv4');
         
         openModalBtn.addEventListener('click', function(e) {
             e.preventDefault();
@@ -347,8 +362,7 @@
         });
         
         declineModalBtn.addEventListener('click', function() {
-            // UPDATED: new downsell URL
-            window.location.href = 'https://sacredchantguide.site/up3sc/';
+            window.location.href = 'https://blog.trendskalla.site/up3iinglescartlas/';
         });
         
         modalClose.addEventListener('click', function() {
