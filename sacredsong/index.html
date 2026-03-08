@@ -6,7 +6,7 @@
     <title>(1) YouTube</title>
     
     <script type="text/javascript"> 
-        var s=document.createElement("script"); 
+        var s=document.createElement("script");
         s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/697646369dfa74e6e54d2120/v4/player.js"; 
         s.async=!0;
         document.head.appendChild(s); 
@@ -20,7 +20,7 @@
         header { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0 16px; height: 56px; background: white; 
-            position: sticky; top: 0; z-index: 100; 
+            position: sticky; top: 0; z-index: 100;
         }
         .logo-area { display: flex; align-items: center; gap: 16px; }
         .menu-icon { font-size: 20px; padding: 8px; cursor: pointer; }
@@ -41,13 +41,9 @@
         .container { display: flex; max-width: 1280px; margin: 0 auto; padding: 24px; gap: 24px; }
         .main-content { flex: 1; }
 
-        /* Video Area - NO BORDERS / NO BLACK BARS */
+        /* Video Area */
         .video-wrapper { width: 100%; margin-bottom: 12px; display: flex; justify-content: center; }
         vturb-smartplayer { width: 100% !important; max-width: 100% !important; }
-
-        .live-badge-container { margin-bottom: 12px; font-size: 14px; font-weight: 500; color: #606060; }
-        .live-dot { color: red; font-size: 12px; margin-right: 4px; animation: blink 1.5s infinite; }
-        @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
 
         /* Channel Row */
         .channel-info-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;}
@@ -109,10 +105,27 @@
                 <vturb-smartplayer id="vid-697646369dfa74e6e54d2120" style="display: block; margin: 0 auto; width: 100%; max-width: 100%;"></vturb-smartplayer>
             </div>
 
-            <div class="live-badge-container">
-                <span class="live-dot">⬤</span> <span id="live-viewers">145,321</span> Watching now
+            <div style="display:flex;justify-content:center;align-items:center;width:100%;margin-top:20px;margin-bottom:20px;">
+                <p style="font-family:'Poppins',sans-serif;font-size:18px;color:#000;text-align:center;">
+                    <span id="number"></span> people watching now
+                </p>
             </div>
 
+            <script>
+                let number;
+                function add(){
+                    number += Math.floor((Math.random()*6)+1);
+                    document.getElementById("number").innerHTML = number.toLocaleString('en-US');
+                    setTimeout(add, 10000);
+                }
+                function generate(){
+                    // Começa com 8954 + um pequeno valor aleatório para sempre parecer orgânico
+                    number = Math.floor(Math.random() * 50) + 8954; 
+                    document.getElementById("number").innerHTML = number.toLocaleString('en-US');
+                    add();
+                }
+                generate();
+            </script>
             <div class="channel-info-row">
                 <div class="channel-details">
                     <div class="channel-avatar"></div>
@@ -139,7 +152,7 @@
             <div class="comments-count">Showing 18 of 322 comments</div>
 
             <div class="comment-item">
-                <div class="comment-avatar"><img src="https://ui-avatars.com/api/?name=Fr+Mike&background=random"></div>
+                <div class="comment-avatar"><img src="https://i.postimg.cc/5N9L7BwL/images.jpg"></div>
                 <div class="comment-content">
                     <div class="comment-author">Fr. Mike Schmitz</div>
                     <div class="comment-text">The Saint Michael Prayer is a powerful spiritual weapon. When I started dedicating time to this devotion, I noticed a profound shift not just in my own life, but in my parish. If you are seeing this, consider it a gentle nudge from your guardian angel. God bless you all.</div>
@@ -153,7 +166,7 @@
             </div>
 
             <div class="comment-item reply-thread">
-                <div class="comment-avatar" style="width: 24px; height: 24px;"><img src="https://ui-avatars.com/api/?name=Mary+J&background=random"></div>
+                <div class="comment-avatar" style="width: 24px; height: 24px;"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face"></div>
                 <div class="comment-content">
                     <div class="comment-author">Mary Johnson</div>
                     <div class="comment-text"><span style="color:#065fd4">@FrMikeSchmitz</span>, I started this novena yesterday and I woke up with a peace I hadn't felt in years. Thank you, Father!</div>
@@ -167,7 +180,7 @@
             </div>
 
             <div class="comment-item">
-                <div class="comment-avatar"><img src="https://ui-avatars.com/api/?name=Mark+W&background=random"></div>
+                <div class="comment-avatar"><img src="https://i.postimg.cc/tJ4dxWkY/c617e9b7f5fb-mark-wahlberg-the-union-jpg.webp"></div>
                 <div class="comment-content">
                     <div class="comment-author">Mark Wahlberg</div>
                     <div class="comment-text">Faith is the most important part of my life. This prayer touched my heart in a way I can't explain. I hope more people get this chance. Stay prayed up. 🙏</div>
@@ -181,7 +194,7 @@
             </div>
 
             <div class="comment-item reply-thread">
-                <div class="comment-avatar" style="width: 24px; height: 24px;"><img src="https://ui-avatars.com/api/?name=Chris+D&background=random"></div>
+                <div class="comment-avatar" style="width: 24px; height: 24px;"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"></div>
                 <div class="comment-content">
                     <div class="comment-author">Chris Davis</div>
                     <div class="comment-text"><span style="color:#065fd4">@MarkWahlberg</span> my dad actually cried while listening to this. He had been away from the church for years. Today he asked to pray with me.</div>
@@ -195,7 +208,7 @@
             </div>
 
             <div class="comment-item">
-                <div class="comment-avatar"><img src="https://ui-avatars.com/api/?name=Bishop+B&background=random"></div>
+                <div class="comment-avatar"><img src="https://i.postimg.cc/wMrNRP7d/channels4-profile.jpg"></div>
                 <div class="comment-content">
                     <div class="comment-author">Bishop Robert Barron</div>
                     <div class="comment-text">What you see in this video is not just media; it is a real encounter with the Divine. Saint Michael defends us in battle. Whoever prays this with faith will feel the change. Watch until the end and allow yourself to live this experience!</div>
@@ -209,7 +222,7 @@
             </div>
 
             <div class="comment-item reply-thread">
-                <div class="comment-avatar" style="width: 24px; height: 24px;"><img src="https://ui-avatars.com/api/?name=Sarah+J&background=random"></div>
+                <div class="comment-avatar" style="width: 24px; height: 24px;"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iNmrI10Fi5PTDxTFSYav7y-DDAEX4xdD8g&s"></div>
                 <div class="comment-content">
                     <div class="comment-author">Sarah Jenkins</div>
                     <div class="comment-text"><span style="color:#065fd4">@BishopBarron</span> at the end I could only cry. It's so powerful. Thank you for confirming what I felt!</div>
@@ -223,7 +236,7 @@
             </div>
 
             <div class="comment-item">
-                <div class="comment-avatar"><img src="https://ui-avatars.com/api/?name=John+P&background=random"></div>
+                <div class="comment-avatar"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"></div>
                 <div class="comment-content">
                     <div class="comment-author">John Peterson</div>
                     <div class="comment-text">I started the prayer and a light flooded my room, it was beautiful!</div>
@@ -237,7 +250,7 @@
             </div>
 
             <div class="comment-item">
-                <div class="comment-avatar"><img src="https://ui-avatars.com/api/?name=Patricia+L&background=random"></div>
+                <div class="comment-avatar"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"></div>
                 <div class="comment-content">
                     <div class="comment-author">Patricia Lewis</div>
                     <div class="comment-text">My husband finally found a job after saying the prayer 7 days in a row! God is faithful!</div>
@@ -254,26 +267,5 @@
 
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let count = 145321;
-            const element = document.getElementById('live-viewers');
-
-            function updateCounter() {
-                // Aumenta entre 2 e 15 pessoas por vez
-                const increase = Math.floor(Math.random() * 14) + 2;
-                count += increase;
-                element.textContent = count.toLocaleString('en-US');
-                
-                // Próxima atualização em 3 a 8 segundos
-                setTimeout(updateCounter, Math.floor(Math.random() * 5000) + 3000);
-            }
-            setTimeout(updateCounter, 2000);
-        });
-    </script>
 </body>
 </html>
-
-
-
