@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Live Simulation</title>
+    
+    <script type="text/javascript">
+        var s=document.createElement("script");
+        s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69c6699396fd2c2d9b24e095/v4/player.js";
+        s.async=!0;
+        document.head.appendChild(s);
+    </script>
+
+    <style>
+        /* Reset and Base Styles */
+        body { 
+            background-color: #f0f2f5; 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: flex-start; 
+            min-height: 100vh; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+        }
+
+        .app-wrapper {
+            width: 100%;
+            max-width: 400px;
+            background-color: #ffffff;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Facebook Header */
+        .fb-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: #ffffff;
+        }
+
+        .fb-logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0866FF;
+            margin: 0;
+            letter-spacing: -1px;
+        }
+
+        .fb-icons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .fb-icon-btn {
+            width: 36px;
+            height: 36px;
+            background-color: #e4e6eb;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fb-icon-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: #050505;
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative; 
+            width: 100%; 
+            background: #000;
+            overflow: hidden;
+        }
+
+        .fb-live-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .top-left-badges {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            align-items: center;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+        }
+
+        .badge-live {
+            background: #fa3e3e;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .badge-viewers {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Floating Reactions */
+        .reaction-box {
+            position: absolute;
+            bottom: 40px;
+            right: 15px;
+            width: 60px;
+            height: 300px;
+        }
+
+        .fb-reaction {
+            position: absolute;
+            bottom: 0;
+            width: 28px;
+            height: 28px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0;
+            animation: fbFloat 4s linear forwards;
+        }
+
+        @keyframes fbFloat {
+            0% { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
+            10% { transform: translateY(-20px) translateX(-10px) scale(1); opacity: 1; }
+            30% { transform: translateY(-80px) translateX(10px) scale(1.1); }
+            50% { transform: translateY(-160px) translateX(-15px); opacity: 0.9; }
+            70% { transform: translateY(-240px) translateX(10px); opacity: 0.5; }
+            100% { transform: translateY(-320px) translateX(-5px) scale(0.8); opacity: 0; }
+        }
+
+        /* Comments Section Styling */
+        .fb-comments-section {
+            padding: 15px;
+            background: #fff;
+        }
+
+        .fb-header-info {
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e4e6eb;
+            margin-bottom: 15px;
+        }
+
+        .fb-count-text {
+            color: #65676b;
+            font-size: 14px;
+        }
+
+        .fb-comment-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .fb-reply-thread {
+            margin-left: 45px;
+        }
+
+        .fb-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .fb-comment-bubble-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .fb-comment-bubble {
+            background-color: #f0f2f5;
+            padding: 8px 12px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #050505;
+        }
+
+        .fb-author {
+            display: block;
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .verified-badge {
+            width: 14px;
+            height: 14px;
+        }
+
+        .fb-comment-actions {
+            padding: 4px 12px;
+            font-size: 12px;
+            color: #65676b;
+            font-weight: 600;
+            display: flex;
+            gap: 12px;
+        }
+
+        .fb-action-link {
+            cursor: default;
+        }
+
+        .fb-reaction-badge {
+            position: absolute;
+            right: 0;
+            bottom: 20px;
+            background: white;
+            padding: 2px 4px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            font-size: 11px;
+        }
+
+        .fb-reaction-count {
+            color: #65676b;
+        }
+
+        .fb-load-more {
+            color: #65676b;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 10px 0;
+            cursor: default;
+        }
+
+        /* Footer Styles */
+        .footer-section {
+            background: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #e4e6eb;
+        }
+
+        .footer-logo {
+            font-weight: bold;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #8a8d91;
+        }
+
+        .footer-links span {
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-wrapper">
+        <div class="fb-header">
+            <h1 class="fb-logo">facebook</h1>
+            <div class="fb-icons">
+                <div class="fb-icon-btn">
+                    <svg viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+                </div>
+                <div class="fb-icon-btn">
+                    <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-container">
+            <vturb-smartplayer id="vid-69c6699396fd2c2d9b24e095" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+            
+            <div class="fb-live-overlay">
+                <div class="top-left-badges">
+                    <div class="badge-live">LIVE</div>
+                    <div class="badge-viewers">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="white"><path d="M8 3.5C4 3.5 1.1 7.3 1.1 7.3C1.1 7.3 4 11.2 8 11.2C12 11.2 14.9 7.3 14.9 7.3C14.9 7.3 12 3.5 8 3.5ZM8 9.8C6.6 9.8 5.5 8.7 5.5 7.3C5.5 6 6.6 4.9 8 4.9C9.4 4.9 10.5 6 10.5 7.3C10.5 8.7 9.4 9.8 8 9.8ZM8 5.9C7.2 5.9 6.6 6.5 6.6 7.3C6.6 8.1 7.2 8.7 8 8.7C8.8 8.7 9.4 8.1 9.4 7.3C9.4 6.5 8.8 5.9 8 5.9Z"/></svg>
+                        <span id="viewer-count">1,452</span>
+                    </div>
+                </div>
+                <div class="reaction-box" id="fb-reactions"></div>
+            </div>
+        </div>
+
+        <div class="fb-comments-section">
+            <div class="fb-header-info">
+                <span class="fb-count-text">Showing 18 of 322 comments</span>
+            </div>
+
+            <div class="fb-comment-container">
+                <img src="https://i.postimg.cc/5N9L7BwL/images.jpg" class="fb-avatar" alt="Fr. Mike Schmitz">
+                <div class="fb-comment-bubble-wrapper">
+                    <div class="fb-comment-bubble">
+                        <span class="fb-author">
+                            Fr. Mike Schmitz
+                            <svg class="verified-badge" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.02-2.147 3.6 0 1.457.746 2.74 1.863 3.494C2.888 16.634 2.5 17.5 2.5 18.5c0 2.21 1.786 4 3.99 4 .494 0 .963-.086 1.397-.24.646 1.258 1.967 2.146 3.513 2.146 1.74 0 3.21-.997 3.868-2.45.31.066.63.1.954.1 2.208 0 4-1.79 4-4 0-.853-.267-1.637-.718-2.285 1.16-.76 1.942-2.016 1.996-3.27z" fill="#1877f2"/><path d="M10.835 16l-3.35-3.56c-.347-.367-.318-.95.064-1.284.382-.334.966-.305 1.314.064l2.126 2.26 4.793-6.66c.315-.436.92-.533 1.353-.217.433.315.53.918.214 1.355l-5.32 7.393c-.165.23-.434.366-.717.363-.284-.003-.55-.152-.705-.395l-.772-1.077z" fill="#fff"/></svg>
+                        </span>
+                        The Saint Michael Prayer is a powerful spiritual weapon. When I started dedicating time to this devotion, I noticed a profound shift not just in my own life, but in my parish. If you are seeing this, consider it a gentle nudge from your guardian angel. God bless you all.
+                    </div>
+                    <div class="fb-reaction-badge">
+                        <span>👍 ❤️</span>
+                        <span class="fb-reaction-count">2.1K</span>
+                    </div>
+                    <div class="fb-comment-actions">
+                        <span class="fb-action-link">Like</span>
+                        <span class="fb-action-link">Reply</span>
+                        <span>2h</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb-comment-container fb-reply-thread">
+                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face" class="fb-avatar" alt="Mary Johnson">
+                <div class="fb-comment-bubble-wrapper">
+                    <div class="fb-comment-bubble">
+                        <span class="fb-author">Mary Johnson</span>
+                        <span style="color:#1877f2;">@FrMikeSchmitz</span>, I started this novena yesterday and I woke up with a peace I hadn't felt in years. Thank you, Father!
+                    </div>
+                    <div class="fb-reaction-badge">
+                        <span>❤️</span>
+                        <span class="fb-reaction-count">1.1K</span>
+                    </div>
+                    <div class="fb-comment-actions">
+                        <span class="fb-action-link">Like</span>
+                        <span class="fb-action-link">Reply</span>
+                        <span>2h</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb-comment-container">
+                <img src="https://i.postimg.cc/tJ4dxWkY/c617e9b7f5fb-mark-wahlberg-the-union-jpg.webp" class="fb-avatar" alt="Mark Wahlberg">
+                <div class="fb-comment-bubble-wrapper">
+                    <div class="fb-comment-bubble">
+                        <span class="fb-author">
+                            Mark Wahlberg
+                            <svg class="verified-badge" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.02-2.147 3.6 0 1.457.746 2.74 1.863 3.494C2.888 16.634 2.5 17.5 2.5 18.5c0 2.21 1.786 4 3.99 4 .494 0 .963-.086 1.397-.24.646 1.258 1.967 2.146 3.513 2.146 1.74 0 3.21-.997 3.868-2.45.31.066.63.1.954.1 2.208 0 4-1.79 4-4 0-.853-.267-1.637-.718-2.285 1.16-.76 1.942-2.016 1.996-3.27z" fill="#1877f2"/><path d="M10.835 16l-3.35-3.56c-.347-.367-.318-.95.064-1.284.382-.334.966-.305 1.314.064l2.126 2.26 4.793-6.66c.315-.436.92-.533 1.353-.217.433.315.53.918.214 1.355l-5.32 7.393c-.165.23-.434.366-.717.363-.284-.003-.55-.152-.705-.395l-.772-1.077z" fill="#fff"/></svg>
+                        </span>
+                        Faith is the most important part of my life. This prayer touched my heart in a way I can't explain. I hope more people get this chance. Stay prayed up. 🙏
+                    </div>
+                    <div class="fb-reaction-badge">
+                        <span>❤️ 👍</span>
+                        <span class="fb-reaction-count">3.8K</span>
+                    </div>
+                    <div class="fb-comment-actions">
+                        <span class="fb-action-link">Like</span>
+                        <span class="fb-action-link">Reply</span>
+                        <span>3h</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb-comment-container fb-reply-thread">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" class="fb-avatar" alt="Chris Davis">
+                <div class="fb-comment-bubble-wrapper">
+                    <div class="fb-comment-bubble">
+                        <span class="fb-author">Chris Davis</span>
+                        <span style="color:#1877f2;">@MarkWahlberg</span> my dad actually cried while listening to this. He had been away from the church for years. Today he asked to pray with me.
+                    </div>
+                    <div class="fb-reaction-badge">
+                        <span>❤️</span>
+                        <span class="fb-reaction-count">1.5K</span>
+                    </div>
+                    <div class="fb-comment-actions">
+                        <span class="fb-action-link">Like</span>
+                        <span class="fb-action-link">Reply</span>
+                        <span>3h</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb-comment-container">
+                <img src="https://i.postimg.cc/wMrNRP7d/channels4-profile.jpg" class="fb-avatar" alt="Bishop Robert Barron">
+                <div class="fb-comment-bubble-wrapper">
+                    <div class="fb-comment-bubble">
+                        <span class="fb-author">
+                            Bishop Robert Barron
+                            <svg class="verified-badge" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.02-2.147 3.6 0 1.457.746 2.74 1.863 3.494C2.888 16.634 2.5 17.5 2.5 18.5c0 2.21 1.786 4 3.99 4 .494 0 .963-.086 1.397-.24.646 1.258 1.967 2.146 3.513 2.146 1.74 0 3.21-.997 3.868-2.45.31.066.63.1.954.1 2.208 0 4-1.79 4-4 0-.853-.267-1.637-.718-2.285 1.16-.76 1.942-2.016 1.996-3.27z" fill="#1877f2"/><path d="M10.835 16l-3.35-3.56c-.347-.367-.318-.95.064-1.284.382-.334.966-.305 1.314.064l2.126 2.26 4.793-6.66c.315-.436.92-.533 1.353-.217.433.315.53.918.214 1.355l-5.32 7.393c-.165.23-.434.366-.717.363-.284-.003-.55-.152-.705-.395l-.772-1.077z" fill="#fff"/></svg>
+                        </span>
+                        What you see in this video is not just media; it is a real encounter with the Divine. Saint Michael defends us in battle. Whoever prays this with faith will feel the change. Watch until the end and allow yourself to live this experience!
+                    </div>
+                    <div class="fb-reaction-badge">
+                        <span>👍 ❤️</span>
+                        <span class="fb-reaction-count">2K</span>
+                    </div>
+                    <div class="fb-comment-actions">
+                        <span class="fb-action-link">Like</span>
+                        <span class="fb-action-link">Reply</span>
+                        <span>1d</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fb-load-more">
+                View more comments
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <div class="footer-logo">SACRED CHANT</div>
+            <p style="font-size: 14px; color: #65676b; line-height: 1.6;">
+                Helping thousands of souls reconnect with their faith through the power of sacred prayer and music.
+            </p>
+            <div class="footer-links">
+                <span>Privacy Policy</span> | <span>Terms of Service</span> | <span>Contact Us</span>
+                <p style="margin-top:15px;">© 2026 Sacred Chant. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulation of viewers count
+        let viewers = 1452;
+        const countElement = document.getElementById('viewer-count');
+
+        function updateViewers() {
+            const variation = Math.floor(Math.random() * 13) - 5;
+            viewers += variation;
+            countElement.style.opacity = '0.7';
+            setTimeout(() => {
+                countElement.innerText = viewers.toLocaleString('en-US');
+                countElement.style.opacity = '1';
+            }, 100);
+            setTimeout(updateViewers, Math.random() * 3000 + 1000);
+        }
+        updateViewers();
+
+        // Reactions animation
+        const container = document.getElementById('fb-reactions');
+        const heartImg = 'https://i.postimg.cc/Pfp4NQC6/74210-emoticon-heart-love-like-media-button-live.png';
+        const likeImg = 'https://i.postimg.cc/xCWLLBXt/b9ea2a7ae83ae64aa135fd33638066d7.jpg';
+
+        function createReaction() {
+            const reaction = document.createElement('div');
+            const isHeart = Math.random() > 0.4;
+            
+            reaction.className = 'fb-reaction';
+            reaction.style.backgroundImage = `url('${isHeart ? heartImg : likeImg}')`;
+            
+            if(!isHeart) reaction.style.borderRadius = '50%';
+
+            reaction.style.left = Math.random() * 30 + 'px';
+            container.appendChild(reaction);
+
+            setTimeout(() => reaction.remove(), 4000);
+            setTimeout(createReaction, Math.random() * 800 + 200);
+        }
+        createReaction();
+    </script>
+
+</body>
+</html>
