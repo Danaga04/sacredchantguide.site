@@ -141,6 +141,61 @@
             100% { transform: translateY(-320px) translateX(-5px) scale(0.8); opacity: 0; }
         }
 
+        /* LIVE ACTION BAR ADICIONADA AQUI */
+        .fb-live-action-bar {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: #ffffff;
+            border-bottom: 1px solid #ced0d4;
+            gap: 12px;
+        }
+
+        .fb-fake-input {
+            flex: 1;
+            background-color: #f0f2f5;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: #65676b;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            cursor: text;
+        }
+
+        .fb-quick-reactions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .quick-reaction-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.1s;
+            background-size: cover;
+            background-position: center;
+            border: none;
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .quick-reaction-btn:active {
+            transform: scale(0.8);
+        }
+
+        .qr-like {
+            background-image: url('https://i.postimg.cc/xCWLLBXt/b9ea2a7ae83ae64aa135fd33638066d7.jpg');
+        }
+
+        .qr-heart {
+            background-image: url('https://i.postimg.cc/Pfp4NQC6/74210-emoticon-heart-love-like-media-button-live.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
         /* Comments Section Styling */
         .fb-comments-section {
             padding: 15px;
@@ -290,11 +345,6 @@
           <vturb-smartplayer id="vid-69c952b4a78f10ae44d85851" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69c952b4a78f10ae44d85851/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
 
             
-
-
-
-
-            
             <div class="fb-live-overlay">
                 <div class="top-left-badges">
                     <div class="badge-live">LIVE</div>
@@ -307,6 +357,15 @@
             </div>
         </div>
 
+        <div class="fb-live-action-bar">
+            <div class="fb-fake-input">
+                Write a comment...
+            </div>
+            <div class="fb-quick-reactions">
+                <button class="quick-reaction-btn qr-like" onclick="spawnUserReaction('like')"></button>
+                <button class="quick-reaction-btn qr-heart" onclick="spawnUserReaction('heart')"></button>
+            </div>
+        </div>
         <div class="fb-comments-section">
             <div class="fb-header-info">
                 <span class="fb-count-text">Showing 18 of 322 comments</span>
@@ -471,6 +530,23 @@
             setTimeout(createReaction, Math.random() * 800 + 200);
         }
         createReaction();
+
+        // Função para quando o usuário clicar para reagir
+        function spawnUserReaction(type) {
+            const reaction = document.createElement('div');
+            const isHeart = type === 'heart';
+            
+            reaction.className = 'fb-reaction';
+            reaction.style.backgroundImage = `url('${isHeart ? heartImg : likeImg}')`;
+            
+            if(!isHeart) reaction.style.borderRadius = '50%';
+
+            // Faz a reação sair de uma posição horizontal fixa relativa aos botões para melhor efeito
+            reaction.style.left = Math.random() * 30 + 'px';
+            
+            container.appendChild(reaction);
+            setTimeout(() => reaction.remove(), 4000);
+        }
     </script>
 
     <script
