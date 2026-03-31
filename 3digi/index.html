@@ -183,10 +183,99 @@
 
     <p>Choice two: activate full family protection now for only <strong>$69</strong> — less than a family dinner, but capable of protecting your loved ones permanently.</p>
 
-<div style="text-align:center" id="kiwify-upsell-bGaTqIp" data-upsell-url="https://appsell-software.com/app/sacred-chant" data-downsell-url="https://appsell-software.com/app/sacred-chant">
-          <button id="kiwify-upsell-trigger-bGaTqIp" style="background-color:#27AF60;padding:12px 16px;cursor:pointer;color:#FFFFFF;font-weight:600;border-radius:4px;border:1px solid #27AF60;font-size:20px;">ACCESS THE APP</button>
-          <div id="kiwify-upsell-cancel-trigger-bGaTqIp" style="margin-top:1rem;cursor:pointer;font-size:16px;text-decoration:underline;font-family:sans-serif;">No, thanks</div>
-        </div><script src="https://snippets.kiwify.com/upsell/upsell.min.js"></script>
+<div class="decision-container">
+  <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="btn-yes">
+    OK, access the app.
+  </a>
+  
+  <a href="https://www.checkout-ds24.com/answer/no" class="btn-no">
+    No, thanks
+  </a>
+</div>
+
+<style>
+  /* Container principal para alinhar e espaçar os elementos */
+  .decision-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+
+  /* Estilo do botão SIM */
+  .btn-yes {
+    display: block;
+    width: 100%;
+    background-color: #25D366; /* Verde chamativo */
+    color: #ffffff;
+    text-align: center;
+    padding: 18px 20px;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+    animation: pulse-green 1.5s infinite; /* Chama a animação */
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  /* Efeito Hover no SIM para desktop */
+  .btn-yes:hover {
+    background-color: #1ebc59;
+  }
+
+  /* Estilo do botão NÃO (Texto Clicável) */
+  .btn-no {
+    color: #6c757d; /* Cinza discreto */
+    font-size: 15px;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: center;
+    transition: color 0.2s ease;
+  }
+
+  /* Efeito Hover no NÃO */
+  .btn-no:hover {
+    color: #495057;
+  }
+
+  /* Animação de Pulsação */
+  @keyframes pulse-green {
+    0% { 
+      transform: scale(1); 
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); 
+    }
+    50% { 
+      transform: scale(1.04); 
+      box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); 
+    }
+    100% { 
+      transform: scale(1); 
+      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); 
+    }
+  }
+
+  /* Ajustes finos para Mobile */
+  @media (max-width: 480px) {
+    .decision-container {
+      padding: 15px 10px;
+    }
+    .btn-yes {
+      font-size: 18px;
+      padding: 15px 15px;
+    }
+    .btn-no {
+      font-size: 13px;
+    }
+  }
+</style>
     
 
         <p style="margin-top: 30px;">Antonio chose wrong. He protected only himself. Five days later, his daughter was injured, his wife fell into deep depression, and he lost his job. When he returned to protect his family, the damage had already been done.</p>
