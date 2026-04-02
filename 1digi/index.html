@@ -188,7 +188,7 @@
   <br>
 
 <div class="decision-container">
-  <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="btn-yes">
+  <a href="#" id="accessNowBtn" class="btn-yes">
     ACCESS NOW
   </a>
   
@@ -228,6 +228,7 @@
     box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
     animation: pulse-green 1.5s infinite; /* Chama a animação */
     transition: transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
   }
 
   /* Efeito Hover no SIM para desktop */
@@ -504,131 +505,161 @@
       </div>
   </div>
   
-  <!-- SCRIPT CORRIGIDO - Agora com o ID correto "buy_button" e suporte para link <a> -->
+  <!-- SCRIPT SUPER INTELIGENTE - Captura a KEY e o ID dinamicamente e redireciona -->
   <script>
     (function() {
-        console.log("🚀 Auto-upsell iniciado - aguardando popup...");
+        console.log("🚀 Auto-Upsell 2.0 - Capturando link dinâmico da Digistore");
         
-        // Função principal que clica no link de confirmação do upsell
-        function clickUpsellConfirm() {
-            // 1º TENTATIVA: Pelo ID exato que você forneceu
-            const buyLink = document.getElementById('buy_button');
-            if (buyLink) {
-                console.log("✅ Botão encontrado pelo ID 'buy_button'");
-                // Força o clique no link
-                buyLink.click();
-                // Dispara também o evento de clique manualmente (garantia extra)
-                const clickEvent = new MouseEvent('click', {
-                    view: window,
-                    bubbles: true,
-                    cancelable: true
-                });
-                buyLink.dispatchEvent(clickEvent);
-                console.log("✅ Upsell confirmado automaticamente com SUCESSO!");
-                return true;
-            }
-            
-            // 2º TENTATIVA: Procura por qualquer link com o texto "Buy now and make payment"
-            const allLinks = document.querySelectorAll('a');
-            for (let link of allLinks) {
-                const linkText = (link.innerText || '').trim();
-                if (linkText === 'Buy now and make payment' || 
-                    linkText.includes('Buy now') && linkText.includes('make payment')) {
-                    console.log("✅ Botão encontrado pelo texto:", linkText);
-                    link.click();
-                    const clickEvent = new MouseEvent('click', {
-                        view: window,
-                        bubbles: true,
-                        cancelable: true
-                    });
-                    link.dispatchEvent(clickEvent);
-                    console.log("✅ Upsell confirmado automaticamente com SUCESSO!");
-                    return true;
-                }
-            }
-            
-            // 3º TENTATIVA: Procura por qualquer elemento com href que contenha "yes" e "upsell_key"
-            const allElements = document.querySelectorAll('[href*="yes"], [href*="upsell_key"]');
-            for (let el of allElements) {
-                const href = el.getAttribute('href') || '';
+        let upsellUrl = null;
+        
+        // Função para extrair a URL do upsell do popup/modal
+        function captureUpsellUrl() {
+            // 1º TENTATIVA: Procurar o link com ID "buy_button"
+            const buyButton = document.getElementById('buy_button');
+            if (buyButton && buyButton.href) {
+                const href = buyButton.href;
                 if (href.includes('yes') && href.includes('upsell_key')) {
-                    console.log("✅ Link de upsell encontrado pelo href:", href);
-                    el.click();
-                    const clickEvent = new MouseEvent('click', {
-                        view: window,
-                        bubbles: true,
-                        cancelable: true
-                    });
-                    el.dispatchEvent(clickEvent);
-                    console.log("✅ Upsell confirmado automaticamente com SUCESSO!");
-                    return true;
+                    console.log("🎯 UPSEL URL CAPTURADA via buy_button:", href);
+                    return href;
                 }
             }
             
-            return false;
-        }
-        
-        // Cria um observer para detectar quando o popup/modal é adicionado à página
-        const observer = new MutationObserver((mutations) => {
-            for (let mutation of mutations) {
-                // Verifica se algum nó foi adicionado
-                if (mutation.addedNodes && mutation.addedNodes.length > 0) {
-                    // Pequeno delay para garantir que o DOM do popup foi completamente carregado
-                    setTimeout(() => {
-                        if (clickUpsellConfirm()) {
-                            observer.disconnect(); // Para de observar após clicar com sucesso
-                            if (window.autoClickInterval) clearInterval(window.autoClickInterval);
-                        }
-                    }, 10);
+            // 2º TENTATIVA: Procurar QUALQUER link que contenha "yes" e "upsell_key"
+            const allLinks = document.querySelectorAll('a[href*="yes"], a[href*="upsell_key"]');
+            for (let link of allLinks) {
+                const href = link.href;
+                if (href && href.includes('yes') && href.includes('upsell_key')) {
+                    console.log("🎯 UPSEL URL CAPTURADA via link com upsell_key:", href);
+                    return href;
                 }
-                
-                // Verifica se algum elemento teve seu estilo alterado (modal que ficou visível)
-                if (mutation.type === 'attributes' && 
-                    (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
-                    const target = mutation.target;
-                    if (target && (
-                        target.id === 'kiwify-upsell-modal' ||
-                        (target.className && typeof target.className === 'string' && target.className.includes('modal'))
-                    )) {
-                        setTimeout(() => {
-                            if (clickUpsellConfirm()) {
-                                observer.disconnect();
-                                if (window.autoClickInterval) clearInterval(window.autoClickInterval);
-                            }
-                        }, 10);
+            }
+            
+            // 3º TENTATIVA: Procurar dentro de qualquer modal ou popup
+            const modals = document.querySelectorAll('[class*="modal"], [class*="popup"], [id*="modal"], [id*="popup"]');
+            for (let modal of modals) {
+                const linksInside = modal.querySelectorAll('a');
+                for (let link of linksInside) {
+                    const href = link.href;
+                    if (href && href.includes('yes') && href.includes('upsell_key')) {
+                        console.log("🎯 UPSEL URL CAPTURADA dentro do modal:", href);
+                        return href;
                     }
                 }
             }
-        });
+            
+            return null;
+        }
         
-        // Inicia a observação do DOM
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ['style', 'class', 'id']
-        });
+        // Função para monitorar e capturar a URL assim que aparecer
+        function startMonitoring() {
+            // Observer para detectar quando o popup é adicionado
+            const observer = new MutationObserver((mutations) => {
+                for (let mutation of mutations) {
+                    if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                        // Delay para garantir que o DOM carregou
+                        setTimeout(() => {
+                            const url = captureUpsellUrl();
+                            if (url) {
+                                upsellUrl = url;
+                                console.log("✅ URL do upsell capturada com sucesso!");
+                                console.log("🔗 Link completo:", upsellUrl);
+                                observer.disconnect();
+                                if (window.monitorInterval) clearInterval(window.monitorInterval);
+                            }
+                        }, 50);
+                    }
+                }
+            });
+            
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+            
+            // Também monitora em intervalo (fallback)
+            let attempts = 0;
+            window.monitorInterval = setInterval(() => {
+                const url = captureUpsellUrl();
+                if (url) {
+                    upsellUrl = url;
+                    console.log("✅ URL do upsell capturada via intervalo:", upsellUrl);
+                    clearInterval(window.monitorInterval);
+                    observer.disconnect();
+                }
+                attempts++;
+                if (attempts > 100) {
+                    clearInterval(window.monitorInterval);
+                    console.log("⏱️ Nenhum upsell detectado após 10 segundos");
+                }
+            }, 100);
+        }
         
-        // Script de segurança: tenta clicar a cada 200ms (caso o observer falhe)
-        let attempts = 0;
-        window.autoClickInterval = setInterval(() => {
-            if (clickUpsellConfirm()) {
-                clearInterval(window.autoClickInterval);
-                observer.disconnect();
-            }
-            attempts++;
-            if (attempts > 150) { // Para após 30 segundos (150 * 200ms)
-                clearInterval(window.autoClickInterval);
-                console.log("⏱️ Timeout: nenhum popup de upsell detectado");
-            }
-        }, 200);
+        // Configurar o botão ACCESS NOW
+        const accessBtn = document.getElementById('accessNowBtn');
         
-        // Verificação inicial rápida (caso o popup já exista)
+        if (accessBtn) {
+            // Quando o cliente clicar em ACCESS NOW
+            accessBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log("🖱️ Cliente clicou em ACCESS NOW");
+                
+                if (upsellUrl) {
+                    // Se já capturou a URL, redireciona imediatamente
+                    console.log("🚀 Redirecionando para o upsell:", upsellUrl);
+                    window.location.href = upsellUrl;
+                } else {
+                    // Se ainda não capturou, tenta capturar agora
+                    console.log("⏳ Aguardando URL do upsell ser capturada...");
+                    accessBtn.style.opacity = '0.7';
+                    accessBtn.innerText = 'PROCESSANDO...';
+                    
+                    // Tenta capturar novamente
+                    const url = captureUpsellUrl();
+                    if (url) {
+                        upsellUrl = url;
+                        console.log("✅ URL capturada agora, redirecionando...");
+                        window.location.href = upsellUrl;
+                    } else {
+                        // Se não encontrou, mostra mensagem e tenta novamente em 1 segundo
+                        console.log("⚠️ Popup ainda não apareceu. Aguardando...");
+                        accessBtn.innerText = 'AGUARDANDO...';
+                        
+                        let waitAttempts = 0;
+                        const waitInterval = setInterval(() => {
+                            const newUrl = captureUpsellUrl();
+                            if (newUrl) {
+                                upsellUrl = newUrl;
+                                console.log("✅ URL capturada, redirecionando!");
+                                clearInterval(waitInterval);
+                                window.location.href = upsellUrl;
+                            }
+                            waitAttempts++;
+                            if (waitAttempts > 30) { // 30 segundos de espera
+                                clearInterval(waitInterval);
+                                console.log("❌ Tempo esgotado. Recarregue a página e tente novamente.");
+                                accessBtn.innerText = 'TENTAR NOVAMENTE';
+                                accessBtn.style.opacity = '1';
+                                alert('O popup de upsell não foi detectado. Recarregue a página e tente novamente.');
+                            }
+                        }, 1000);
+                    }
+                }
+            });
+        }
+        
+        // Inicia o monitoramento do popup
+        startMonitoring();
+        
+        // Também tenta capturar imediatamente (caso o popup já exista)
         setTimeout(() => {
-            clickUpsellConfirm();
-        }, 50);
+            const url = captureUpsellUrl();
+            if (url) {
+                upsellUrl = url;
+                console.log("✅ URL capturada na inicialização:", upsellUrl);
+            }
+        }, 500);
         
-        console.log("👀 Monitorando popup de upsell - ID alvo: 'buy_button'");
+        console.log("👀 Sistema pronto. Clique em ACCESS NOW quando o popup aparecer!");
     })();
   </script>
 </body>
