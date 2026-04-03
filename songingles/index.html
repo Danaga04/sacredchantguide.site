@@ -622,6 +622,20 @@ src="https://www.facebook.com/tr?id=1473716941034645&ev=PageView&noscript=1"
     
 
 <script>
+  fetch("https://utmify-trackerr-url.vercel.app/save-url", {
+    method: "POST", 
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      userId: "69d000464ab3d2bfc675f2ab",
+      url: window.location.href
+    }),
+  });
+</script>
+
+
+
+    
+<script>
   const link = 'https://pay.kiwify.com/7sd7U5A';
   function setBackRedirect(url) {
     let urlBackRedirect = url + (url.indexOf('?') > 0 ? '&' : '?') + document.location.search.replace('?', '');
