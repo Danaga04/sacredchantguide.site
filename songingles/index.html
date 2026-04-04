@@ -633,7 +633,17 @@ src="https://www.facebook.com/tr?id=1473716941034645&ev=PageView&noscript=1"
 </script>
 
 
-
+<script>
+(function() {
+  const params = window.location.search;
+  const links = document.querySelectorAll('a[href*="checkout-ds24.com"]');
+  links.forEach(link => {
+    if (params) {
+      link.href += (link.href.includes('?') ? '&' : '?') + params.replace('?', '');
+    }
+  });
+})();
+</script>
     
 <script>
   const link = 'https://pay.kiwify.com/7sd7U5A';
