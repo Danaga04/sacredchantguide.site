@@ -635,15 +635,31 @@ src="https://www.facebook.com/tr?id=1473716941034645&ev=PageView&noscript=1"
 
 <script>
 (function() {
-  const params = window.location.search;
+  // Captura parâmetros da URL atual
+  const urlParams = new URLSearchParams(window.location.search);
+
+  // Se existir, salva no navegador
+  if (urlParams.toString()) {
+    localStorage.setItem('utm_params', urlParams.toString());
+  }
+
+  // Recupera UTMs salvas
+  const savedParams = localStorage.getItem('utm_params');
+
+  if (!savedParams) return;
+
+  // Aplica em todos os links da Digistore
   const links = document.querySelectorAll('a[href*="checkout-ds24.com"]');
+
   links.forEach(link => {
-    if (params) {
-      link.href += (link.href.includes('?') ? '&' : '?') + params.replace('?', '');
+    // Evita duplicação
+    if (!link.href.includes('utm_')) {
+      link.href += (link.href.includes('?') ? '&' : '?') + savedParams;
     }
   });
 })();
 </script>
+
     
 <script>
   const link = 'https://pay.kiwify.com/7sd7U5A';
