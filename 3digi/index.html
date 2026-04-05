@@ -351,32 +351,6 @@
 
 </div>
 
-<script>
-(function() {
-  // Captura parâmetros da URL atual
-  const urlParams = new URLSearchParams(window.location.search);
-
-  // Se existir, salva no navegador
-  if (urlParams.toString()) {
-    localStorage.setItem('utm_params', urlParams.toString());
-  }
-
-  // Recupera UTMs salvas
-  const savedParams = localStorage.getItem('utm_params');
-
-  if (!savedParams) return;
-
-  // Aplica em todos os links da Digistore
-  const links = document.querySelectorAll('a[href*="checkout-ds24.com"]');
-
-  links.forEach(link => {
-    // Evita duplicação
-    if (!link.href.includes('utm_')) {
-      link.href += (link.href.includes('?') ? '&' : '?') + savedParams;
-    }
-  });
-})();
-</script>
     
 </body>
 </html>
