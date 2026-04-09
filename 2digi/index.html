@@ -488,49 +488,7 @@
         </div>
     </div>
     
-    <script>
-        const openModalBtn = document.getElementById('openModalBtn');
-        const modal = document.getElementById('declineModal');
-        const modalClose = document.getElementById('modalClose');
-        const acceptModalBtn = document.getElementById('acceptModalBtn');
-        const declineModalBtn = document.getElementById('declineModalBtn');
-        const mainCTAButton = document.getElementById('kiwify-upsell-trigger-EYrrCv4');
-        
-        openModalBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-        
-        acceptModalBtn.addEventListener('click', function() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            mainCTAButton.click();
-        });
-        
-        declineModalBtn.addEventListener('click', function() {
-            window.location.href = 'https://blog.trendskalla.site/up3iinglescartlas/';
-        });
-        
-        modalClose.addEventListener('click', function() {
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
 
-        (function() {
-            const observer = new MutationObserver((mutations) => {
-                for (const mutation of mutations) {
-                    const confirmBtn = document.getElementById('kiwify-upsell-modal-charge');
-                    if (confirmBtn) {
-                        confirmBtn.click();
-                        break; 
-                    }
-                }
-            });
-            observer.observe(document.body, { childList: true, subtree: true });
-        })();
-    </script>
-    <script src="https://snippets.kiwify.com/upsell/upsell.min.js"></script>
 
     
 </body>
