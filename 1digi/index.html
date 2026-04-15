@@ -1,312 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
-<script>digistoreUpsell()</script>
+    <script>digistoreUpsell()</script>
 
+    <script type="text/javascript" src="https://www.digistore24.com/trusted-badge/45038/EfkrAuwxyTyKoSt/salespage"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>purchase under review</title>
 
-  <!-- Begin of Digistore24 Trusted Badge Code -->
-<script type="text/javascript" src="https://www.digistore24.com/trusted-badge/45038/EfkrAuwxyTyKoSt/salespage"></script>
-<!-- End of Digistore24 Trusted Badge Code -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.4;
+            text-align: center;
+        }
 
-<title>purchase under review</title>
+        /* HEADER */
+        .header {
+            background: linear-gradient(90deg, #d80000, #7a0000);
+            padding: 20px 10px;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+        .title-tag {
+            background: #fff;
+            color: #d80000;
+            font-weight: 800;
+            font-size: 22px;
+            padding: 5px 10px;
+            display: inline-block;
+        }
 
-<style>
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-  background: #000;
-  color: #fff;
-  line-height: 1.4;
-  text-align: center;
-}
+        /* EMAIL */
+        .header-msg {
+            margin-top: 15px;
+            font-size: 15px;
+            font-weight: 500;
+        }
 
-/* HEADER */
-.header {
-  background: linear-gradient(90deg, #d80000, #7a0000);
-  padding: 20px 10px;
-}
+        .email-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 5px;
+            flex-wrap: wrap;
+        }
 
-.title-tag {
-  background: #fff;
-  color: #d80000;
-  font-weight: 800;
-  font-size: 22px;
-  padding: 5px 10px;
-  display: inline-block;
-}
+        .email-text {
+            font-weight: 700;
+            text-decoration: underline;
+        }
 
-/* EMAIL */
-.header-msg {
-  margin-top: 15px;
-  font-size: 15px;
-  font-weight: 500;
-}
+        .copy-btn {
+            background: #fff;
+            color: #d80000;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+        }
 
-.email-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-top: 5px;
-  flex-wrap: wrap;
-}
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
 
-.email-text {
-  font-weight: 700;
-  text-decoration: underline;
-}
+        /* PROGRESS */
+        .step {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 20px 0 10px;
+        }
 
-.copy-btn {
-  background: #fff;
-  color: #d80000;
-  border: none;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-weight: 700;
-  font-size: 12px;
-  cursor: pointer;
-}
+        .progress {
+            width: 90%;
+            margin: 0 auto;
+            height: 30px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
 
-.copy-btn:active {
-  transform: scale(0.95);
-}
+        .progress-bar {
+            width: 75%;
+            height: 100%;
+            background: linear-gradient(90deg, #16a34a, #0d6b3a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
 
-/* PROGRESS */
-.step {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 20px 0 10px;
-}
+        /* WARNING */
+        .warning {
+            font-size: 14px;
+            margin: 10px 0;
+        }
 
-.progress {
-  width: 90%;
-  margin: 0 auto;
-  height: 30px;
-  border-radius: 5px;
-  overflow: hidden;
-}
+        .warning span {
+            color: #ffcc00;
+            font-size: 18px;
+        }
 
-.progress-bar {
-  width: 75%;
-  height: 100%;
-  background: linear-gradient(90deg, #16a34a, #0d6b3a);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-}
+        /* PLAYER */
+        vturb-smartplayer {
+            display: block;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-/* WARNING */
-.warning {
-  font-size: 14px;
-  margin: 10px 0;
-}
+        /* BUTTONS */
+        .decision-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
 
-.warning span {
-  color: #ffcc00;
-  font-size: 18px;
-}
+        .btn-yes {
+            width: 100%;
+            background: #25D366;
+            color: #fff;
+            padding: 18px 20px;
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 8px;
+            text-decoration: none;
+            animation: pulse-green 1.5s infinite;
+        }
 
-/* PLAYER */
-vturb-smartplayer {
-  display: block;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-}
+        .btn-no {
+            color: #6c757d;
+            font-size: 15px;
+            text-decoration: underline;
+        }
 
-/* BUTTONS */
-.decision-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 20px;
-  box-sizing: border-box;
-}
+        /* ANIMAÇÃO */
+        @keyframes pulse-green {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
 
-.btn-yes {
-  width: 100%;
-  background: #25D366;
-  color: #fff;
-  padding: 18px 20px;
-  font-size: 22px;
-  font-weight: 800;
-  text-transform: uppercase;
-  border-radius: 8px;
-  text-decoration: none;
-  animation: pulse-green 1.5s infinite;
-}
+        /* CONFETTI */
+        #confetti {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+        }
 
-.btn-no {
-  color: #6c757d;
-  font-size: 15px;
-  text-decoration: underline;
-}
+        /* FAQ */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+            text-align: left;
+        }
 
-/* ANIMAÇÃO */
-@keyframes pulse-green {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.04); }
-  100% { transform: scale(1); }
-}
+        .faq-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 30px;
+        }
 
-/* CONFETTI */
-#confetti {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 999;
-}
+        .faq-item {
+            background: #111;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
 
-/* FAQ */
-.faq-section {
-  max-width: 800px;
-  margin: 0 auto 50px;
-  padding: 0 20px;
-  text-align: left;
-}
+        .faq-item summary {
+            padding: 18px 20px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
 
-.faq-title {
-  text-align: center;
-  font-size: 28px;
-  font-weight: 800;
-  margin-bottom: 30px;
-}
+        .faq-answer {
+            padding: 20px;
+            font-size: 14px;
+            color: #ccc;
+        }
 
-.faq-item {
-  background: #111;
-  margin-bottom: 12px;
-  border-radius: 8px;
-  border: 1px solid #333;
-}
+        /* MOBILE */
+        @media (max-width: 480px) {
+            .btn-yes {
+                font-size: 18px;
+                padding: 15px;
+            }
 
-.faq-item summary {
-  padding: 18px 20px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-}
+            .btn-no {
+                font-size: 13px;
+            }
 
-.faq-answer {
-  padding: 20px;
-  font-size: 14px;
-  color: #ccc;
-}
+            .title-tag {
+                font-size: 18px;
+            }
 
-/* MOBILE */
-@media (max-width: 480px) {
-  .btn-yes {
-    font-size: 18px;
-    padding: 15px;
-  }
-
-  .btn-no {
-    font-size: 13px;
-  }
-
-  .title-tag {
-    font-size: 18px;
-  }
-
-  .header-msg {
-    font-size: 14px;
-  }
-}
-</style>
-
+            .header-msg {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="header">
-  <span class="title-tag">CONGRATULATIONS:</span>
-
-  <div class="header-msg">
-    Watch the video below. The invoice will appear as “SacredChant” and the support email is:
-
-    <div class="email-container">
-      <span class="email-text">danagapreto@gmail.com</span>
-      <button class="copy-btn" onclick="copyEmail(this)">COPY</button>
+    <div class="header">
+        <span class="title-tag">CONGRATULATIONS! BUT...</span>
+        <div class="header-msg">
+            WATCH THE VIDEO BELOW SO YOU DON'T MISS IT—THAT'S WHERE I REVEAL THE PRAYER:
+        </div>
     </div>
-  </div>
-</div>
 
-<div class="step">STEP 3 OF 4</div>
+    <div class="step">STEP 3 OF 4</div>
 
-<div class="progress">
-  <div class="progress-bar">75%</div>
-</div>
+    <div class="progress">
+        <div class="progress-bar">75%</div>
+    </div>
 
-<div class="warning">
-  <span>⚠</span> Watch the video below 👇 access will be sent to your email.
-</div>
+    <div class="warning">
+        <span>⚠</span> ⚠ Watch the video below 👇 To go directly to the video, click the green button below it.
+    </div>
 
-<vturb-smartplayer id="vid-69a8a74c95fb3f8812028882"></vturb-smartplayer>
+    <vturb-smartplayer id="vid-69a8a74c95fb3f8812028882"></vturb-smartplayer>
 
-<script>
-var s = document.createElement("script");
-s.src = "https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69a8a74c95fb3f8812028882/v4/player.js";
-s.async = true;
-document.head.appendChild(s);
-</script>
+    <script>
+        var s = document.createElement("script");
+        s.src = "https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69a8a74c95fb3f8812028882/v4/player.js";
+        s.async = true;
+        document.head.appendChild(s);
+    </script>
 
-<br>
+    <br>
 
-<div class="decision-container">
-  <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="btn-yes">
-    ACCESS NOW
-  </a>
+    <div class="decision-container">
+        <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="btn-yes">
+            ACCESS NOW
+        </a>
+        <a href="https://www.checkout-ds24.com/answer/no" class="btn-no">
+            No, I'd rather pay the full price
+        </a>
+    </div>
 
-  <a href="https://www.checkout-ds24.com/answer/no" class="btn-no">
-    No, I'd rather pay the full price
-  </a>
-</div>
+    <h2 style="color: red; font-weight: 800; text-align: center; padding: 10px 20px;">
+        CLICK THE GREEN BUTTON AND CONFIRM THE POP-UP TO ACCESS YOUR APP RIGHT NOW!
+    </h2>
 
-  <h2 style="color: red; font-weight: 800; text-align: center; padding: 10px 20px;">
-  CLICK THE GREEN BUTTON AND CONFIRM THE POP-UP TO ACCESS YOUR APP RIGHT NOW!
-</h2>
+    <div style="height:100px;"></div>
 
-<div style="height:100px;"></div>
+    <canvas id="confetti"></canvas>
 
-<canvas id="confetti"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script>
+        const jsConfetti = new JSConfetti({ canvasId: 'confetti' });
+        window.onload = () => jsConfetti.addConfetti();
 
-<script>
-const jsConfetti = new JSConfetti({ canvasId: 'confetti' });
-window.onload = () => jsConfetti.addConfetti();
+        function copyEmail(btn){
+            const email = "danagapreto@gmail.com";
+            navigator.clipboard.writeText(email).then(()=>{
+                const t = btn.innerText;
+                btn.innerText = "COPIED!";
+                setTimeout(()=>btn.innerText = t,2000);
+            });
+        }
+    </script>
 
-function copyEmail(btn){
-  const email = "danagapreto@gmail.com";
-  navigator.clipboard.writeText(email).then(()=>{
-    const t = btn.innerText;
-    btn.innerText = "COPIED!";
-    setTimeout(()=>btn.innerText = t,2000);
-  });
-}
-</script>
-
-<script
-src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-data-utmify-prevent-xcod-sck
-data-utmify-prevent-subids
-async defer>
-</script>
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 
 </body>
 </html>
