@@ -1,429 +1,860 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
+
     <script>digistoreUpsell()</script>
 
+
+
     <script type="text/javascript" src="https://www.digistore24.com/trusted-badge/45038/EfkrAuwxyTyKoSt/salespage"></script>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>purchase under review</title>
+
+
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 
+
+
     <style>
+
         body {
+
             margin: 0;
+
             padding: 0;
+
             font-family: "Poppins", sans-serif;
-            background: #fff;
-            color: #000;
+
+            background: #000;
+
+            color: #fff;
+
             line-height: 1.4;
+
             text-align: center;
+
         }
+
+
 
         /* HEADER */
+
         .header {
+
             background: linear-gradient(90deg, #d80000, #7a0000);
+
             padding: 20px 10px;
+
         }
+
+
 
         .title-tag {
+
             background: #fff;
+
             color: #d80000;
+
             font-weight: 800;
+
             font-size: 22px;
+
             padding: 5px 10px;
+
             display: inline-block;
+
         }
+
+
 
         /* EMAIL */
+
         .header-msg {
+
             margin-top: 15px;
+
             font-size: 15px;
+
             font-weight: 500;
+
         }
+
+
 
         .email-container {
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
+
             gap: 8px;
+
             margin-top: 5px;
+
             flex-wrap: wrap;
+
         }
+
+
 
         .email-text {
+
             font-weight: 700;
+
             text-decoration: underline;
+
         }
+
+
 
         .copy-btn {
+
             background: #fff;
+
             color: #d80000;
+
             border: none;
+
             padding: 4px 10px;
+
             border-radius: 4px;
+
             font-weight: 700;
+
             font-size: 12px;
+
             cursor: pointer;
+
         }
+
+
 
         .copy-btn:active {
+
             transform: scale(0.95);
+
         }
+
+
 
         /* PROGRESS */
+
         .step {
+
             font-size: 18px;
+
             font-weight: 700;
+
             margin: 20px 0 10px;
+
         }
+
+
 
         .progress {
+
             width: 90%;
+
             margin: 0 auto;
+
             height: 30px;
+
             border-radius: 5px;
+
             overflow: hidden;
+
         }
+
+
 
         .progress-bar {
+
             width: 75%;
+
             height: 100%;
+
             background: linear-gradient(90deg, #16a34a, #0d6b3a);
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-weight: 700;
+
         }
+
+
 
         /* WARNING */
+
         .warning {
+
             font-size: 14px;
+
             margin: 10px 0;
+
         }
+
+
 
         .warning span {
+
             color: #ffcc00;
+
             font-size: 18px;
+
         }
+
+
 
         /* PLAYER */
+
         vturb-smartplayer {
+
             display: block;
+
             width: 100%;
+
             max-width: 800px;
+
             margin: 0 auto;
+
         }
+
+
 
         /* BUTTONS */
+
         .decision-container {
+
             display: flex;
+
             flex-direction: column;
+
             align-items: center;
+
             gap: 20px;
+
             width: 100%;
+
             max-width: 500px;
+
             margin: 0 auto;
+
             padding: 20px;
+
             box-sizing: border-box;
+
         }
+
+
 
         .btn-yes {
+
             width: 100%;
+
             background: #25D366;
+
             color: #fff;
+
             padding: 18px 20px;
+
             font-size: 22px;
+
             font-weight: 800;
+
             text-transform: uppercase;
+
             border-radius: 8px;
+
             text-decoration: none;
+
             animation: pulse-green 1.5s infinite;
+
         }
+
+
 
         .btn-no {
+
             color: #6c757d;
+
             font-size: 15px;
+
             text-decoration: underline;
+
         }
+
+
 
         /* ANIMAÇÃO */
+
         @keyframes pulse-green {
+
             0% { transform: scale(1); }
+
             50% { transform: scale(1.04); }
+
             100% { transform: scale(1); }
+
         }
+
+
 
         /* CONFETTI */
+
         #confetti {
+
             position: fixed;
+
             inset: 0;
+
             pointer-events: none;
+
             z-index: 999;
+
         }
+
+
 
         /* FAQ */
+
         .faq-section {
+
             max-width: 800px;
+
             margin: 0 auto 50px;
+
             padding: 0 20px;
+
             text-align: left;
+
         }
+
+
 
         .faq-title {
+
             text-align: center;
+
             font-size: 28px;
+
             font-weight: 800;
+
             margin-bottom: 30px;
+
         }
+
+
 
         .faq-item {
+
             background: #111;
+
             margin-bottom: 12px;
+
             border-radius: 8px;
+
             border: 1px solid #333;
+
         }
+
+
 
         .faq-item summary {
+
             padding: 18px 20px;
+
             font-size: 16px;
+
             font-weight: 700;
+
             cursor: pointer;
+
             display: flex;
+
             justify-content: space-between;
+
         }
+
+
 
         .faq-answer {
+
             padding: 20px;
+
             font-size: 14px;
+
             color: #ccc;
+
         }
+
+
 
         /* ----- BONUS SECTION ----- */
+
         .bonus-section {
+
             max-width: 800px;
+
             margin: 40px auto;
+
             padding: 30px 20px;
+
             background: #111;
+
             border-radius: 12px;
+
             border: 2px solid #ffcc00;
+
             box-shadow: 0 10px 30px rgba(255, 204, 0, 0.1);
+
             text-align: center;
+
             box-sizing: border-box;
+
         }
+
+
 
         .bonus-title {
+
             color: #ffcc00;
+
             font-size: 28px;
+
             font-weight: 800;
+
             margin-bottom: 25px;
+
             text-transform: uppercase;
+
             letter-spacing: 1px;
+
         }
+
+
 
         .bonus-card {
+
             background: #1a1a1a;
+
             margin-bottom: 15px;
+
             padding: 20px;
+
             border-radius: 8px;
+
             border-left: 5px solid #25D366;
+
             text-align: left;
+
             display: flex;
+
             align-items: center;
+
             gap: 20px;
+
             transition: transform 0.2s ease;
+
         }
+
+
 
         .bonus-card:hover {
+
             transform: scale(1.02);
+
             background: #222;
+
         }
+
+
 
         .bonus-icon {
+
             font-size: 40px;
+
             min-width: 50px;
+
             text-align: center;
+
         }
+
+
 
         .bonus-text h3 {
+
             margin: 0 0 5px 0;
+
             color: #fff;
+
             font-size: 18px;
+
             text-transform: uppercase;
+
         }
+
+
 
         .bonus-text p {
+
             margin: 0;
+
             color: #bbb;
+
             font-size: 14px;
+
             line-height: 1.5;
+
         }
+
+
 
         /* SCROLL TO TOP BUTTON */
+
         .btn-scroll-top {
+
             display: block;
+
             width: 100%;
+
             max-width: 500px;
+
             margin: 0 auto 60px;
+
             background: #25D366;
+
             color: #fff;
+
             padding: 16px 20px;
+
             font-size: 16px;
+
             font-weight: 800;
+
             text-transform: uppercase;
+
             border: none;
+
             border-radius: 8px;
+
             cursor: pointer;
+
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+
             transition: all 0.3s ease;
+
         }
+
+
 
         .btn-scroll-top:hover {
+
             background: #20b858;
+
             transform: translateY(-3px);
+
         }
+
+
 
         /* MOBILE */
+
         @media (max-width: 480px) {
+
             .btn-yes {
+
                 font-size: 18px;
+
                 padding: 15px;
+
             }
+
+
 
             .btn-no {
+
                 font-size: 13px;
+
             }
+
+
 
             .title-tag {
+
                 font-size: 18px;
+
             }
+
+
 
             .header-msg {
+
                 font-size: 14px;
+
             }
+
+
 
             .bonus-title {
+
                 font-size: 22px;
+
             }
+
+
 
             .bonus-card {
+
                 flex-direction: column;
+
                 text-align: center;
+
                 border-left: none;
+
                 border-top: 5px solid #25D366;
+
                 padding: 25px 15px;
+
             }
+
+
 
             .bonus-icon {
+
                 margin-bottom: 5px;
+
             }
+
+
 
             .btn-scroll-top {
+
                 font-size: 14px;
+
                 padding: 15px;
+
                 width: 90%;
+
             }
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <div class="header">
+
         <span class="title-tag">CONGRATULATIONS! BUT...</span>
+
         <div class="header-msg">
+
             WATCH THE VIDEO BELOW SO YOU DON'T MISS IT—THAT'S WHERE I REVEAL THE PRAYER:
+
         </div>
+
     </div>
+
+
 
     <div class="step">STEP 3 OF 4</div>
 
+
+
     <div class="progress">
+
         <div class="progress-bar">75%</div>
+
     </div>
 
+
+
     <div class="warning">
+
         <span>⚠</span> Watch the video below 👇 To go directly to the video, click the green button below it.
+
     </div>
+
+
 
     <vturb-smartplayer id="vid-69a8a74c95fb3f8812028882"></vturb-smartplayer>
 
+
+
     <script>
+
         var s = document.createElement("script");
+
         s.src = "https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69a8a74c95fb3f8812028882/v4/player.js";
+
         s.async = true;
+
         document.head.appendChild(s);
+
     </script>
+
+
 
     <br>
 
+
+
     <div class="decision-container">
+
         <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="btn-yes">
+
             ACCESS NOW
+
         </a>
+
         <a href="https://www.checkout-ds24.com/answer/no" class="btn-no">
+
             No, I'd rather pay the full price
+
         </a>
+
     </div>
+
+
 
     <h2 style="color: red; font-weight: 800; text-align: center; padding: 10px 20px;">
+
         CLICK THE GREEN BUTTON AND CONFIRM THE POP-UP TO ACCESS YOUR APP RIGHT NOW!
+
     </h2>
 
+
+
     <div class="bonus-section">
+
         <div class="bonus-title">Unlock These Exclusive Bonuses!</div>
+
         
+
         <div class="bonus-card">
+
             <div class="bonus-icon">✈️</div>
+
             <div class="bonus-text">
+
                 <h3>Bonus 1: Italy Trip Giveaway</h3>
+
                 <p>Confirm your participation in the exclusive draw for an all-expenses-paid trip to Italy, with a companion included!</p>
+
             </div>
+
         </div>
 
+
+
         <div class="bonus-card">
+
             <div class="bonus-icon">📸</div>
+
             <div class="bonus-text">
+
                 <h3>Bonus 2: Meet Mark Wahlberg & Mystery Gift</h3>
+
                 <p>Get a photo opportunity with Mark Wahlberg plus a mystery cash gift delivered personally by him to help with your bills.</p>
+
             </div>
+
         </div>
 
+
+
         <div class="bonus-card">
+
             <div class="bonus-icon">📱</div>
+
             <div class="bonus-text">
+
                 <h3>Bonus 3: Premium App Access & Support</h3>
+
                 <p>Full access to the App, including the new premium content "Sound of God" added directly to your account, plus VIP support.</p>
+
             </div>
+
         </div>
+
     </div>
 
+
+
     <button class="btn-scroll-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+
         Watch the video to receive all this ⬆
+
     </button>
+
+
 
     <div style="height:50px;"></div>
 
+
+
     <canvas id="confetti"></canvas>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 
+
+
     <script>
+
         const jsConfetti = new JSConfetti({ canvasId: 'confetti' });
+
         window.onload = () => jsConfetti.addConfetti();
 
+
+
         function copyEmail(btn){
+
             const email = "danagapreto@gmail.com";
+
             navigator.clipboard.writeText(email).then(()=>{
+
                 const t = btn.innerText;
+
                 btn.innerText = "COPIED!";
+
                 setTimeout(()=>btn.innerText = t,2000);
+
             });
+
         }
+
     </script>
+
+
 
     <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 
+
+
 </body>
+
 </html>
+
+
+
