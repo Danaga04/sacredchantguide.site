@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>(1)</title> 
 
-    
 <!-- PRELOAD PLAYER -->
 <link rel="preload" href="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69e7bc31b056e24c5d360238/v4/player.js" as="script">
 <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
@@ -24,6 +23,11 @@ body {
     background: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+}
+
+/* ESCONDER */
+#esconder {
+    display: none;
 }
 
 /* COUNTDOWN BAR */
@@ -144,53 +148,58 @@ body {
 
 <script src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69e7bc31b056e24c5d360238/v4/player.js" async></script>
 
-<!-- OFERTA -->
-<div class="container esconder">
+<!-- CONTEÚDO ESCONDIDO -->
+<div id="esconder">
 
-    <div class="price-old esconder">
-        Normally: <span>$7,500</span>
-    </div>
+    <!-- OFERTA -->
+    <div class="container">
 
-    <div class="price-new esconder">
-        Today Just: <span>$37 One Time</span>
-    </div>
-
-    <a href="https://www.checkout-ds24.com/product/680704?utm_content=botaovturb" class="cta-button-esconder">
-        Buy Sacred Chant Now
-    </a>
-
-    <a href="https://www.checkout-ds24.com/product/680704?utm_content=botaovturb" class="sub-link esconder">
-        Click Here To Get Instant Access >
-    </a>
-
-    <div class="payments esconder">
-        <img src="https://i.imgur.com/2ISgYja.png" alt="payments">
-    </div>
-
-    <div class="secure esconder">
-        🔒 Your information is safe and secure. The entire transaction will take place on a secure server using SSL technology.
-    </div>
-
-</div>
-
-<!-- COUNTDOWN -->
-<div class="countdown-bar esconder">
-    <h1 class="esconder"><strong>Get The Sacred Chant</strong> Before We Close Our Doors</h1>
-    
-    <div class="countdown-box esconder">
-        <div class="time esconder">
-            <span id="minutes">33</span>
-            <div class="label esconder">Minutes</div>
+        <div class="price-old">
+            Normally: <span>$7,500</span>
         </div>
-        <div class="time esconder">
-            <span id="seconds">53</span>
-            <div class="label esconder">Seconds</div>
+
+        <div class="price-new">
+            Today Just: <span>$37 One Time</span>
+        </div>
+
+        <a href="https://www.checkout-ds24.com/product/680704?utm_content=botaovturb" class="cta-button">
+            Buy Sacred Chant Now
+        </a>
+
+        <a href="https://www.checkout-ds24.com/product/680704?utm_content=botaovturb" class="sub-link">
+            Click Here To Get Instant Access >
+        </a>
+
+        <div class="payments">
+            <img src="https://i.imgur.com/2ISgYja.png" alt="payments">
+        </div>
+
+        <div class="secure">
+            🔒 Your information is safe and secure. The entire transaction will take place on a secure server using SSL technology.
+        </div>
+
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-bar">
+        <h1><strong>Get The Sacred Chant</strong> Before We Close Our Doors</h1>
+        
+        <div class="countdown-box">
+            <div class="time">
+                <span id="minutes">33</span>
+                <div class="label">Minutes</div>
+            </div>
+            <div class="time">
+                <span id="seconds">53</span>
+                <div class="label">Seconds</div>
+            </div>
         </div>
     </div>
+
 </div>
 
 <!-- SCRIPT COUNTDOWN -->
-<script class="esconder">
+<script>
 let totalSeconds = (33 * 60) + 53;
 
 function updateCountdown() {
@@ -208,23 +217,13 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 </script>
 
-<div class="esconder" style="margin-top:30px; font-size:14px; color:#555; text-align:center; line-height:1.6;">
-    <div>
-        Privacy Policy
-        |
-        Terms & Conditions
-        |
-        Contact Us
-    </div>
-
-    <div style="margin-top:10px;">
-        Copyright © 2025 - The Divine Script. All Right Reserved.
-    </div>
-
-    <div style="margin-top:10px; font-size:12px; color:#777;">
-        Disclaimer: This product is not intended to diagnose, treat, cure or prevent any disease.
-    </div>
-</div>
+<!-- MOSTRAR CONTEÚDO (EXEMPLO) -->
+<script>
+// mostra depois de 10 segundos (ajuste se quiser)
+setTimeout(() => {
+    document.getElementById("esconder").style.display = "block";
+}, 10000);
+</script>
 
 </body>
 </html>
