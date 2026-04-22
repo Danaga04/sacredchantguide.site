@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>(1)</title> 
 
+<!-- GOOGLE FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 <!-- PRELOAD PLAYER -->
 <link rel="preload" href="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69e7bc31b056e24c5d360238/v4/player.js" as="script">
 <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
@@ -21,13 +24,28 @@ body {
     margin: 0;
     padding: 0;
     background: #ffffff;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
     text-align: center;
 }
 
 /* ESCONDER */
 #esconder {
     display: none;
+}
+
+/* TEXTO ESPECIAL */
+.special-text {
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #111;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.special-text strong {
+    color: #e5392d;
 }
 
 /* COUNTDOWN BAR */
@@ -166,6 +184,13 @@ body {
             Buy Sacred Chant Now
         </a>
 
+        <!-- TEXTO ADICIONADO -->
+        <div id="esconder" class="special-text">
+            <strong>Congratulations, you’re our 4,000th customer—you’ve unlocked a special price: $297 instead of $37.</strong><br>
+            This offer isn’t available to the public and is valid for only 10 minutes.<br>
+            Click the button above before it disappears.
+        </div>
+
         <a href="https://www.checkout-ds24.com/product/680704" class="sub-link">
             Click Here To Get Instant Access >
         </a>
@@ -218,15 +243,14 @@ setInterval(updateCountdown, 1000);
 </script>
     
 
-<!-- MOSTRAR CONTEÚDO (EXEMPLO) -->
+<!-- MOSTRAR CONTEÚDO -->
 <script>
-// mostra depois de 10 segundos (ajuste se quiser)
 setTimeout(() => {
     document.getElementById("esconder").style.display = "block";
 }, 10000);
 </script>
 
-    <footer style="margin-top:40px; padding:20px 15px; font-size:13px; color:#555; text-align:center; line-height:1.6; background:#f9f9f9;">
+<footer style="margin-top:40px; padding:20px 15px; font-size:13px; color:#555; text-align:center; line-height:1.6; background:#f9f9f9;">
 
     <div style="margin-bottom:10px;">
         <a  style="color:#0047ff; text-decoration:none; margin:0 8px;">Privacy Policy</a> |
@@ -245,6 +269,14 @@ setTimeout(() => {
     </div>
 
 </footer>
+
+    <script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
 
 </body>
 </html>
