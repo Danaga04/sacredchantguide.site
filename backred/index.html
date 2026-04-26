@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wait — Before You Go</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-pale: #F5E4B0;
+    --navy: #0A0D1A;
+    --navy-mid: #111629;
+    --navy-light: #1A2240;
+    --cream: #F7F0E0;
+    --red-warm: #8B1A1A;
+    --red-bright: #D4251E;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--navy);
+    color: var(--cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='none'/%3E%3Ccircle cx='1' cy='1' r='0.5' fill='rgba(201,168,76,0.04)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  /* ── TOP URGENCY BAR ── */
+  .urgency-bar {
+    background: var(--red-warm);
+    text-align: center;
+    padding: 12px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: #FFD9D9;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+  }
+
+  .urgency-bar span {
+    color: #FFE066;
+    font-weight: 700;
+  }
+
+  /* ── DIVINE SEPARATOR ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  .divider-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .divider-cross {
+    color: var(--gold);
+    font-size: 18px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px; height: 20px;
+  }
+  .divider-cross::before { content: '✦'; }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    padding: 40px 0 0;
+  }
+
+  .stop-badge {
+    display: inline-block;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    padding: 6px 20px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+    animation: pulse-border 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-border {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+    50% { box-shadow: 0 0 0 6px rgba(201,168,76,0.15); }
+  }
+
+  .main-headline {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(26px, 5vw, 40px);
+    font-weight: 700;
+    line-height: 1.22;
+    color: var(--gold-pale);
+    margin-bottom: 16px;
+    text-shadow: 0 0 40px rgba(201,168,76,0.25);
+  }
+
+  .main-headline em {
+    font-style: italic;
+    font-family: 'Crimson Text', serif;
+    color: var(--gold-light);
+    font-size: 1.05em;
+  }
+
+  .sub-headline {
+    font-size: 20px;
+    color: rgba(247,240,224,0.8);
+    font-style: italic;
+    max-width: 540px;
+    margin: 0 auto 10px;
+  }
+
+  /* ── COUNTDOWN ── */
+  .countdown-wrap {
+    background: rgba(201,168,76,0.07);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-radius: 4px;
+    padding: 18px 24px;
+    margin: 28px 0;
+    text-align: center;
+  }
+
+  .countdown-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .countdown-digits {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .digit-block { text-align: center; }
+
+  .digit-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+    min-width: 52px;
+  }
+
+  .digit-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(247,240,224,0.5);
+    text-transform: uppercase;
+    margin-top: 4px;
+    display: block;
+  }
+
+  .countdown-sep {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    color: var(--gold);
+    align-self: flex-start;
+    margin-top: 4px;
+    opacity: 0.6;
+  }
+
+  /* ── PAIN SECTION ── */
+  .pain-box {
+    background: rgba(10,13,26,0.8);
+    border-left: 3px solid var(--gold);
+    padding: 22px 26px;
+    margin: 28px 0;
+    font-size: 19px;
+    font-style: italic;
+    color: rgba(247,240,224,0.9);
+    line-height: 1.8;
+  }
+
+  .pain-box p + p { margin-top: 14px; }
+
+  .pain-box strong {
+    color: var(--gold-light);
+    font-style: normal;
+  }
+
+  /* ── REVELATION BLOCK ── */
+  .revelation {
+    background: linear-gradient(135deg, rgba(26,34,64,0.9) 0%, rgba(17,22,41,0.9) 100%);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 2px;
+    padding: 30px 32px;
+    margin: 30px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .revelation::before {
+    content: '✝';
+    position: absolute;
+    top: -12px; right: 20px;
+    font-size: 80px;
+    color: rgba(201,168,76,0.04);
+    line-height: 1;
+  }
+
+  .revelation-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 17px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .revelation p {
+    font-size: 19px;
+    line-height: 1.8;
+    color: rgba(247,240,224,0.88);
+  }
+
+  .revelation p + p { margin-top: 14px; }
+
+  .highlight-text {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { margin: 32px 0; }
+
+  .testimonial {
+    background: rgba(17,22,41,0.8);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .testimonial:hover { border-color: rgba(201,168,76,0.5); }
+
+  .testimonial-quote {
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.75;
+    color: rgba(247,240,224,0.85);
+    margin-bottom: 14px;
+  }
+
+  .testimonial-quote::before {
+    content: '"';
+    font-family: 'Montserrat', sans-serif;
+    font-size: 40px;
+    color: var(--gold);
+    opacity: 0.5;
+    line-height: 0;
+    vertical-align: -14px;
+    margin-right: 4px;
+  }
+
+  .testimonial-result {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    padding: 5px 14px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  .testimonial-author {
+    font-size: 14px;
+    color: rgba(247,240,224,0.5);
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .stars {
+    color: var(--gold);
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+  }
+
+  /* ── OFFER BOX ── */
+  .offer-box {
+    background: linear-gradient(160deg, rgba(20,26,50,1) 0%, rgba(12,15,30,1) 100%);
+    border: 2px solid var(--gold);
+    padding: 36px 32px;
+    margin: 36px 0;
+    text-align: center;
+    position: relative;
+  }
+
+  .offer-box::before, .offer-box::after {
+    content: '✦';
+    position: absolute;
+    top: -11px;
+    color: var(--gold);
+    background: var(--navy);
+    padding: 0 8px;
+    font-size: 13px;
+  }
+  .offer-box::before { left: 24px; }
+  .offer-box::after { right: 24px; }
+
+  .offer-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .offer-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(20px, 4vw, 28px);
+    color: var(--gold-pale);
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .offer-desc {
+    font-size: 17px;
+    color: rgba(247,240,224,0.7);
+    font-style: italic;
+    margin-bottom: 24px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .price-wrap {
+    margin: 20px 0 28px;
+  }
+
+  .price-old {
+    font-size: 20px;
+    color: rgba(247,240,224,0.35);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .price-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .price-main {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(52px, 10vw, 76px);
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+    text-shadow: 0 0 30px rgba(201,168,76,0.4);
+  }
+
+  .price-main sup {
+    font-size: 0.35em;
+    vertical-align: top;
+    margin-top: 16px;
+    display: inline-block;
+  }
+
+  .price-note {
+    font-size: 14px;
+    color: rgba(247,240,224,0.45);
+    margin-top: 8px;
+    letter-spacing: 1px;
+    font-style: italic;
+  }
+
+  /* ── TOP OFFER (price + CTA after countdown) ── */
+  .top-offer {
+    background: linear-gradient(160deg, rgba(20,26,50,0.95) 0%, rgba(12,15,30,0.95) 100%);
+    border: 2px solid var(--gold);
+    padding: 28px 28px 24px;
+    margin: 0 0 28px;
+    text-align: center;
+  }
+
+  /* ── CTA BUTTON ── */
+  .cta-btn {
+    display: block;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto 16px;
+    padding: 20px 28px;
+    background: linear-gradient(135deg, #B8892A 0%, #E5C158 40%, #C9A84C 70%, #A07830 100%);
+    color: #0A0D1A;
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(15px, 3vw, 18px);
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 6px 30px rgba(201,168,76,0.35);
+    line-height: 1.3;
+  }
+
+  .cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.5s;
+  }
+
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(201,168,76,0.5); }
+  .cta-btn:hover::before { left: 140%; }
+  .cta-btn:active { transform: translateY(0); }
+
+  .cta-sub {
+    font-size: 14px;
+    color: rgba(247,240,224,0.45);
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+
+  .cta-security {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    font-size: 13px;
+    color: rgba(247,240,224,0.4);
+    flex-wrap: wrap;
+    letter-spacing: 0.5px;
+  }
+
+  .cta-security span::before { content: '🔒 '; }
+
+  /* ── GUARANTEE ── */
+  .guarantee {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: rgba(17,22,41,0.6);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 24px;
+    margin: 24px 0;
+  }
+
+  .guarantee-icon {
+    font-size: 44px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .guarantee-text h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .guarantee-text p {
+    font-size: 16px;
+    color: rgba(247,240,224,0.7);
+    line-height: 1.65;
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    text-align: center;
+    padding: 30px 0 10px;
+  }
+
+  .closing p {
+    font-size: 19px;
+    font-style: italic;
+    color: rgba(247,240,224,0.75);
+    line-height: 1.8;
+    max-width: 520px;
+    margin: 0 auto 20px;
+  }
+
+  .closing-signature {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    opacity: 0.8;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    margin-top: 40px;
+    border-top: 1px solid rgba(201,168,76,0.12);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 13px;
+    color: rgba(247,240,224,0.3);
+    line-height: 1.8;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(22px);
+    animation: fadeUp 0.7s forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: none; }
+  }
+
+  .fade-in:nth-child(1) { animation-delay: 0.1s; }
+  .fade-in:nth-child(2) { animation-delay: 0.25s; }
+  .fade-in:nth-child(3) { animation-delay: 0.4s; }
+  .fade-in:nth-child(4) { animation-delay: 0.55s; }
+  .fade-in:nth-child(5) { animation-delay: 0.7s; }
+
+  @media (max-width: 500px) {
+    .revelation, .offer-box { padding: 24px 18px; }
+    .guarantee { flex-direction: column; }
+    .guarantee-icon { font-size: 36px; }
+    .digit-num { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- URGENCY BAR -->
+<div class="urgency-bar">
+  ⚠ &nbsp; This special offer disappears when this page closes &nbsp; — &nbsp; <span>Available for the next few minutes only</span>
+</div>
+
+<div class="page-wrap">
+
+  <!-- HEADER -->
+  <div class="header fade-in">
+    <div class="stop-badge">Please — Read This First</div>
+    <h1 class="main-headline">
+      Wait. God Has NOT<br>Forgotten You.
+    </h1>
+    <p class="sub-headline">Before you leave, there's something important you need to hear about why your prayers haven't been answered yet…</p>
+  </div>
+
+  <div class="divider fade-in"><div class="divider-line"></div><div class="divider-cross"></div><div class="divider-line"></div></div>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-wrap fade-in">
+    <div class="countdown-label">⚡ This special price expires in</div>
+    <div class="countdown-digits">
+      <div class="digit-block"><span class="digit-num" id="cd-min">12</span><span class="digit-label">Min</span></div>
+      <div class="countdown-sep">:</div>
+      <div class="digit-block"><span class="digit-num" id="cd-sec">00</span><span class="digit-label">Sec</span></div>
+    </div>
+  </div>
+
+  <!-- PRICE + CTA — right after countdown -->
+  <div class="top-offer fade-in">
+    <div class="price-wrap">
+      <div class="price-old">Regular price: $49</div>
+      <div class="price-label">Your special price — today only</div>
+      <div class="price-main"><sup>$</sup>27</div>
+      <div class="price-note">One single payment · Instant access · No subscriptions</div>
+    </div>
+    <a href="https://checkout.vendepay.com/2df29c04-a974-4d39-b9af-3fa3977beba5" class="cta-btn">
+      ✝ &nbsp; Yes — Reconnect Me to God's Blessings &nbsp; ✝
+    </a>
+    <p class="cta-sub">Secure checkout · Instant delivery to your email</p>
+    <div class="cta-security">
+      <span>Safe & Secure Payment</span>
+      <span>256-bit Encryption</span>
+      <span>60-Day Money-Back Guarantee</span>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-cross"></div><div class="divider-line"></div></div>
+
+  <!-- PAIN -->
+  <div class="pain-box fade-in">
+    <p>I know why you're about to leave.</p>
+    <p>You've been here before. You've tried praying. You've asked God for help. And <strong>nothing seemed to change.</strong> The bills are still piling up. The sleepless nights are still there. You look at your bank account and feel that familiar heaviness in your chest.</p>
+    <p>So right now, part of you is thinking: <strong>"This probably won't work for me either."</strong></p>
+    <p>I understand. But please — give me just 60 more seconds. Because what I'm about to tell you changes everything.</p>
+  </div>
+
+  <!-- REVELATION -->
+  <div class="revelation fade-in">
+    <div class="revelation-title">✦ The Real Reason Your Prayers Went Unanswered</div>
+    <p>The problem was never your faith. The problem was never that God wasn't listening. The truth is — <span class="highlight-text">your spiritual connection had been blocked.</span></p>
+    <p>Think of it like a radio with a broken antenna. The signal is always there. God has always been transmitting blessings toward you. But without the right frequency — without the exact prayer that reopens that sacred channel — none of it gets through.</p>
+    <p>That is precisely what this ancient prayer does. In just 7 minutes a day, it <span class="highlight-text">re-activates your spiritual channel</span> — the one that was quietly closed without you even knowing it. And once that channel opens… everything begins to shift.</p>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-cross"></div><div class="divider-line"></div></div>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials">
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-result">+ $11,400 in 3 weeks</div>
+      <p class="testimonial-quote">I was two months behind on rent, completely convinced nothing would ever change. I started this prayer out of desperation. Three weeks later, my landlord called — a program I didn't even know existed covered my back rent entirely. Then my sister offered me a job I hadn't asked for. I'm not the same person I was 30 days ago.</p>
+      <div class="testimonial-author">— Patricia W., 58 &nbsp;·&nbsp; Columbus, Ohio</div>
+    </div>
+
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-result">Husband returned. Marriage restored.</div>
+      <p class="testimonial-quote">My husband had been sleeping in the guest room for almost a year. I had given up hope. After just the first week of the prayer, something shifted in him. He came to me, crying, asking to start over. My daughter said our home feels different — peaceful, like before. I can't explain it. I just know it's real.</p>
+      <div class="testimonial-author">— Linda M., 52 &nbsp;·&nbsp; Fort Worth, Texas</div>
+    </div>
+
+    <div class="testimonial">
+      <div class="stars">★★★★★</div>
+      <div class="testimonial-result">Doctor "can't explain" her recovery</div>
+      <p class="testimonial-quote">My knees were so bad I could barely walk to the mailbox. I'd spent thousands on treatments with no results. I said this prayer every morning for 21 days. At my next appointment, my doctor ran the X-rays twice. The inflammation had dropped dramatically. She said she "couldn't explain it medically." I could.</p>
+      <div class="testimonial-author">— Rose A., 64 &nbsp;·&nbsp; Phoenix, Arizona</div>
+    </div>
+  </div>
+
+  <!-- OFFER -->
+  <div class="offer-box">
+    <div class="offer-title">✦ Exclusive Back-Only Offer ✦</div>
+    <div class="offer-name">The Sacred Reconnection Prayer</div>
+    <p class="offer-desc">The complete ancient prayer sequence — delivered instantly to your inbox. Begin tonight.</p>
+
+    <a href="https://checkout.vendepay.com/2df29c04-a974-4d39-b9af-3fa3977beba5" class="cta-btn">
+      ✝ &nbsp; Yes — Reconnect Me to God's Blessings &nbsp; ✝
+    </a>
+    <p class="cta-sub">Secure checkout · Instant delivery to your email</p>
+    <div class="cta-security">
+      <span>Safe & Secure Payment</span>
+      <span>256-bit Encryption</span>
+      <span>60-Day Money-Back Guarantee</span>
+    </div>
+  </div>
+
+  <!-- GUARANTEE -->
+  <div class="guarantee">
+    <div class="guarantee-icon">🛡️</div>
+    <div class="guarantee-text">
+      <h4>Iron-Clad 60-Day Guarantee</h4>
+      <p>Say this prayer every day for 60 days. If you don't experience any positive shift in your finances, your health, or your relationships — simply send us one email and we'll refund every single penny. No questions. No forms. No hassle. Your faith should never come with risk.</p>
+    </div>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><div class="divider-cross"></div><div class="divider-line"></div></div>
+
+  <!-- CLOSING -->
+  <div class="closing">
+    <p>You didn't land on this page by accident. Of all the millions of pages on the internet, something — or Someone — guided you here. Don't let the enemy convince you to walk away from the very thing that was meant for you.</p>
+    <p><em>$27. That's all. A cup of coffee a day costs more than this. And this… this could change everything.</em></p>
+
+    <a href="https://checkout.vendepay.com/2df29c04-a974-4d39-b9af-3fa3977beba5" class="cta-btn" style="margin-top:16px; max-width: 420px;">
+      ✝ &nbsp; Claim My Access for $27 &nbsp; ✝
+    </a>
+
+    <div class="closing-signature" style="margin-top: 28px;">With faith & love — God bless you.</div>
+  </div>
+
+  <footer>
+    <p>This site is not a part of Facebook or Facebook Inc. Additionally, this site is NOT endorsed by Facebook in any way.<br>
+    All testimonials reflect real experiences. Individual results may vary.<br>
+    © 2025 · All Rights Reserved</p>
+  </footer>
+
+</div>
+
+<script>
+  // Countdown timer
+  (function() {
+    const mins = document.getElementById('cd-min');
+    const secs = document.getElementById('cd-sec');
+    let total = 12 * 60;
+
+    function tick() {
+      const m = Math.floor(total / 60);
+      const s = total % 60;
+      mins.textContent = String(m).padStart(2, '0');
+      secs.textContent = String(s).padStart(2, '0');
+      if (total > 0) { total--; setTimeout(tick, 1000); }
+      else { mins.textContent = '00'; secs.textContent = '00'; }
+    }
+    tick();
+  })();
+</script>
+</body>
+</html>
