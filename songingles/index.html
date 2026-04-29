@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=REM:wght@300;400;500&family=Roboto:wght@300;400;500&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/groove.css">
 
 <style>
@@ -163,6 +163,126 @@
         .fb-comments-section { width: 95%; margin: 20px auto; }
         .fb-reply-thread { margin-left: 30px; }
     }
+
+    /* ===== OFFER SECTION STYLES ===== */
+    .offer-section {
+        font-family: 'Poppins', Arial, Helvetica, sans-serif;
+        text-align: center;
+        background: #ffffff;
+    }
+
+    .offer-section .special-text {
+        margin-top: 15px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #111;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .offer-section .special-text strong {
+        color: #e5392d;
+    }
+
+    .offer-section .countdown-bar {
+        background: #e5392d;
+        color: #fff;
+        padding: 20px 10px;
+    }
+
+    .offer-section .countdown-bar h1 {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .offer-section .countdown-box {
+        background: #000;
+        display: inline-flex;
+        padding: 20px 30px;
+        border-radius: 5px;
+        gap: 40px;
+    }
+
+    .offer-section .time {
+        text-align: center;
+    }
+
+    .offer-section .time span {
+        display: block;
+        font-size: 48px;
+        font-weight: bold;
+    }
+
+    .offer-section .label {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .offer-section .container {
+        padding: 20px 10px;
+    }
+
+    .offer-section .price-old {
+        font-size: 28px;
+        color: #666;
+        font-weight: bold;
+    }
+
+    .offer-section .price-old span {
+        color: red;
+        text-decoration: line-through;
+    }
+
+    .offer-section .price-new {
+        font-size: 26px;
+        margin-top: 5px;
+    }
+
+    .offer-section .price-new span {
+        color: #2fae8f;
+        font-weight: bold;
+    }
+
+    .offer-section .cta-button {
+        display: inline-block;
+        margin-top: 20px;
+        background: #ffd600;
+        color: #000;
+        font-size: 22px;
+        font-weight: bold;
+        padding: 18px 40px;
+        border-radius: 40px;
+        text-decoration: none;
+        box-shadow: 0px 4px 0px #c9a800;
+        transition: 0.2s;
+    }
+
+    .offer-section .cta-button:hover {
+        transform: scale(1.03);
+    }
+
+    .offer-section .sub-link {
+        display: block;
+        margin-top: 15px;
+        color: #0047ff;
+        font-size: 18px;
+        text-decoration: underline;
+    }
+
+    .offer-section .payments {
+        margin-top: 15px;
+    }
+
+    .offer-section .payments img {
+        height: 28px;
+    }
+
+    .offer-section .secure {
+        margin-top: 10px;
+        font-size: 12px;
+        color: #888;
+    }
 </style>
 
 <script>document.addEventListener('contextmenu', event => event.preventDefault());</script>
@@ -173,10 +293,7 @@
 <section class="principal">
     <div class="area_video">
 
-
 <vturb-smartplayer id="ab-69b85393ec3c62fc7c250906" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/69b85393ec3c62fc7c250906/player.js", s.async=!0,document.head.appendChild(s); </script>
-
-
 
         <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
 <link rel="preload" href="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/69b85393ec3c62fc7c250906/player.js" as="script">
@@ -187,11 +304,6 @@
 <link rel="dns-prefetch" href="https://m3u8.vturb.net">
 <link rel="dns-prefetch" href="https://api.vturb.com.br">
 
-
-
-        
-                
-        
         <div style="display:flex;justify-content:center;align-items:center;width:100%;margin-top:20px;margin-bottom:20px;">
             <p style="font-family:'Poppins',sans-serif;font-size:18px;color:#000;text-align:center;">
                 <span id="number"></span> people watching now
@@ -206,6 +318,77 @@
         </script>
     </div>
 </section>
+
+<!-- ===== OFFER SECTION (below VSL, above comments) ===== -->
+<div class="offer-section">
+<div id="esconder">
+    <div class="container">
+
+        <div class="price-old">
+            Normally: <span>$7,500</span>
+        </div>
+
+        <div class="price-new">
+            Today Just: <span>$37 One Time</span>
+        </div>
+
+ 
+
+        <div class="special-text">
+            <strong>Congratulations, you're our 4,000th customer—you've unlocked a special price: $37.</strong><br>
+            This offer isn't available to the public and is valid for only 10 minutes.<br>
+            Click the button above before it disappears.
+        </div>
+
+   
+
+        <div class="payments">
+            <img src="https://i.postimg.cc/44z0dTZR/gdegbo6498420.png" alt="payments">
+        </div>
+
+        <div class="secure">
+            🔒 Your information is safe and secure. The entire transaction will take place on a secure server using SSL technology.
+        </div>
+
+    </div>
+
+    <div class="countdown-bar">
+        <h1><strong>Get The Sacred Chant</strong> Before We Close Our Doors</h1>
+        
+        <div class="countdown-box">
+            <div class="time">
+                <span id="minutes">33</span>
+                <div class="label">Minutes</div>
+            </div>
+            <div class="time">
+                <span id="seconds">39</span>
+                <div class="label">Seconds</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SCRIPT COUNTDOWN -->
+<script>
+let totalSeconds = (33 * 60) + 39;
+
+function updateCountdown() {
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = totalSeconds % 60;
+
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds < 10 ? "0" + seconds : seconds;
+
+    if (totalSeconds > 0) {
+        totalSeconds--;
+    }
+}
+
+setInterval(updateCountdown, 1000);
+</script>
+</div>
+<!-- ===== END OFFER SECTION ===== -->
 
 <div class="fb-comments-section">
     <div class="fb-header-info">
@@ -394,87 +577,7 @@
   defer
 ></script>
 
-
-
-      
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1871216566844765');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1871216566844765&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-    
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '703344576178272');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=703344576178272&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-          <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '929417833095032');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=929417833095032&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-
-          <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1656331785744383');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1656331785744383&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-
-
-
-              <!-- Meta Pixel Code -->
+<!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -492,135 +595,6 @@ src="https://www.facebook.com/tr?id=939787432339812&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
-
-
-
-              <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1964901737720391');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1964901737720391&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-    
-
-
-
-
-              <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1694952488529396');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1694952488529396&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-
-    
-
-              <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1276096667665982');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1276096667665982&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-
-                  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1612345506623248');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1612345506623248&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-
-
-                      <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1632965074431884');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1632965074431884&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-
-
-
-
-    
-                      <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1473716941034645');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1473716941034645&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-    
-
 <script>
   fetch("https://utmify-trackerr-url.vercel.app/save-url", {
     method: "POST", 
@@ -632,9 +606,7 @@ src="https://www.facebook.com/tr?id=1473716941034645&ev=PageView&noscript=1"
   });
 </script>
 
-
-    <script>
-  // ALTERE O LINK PARA A PÁGINA QUE QUISER MOSTRAR QUANDO O USUÁRIO TENTAR SAIR
+<script>
   const link = 'https://sacredchantguide.site/backred/';
 
   function setBackRedirect(url) {
@@ -659,12 +631,5 @@ src="https://www.facebook.com/tr?id=1473716941034645&ev=PageView&noscript=1"
   setBackRedirect(link);
 </script>
 
-
-
-
 </body>
 </html>
-
-
-
-
