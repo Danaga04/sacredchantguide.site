@@ -572,6 +572,154 @@
 
 
 
+        /* ===== URGENCY BLOCK ===== */
+        .urgency-block {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* Countdown */
+        .countdown-wrapper {
+            background: linear-gradient(135deg, #1a0000, #2d0000);
+            border: 2px solid #d80000;
+            border-radius: 10px;
+            padding: 16px 20px 18px;
+            margin-bottom: 14px;
+            box-shadow: 0 0 18px rgba(216,0,0,0.35);
+        }
+
+        .countdown-label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ffcc00;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .countdown-digits {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cd-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cd-number {
+            background: #d80000;
+            color: #fff;
+            font-size: 34px;
+            font-weight: 800;
+            width: 62px;
+            height: 62px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(216,0,0,0.5);
+            font-variant-numeric: tabular-nums;
+            line-height: 1;
+        }
+
+        .cd-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: #aaa;
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cd-sep {
+            font-size: 30px;
+            font-weight: 800;
+            color: #d80000;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        /* Spots bar */
+        .spots-wrapper {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-bottom: 14px;
+        }
+
+        .spots-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .spots-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .spots-count {
+            font-size: 13px;
+            font-weight: 800;
+            color: #d80000;
+        }
+
+        .spots-bar-bg {
+            width: 100%;
+            height: 12px;
+            background: #222;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .spots-bar-fill {
+            height: 100%;
+            width: 87%;
+            background: linear-gradient(90deg, #d80000, #ff4444);
+            border-radius: 6px;
+            animation: pulse-bar 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-bar {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.75; }
+        }
+
+        .spots-note {
+            font-size: 11px;
+            color: #888;
+            margin-top: 6px;
+            text-align: right;
+        }
+
+        /* Urgency text banner */
+        .urgency-banner {
+            background: #ffcc00;
+            color: #000;
+            border-radius: 8px;
+            padding: 11px 16px;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            animation: blink-bg 1.8s ease-in-out infinite;
+        }
+
+        @keyframes blink-bg {
+            0%, 100% { background: #ffcc00; }
+            50% { background: #ffd633; }
+        }
+
         /* MOBILE */
 
         @media (max-width: 480px) {
@@ -650,6 +798,12 @@
 
                 width: 90%;
 
+            }
+
+            .cd-number {
+                width: 52px;
+                height: 52px;
+                font-size: 28px;
             }
 
         }
@@ -733,6 +887,47 @@
         </a>
 
     </div>
+
+
+
+    <!-- ===== URGENCY BLOCK (added below buttons) ===== -->
+    <div class="urgency-block">
+
+        <!-- Countdown Timer -->
+        <div class="countdown-wrapper">
+            <div class="countdown-label">⚠️ This offer expires in:</div>
+            <div class="countdown-digits">
+                <div class="cd-unit">
+                    <div class="cd-number" id="cd-min">09</div>
+                    <div class="cd-label">Minutes</div>
+                </div>
+                <div class="cd-sep">:</div>
+                <div class="cd-unit">
+                    <div class="cd-number" id="cd-sec">59</div>
+                    <div class="cd-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spots running out bar -->
+        <div class="spots-wrapper">
+            <div class="spots-top">
+                <div class="spots-label">🔥 Spots Available</div>
+                <div class="spots-count" id="spots-left">Only 7 left!</div>
+            </div>
+            <div class="spots-bar-bg">
+                <div class="spots-bar-fill"></div>
+            </div>
+            <div class="spots-note">93 people already claimed this offer today</div>
+        </div>
+
+        <!-- Urgency Banner -->
+        <div class="urgency-banner">
+            ⚡ Once the timer hits zero, this page closes permanently!
+        </div>
+
+    </div>
+    <!-- ===== END URGENCY BLOCK ===== -->
 
 
 
@@ -848,6 +1043,49 @@
 
 
 
+    <!-- ===== URGENCY SCRIPTS ===== -->
+    <script>
+        // --- Countdown Timer (9 min 59 sec) ---
+        (function () {
+            var total = 9 * 60 + 59;
+            var minEl = document.getElementById('cd-min');
+            var secEl = document.getElementById('cd-sec');
+
+            function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+            var interval = setInterval(function () {
+                if (total <= 0) {
+                    clearInterval(interval);
+                    minEl.textContent = '00';
+                    secEl.textContent = '00';
+                    return;
+                }
+                total--;
+                minEl.textContent = pad(Math.floor(total / 60));
+                secEl.textContent = pad(total % 60);
+            }, 1000);
+        })();
+
+        // --- Spots Counter (slowly drops from 7 to 3) ---
+        (function () {
+            var spots = 7;
+            var spotsEl = document.getElementById('spots-left');
+            var delays = [18000, 31000, 47000, 65000]; // ms after page load to drop a spot
+
+            delays.forEach(function (delay) {
+                setTimeout(function () {
+                    if (spots > 3) {
+                        spots--;
+                        spotsEl.textContent = 'Only ' + spots + ' left!';
+                    }
+                }, delay);
+            });
+        })();
+    </script>
+    <!-- ===== END URGENCY SCRIPTS ===== -->
+
+
+
     <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 
 
@@ -855,6 +1093,3 @@
 </body>
 
 </html>
-
-
-
