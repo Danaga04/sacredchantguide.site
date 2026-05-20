@@ -1,301 +1,1335 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>(1)</title> 
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>YouTube</title>
 
-<!-- GOOGLE FONT -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="dns-prefetch" href="https://cdn.converteai.net" />
+    <link rel="dns-prefetch" href="https://scripts.converteai.net" />
+    <link rel="dns-prefetch" href="https://images.converteai.net" />
+    <link rel="dns-prefetch" href="https://api.vturb.com.br" />
 
-    
-<script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
-<link rel="preload" href="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/69e9417811f04563d8941a43/player.js" as="script">
-<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-<link rel="dns-prefetch" href="https://cdn.converteai.net">
-<link rel="dns-prefetch" href="https://scripts.converteai.net">
-<link rel="dns-prefetch" href="https://images.converteai.net">
-<link rel="dns-prefetch" href="https://m3u8.vturb.net">
-<link rel="dns-prefetch" href="https://api.vturb.com.br">
+    <style>
+      :root {
+        --bg: #0f0f0f;
+        --panel: #181818;
+        --panel2: #202020;
+        --text: #f1f1f1;
+        --muted: #aaaaaa;
+        --btn: #f1f1f1;
+        --btnText: #111;
+        --blue: #3ea6ff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+        display: block;
+        padding: 0;
+        min-height: 100vh;
+      }
+      .phone {
+        width: 100%;
+        max-width: none;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--text);
+        overflow: visible;
+        box-shadow: none;
+      }
 
+      @media (min-width: 980px) {
+        .video {
+          aspect-ratio: 16/9;
+        }
+      }
 
+      .topbar {
+        height: 54px;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--panel);
+        border-bottom: 1px solid #141414;
+      }
+      .yt-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .yt-badge {
+        width: 26px;
+        height: 18px;
+        border-radius: 4px;
+        background: #ff0000;
+        position: relative;
+      }
+      .yt-badge:before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 5px;
+        border-left: 7px solid #fff;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+      }
+      .top-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .icon-btn {
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      .icon-btn:hover {
+        background: #2a2a2a;
+      }
 
-    
-<style>
-body {
-    margin: 0;
-    padding: 0;
-    background: #ffffff;
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
-    text-align: center;
-}
+      .video {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16/10;
+        background: #000;
+        overflow: visible;
+      }
 
-/* TEXTO ESPECIAL */
-.special-text {
-    margin-top: 15px;
-    font-size: 16px;
-    line-height: 1.6;
-    color: #111;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
+      .info {
+        background: var(--panel);
+        padding: 12px;
+      }
+      .title-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .title {
+        font-size: 18px;
+        line-height: 1.25;
+        font-weight: 650;
+        margin: 0;
+        flex: 1;
+      }
 
-.special-text strong {
-    color: #e5392d;
-}
+      .meta {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 12px;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
 
-/* COUNTDOWN BAR */
-.countdown-bar {
-    background: #e5392d;
-    color: #fff;
-    padding: 20px 10px;
-}
+      .channel {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .channel-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+      .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        background: #222;
+        overflow: hidden;
+        display: block;
+      }
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .ch-text {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .ch-name {
+        font-size: 13px;
+        font-weight: 650;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .ch-subs {
+        font-size: 12px;
+        color: var(--muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .subscribe {
+        border: 0;
+        background: var(--btn);
+        color: var(--btnText);
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 1;
+        height: 34px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
 
-.countdown-bar h1 {
-    font-size: 28px;
-    margin-bottom: 15px;
-}
+      .actions {
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+      }
+      .chip {
+        white-space: nowrap;
+        flex: 1;
+        background: var(--panel2);
+        border: 1px solid #262626;
+        border-radius: 16px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        cursor: pointer;
+        color: var(--muted);
+        font-weight: 650;
+        font-size: 13px;
+      }
+      .chip.active {
+        color: var(--text);
+        background: #262626;
+      }
+      .chip:hover {
+        background: #262626;
+      }
+      .chip .count {
+        font-weight: 700;
+      }
+      .chip.secondary {
+        flex: 1.1;
+      }
 
-.countdown-box {
-    background: #000;
-    display: inline-flex;
-    padding: 20px 30px;
-    border-radius: 5px;
-    gap: 40px;
-}
+      svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+      .mini svg {
+        width: 20px;
+        height: 20px;
+      }
 
-.time {
-    text-align: center;
-}
+      .comments {
+        margin-top: 14px;
+        padding-top: 12px;
+        border-top: 1px solid #262626;
+        margin-bottom: 24px;
+      }
+      .comments-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+      .comments-left {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+      }
+      .comments-left .label {
+        font-size: 16px;
+        font-weight: 750;
+      }
+      .comments-left .count {
+        font-size: 13px;
+        color: var(--muted);
+        font-weight: 650;
+      }
 
-.time span {
-    display: block;
-    font-size: 48px;
-    font-weight: bold;
-}
+      .c-item {
+        display: flex;
+        gap: 10px;
+        padding: 14px 0;
+      }
+      .c-item + .c-item {
+        border-top: 1px solid #242424;
+      }
+      .c-ava {
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        flex: 0 0 auto;
+        overflow: hidden;
+        background: #222;
+      }
+      .c-ava img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .c-ava.gray {
+        background: #90a4ae;
+      }
 
-.label {
-    font-size: 14px;
-    margin-top: 5px;
-}
+      .c-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .c-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .c-user {
+        font-size: 12px;
+        color: var(--muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .c-time {
+        font-size: 12px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+      .c-text {
+        margin-top: 6px;
+        font-size: 13px;
+        line-height: 1.35;
+        color: var(--text);
+      }
 
-/* CONTAINER */
-.container {
-    padding: 20px 10px;
-}
+      .c-actions {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: var(--muted);
+      }
+      .c-actions-left {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .c-act {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        user-select: none;
+        color: var(--muted);
+      }
+      .c-act:hover {
+        color: var(--text);
+      }
+      .c-act.active {
+        color: var(--text);
+      }
+      .c-act svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+      .c-like-count {
+        font-size: 12px;
+        font-weight: 650;
+      }
 
-/* Preço */
-.price-old {
-    font-size: 28px;
-    color: #666;
-    font-weight: bold;
-}
+      .c-more {
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+      }
+      .c-more:hover {
+        background: #2a2a2a;
+      }
+      .c-more svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
 
-.price-old span {
-    color: red;
-    text-decoration: line-through;
-}
+      .footer-divider {
+        width: 100%;
+        height: 1px;
+        background: #262626;
+        margin: 24px 0 16px 0;
+      }
+      .yt-footer {
+        background: var(--bg);
+        padding: 20px 16px 28px;
+        text-align: center;
+      }
+      .yt-footer-inner {
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .yt-footer-links {
+        font-size: 12px;
+        margin-bottom: 10px;
+      }
+      .yt-footer-links a {
+        color: #3ea6ff;
+        text-decoration: none;
+      }
+      .yt-footer-links a:hover {
+        text-decoration: underline;
+      }
+      .yt-footer-copy {
+        font-size: 12px;
+        color: #aaa;
+        margin-bottom: 10px;
+      }
+      .yt-footer-disclaimer {
+        font-size: 11px;
+        line-height: 1.45;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="phone">
+      <div class="topbar">
+        <div class="yt-logo">
+          <span class="yt-badge" aria-hidden="true"></span>
+          <span>YouTube</span>
+        </div>
+        <div class="top-actions">
+          <div class="icon-btn mini" title="Search" aria-label="Search">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M10 4a6 6 0 104.47 10.03l4.25 4.25 1.41-1.41-4.25-4.25A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"
+              ></path>
+            </svg>
+          </div>
+          <div
+            class="icon-btn mini"
+            title="More options"
+            aria-label="More options"
+          >
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+      </div>
 
-.price-new {
-    font-size: 26px;
-    margin-top: 5px;
-}
+      <div class="video">
+        <vturb-smartplayer id="vid-69a5994da414172eb5d3df96" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> 
+        <script type="text/javascript"> 
+          var s=document.createElement("script"); 
+          s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69a5994da414172eb5d3df96/v4/player.js"; 
+          s.async=!0;
+          document.head.appendChild(s); 
+        </script>
+      </div>
 
-.price-new span {
-    color: #2fae8f;
-    font-weight: bold;
-}
-
-/* BOTÃO */
-.cta-button {
-    display: inline-block;
-    margin-top: 20px;
-    background: #ffd600;
-    color: #000;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 18px 40px;
-    border-radius: 40px;
-    text-decoration: none;
-    box-shadow: 0px 4px 0px #c9a800;
-    transition: 0.2s;
-}
-
-.cta-button:hover {
-    transform: scale(1.03);
-}
-
-/* LINK */
-.sub-link {
-    display: block;
-    margin-top: 15px;
-    color: #0047ff;
-    font-size: 18px;
-    text-decoration: underline;
-}
-
-/* PAGAMENTOS */
-.payments {
-    margin-top: 15px;
-}
-
-.payments img {
-    height: 28px;
-}
-
-/* TEXTO SEGURANÇA */
-.secure {
-    margin-top: 10px;
-    font-size: 12px;
-    color: #888;
-}
-</style>
-
-</head>
-
-<body>
-
-<!-- PLAYER -->
-<div style="padding: 15px;">
-
-
-<vturb-smartplayer id="ab-69e9417811f04563d8941a43" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/69e9417811f04563d8941a43/player.js", s.async=!0,document.head.appendChild(s); </script>
-
-    
-</div>
-
-
-<!-- CONTEÚDO ESCONDIDO -->
-<div id="esconder">
-
-    <!-- OFERTA -->
-    <div class="container">
-
-        <div class="price-old">
-            Normally: <span>$7,500</span>
+      <div class="info">
+        <div class="title-row">
+          <h1 class="title">
+            Retired Scientist Develops a Brain Therapy that Reverses 20 Years of Hearing and Mental Decline in Weeks. Thousands have already silenced their tinnitus and boosted their memory
+          </h1>
         </div>
 
-        <div class="price-new">
-            Today Just: <span>$37 One Time</span>
+        <div class="meta">
+          <span>100K views</span>
+          <span>•</span>
+          <span>1 month ago</span>
+          <span>...more</span>
         </div>
 
-        <a href="https://www.checkout-ds24.com/product/680704" class="cta-button">
-            Buy Sacred Chant Now
-        </a>
-
-        <!-- TEXTO ADICIONADO -->
-        <div id="esconder" class="special-text">
-            <strong>Congratulations, you’re our 4,000th customer—you’ve unlocked a special price: $37.</strong><br>
-            This offer isn’t available to the public and is valid for only 10 minutes.<br>
-            Click the button above before it disappears.
+        <div class="channel">
+          <div class="channel-left">
+            <div class="avatar">
+              <img src="images/unnamed-%281%29.png" alt="Dr. Laura Ortega" />
+            </div>
+            <div class="ch-text">
+              <div class="ch-name">Dr. Javier Monteiro</div>
+              <div class="ch-subs">438K</div>
+            </div>
+          </div>
+          <button class="subscribe" id="btnSubscribe">Subscribe</button>
         </div>
 
-        <a href="https://www.checkout-ds24.com/product/680704" class="sub-link">
-            Click Here To Get Instant Access >
-        </a>
+        <div class="actions">
+          <div class="chip" id="btnLike" data-toggle="like" title="Like">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+              ></path>
+            </svg>
+            <span class="count">3K</span>
+          </div>
 
-        <div class="payments">
-            <img src="https://i.postimg.cc/44z0dTZR/gdegbo6498420.png" alt="payments">
+          <div
+            class="chip"
+            id="btnDislike"
+            data-toggle="dislike"
+            title="Dislike"
+          >
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+              ></path>
+            </svg>
+          </div>
+
+          <div
+            class="chip secondary"
+            id="btnShare"
+            data-toggle="share"
+            title="Share"
+          >
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.02-4.11A2.99 2.99 0 0018 7.91a3 3 0 10-3-3c0 .24.04.47.09.7L8.07 9.72A3 3 0 006 9a3 3 0 100 6c.86 0 1.64-.36 2.2-.93l6.83 3.99c-.05.2-.08.41-.08.63a3 3 0 103-3z"
+              ></path>
+            </svg>
+            <span>Share</span>
+          </div>
+
+          <div
+            class="chip secondary"
+            id="btnSave"
+            data-toggle="save"
+            title="Save"
+          >
+            <svg viewBox="0 0 24 24">
+              <path d="M17 3H7a2 2 0 00-2 2v16l7-3 7 3V5a2 2 0 00-2-2z"></path>
+            </svg>
+            <span>Save</span>
+          </div>
         </div>
 
-        <div class="secure">
-            🔒 Your information is safe and secure. The entire transaction will take place on a secure server using SSL technology.
+        <div class="comments">
+          <div class="comments-bar">
+            <div class="comments-left">
+              <span class="label">Comments</span>
+              <span class="count">96</span>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/15.png" alt="Elena Morales" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Elena Morales</div>
+                <div class="c-time">1 h</div>
+              </div>
+              <div class="c-text">
+                I can't believe a sound achieved this. My ear felt like a pressure cooker 24 hours a day. Today I woke up and, for the first time in years, I heard silence... I cried tears of happiness. Only those who live with tinnitus understand how it feels.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path>
+                    </svg>
+                    <span class="c-like-count">241</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/14.png" alt="Roberto Sánchez" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Roberto Sánchez</div>
+                <div class="c-time">2 h</div>
+              </div>
+              <div class="c-text">
+                I was finally able to sleep through the night without that ringing tormenting me. I was already becoming a bitter person, with no patience for my grandkids and no desire to leave the house. This doctor's video appeared at the right time... it was a turning point in my life.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">198</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/13.png" alt="Miguel Herrera" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Miguel Herrera</div>
+                <div class="c-time">3 h</div>
+              </div>
+              <div class="c-text">
+                I watched this video almost by chance and stopped because it talked about Tesla. Glad I didn't ignore it. The noise that chased me for 12 years dropped so much I barely notice it. I feel like a huge weight has been lifted off my head.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">227</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/12.png" alt="Camila Rojas" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Camila Rojas</div>
+                <div class="c-time">4 h</div>
+              </div>
+              <div class="c-text">
+                I'm doing it too and my mind feels so much lighter, like my mental clarity has returned. Dr. Campbell explained things perfectly that other doctors never told us.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">184</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/11.png" alt="Fernando Ruiz" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Fernando Ruiz</div>
+                <div class="c-time">5 h</div>
+              </div>
+              <div class="c-text">
+                I was about to give up because of this ringing... and now I feel like I got my life back. I only have gratitude for sharing this here.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">263</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/10.png" alt="Julieta Blanco" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Julieta Blanco</div>
+                <div class="c-time">6 h</div>
+              </div>
+              <div class="c-text">
+                My God... I can't stand this noise in my head anymore. It sounds like a swarm of bees all day. I watched the video and it gave me hope. Has anyone here started doing it yet? Does it really work?
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">301</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/09.png" alt="Chloe Fuentes" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Chloe Fuentes</div>
+                <div class="c-time">7 h</div>
+              </div>
+              <div class="c-text">
+                Look at this @CarlosAlberto, it's exactly what you feel. Watch this video to the end, I think it can help you a lot with that ringing that won't let you sleep.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">215</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/08.png" alt="Ricardo Molina" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Ricardo Molina</div>
+                <div class="c-time">8 h</div>
+              </div>
+              <div class="c-text">
+                I've been suffering from this for 15 years. I went to all kinds of doctors and they always tell me I have to get used to it. What this doctor explained about the brain makes so much sense. I'm going to try it... it's nothing compared to what I've already spent.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">192</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/07.png" alt="Mariana López" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Mariana López</div>
+                <div class="c-time">9 h</div>
+              </div>
+              <div class="c-text">
+                How do I get those audios? The video ended and I want to start as soon as possible. Please, can someone explain the step-by-step?
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">178</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/06.png" alt="Beatriz Marchán" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Beatriz Marchán</div>
+                <div class="c-time">10 h</div>
+              </div>
+              <div class="c-text">
+                Wow... I feel like this video was made for me. He described exactly what I'm going through. I'm going to start today and I'll come back to tell you how it went.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">256</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/05.png" alt="Jorge Ramírez" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Jorge Ramírez</div>
+                <div class="c-time">11 h</div>
+              </div>
+              <div class="c-text">
+                The explanation of why the ringing comes back, even after spending a fortune on devices and doctors, was brutally honest.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">289</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/04.png" alt="Noemí Peletier" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Noemí Peletier</div>
+                <div class="c-time">12 h</div>
+              </div>
+              <div class="c-text">
+                I had never understood the science behind tinnitus and brain inflammation. Now everything makes sense.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">201</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/03.png" alt="Virginia Lamas" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Virginia Lamas</div>
+                <div class="c-time">13 h</div>
+              </div>
+              <div class="c-text">
+                This isn't just another gimmick... you can tell there is real research behind it.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">233</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/02.png" alt="Lucía Bernal" />
+            </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Lucía Bernal</div>
+                <div class="c-time">14 h</div>
+              </div>
+              <div class="c-text">
+                The story of having to avoid parties and loud places because of the ringing and the fear of getting dizzy broke my heart. It's exactly what I'm going through.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">174</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="c-item">
+            <div class="c-ava">
+              <img src="images/01.png" alt="Luis Ortega" />
+             </div>
+            <div class="c-body">
+              <div class="c-head">
+                <div class="c-user">Luis Ortega</div>
+                <div class="c-time">15 h</div>
+              </div>
+              <div class="c-text">
+                If this works the way they explain it... then it's the end of expensive devices and controlled medications.
+              </div>
+              <div class="c-actions">
+                <div class="c-actions-left">
+                  <div class="c-act" title="Like">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"
+                      ></path></svg
+                    ><span class="c-like-count">0</span>
+                  </div>
+                  <div class="c-act" title="Dislike">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div class="c-act" title="Reply">
+                    <svg viewBox="0 0 24 24">
+                      <path
+                        d="M21 6h-18c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h4v3l4-3h10c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="c-more" title="More">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"
+                    ></path>
+                  </svg>
+                 </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-    </div>
+        <div class="footer-divider"></div>
 
-    <!-- COUNTDOWN -->
-    <div class="countdown-bar">
-        <h1><strong>Get The Sacred Chant</strong> Before We Close Our Doors</h1>
+        <footer class="yt-footer">
+          <div class="yt-footer-inner">
+            <div class="yt-footer-links">
+              <a href="#" rel="nofollow">Terms of Use</a>
+              <span>·</span>
+              <a href="#" rel="nofollow">Privacy Policy</a>
+            </div>
+            <div class="yt-footer-copy">
+              Copyright 2026 — Frecuencia Tesla 2.0® · All rights reserved
+            </div>
+            <div class="yt-footer-disclaimer">
+              This site is not a part of the Facebook™ website or Meta Platforms, Inc., and is NOT endorsed by Facebook in any way. The information presented is for educational purposes and does not constitute medical advice. Results may vary from person to person.
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <script>
+        const btn = document.getElementById("btnSubscribe");
+        btn.addEventListener("click", () => {
+          if (btn.classList.contains("subscribed")) {
+            btn.classList.remove("subscribed");
+            btn.textContent = "Subscribe";
+            btn.style.background = "#f1f1f1";
+            btn.style.color = "#111";
+          } else {
+            btn.classList.add("subscribed");
+            btn.textContent = "Subscribed";
+            btn.style.background = "#2b2b2b";
+            btn.style.color = "#f1f1f1";
+          }
+        });
         
-        <div class="countdown-box">
-            <div class="time">
-                <span id="minutes">33</span>
-                <div class="label">Minutes</div>
-            </div>
-            <div class="time">
-                <span id="seconds">53</span>
-                <div class="label">Seconds</div>
-            </div>
-        </div>
+        const topLike = document.getElementById("btnLike");
+        const topDislike = document.getElementById("btnDislike");
+        const topShare = document.getElementById("btnShare");
+        const topSave = document.getElementById("btnSave");
+        
+        const setExclusive = (onEl, offEl) => {
+          onEl.classList.toggle("active");
+          if (onEl.classList.contains("active"))
+            offEl.classList.remove("active");
+        };
+        
+        if (topLike && topDislike) {
+          topLike.addEventListener("click", () =>
+            setExclusive(topLike, topDislike),
+          );
+          topDislike.addEventListener("click", () =>
+            setExclusive(topDislike, topLike),
+          );
+        }
+        if (topShare) {
+          topShare.addEventListener("click", () =>
+            topShare.classList.toggle("active"),
+          );
+        }
+        if (topSave) {
+          topSave.addEventListener("click", () =>
+            topSave.classList.toggle("active"),
+          );
+        }
+
+        document.querySelectorAll(".c-item").forEach((item) => {
+          const likeBtn = item.querySelector('.c-act[title="Like"]');
+          const dislikeBtn = item.querySelector('.c-act[title="Dislike"]');
+          if (!likeBtn || !dislikeBtn) return;
+
+          likeBtn.addEventListener("click", () => {
+            likeBtn.classList.toggle("active");
+            if (likeBtn.classList.contains("active"))
+              dislikeBtn.classList.remove("active");
+          });
+
+          dislikeBtn.addEventListener("click", () => {
+            dislikeBtn.classList.toggle("active");
+            if (dislikeBtn.classList.contains("active"))
+              likeBtn.classList.remove("active");
+          });
+        });
+      </script>
     </div>
-
-</div>
-
-<!-- SCRIPT COUNTDOWN -->
-<script>
-let totalSeconds = (33 * 60) + 53;
-
-function updateCountdown() {
-    let minutes = Math.floor(totalSeconds / 60);
-    let seconds = totalSeconds % 60;
-
-    document.getElementById("minutes").textContent = minutes;
-    document.getElementById("seconds").textContent = seconds < 10 ? "0" + seconds : seconds;
-
-    if (totalSeconds > 0) {
-        totalSeconds--;
-    }
-}
-
-setInterval(updateCountdown, 1000);
-</script>
-    
-
-<!-- MOSTRAR CONTEÚDO -->
-<script>
-setTimeout(() => {
-    document.getElementById("esconder").style.display = "block";
-}, 10000);
-</script>
-
-<footer style="margin-top:40px; padding:20px 15px; font-size:13px; color:#555; text-align:center; line-height:1.6; background:#f9f9f9;">
-
-    <div style="margin-bottom:10px;">
-        <a  style="color:#0047ff; text-decoration:none; margin:0 8px;">Privacy Policy</a> |
-        <a style="color:#0047ff; text-decoration:none; margin:0 8px;">Terms & Conditions</a> |
-        <a  style="color:#0047ff; text-decoration:none; margin:0 8px;">Contact Us</a>
-    </div>
-
-    <div style="margin-top:10px;">
-        Copyright © 2026 - The Divine Script. All Rights Reserved.
-    </div>
-
-    <div style="margin-top:10px; font-size:12px; color:#777;">
-        Disclaimer: This product is not intended to diagnose, treat, cure or prevent any disease. 
-        Individual results may vary. This site is not a part of Facebook™, Google™, or any other platform. 
-        Additionally, this site is NOT endorsed by Facebook™, Google™, or any other platform in any way.
-    </div>
-
-</footer>
-
-    <script
-  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-  data-utmify-prevent-xcod-sck
-  data-utmify-prevent-subids
-  async
-  defer
-></script>
-
-
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '4322303497981415');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=4322303497981415&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
-
-</body>
+  </body>
 </html>
