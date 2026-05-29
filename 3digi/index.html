@@ -1,367 +1,454 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="pt-br">
 <head>
 
-    <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
+<script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
 <script>digistoreUpsell()</script>
 
-
-  <!-- Begin of Digistore24 Trusted Badge Code -->
+<!-- Begin of Digistore24 Trusted Badge Code -->
 <script type="text/javascript" src="https://www.digistore24.com/trusted-badge/45038/EfkrAuwxyTyKoSt/salespage"></script>
 <!-- End of Digistore24 Trusted Badge Code -->
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>wait</title>
+
+<title>The Carlo Acutis Prayer</title>
+
 <style>
-    /* RESET E BASE */
-    * {
-        box-sizing: border-box;
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;
+    background:#f4f6f8;
+    margin:0;
+    padding:20px;
+    line-height:1.8;
+    color:#2c3e50;
+    font-size:20px;
+}
+
+.container{
+    max-width:760px;
+    margin:auto;
+    background:#ffffff;
+    padding:40px;
+    border-radius:12px;
+    box-shadow:0 5px 25px rgba(0,0,0,0.08);
+}
+
+h1{
+    color:#c0392b;
+    text-align:center;
+    font-size:36px;
+    margin-bottom:30px;
+    line-height:1.2;
+}
+
+h2{
+    color:#111;
+    margin-top:45px;
+    margin-bottom:20px;
+    border-bottom:2px solid #f0f0f0;
+    padding-bottom:10px;
+    font-size:30px;
+}
+
+p{
+    margin-bottom:24px;
+}
+
+strong{
+    font-weight:700;
+    color:#000;
+}
+
+ul{
+    margin:20px 0 30px 0;
+    padding-left:20px;
+    background:#fafafa;
+    padding:25px 25px 25px 40px;
+    border-radius:8px;
+    border-left:4px solid #1dbf4f;
+}
+
+li{
+    margin-bottom:12px;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+    border-radius:8px;
+    display:block;
+    margin:0 auto 25px auto;
+}
+
+.highlight{
+    background:#fff8e7;
+    border-left:4px solid #f39c12;
+    padding:20px;
+    border-radius:8px;
+    margin:30px 0;
+}
+
+.testimonial{
+    background:#f9f9f9;
+    padding:25px;
+    border-radius:8px;
+    margin:25px 0;
+    border-left:4px solid #27ae60;
+}
+
+.decision-container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    width:100%;
+    max-width:500px;
+    margin:20px auto 40px auto;
+    padding:20px;
+    box-sizing:border-box;
+}
+
+.btn-yes{
+    display:block;
+    width:100%;
+    background-color:#25D366;
+    color:#ffffff;
+    text-align:center;
+    padding:22px 20px;
+    font-size:24px;
+    font-weight:800;
+    text-transform:uppercase;
+    text-decoration:none;
+    border-radius:8px;
+    box-shadow:0 4px 15px rgba(37,211,102,0.4);
+    animation:pulse-green 1.5s infinite;
+    transition:transform 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-yes:hover{
+    background-color:#1ebc59;
+}
+
+.btn-no{
+    color:#6c757d;
+    font-size:15px;
+    text-decoration:underline;
+    cursor:pointer;
+    text-align:center;
+    transition:color 0.2s ease;
+}
+
+.btn-no:hover{
+    color:#495057;
+}
+
+.center{
+    text-align:center;
+}
+
+@keyframes pulse-green{
+    0%{
+        transform:scale(1);
+        box-shadow:0 0 0 0 rgba(37,211,102,0.7);
     }
 
-    body {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        background: #f4f6f8; /* Fundo cinza suave para descanso visual */
-        margin: 0;
-        padding: 20px;
-        line-height: 1.75; /* Maior espaçamento entre linhas */
-        color: #2c3e50; /* Cinza escuro, melhor que preto absoluto */
-        font-size: 18px; /* Fonte maior para leitura confortável */
+    50%{
+        transform:scale(1.04);
+        box-shadow:0 0 0 12px rgba(37,211,102,0);
     }
 
-    .container {
-        max-width: 700px; /* Largura um pouco menor para não cansar o pescoço */
-        margin: auto;
-        background: #ffffff;
-        padding: 40px; /* Mais respiro interno */
-        border-radius: 12px;
-        box-shadow: 0 5px 25px rgba(0,0,0,0.08); /* Sombra elegante */
+    100%{
+        transform:scale(1);
+        box-shadow:0 0 0 0 rgba(37,211,102,0);
+    }
+}
+
+@media (max-width:600px){
+
+    .container{
+        padding:22px;
     }
 
-    /* TIPOGRAFIA */
-    h1 {
-        color: #c0392b; /* Vermelho alerta, mas sofisticado */
-        text-align: center;
-        font-size: 32px;
-        margin-bottom: 30px;
-        line-height: 1.2;
+    h1{
+        font-size:28px;
     }
 
-    h2 {
-        color: #111;
-        margin-top: 45px; /* Separa bem as seções */
-        margin-bottom: 20px;
-        border-bottom: 2px solid #f0f0f0;
-        padding-bottom: 10px;
+    h2{
+        font-size:24px;
     }
 
-    p {
-        margin-bottom: 24px;
+    body{
+        font-size:17px;
+        padding:10px;
     }
 
-    strong {
-        font-weight: 700;
-        color: #000;
+    .btn-yes{
+        font-size:20px;
+        padding:18px 15px;
     }
-
-    /* LISTAS MELHORADAS */
-    ul {
-        margin: 20px 0 30px 0;
-        padding-left: 20px;
-        background: #fafafa;
-        padding: 25px 25px 25px 40px;
-        border-radius: 8px;
-        border-left: 4px solid #1dbf4f; /* Detalhe visual */
-    }
-
-    li {
-        margin-bottom: 12px;
-    }
-
-    /* BOTÕES */
-    .btn-green, button#kiwify-upsell-trigger-GotabQ9 {
-        display: block;
-        width: 100%;
-        text-align: center;
-        background: #27ae60 !important;
-        padding: 20px !important;
-        color: white !important;
-        font-size: 22px !important;
-        font-weight: bold !important;
-        border-radius: 8px !important;
-        text-decoration: none;
-        border: none !important;
-        cursor: pointer;
-        box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
-        transition: transform 0.2s;
-        margin-bottom: 30px;
-        animation: pulse 2s infinite;
-    }
-
-    .btn-green:hover, button#kiwify-upsell-trigger-GotabQ9:hover {
-        transform: translateY(-2px);
-    }
-
-    /* Link de cancelar */
-    #kiwify-upsell-cancel-trigger-GotabQ9 {
-        color: #7f8c8d;
-        font-size: 16px;
-        margin-top: 20px;
-        padding: 15px;
-        display: inline-block;
-        transition: color 0.3s;
-    }
-    
-    #kiwify-upsell-cancel-trigger-GotabQ9:hover {
-        color: #c0392b;
-    }
-
-    /* IMAGENS */
-    img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-        display: block;
-        margin: 0 auto 25px auto;
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.7); }
-        70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(39, 174, 96, 0); }
-        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); }
-    }
-
-    /* MOBILE */
-    @media (max-width: 600px) {
-        .container { padding: 20px; }
-        h1 { font-size: 26px; }
-        body { font-size: 16px; padding: 10px; }
-    }
+}
 
 </style>
+
 </head>
+
 <body>
 
 <div class="container">
 
-    <img src="https://i.postimg.cc/bwrtFgC5/2o-ETAPA-LEIA-A-MENSAGEM-A-BAIXO.png" alt="Etapa 2" />
-    <img src="https://i.postimg.cc/TwM516Rz/Pressionar-o-botao-voltar-pode-resultar-em-uma-perda-dupla.png" alt="Aviso" />
+<img src="https://i.postimg.cc/bwrtFgC5/2o-ETAPA-LEIA-A-MENSAGEM-A-BAIXO.png" alt="Etapa 2" />
 
-    <h1>⚠️ Your Family Is Not Protected Yet</h1>
+<img src="https://i.postimg.cc/TwM516Rz/Pressionar-o-botao-voltar-pode-resultar-em-uma-perda-dupla.png" alt="Aviso" />
 
-    <p>First, let me congratulate you. You did something rare — you took action to protect your spiritual life. Most people hesitate. You didn’t. Your prayers are already forming a sacred barrier around you. That alone is extraordinary.</p>
+<h1>⚠️ Your Miracle Is Already On Its Way… But It Still Doesn’t Know Where You Live</h1>
 
-    <p>But there’s something you must understand. Something I found in Padre Pio’s private writings.</p>
+<p><strong>Take a breath.</strong></p>
 
-    <p>Whenever someone becomes spiritually protected, darkness reacts. And when it can no longer reach <strong>you</strong> directly… it attacks the next open doorway: <strong>your family</strong>.</p>
+<p>I need you to hear this first — before anything else.</p>
 
-    <p>Padre Pio wrote in 1952: <em>“When the child shields himself with faith, the enemy strikes the parents. When the father is protected, the children suffer. The family is the second battlefield of darkness.”</em></p>
+<p>You made the right decision today. Everything you did today was right.</p>
 
-    <p>Modern spiritual statistics confirm it: <strong>73% of people who activate personal protection report severe attacks on their family within five days.</strong></p>
+<p>Your miracle antenna is active. Your guardian angel heard you. The Sacred Prayer of Saint Benedict is already working in ways you cannot yet see.</p>
 
-    <p>The pattern always comes in waves:</p>
-    <ul>
-        <li>Days 1–2: rising irritation at home, pointless arguments</li>
-        <li>Days 3–4: sudden financial issues, unexpected illness, restless nights</li>
-        <li>Days 5–7: emotional chaos, separation threats, painful distance between loved ones</li>
-    </ul>
+<p>I want you to feel that for just a moment. You are not the same person who woke up this morning. Something changed today. And the miracle that God has been preparing for you — for longer than you know — is now closer than it has ever been.</p>
 
-    <p>Marcos saw this firsthand. Four days after activating his protection, his wife asked for a divorce “out of nowhere,” his son had an accident, and his mother fell seriously sick. He called me in despair. I explained what had happened: he shielded himself… but his family remained exposed. And darkness attacked the unprotected doorway.</p>
+<p>I need you to hold onto that certainty. Because what I am about to tell you requires you to be settled — not afraid. Settled. Ready.</p>
 
-    <p>Once he completed the family protection, everything stabilized. Today his home is peaceful again.</p>
-
-    <h2>The Family Protection Prayer</h2>
-
-    <p>That’s why Padre Pio revealed the <strong>18-Word Family Protection Prayer</strong> — created specifically to shield the people you love while you protect yourself.</p>
-
-    <p>This prayer creates four layers of defense:</p>
-    <ul>
-        <li>✔ A spiritual shield around each family member</li>
-        <li>✔ Redirection and neutralization of incoming attacks</li>
-        <li>✔ Restoration of harmony and dissolution of tension</li>
-        <li>✔ A spiritual alert that lets you sense when someone is being targeted</li>
-    </ul>
-
-    <p>Today, you are receiving the <strong>Complete Family Protection Package</strong>: the 18-Word Prayer, the 3-Minute Shield Activation Ritual, the Guided Protection Audio with Padre Pio’s voice, the Family Attack Warning Map, and the Emergency Protection Prayer.</p>
-
-    <p>You also receive exclusive bonuses: the Child Protection Prayer, the Home Shield Ritual, the Sleep Protection Audio, the List of 7 Family Attack Signs, the Pet Protection Blessing, and my direct support line for spiritual crises.</p>
-
-    <h2>Your Two Choices</h2>
-
-    <p>Choice one: do nothing. Stay protected alone and hope your family stays safe. The cost today is zero… but the price later may be devastating.</p>
-
-    <p>Choice two: activate full family protection now for only <strong>$69</strong> — less than a family dinner, but capable of protecting your loved ones permanently.</p>
-
-<div class="decision-container">
-  <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="btn-yes">
-    OK, access the app.
-  </a>
-  
-  <a href="https://www.checkout-ds24.com/answer/no" class="btn-no">
-    No, thanks
-  </a>
+<div class="highlight">
+    <strong>Because there is one more thing. One final thing. And it is the thing that separates the people whose miracles arrive in days from the people whose miracles take years.</strong>
 </div>
 
-<style>
-  /* Container principal para alinhar e espaçar os elementos */
-  .decision-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
+<p>Not faith. You have faith — you proved that today.</p>
 
-  /* Estilo do botão SIM */
-  .btn-yes {
-    display: block;
-    width: 100%;
-    background-color: #25D366; /* Verde chamativo */
-    color: #ffffff;
-    text-align: center;
-    padding: 18px 20px;
-    font-size: 22px;
-    font-weight: 800;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-    animation: pulse-green 1.5s infinite; /* Chama a animação */
-    transition: transform 0.2s ease, background-color 0.2s ease;
-  }
+<p>Not protection. You have that too.</p>
 
-  /* Efeito Hover no SIM para desktop */
-  .btn-yes:hover {
-    background-color: #1ebc59;
-  }
+<p>Something else. Something almost no one talks about. Something that, once I show you, you will never be able to unsee.</p>
 
-  /* Estilo do botão NÃO (Texto Clicável) */
-  .btn-no {
-    color: #6c757d; /* Cinza discreto */
-    font-size: 15px;
-    text-decoration: underline;
-    cursor: pointer;
-    text-align: center;
-    transition: color 0.2s ease;
-  }
+<h2>The Problem of the “Incomplete Address”</h2>
 
-  /* Efeito Hover no NÃO */
-  .btn-no:hover {
-    color: #495057;
-  }
+<p>Let me show you something that changed how I understood miracles forever.</p>
 
-  /* Animação de Pulsação */
-  @keyframes pulse-green {
-    0% { 
-      transform: scale(1); 
-      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); 
-    }
-    50% { 
-      transform: scale(1.04); 
-      box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); 
-    }
-    100% { 
-      transform: scale(1); 
-      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); 
-    }
-  }
+<p>When I was in Italy — the week before I met with Pope Francis — I asked Bishop Felipe a question that had been haunting me for years.</p>
 
-  /* Ajustes finos para Mobile */
-  @media (max-width: 480px) {
-    .decision-container {
-      padding: 15px 10px;
-    }
-    .btn-yes {
-      font-size: 18px;
-      padding: 15px 15px;
-    }
-    .btn-no {
-      font-size: 13px;
-    }
-  }
-</style>
-    
+<p><em>“Why does the same prayer produce a miracle in 7 days for one person... and nothing for another person after 6 months?”</em></p>
 
-        <p style="margin-top: 30px;">Antonio chose wrong. He protected only himself. Five days later, his daughter was injured, his wife fell into deep depression, and he lost his job. When he returned to protect his family, the damage had already been done.</p>
+<p>He was quiet for a long time.</p>
 
-        <p>The real cost of not acting is enormous: months of therapy, legal fees, medical expenses, emotional pain… and the regret of knowing it could have been prevented.</p>
+<p>Then he walked to the window, looked out at the courtyard of the monastery, and said:</p>
 
-        <p>Protecting everyone today costs only $69 — and comes with the <strong>Triple Unbreakable Guarantee</strong>:</p>
-        
-        <ul style="border-left-color: #d93636; background: #fff5f5;">
-            <li>• If any family member suffers a spiritual attack in 90 days — full refund + $50</li>
-            <li>• If your home doesn’t feel peaceful within 7 days — 200% refund</li>
-            <li>• If nothing improves — keep everything and still receive your money back</li>
-        </ul>
+<div class="highlight">
+    <em>“Father Juan, imagine that your guardian angel is a postal carrier — the most faithful, the most devoted postal carrier who has ever existed. He holds your miracle in his hands. He is walking toward your door right now. He will not stop. He will not give up. He will deliver what God sent.”</em>
+</div>
 
-        <p>I take all the risk. You take the protection.</p>
+<p><strong>“But imagine that the address on the envelope is incomplete.”</strong></p>
 
-        <p>Every hour without family protection is an hour of vulnerability. Darkness looks for openings — and your loved ones are still exposed.</p>
+<p>“He knows the city. He knows the country. He knows it belongs to you.</p>
 
-        <p>Padre Pio said on his deathbed: <em>“Protecting only yourself is like locking the front door and leaving all the windows open. A family is one spiritual body. Either all are safe, or none are.”</em></p>
+<p>But he is missing one piece of information — the exact street, the exact number.</p>
 
-        <p>The choice is now: secure your family today… or close this page and hope the next few days bring no spiritual attack.</p>
+<p>So he walks. And he searches. And he keeps walking.</p>
 
-        <p style="font-weight: bold; font-size: 19px;">If something happened to your spouse, child, father, or mother — could you sleep knowing that all of it could have been prevented for just $69?</p>
+<p>And the miracle that could arrive in 7 days... takes 7 months. Or 7 years.</p>
 
-        <p>Click the button below. Protect your family. Seal the final doorway.</p>
+<p>Not because God forgot you.</p>
 
-        <p>P.S.: Marcos called me yesterday and said, “Father, my family is finally at peace. It was worth every cent.” You deserve that peace too.</p>
+<p>Not because your faith was too small.</p>
 
-        <p>To accept this blessing, click on the green button above. To decline, click the button below.</p>
+<p>But because the channel was open — and the address was incomplete.”</p>
 
+<div class="highlight">
+    <strong>73% of people who pray with sincerity and never receive a clear miracle are not missing faith.</strong><br><br>
+    They are missing precision.
+</div>
 
+<h2>The Discovery of Carlo Acutis</h2>
 
-    <script>
-        (function() {
-            const observer = new MutationObserver((mutations) => {
-                for (const mutation of mutations) {
-                    const confirmBtn = document.getElementById('kiwify-upsell-modal-charge');
-                    if (confirmBtn) {
-                        confirmBtn.click();
-                        break; 
-                    }
+<p>On my way back to Madrid, still processing everything Bishop Felipe had told me, I stopped at a small church in Assisi.</p>
+
+<p>And that is where I first saw his name.</p>
+
+<p><strong>Carlo Acutis.</strong></p>
+
+<p>The young Italian who, at 12 years old, began building the most extraordinary spiritual database in the history of the modern Church:</p>
+
+<ul>
+    <li>✔ Over 160 verified miracles catalogued</li>
+    <li>✔ Organized by location</li>
+    <li>✔ Organized by year</li>
+    <li>✔ Organized by the exact type of miracle</li>
+    <li>✔ Organized by the precise prayer used before the miracle</li>
+</ul>
+
+<p>And standing in that church in Assisi, something Bishop Felipe had said suddenly made complete sense to me.</p>
+
+<p>He had mentioned that Carlo Acutis — in the final months of his life, as his body failed him from leukemia at 15 years old — had studied the pattern.</p>
+
+<div class="highlight">
+    <strong>And he discovered something astonishing:</strong><br><br>
+
+    Every miracle that arrived swiftly — in days, not years — had one thing in common:
+    <br><br>
+    The person praying had sent a signal of EXTREME SPECIFICITY.
+</div>
+
+<p>Not:</p>
+
+<p><em>“God, bless me.”</em></p>
+
+<p>But something so precise… so personal… so exactly right… that the guardian angel had a complete address.</p>
+
+<p>And delivered the miracle like a letter with a full postal code.</p>
+
+<h2>The Carlo Acutis Prayer</h2>
+
+<p>Carlo Acutis spent his last months writing a single prayer based on that pattern.</p>
+
+<p>A prayer designed to do one thing:</p>
+
+<div class="highlight">
+    Transform a general signal into a precise frequency.
+</div>
+
+<p>So that what your guardian angel is already carrying for you can find your door without searching.</p>
+
+<p>Today, you will receive full access to:</p>
+
+<ul>
+    <li>✔ The Original Carlo Acutis Prayer</li>
+    <li>✔ The Precise Frequency Method</li>
+    <li>✔ Spiritual Address Activation Ritual</li>
+    <li>✔ Guided Miracle Frequency Audio</li>
+    <li>✔ Spiritual Precision Map</li>
+    <li>✔ Complete Signal Manual</li>
+</ul>
+
+<h2>What People Reported</h2>
+
+<div class="testimonial">
+    <strong>LINDA — 5 DAYS</strong><br><br>
+
+    “I had been praying for 3 months without any clear sign.
+    On the fifth morning after I received the Carlo Acutis Prayer, I received a phone call about a job position that matched my exact skill set.
+    Someone had specifically thought of me.
+    Five days after I sent the precise signal… the miracle arrived.”
+</div>
+
+<div class="testimonial">
+    <strong>THOMAS — 3 DAYS</strong><br><br>
+
+    “My wife and I had been trying to sell our house for 11 months.
+    No offers.
+    I spoke the Carlo Acutis Prayer with complete specificity.
+    On Wednesday, an offer came in above asking price.”
+</div>
+
+<div class="testimonial">
+    <strong>GRACE — 6 DAYS</strong><br><br>
+
+    “I was afraid to be specific in prayer.
+    But the Carlo Acutis Prayer changed how I understood God.
+    It is not selfish to give your guardian angel a complete address.
+    My specific miracle arrived on day 6.”
+</div>
+
+<h2>Your Angel Is Already Walking Toward You</h2>
+
+<p>The Sacred Prayer of Saint Benedict opened the channel.</p>
+
+<p>The Carlo Acutis Prayer gives your angel your complete address.</p>
+
+<p>The original investment for private sessions using this method is <strong>$497</strong>.</p>
+
+<p>But today — only on this page — your complete access will be released for just:</p>
+
+<div class="highlight center">
+    <h2 style="margin:0; border:none;">Only $69</h2>
+    <p>One-time payment • No subscription • Instant access</p>
+
+    <div class="decision-container">
+
+        <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="btn-yes">
+            YES, I WANT TO RECEIVE THE CARLO ACUTIS PRAYER
+        </a>
+
+        <a href="https://www.checkout-ds24.com/answer/no" class="btn-no">
+            No, I prefer to keep sending incomplete signals
+        </a>
+
+    </div>
+
+</div>
+
+<p>And you are still protected by a full 60-day guarantee.</p>
+
+<ul style="border-left-color:#d93636;background:#fff5f5;">
+    <li>✔ If no specific sign arrives — we refund every cent</li>
+    <li>✔ You keep all materials</li>
+    <li>✔ No questions • No risk • No fine print</li>
+</ul>
+
+<p>You already did the hardest part today.</p>
+
+<p>You opened the channel.</p>
+
+<p>Your antenna is active.</p>
+
+<p>Your angel is walking toward your door with something God prepared for you.</p>
+
+<div class="highlight center">
+    <strong>All that remains now… is to give him your complete address.</strong>
+</div>
+
+<p class="center"><strong>In the name of the Father, the Son, and the Holy Spirit. Amen.</strong></p>
+
+<script>
+    (function() {
+
+        const observer = new MutationObserver((mutations) => {
+
+            for (const mutation of mutations) {
+
+                const confirmBtn = document.getElementById('kiwify-upsell-modal-charge');
+
+                if (confirmBtn) {
+                    confirmBtn.click();
+                    break;
                 }
-            });
 
-            observer.observe(document.body, {
-                childList: true,
-                subtree: true
-            });
-        })();
-    </script>
+            }
 
-    <script src="https://assets.mycartpanda.com/cartx-ecomm-ui-assets/js/libs/ocu-external.js"></script>
-    <script>
-        new OcuExternal();
-    </script>
+        });
 
-    <script
-        src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-        data-utmify-prevent-xcod-sck
-        data-utmify-prevent-subids
-        async
-        defer
-    ></script>
+        observer.observe(document.body,{
+            childList:true,
+            subtree:true
+        });
+
+    })();
+</script>
+
+<script src="https://assets.mycartpanda.com/cartx-ecomm-ui-assets/js/libs/ocu-external.js"></script>
+
+<script>
+    new OcuExternal();
+</script>
+
+<script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-xcod-sck
+    data-utmify-prevent-subids
+    async
+    defer
+></script>
 
 </div>
 
-    
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
