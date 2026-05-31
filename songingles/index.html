@@ -1,6 +1,9 @@
 <!doctype html>
-<html lang="en">
-  <head>
+
+
+    <html lang="en">
+<head>
+
 
 
 <!-- Meta Pixel Code -->
@@ -21,15 +24,12 @@ src="https://www.facebook.com/tr?id=911756201917807&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
-    
+
+  
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>YouTube</title>
-
-    <link rel="dns-prefetch" href="https://cdn.converteai.net" />
-    <link rel="dns-prefetch" href="https://scripts.converteai.net" />
-    <link rel="dns-prefetch" href="https://images.converteai.net" />
-    <link rel="dns-prefetch" href="https://api.vturb.com.br" />
+    <title>Secret Revealed - YouTube Live</title>
+    <link rel="icon" href="favicon.png">
 
     <style>
       :root {
@@ -48,41 +48,34 @@ src="https://www.facebook.com/tr?id=911756201917807&ev=PageView&noscript=1"
       body {
         margin: 0;
         background: var(--bg);
-        font-family:
-          system-ui,
-          -apple-system,
-          Segoe UI,
-          Roboto,
-          Arial,
-          sans-serif;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         display: block;
         padding: 0;
         min-height: 100vh;
       }
       .phone {
         width: 100%;
-        max-width: none;
+        max-width: 900px;
+        margin: 0 auto;
         min-height: 100vh;
         background: var(--bg);
         color: var(--text);
         overflow: visible;
         box-shadow: none;
-      }
-
-      @media (min-width: 980px) {
-        .video {
-          aspect-ratio: 16/9;
-        }
+        padding-bottom: 60px;
       }
 
       .topbar {
         height: 54px;
-        padding: 0 12px;
+        padding: 0 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: var(--panel);
-        border-bottom: 1px solid #141414;
+        background: var(--bg);
+        border-bottom: 1px solid #222;
+        position: sticky;
+        top: 0;
+        z-index: 999;
       }
       .yt-logo {
         display: flex;
@@ -90,6 +83,7 @@ src="https://www.facebook.com/tr?id=911756201917807&ev=PageView&noscript=1"
         gap: 8px;
         font-size: 18px;
         font-weight: 700;
+        letter-spacing: -0.5px;
       }
       .yt-badge {
         width: 26px;
@@ -125,16 +119,17 @@ src="https://www.facebook.com/tr?id=911756201917807&ev=PageView&noscript=1"
       }
 
       .video {
-        position: relative;
         width: 100%;
-        aspect-ratio: 16/10;
+        max-width: 450px;
         background: #000;
-        overflow: visible;
+        margin: 0 auto;
+        display: flex;
       }
 
       .info {
-        background: var(--panel);
-        padding: 12px;
+        background: var(--bg);
+        padding: 12px 16px;
+        margin-top: 0;
       }
       .title-row {
         display: flex;
@@ -143,23 +138,23 @@ src="https://www.facebook.com/tr?id=911756201917807&ev=PageView&noscript=1"
       }
       .title {
         font-size: 18px;
-        line-height: 1.25;
-        font-weight: 650;
+        line-height: 1.4;
+        font-weight: 700;
         margin: 0;
         flex: 1;
       }
 
       .meta {
-        margin-top: 6px;
+        margin-top: 8px;
         color: var(--muted);
-        font-size: 12px;
+        font-size: 13px;
         display: flex;
         gap: 6px;
         align-items: center;
       }
 
       .channel {
-        margin-top: 10px;
+        margin-top: 12px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -172,8 +167,8 @@ src="https://www.facebook.com/tr?id=911756201917807&ev=PageView&noscript=1"
         min-width: 0;
       }
       .avatar {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
         border-radius: 999px;
         background: #222;
         overflow: hidden;
@@ -188,15 +183,18 @@ src="https://www.facebook.com/tr?id=911756201917807&ev=PageView&noscript=1"
       .ch-text {
         min-width: 0;
         display: flex;
-        align-items: center;
-        gap: 8px;
+        flex-direction: column;
+        justify-content: center;
       }
       .ch-name {
-        font-size: 13px;
-        font-weight: 650;
+        font-size: 15px;
+        font-weight: 600;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        display: flex;
+        align-items: center;
+        gap: 4px;
       }
       .ch-subs {
         font-size: 12px;
@@ -209,49 +207,62 @@ src="https://www.facebook.com/tr?id=911756201917807&ev=PageView&noscript=1"
         border: 0;
         background: var(--btn);
         color: var(--btnText);
-        padding: 8px 14px;
-        border-radius: 999px;
-        font-weight: 700;
+        padding: 0 16px;
+        border-radius: 18px;
+        font-weight: 600;
         font-size: 14px;
-        line-height: 1;
-        height: 34px;
+        height: 36px;
         cursor: pointer;
         white-space: nowrap;
       }
 
       .actions {
-        margin-top: 10px;
+        margin-top: 16px;
         display: flex;
-        gap: 10px;
+        gap: 8px;
+        overflow-x: auto;
+      }
+      .actions::-webkit-scrollbar {
+        display: none;
       }
       .chip {
         white-space: nowrap;
-        flex: 1;
-        background: var(--panel2);
-        border: 1px solid #262626;
-        border-radius: 16px;
-        padding: 10px;
+        background: #272727;
+        border: none;
+        border-radius: 18px;
+        height: 36px;
+        padding: 0 16px;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 6px;
         cursor: pointer;
-        color: var(--muted);
-        font-weight: 650;
-        font-size: 13px;
-      }
-      .chip.active {
         color: var(--text);
-        background: #262626;
+        font-weight: 500;
+        font-size: 14px;
       }
       .chip:hover {
-        background: #262626;
+        background: #3f3f3f;
       }
-      .chip .count {
-        font-weight: 700;
+      .chip-group {
+        display: flex;
+        align-items: center;
+        background: #272727;
+        border-radius: 18px;
+        height: 36px;
+        overflow: hidden;
       }
-      .chip.secondary {
-        flex: 1.1;
+      .chip-group .chip {
+        background: transparent;
+        border-radius: 0;
+      }
+      .chip-group .chip:hover {
+        background: #3f3f3f;
+      }
+      .chip-separator {
+        width: 1px;
+        height: 20px;
+        background: #444;
       }
 
       svg {
@@ -260,726 +271,148 @@ src="https://www.facebook.com/tr?id=911756201917807&ev=PageView&noscript=1"
         fill: currentColor;
       }
       .mini svg {
-        width: 20px;
-        height: 20px;
+        width: 24px;
+        height: 24px;
       }
 
-      .footer-divider {
-        width: 100%;
-        height: 1px;
-        background: #262626;
-        margin: 24px 0 16px 0;
-      }
-      .yt-footer {
-        background: var(--bg);
-        padding: 20px 16px 28px;
-        text-align: center;
-      }
-      .yt-footer-inner {
-        max-width: 720px;
-        margin: 0 auto;
-      }
-      .yt-footer-links {
-        font-size: 12px;
-        margin-bottom: 10px;
-      }
-      .yt-footer-links a {
-        color: #3ea6ff;
-        text-decoration: none;
-      }
-      .yt-footer-links a:hover {
-        text-decoration: underline;
-      }
-      .yt-footer-copy {
-        font-size: 12px;
-        color: #aaa;
-        margin-bottom: 10px;
-      }
-      .yt-footer-disclaimer {
-        font-size: 11px;
-        line-height: 1.45;
-        color: #888;
-      }
-
-      /* Estilos da Seção de Comentários (Facebook) */
-      .fb-comments-section {
-        background-color: #fff;
-        max-width: 100%;
-        width: 100%;
-        margin: 30px auto;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
-      }
-
-      .fb-header-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-        border-bottom: 1px solid #ced0d4;
-        padding-bottom: 10px;
-      }
-      
-      .fb-count-text {
-        color: #65676b;
-        font-weight: 600;
-        font-size: 15px;
-      }
-
-      .fb-comment-container {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 12px;
-      }
-
-      .fb-reply-thread {
-        margin-left: 50px;
-        border-left: 2px solid #f0f2f5;
-        padding-left: 5px;
-      }
-
-      .fb-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        margin-right: 10px;
-        object-fit: cover;
-        flex-shrink: 0;
-      }
-      
-      .fb-reply-thread .fb-avatar {
-        width: 32px;
-        height: 32px;
-      }
-
-      .fb-comment-bubble-wrapper {
-        max-width: 90%;
-        position: relative;
-      }
-
-      .fb-comment-bubble {
-        background-color: #f0f2f5;
-        border-radius: 18px;
-        padding: 10px 14px;
-        color: #050505;
-        font-size: 15px;
-        line-height: 1.4;
-        position: relative;
-      }
-
-      .fb-author {
-        font-weight: 700;
-        font-size: 13px;
-        color: #050505;
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        margin-bottom: 2px;
-        cursor: default;
-        text-decoration: none;
-      }
-
-      /* Ícone de Verificado */
-      .verified-badge {
-        width: 14px;
-        height: 14px;
-        fill: #1877f2;
-      }
-
-      .fb-comment-actions {
-        display: flex;
-        gap: 12px;
-        margin-left: 14px;
-        margin-top: 4px;
-        font-size: 12px;
-        color: #65676b;
-        font-weight: 700;
-      }
-
-      .fb-action-link { cursor: pointer; text-decoration: none; color: #65676b; }
-      .fb-action-link:hover { text-decoration: underline; }
-
-      .fb-reaction-badge {
-        position: absolute;
-        bottom: -8px;
-        right: -5px;
-        background: #fff;
+      .desc-box {
+        background: #272727;
         border-radius: 12px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        padding: 2px 6px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        z-index: 2;
+        padding: 12px;
+        margin-top: 16px;
         font-size: 14px;
+        line-height: 1.5;
+        color: var(--text);
       }
 
-      .fb-reaction-count {
-        font-size: 12px;
-        color: #65676b;
-        margin-left: 4px;
-        font-weight: 400;
+      /* TOAST NOTIFICATION */
+      .yt-toast {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: #f1f1f1;
+        color: #0f0f0f;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        opacity: 0;
+        z-index: 9999;
       }
-
-      .fb-load-more {
-        font-weight: 700;
-        color: #65676b;
-        cursor: pointer;
-        padding: 15px 0;
-        display: block;
-        font-size: 15px;
-        text-align: left;
-      }
-
-      @media (max-width: 600px) {
-        .fb-comments-section { width: 95%; margin: 20px auto; }
-        .fb-reply-thread { margin-left: 30px; }
-      }
-
-      /* ===== OFFER SECTION STYLES ===== */
-      .offer-section {
-        font-family: 'Poppins', Arial, Helvetica, sans-serif;
-        text-align: center;
-        background: #ffffff;
-      }
-
-      .offer-section .special-text {
-        margin-top: 15px;
-        font-size: 16px;
-        line-height: 1.6;
-        color: #111;
-        max-width: 400px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .offer-section .special-text strong {
-        color: #e5392d;
-      }
-
-      .offer-section .countdown-bar {
-        background: #e5392d;
-        color: #fff;
-        padding: 20px 10px;
-      }
-
-      .offer-section .countdown-bar h1 {
-        font-size: 28px;
-        margin-bottom: 15px;
-      }
-
-      .offer-section .countdown-box {
-        background: #000;
-        display: inline-flex;
-        padding: 20px 30px;
-        border-radius: 5px;
-        gap: 40px;
-      }
-
-      .offer-section .time {
-        text-align: center;
-      }
-
-      .offer-section .time span {
-        display: block;
-        font-size: 48px;
-        font-weight: bold;
-      }
-
-      .offer-section .label {
-        font-size: 14px;
-        margin-top: 5px;
-      }
-
-      .offer-section .container {
-        padding: 20px 10px;
-      }
-
-      .offer-section .price-old {
-        font-size: 28px;
-        color: #666;
-        font-weight: bold;
-      }
-
-      .offer-section .price-old span {
-        color: red;
-        text-decoration: line-through;
-      }
-
-      .offer-section .price-new {
-        font-size: 26px;
-        margin-top: 5px;
-      }
-
-      .offer-section .price-new span {
-        color: #2fae8f;
-        font-weight: bold;
-      }
-
-      .offer-section .cta-button {
-        display: inline-block;
-        margin-top: 20px;
-        background: #ffd600;
-        color: #000;
-        font-size: 22px;
-        font-weight: bold;
-        padding: 18px 40px;
-        border-radius: 40px;
-        text-decoration: none;
-        box-shadow: 0px 4px 0px #c9a800;
-        transition: 0.2s;
-      }
-
-      .offer-section .cta-button:hover {
-        transform: scale(1.03);
-      }
-
-      .offer-section .sub-link {
-        display: block;
-        margin-top: 15px;
-        color: #0047ff;
-        font-size: 18px;
-        text-decoration: underline;
-      }
-
-      .offer-section .payments {
-        margin-top: 15px;
-      }
-
-      .offer-section .payments img {
-        height: 28px;
-      }
-
-      .offer-section .secure {
-        margin-top: 10px;
-        font-size: 12px;
-        color: #888;
+      .yt-toast.show {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
       }
     </style>
-  </head>
-  <body>
+</head>
+<body>
+
     <div class="phone">
-      <div class="topbar">
-        <div class="yt-logo">
-          <span class="yt-badge" aria-hidden="true"></span>
-          <span>YouTube</span>
-        </div>
-        <div class="top-actions">
-          <div class="icon-btn mini" title="Search" aria-label="Search">
-            <svg viewBox="0 0 24 24">
-              <path d="M10 4a6 6 0 104.47 10.03l4.25 4.25 1.41-1.41-4.25-4.25A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"></path>
-            </svg>
-          </div>
-          <div class="icon-btn mini" title="More options" aria-label="More options">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"></path>
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="video">
-        
-
-<vturb-smartplayer id="vid-69a5994da414172eb5d3df96" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69a5994da414172eb5d3df96/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
-
-        <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
-<link rel="preload" href="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/69a5994da414172eb5d3df96/v4/player.js" as="script">
-<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-<link rel="preload" href="https://cdn.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/69a592fc10258bc4a104282c/main.m3u8" as="fetch">
-<link rel="dns-prefetch" href="https://cdn.converteai.net">
-<link rel="dns-prefetch" href="https://scripts.converteai.net">
-<link rel="dns-prefetch" href="https://images.converteai.net">
-<link rel="dns-prefetch" href="https://license.vturb.com">
-
-
-      </div>
-
-      <div class="offer-section">
-        <div id="esconder">
-            <div class="container">
-                <div class="price-old">
-                    Normally: <span>$7,500</span>
-                </div>
-                <div class="price-new">
-                    Today Just: <span>$37 One Time</span>
-                </div>
-
-                <div class="special-text">
-                    <strong>Congratulations, you're our 4,000th customer—you've unlocked a special price: $37.</strong><br>
-                    This offer isn't available to the public and is valid for only 10 minutes.<br>
-                    Click the button above before it disappears.
-                </div>
-
-                <div class="payments">
-                    <img src="https://i.postimg.cc/44z0dTZR/gdegbo6498420.png" alt="payments">
-                </div>
-
-                <div class="secure">
-                    🔒 Your information is safe and secure. The entire transaction will take place on a secure server using SSL technology.
-                </div>
+        <div class="topbar">
+            <div class="yt-logo">
+                <span class="yt-badge" aria-hidden="true"></span>
+                <span>YouTube</span>
             </div>
-
-            <div class="countdown-bar">
-                <h1><strong>Get The Sacred Chant</strong> Before We Close Our Doors</h1>
-                <div class="countdown-box">
-                    <div class="time">
-                        <span id="minutes">59</span>
-                        <div class="label">Minutes</div>
-                    </div>
-                    <div class="time">
-                        <span id="seconds">39</span>
-                        <div class="label">Seconds</div>
-                    </div>
+            <div class="top-actions">
+              <div class="icon-btn mini" title="Search" aria-label="Search">
+                    <svg viewBox="0 0 24 24"><path d="M10 4a6 6 0 104.47 10.03l4.25 4.25 1.41-1.41-4.25-4.25A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"></path></svg>
+                </div>
+                <div class="icon-btn mini" title="More options" aria-label="More options">
+                     <svg viewBox="0 0 24 24"><path d="M12 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4zm0 7a2 2 0 110-4 2 2 0 010 4z"></path></svg>
                 </div>
             </div>
         </div>
 
-        <script>
-        let totalSeconds = (59 * 60) + 39;
-
-        function updateCountdown() {
-            let minutes = Math.floor(totalSeconds / 60);
-            let seconds = totalSeconds % 60;
-
-            document.getElementById("minutes").textContent = minutes;
-            document.getElementById("seconds").textContent = seconds < 10 ? "0" + seconds : seconds;
-
-            if (totalSeconds > 0) {
-                totalSeconds--;
-            }
-        }
-
-        setInterval(updateCountdown, 1000);
-        </script>
-      </div>
-      <div class="info">
-        <div class="title-row">
-          <h1 class="title">
-            Retired Scientist Develops a Brain Therapy that Reverses 20 Years of Hearing and Mental Decline in Weeks. Thousands have already silenced their tinnitus and boosted their memory
-          </h1>
+        <div class="video">
+            <vturb-smartplayer id="ab-6a1a2c04a87ade08df20b04e" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> 
+            <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6a1a2c04a87ade08df20b04e/player.js", s.async=!0,document.head.appendChild(s); </script>
+            <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+            <link rel="preload" href="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6a1a2c04a87ade08df20b04e/player.js" as="script">
+            <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+            <link rel="dns-prefetch" href="https://cdn.converteai.net">
+            <link rel="dns-prefetch" href="https://scripts.converteai.net">
+            <link rel="dns-prefetch" href="https://images.converteai.net">
+            <link rel="dns-prefetch" href="https://m3u8.vturb.net">
+            <link rel="dns-prefetch" href="https://license.vturb.com">
         </div>
 
-        <div class="meta">
-          <span>100K views</span>
-          <span>•</span>
-          <span>1 month ago</span>
-          <span>...more</span>
-        </div>
-
-        <div class="channel">
-          <div class="channel-left">
-            <div class="avatar">
-              <img src="https://i.postimg.cc/xdQX9LyW/Fabi-Bang-fabibang-Instagram-profile-picture-by-Jairo-Goldglus-jairogoldflusestudio.jpg" alt="Dr. Laura Ortega" />
+        <div class="info">
+            <div class="title-row">
+                <h1 class="title">THIS WAS HIDDEN FROM YOU... BUT TODAY IT WILL BE REVEALED LIVE AT <span id="liveTime"></span></h1>
             </div>
-            <div class="ch-text">
-              <div class="ch-name">Dra. Anna Miller</div>
-              <div class="ch-subs">438K</div>
-            </div>
-          </div>
-          <button class="subscribe" id="btnSubscribe">Subscribe</button>
-        </div>
+            <div class="meta">
+                <span>14,592 watching now</span>
+                <span>•</span>
+                <span>Started streaming 5 minutes ago</span>
+             </div>
 
-        <div class="actions">
-          <div class="chip" id="btnLike" data-toggle="like" title="Like">
-            <svg viewBox="0 0 24 24">
-              <path d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L13 1 6.59 7.41C6.22 7.78 6 8.3 6 8.83V19c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path>
-            </svg>
-            <span class="count">3K</span>
-          </div>
-
-          <div class="chip" id="btnDislike" data-toggle="dislike" title="Dislike">
-            <svg viewBox="0 0 24 24">
-              <path d="M15 3H6c-.83 0-1.54.5-1.84 1.22L1.14 11.27c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L11 23l6.41-6.41c.37-.37.59-.89.59-1.42V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path>
-            </svg>
-          </div>
-
-          <div class="chip secondary" id="btnShare" data-toggle="share" title="Share">
-            <svg viewBox="0 0 24 24">
-              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.02-4.11A2.99 2.99 0 0018 7.91a3 3 0 10-3-3c0 .24.04.47.09.7L8.07 9.72A3 3 0 006 9a3 3 0 100 6c.86 0 1.64-.36 2.2-.93l6.83 3.99c-.05.2-.08.41-.08.63a3 3 0 103-3z"></path>
-            </svg>
-            <span>Share</span>
-          </div>
-
-          <div class="chip secondary" id="btnSave" data-toggle="save" title="Save">
-            <svg viewBox="0 0 24 24">
-              <path d="M17 3H7a2 2 0 00-2 2v16l7-3 7 3V5a2 2 0 00-2-2z"></path>
-            </svg>
-            <span>Save</span>
-          </div>
-        </div>
-
-        <div class="fb-comments-section">
-            <div class="fb-header-info">
-                <span class="fb-count-text">Showing 18 of 322 comments</span>
-            </div>
-
-            <div class="fb-comment-container">
-                <img src="https://i.postimg.cc/5N9L7BwL/images.jpg" class="fb-avatar" alt="Fr. Mike Schmitz">
-                <div class="fb-comment-bubble-wrapper">
-                    <div class="fb-comment-bubble">
-                        <span class="fb-author">
-                            Fr. Mike Schmitz
-                            <svg class="verified-badge" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.02-2.147 3.6 0 1.457.746 2.74 1.863 3.494C2.888 16.634 2.5 17.5 2.5 18.5c0 2.21 1.786 4 3.99 4 .494 0 .963-.086 1.397-.24.646 1.258 1.967 2.146 3.513 2.146 1.74 0 3.21-.997 3.868-2.45.31.066.63.1.954.1 2.208 0 4-1.79 4-4 0-.853-.267-1.637-.718-2.285 1.16-.76 1.942-2.016 1.996-3.27z" fill="#1877f2"/><path d="M10.835 16l-3.35-3.56c-.347-.367-.318-.95.064-1.284.382-.334.966-.305 1.314.064l2.126 2.26 4.793-6.66c.315-.436.92-.533 1.353-.217.433.315.53.918.214 1.355l-5.32 7.393c-.165.23-.434.366-.717.363-.284-.003-.55-.152-.705-.395l-.772-1.077z" fill="#fff"/></svg>
-                        </span>
-                        The Saint Michael Prayer is a powerful spiritual weapon. When I started dedicating time to this devotion, I noticed a profound shift not just in my own life, but in my parish. If you are seeing this, consider it a gentle nudge from your guardian angel. God bless you all.
-                    </div>
-                    <div class="fb-reaction-badge">
-                        <span>👍 ❤️</span>
-                        <span class="fb-reaction-count">2.1K</span>
-                    </div>
-                    <div class="fb-comment-actions">
-                        <span class="fb-action-link">Like</span>
-                        <span class="fb-action-link">Reply</span>
-                        <span>2h</span>
+            <div class="channel">
+                <div class="channel-left">
+                    <div class="avatar"><img src="https://randomuser.me/api/portraits/men/82.jpg" alt="Father Juan Mendez"></div>
+                    <div class="ch-text">
+                 <div class="ch-name">
+                            Father Juan Mendez
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="#aaa"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                 </div>
+                        <div class="ch-subs">93K subscribers</div>
                     </div>
                 </div>
-            </div>
+                <button class="subscribe" id="btnSub">Subscribe</button>
+             </div>
 
-            <div class="fb-comment-container fb-reply-thread">
-                <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face" class="fb-avatar" alt="Mary Johnson">
-                <div class="fb-comment-bubble-wrapper">
-                    <div class="fb-comment-bubble">
-                        <span class="fb-author">Mary Johnson</span>
-                        <span style="color:#1877f2;">@FrMikeSchmitz</span>, I started this novena yesterday and I woke up with a peace I hadn't felt in years. Thank you, Father!
-                    </div>
-                    <div class="fb-reaction-badge">
-                        <span>❤️</span>
-                        <span class="fb-reaction-count">1.1K</span>
-                    </div>
-                    <div class="fb-comment-actions">
-                        <span class="fb-action-link">Like</span>
-                        <span class="fb-action-link">Reply</span>
-                        <span>2h</span>
-                    </div>
+            <div class="actions">
+                <div class="chip-group">
+                    <button class="chip" id="btnLike">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg>
+                        <span id="likeCount">7.1K</span>
+                    </button>
+                    <div class="chip-separator"></div>
+                    <button class="chip">
+                 <svg viewBox="0 0 24 24"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"/></svg>
+                    </button>
                 </div>
+                <button class="chip">
+ <svg viewBox="0 0 24 24"><path d="M11.7333 15.6667V8.53333L16 12.1L11.7333 15.6667ZM12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 3.5C7.30558 3.5 3.5 7.30558 3.5 12C3.5 16.6944 7.30558 20.5 12 20.5C16.6944 20.5 20.5 16.6944 20.5 12C20.5 7.30558 16.6944 3.5 12 3.5Z"/></svg>
+                    Share
+                </button>
+                <button class="chip">
+                    <svg viewBox="0 0 24 24"><path d="M17 14v4h-4v2h4v4h2v-4h4v-2h-4v-4h-2zM4 14h9v2H4v-2zM4 10h16v2H4v-2zM4 6h16v2H4V6z"/></svg>
+                    Save
+                </button>
             </div>
 
-            <div class="fb-comment-container">
-                <img src="https://i.postimg.cc/tJ4dxWkY/c617e9b7f5fb-mark-wahlberg-the-union-jpg.webp" class="fb-avatar" alt="Mark Wahlberg">
-                <div class="fb-comment-bubble-wrapper">
-                    <div class="fb-comment-bubble">
-                        <span class="fb-author">
-                            Mark Wahlberg
-                            <svg class="verified-badge" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.02-2.147 3.6 0 1.457.746 2.74 1.863 3.494C2.888 16.634 2.5 17.5 2.5 18.5c0 2.21 1.786 4 3.99 4 .494 0 .963-.086 1.397-.24.646 1.258 1.967 2.146 3.513 2.146 1.74 0 3.21-.997 3.868-2.45.31.066.63.1.954.1 2.208 0 4-1.79 4-4 0-.853-.267-1.637-.718-2.285 1.16-.76 1.942-2.016 1.996-3.27z" fill="#1877f2"/><path d="M10.835 16l-3.35-3.56c-.347-.367-.318-.95.064-1.284.382-.334.966-.305 1.314.064l2.126 2.26 4.793-6.66c.315-.436.92-.533 1.353-.217.433.315.53.918.214 1.355l-5.32 7.393c-.165.23-.434.366-.717.363-.284-.003-.55-.152-.705-.395l-.772-1.077z" fill="#fff"/></svg>
-                        </span>
-                        Faith is the most important part of my life. This prayer touched my heart in a way I can't explain. I hope more people get this chance. Stay prayed up. 🙏
-                    </div>
-                    <div class="fb-reaction-badge">
-                        <span>❤️ 👍</span>
-                        <span class="fb-reaction-count">3.8K</span>
-                    </div>
-                    <div class="fb-comment-actions">
-                        <span class="fb-action-link">Like</span>
-                        <span class="fb-action-link">Reply</span>
-                        <span>3h</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="fb-comment-container fb-reply-thread">
-                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face" class="fb-avatar" alt="Chris Davis">
-                <div class="fb-comment-bubble-wrapper">
-                    <div class="fb-comment-bubble">
-                        <span class="fb-author">Chris Davis</span>
-                        <span style="color:#1877f2;">@MarkWahlberg</span> my dad actually cried while listening to this. He had been away from the church for years. Today he asked to pray with me.
-                    </div>
-                    <div class="fb-reaction-badge">
-                        <span>❤️</span>
-                        <span class="fb-reaction-count">1.5K</span>
-                    </div>
-                    <div class="fb-comment-actions">
-                        <span class="fb-action-link">Like</span>
-                        <span class="fb-action-link">Reply</span>
-                        <span>3h</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="fb-comment-container">
-                <img src="https://i.postimg.cc/wMrNRP7d/channels4-profile.jpg" class="fb-avatar" alt="Bishop Robert Barron">
-                <div class="fb-comment-bubble-wrapper">
-                    <div class="fb-comment-bubble">
-                        <span class="fb-author">
-                            Bishop Robert Barron
-                            <svg class="verified-badge" viewBox="0 0 24 24"><path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.02-2.147 3.6 0 1.457.746 2.74 1.863 3.494C2.888 16.634 2.5 17.5 2.5 18.5c0 2.21 1.786 4 3.99 4 .494 0 .963-.086 1.397-.24.646 1.258 1.967 2.146 3.513 2.146 1.74 0 3.21-.997 3.868-2.45.31.066.63.1.954.1 2.208 0 4-1.79 4-4 0-.853-.267-1.637-.718-2.285 1.16-.76 1.942-2.016 1.996-3.27z" fill="#1877f2"/><path d="M10.835 16l-3.35-3.56c-.347-.367-.318-.95.064-1.284.382-.334.966-.305 1.314.064l2.126 2.26 4.793-6.66c.315-.436.92-.533 1.353-.217.433.315.53.918.214 1.355l-5.32 7.393c-.165.23-.434.366-.717.363-.284-.003-.55-.152-.705-.395l-.772-1.077z" fill="#fff"/></svg>
-                        </span>
-                        What you see in this video is not just media; it is a real encounter with the Divine. Saint Michael defends us in battle. Whoever prays this with faith will feel the change. Watch until the end and allow yourself to live this experience!
-                    </div>
-                    <div class="fb-reaction-badge">
-                        <span>👍 ❤️</span>
-                        <span class="fb-reaction-count">2K</span>
-                    </div>
-                    <div class="fb-comment-actions">
-                        <span class="fb-action-link">Like</span>
-                        <span class="fb-action-link">Reply</span>
-                        <span>1d</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="fb-comment-container fb-reply-thread">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iNmrI10Fi5PTDxTFSYav7y-DDAEX4xdD8g&s" class="fb-avatar" alt="Sarah Jenkins">
-                <div class="fb-comment-bubble-wrapper">
-                    <div class="fb-comment-bubble">
-                        <span class="fb-author">Sarah Jenkins</span>
-                        <span style="color:#1877f2;">@BishopBarron</span> at the end I could only cry. It's so powerful. Thank you for confirming what I felt!
-                    </div>
-                    <div class="fb-reaction-badge">
-                        <span>❤️</span>
-                        <span class="fb-reaction-count">950</span>
-                    </div>
-                    <div class="fb-comment-actions">
-                        <span class="fb-action-link">Like</span>
-                        <span class="fb-action-link">Reply</span>
-                        <span>21h</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="fb-comment-container">
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" class="fb-avatar" alt="John Peterson">
-                <div class="fb-comment-bubble-wrapper">
-                    <div class="fb-comment-bubble">
-                        <span class="fb-author">John Peterson</span>
-                        I started the prayer and a light flooded my room, it was beautiful!
-                    </div>
-                    <div class="fb-reaction-badge">
-                        <span>👍</span>
-                        <span class="fb-reaction-count">840</span>
-                    </div>
-                    <div class="fb-comment-actions">
-                        <span class="fb-action-link">Like</span>
-                        <span class="fb-action-link">Reply</span>
-                        <span>21h</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="fb-comment-container">
-                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" class="fb-avatar" alt="Patricia Lewis">
-                <div class="fb-comment-bubble-wrapper">
-                    <div class="fb-comment-bubble">
-                        <span class="fb-author">Patricia Lewis</span>
-                        My husband finally found a job after saying the prayer 7 days in a row! God is faithful!
-                    </div>
-                    <div class="fb-reaction-badge">
-                        <span>❤️</span>
-                        <span class="fb-reaction-count">1K</span>
-                    </div>
-                    <div class="fb-comment-actions">
-                        <span class="fb-action-link">Like</span>
-                        <span class="fb-action-link">Reply</span>
-                        <span>21h</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="fb-load-more">
-                View more comments
+            <div class="desc-box">
+                 <b>This video will be deleted immediately after the live stream ends...</b><br>
+                <span style="color: #aaa;">(Do not refresh or leave this page to avoid losing connection)</span>
             </div>
         </div>
-
-        <div class="footer-divider"></div>
-
-        <footer class="yt-footer">
-          <div class="yt-footer-inner">
-            <div class="yt-footer-links">
-              <a  rel="nofollow">Terms of Use</a>
-              <span>·</span>
-              <a " rel="nofollow">Privacy Policy</a>
-            </div>
-            <div class="yt-footer-copy">
-              Copyright 2026 · All rights reserved
-            </div>
-            <div class="yt-footer-disclaimer">
-              This site is not a part of the Facebook™ website or Meta Platforms, Inc., and is NOT endorsed by Facebook in any way.
-              The information presented is for educational purposes and does not constitute medical advice. Results may vary from person to person.
-            </div>
-          </div>
-        </footer>
-      </div>
-
-      <script>
-        const btn = document.getElementById("btnSubscribe");
-        btn.addEventListener("click", () => {
-          if (btn.classList.contains("subscribed")) {
-            btn.classList.remove("subscribed");
-            btn.textContent = "Subscribe";
-            btn.style.background = "#f1f1f1";
-            btn.style.color = "#111";
-          } else {
-            btn.classList.add("subscribed");
-            btn.textContent = "Subscribed";
-            btn.style.background = "#2b2b2b";
-            btn.style.color = "#f1f1f1";
-          }
-        });
-        const topLike = document.getElementById("btnLike");
-        const topDislike = document.getElementById("btnDislike");
-        const topShare = document.getElementById("btnShare");
-        const topSave = document.getElementById("btnSave");
-        
-        const setExclusive = (onEl, offEl) => {
-          onEl.classList.toggle("active");
-          if (onEl.classList.contains("active"))
-            offEl.classList.remove("active");
-        };
-        if (topLike && topDislike) {
-          topLike.addEventListener("click", () =>
-            setExclusive(topLike, topDislike),
-          );
-          topDislike.addEventListener("click", () =>
-            setExclusive(topDislike, topLike),
-          );
-        }
-        if (topShare) {
-          topShare.addEventListener("click", () =>
-            topShare.classList.toggle("active"),
-          );
-        }
-        if (topSave) {
-          topSave.addEventListener("click", () =>
-            topSave.classList.toggle("active"),
-          );
-        }
-      </script>
-
-      <script
-        src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-        data-utmify-prevent-xcod-sck
-        data-utmify-prevent-subids
-        async
-        defer
-      ></script>
-
-    
-      <script>
-        const link = 'https://sacredchantguide.site/backred/';
-
-        function setBackRedirect(url) {
-          let urlBackRedirect = url;
-          urlBackRedirect = urlBackRedirect =
-            urlBackRedirect.trim() +
-            (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
-            document.location.search.replace('?', '').toString();
-
-          history.pushState({}, '', location.href);
-          history.pushState({}, '', location.href);
-          history.pushState({}, '', location.href);
-
-          window.addEventListener('popstate', () => {
-            console.log('onpopstate', urlBackRedirect);
-            setTimeout(() => {
-              location.href = urlBackRedirect;
-            }, 1);
-          });
-        }
-
-        setBackRedirect(link);
-      </script>
     </div>
-  </body>
+
+    <div class="yt-toast" id="ytToast"></div>
+
+    <script>
+        // Dynamic Time for Title
+        (function(){
+            var now = new Date(), h = now.getHours(), m = now.getMinutes(), ampm = h >= 12 ? 'PM' : 'AM';
+            h = h % 12; h = h ? h : 12; var mm = m < 10 ? '0' + m : m;
+            document.getElementById('liveTime').textContent = h + ':' + mm + ' ' + ampm;
+        })();
+
+        // Toast Notifications functionality
+        function toast(msg){
+            var t = document.getElementById('ytToast');
+            t.textContent = msg; 
+            t.classList.add('show');
+            setTimeout(function(){ t.classList.remove('show'); }, 3000);
+        }
+
+        document.getElementById('btnSub').addEventListener('click', function(){
+            this.style.background = "#272727";
+            this.style.color = "#f1f1f1";
+            this.textContent = 'Subscribed';
+            toast('Subscription added');
+        });
+    </script>
+</body>
 </html>
