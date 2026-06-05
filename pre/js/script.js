@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Card images
     const cardImages = [
-    '../../global_images/cards/wheel_of_fortune.png',
-    '../../global_images/cards/tower.png',
-    '../../global_images/cards/magician.png'
+    'https://i.postimg.cc/pXGsBJSd/images.jpg',
+    'https://i.postimg.cc/kX4cDtgY/51-7BOVBl-RL-AC-UF1000-1000-QL80.jpg',
+    'https://i.postimg.cc/rpSG71fW/513v-j2EBt-L-AC-UF1000-1000-QL80.jpg'
 ];
     
     // Shuffle the card images
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cardBack.className = 'card-back';
         
         const backImg = document.createElement('img');
-        backImg.src = '../../global_images/cards/card_back.png';
+        backImg.src = 'https://i.postimg.cc/dVWcrC2k/card-back.png';
         backImg.alt = 'Verso da Carta';
         cardBack.appendChild(backImg);
         
