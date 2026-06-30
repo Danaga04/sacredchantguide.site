@@ -1,425 +1,325 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
-<script>digistoreUpsell()</script>
-
-
-  <!-- Begin of Digistore24 Trusted Badge Code -->
-<script type="text/javascript" src="https://www.digistore24.com/trusted-badge/45038/EfkrAuwxyTyKoSt/salespage"></script>
-<!-- End of Digistore24 Trusted Badge Code -->
-
-
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>check this!</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #ffffff; /* Fundo agora é branco */
-            color: #333;
-        }
-        
-        .warning-banner {
-            background-color: #c41e3a;
-            color: white;
-            padding: 12px 20px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
-        .warning-banner strong {
-            font-weight: 700;
-        }
-        
-        .warning-icon {
-            font-size: 16px;
-            margin-right: 5px;
-        }
-        
-        .secure-badge {
-            background-color: white;
-            padding: 15px;
-            text-align: center;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            /* Sombra removida para ficar clean, ou manter suave */
-            border-bottom: 1px solid #eee; 
-        }
-        
-        .secure-badge img {
-            max-width: 150px;
-            height: auto;
-        }
-        
-        .nav-tabs {
-            display: flex;
-            justify-content: space-between;
-            background-color: white;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        
-        .nav-tab {
-            flex: 1;
-            padding: 15px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        
-        .nav-tab.completed {
-            background-color: #1e5a96;
-            color: white;
-        }
-        
-        .nav-tab.active {
-            background-color: #27af60;
-            color: white;
-        }
-        
-        .nav-tab.pending {
-            background-color: #95a5a6;
-            color: white;
-        }
-        
-        .checkmark {
-            font-size: 18px;
-        }
-        
-        .loader {
-            border: 2px solid #f3f3f3;
-            border-top: 2px solid #3498db;
-            border-radius: 50%;
-            width: 16px;
-            height: 16px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .container {
-            max-width: 600px; /* Mantém largura máxima para leitura confortável */
-            margin: 0 auto;
-            padding: 20px; /* Espaçamento lateral simples */
-        }
-        
-        /* AQUI ESTÁ A MUDANÇA PRINCIPAL: Removemos o visual de caixa */
-        .content-box {
-            background-color: transparent;
-            border-radius: 0;
-            padding: 20px 0;
-            box-shadow: none;
-            text-align: center;
-        }
-        
-        h1 {
-            font-size: 28px;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-        
-        .subtitle {
-            font-size: 18px;
-            color: #34495e;
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-        
-        .arrow-down {
-            font-size: 36px;
-            color: #27af60;
-            margin: 20px 0;
-        }
-
-        /* --- ESTILOS DA TSL (TEXT SALES LETTER) --- */
-        .tsl-wrapper {
-            text-align: left;
-            background-color: transparent;
-            padding: 0;
-            border: none; 
-            border-radius: 0;
-            margin: 20px 0;
-            line-height: 1.6;
-            color: #2c3e50;
-            font-size: 17px;
-        }
-        .tsl-wrapper p { margin-bottom: 15px; }
-        .tsl-wrapper strong { color: #000; }
-        .tsl-red { color: #c41e3a; font-weight: 700; }
-        .tsl-highlight { background-color: #ffff00; padding: 2px 4px; font-weight: 700; }
-        
-        /* Estilo dos Depoimentos */
-        .testimonial-box {
-            background-color: #f0fdf4;
-            border-left: 4px solid #27af60;
-            padding: 15px;
-            margin: 20px 0;
-            font-style: italic;
-            border-radius: 0 4px 4px 0;
-        }
-        .testimonial-text {
-            color: #333;
-            margin-bottom: 8px;
-            display: block;
-        }
-        .testimonial-name {
-            display: block;
-            font-weight: 700;
-            font-style: normal;
-            color: #27af60;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .sound-notice {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 25px 0;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            border: 1px solid #eee; /* Adicionei borda leve para destacar no fundo branco */
-        }
-        
-        .sound-icon { font-size: 24px; }
-        .sound-notice p { font-size: 15px; color: #2c3e50; }
-        
-        .decline-link {
-            margin-top: 15px;
-            cursor: pointer;
-            font-size: 16px;
-            text-decoration: underline;
-            color: #7f8c8d;
-            transition: color 0.3s ease;
-        }
-        
-        .decline-link:hover { color: #34495e; }
-        
-        /* MODAL */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .modal-overlay.active { display: flex; }
-        
-        .modal-content {
-            background-color: white;
-            border-radius: 16px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 40px 30px;
-            position: relative;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-        
-        .modal-close {
-            position: absolute;
-            top: 15px; right: 15px;
-            font-size: 28px;
-            cursor: pointer;
-            color: #7f8c8d;
-        }
-        
-        .modal-title { font-size: 32px; color: #c41e3a; font-weight: 700; margin-bottom: 10px; }
-        .modal-subtitle { font-size: 20px; color: #e74c3c; font-weight: 600; margin-bottom: 20px; }
-        .price-strike { font-size: 24px; color: #95a5a6; text-decoration: line-through; }
-        .price-now { font-size: 42px; color: #27af60; font-weight: 700; }
-        
-        .btn-accept {
-            background-color: #27AF60; padding: 18px 32px; cursor: pointer;
-            color: #FFFFFF; font-weight: 700; border-radius: 8px; border: none;
-            font-size: 22px; width: 100%; text-transform: uppercase;
-        }
-        
-        .btn-decline {
-            background-color: transparent; padding: 12px 32px; cursor: pointer;
-            color: #7f8c8d; font-weight: 600; border-radius: 8px; border: 2px solid #bdc3c7;
-            font-size: 16px; width: 100%; margin-top: 15px;
-        }
-        
-        @media (max-width: 768px) {
-            .container { padding: 0 15px; }
-            h1 { font-size: 24px; }
-            .tsl-wrapper { font-size: 16px; padding: 0; }
-            
-            .nav-tabs { justify-content: center; }
-            .nav-tab { padding: 10px 4px; font-size: 10px; gap: 4px; }
-            .checkmark { font-size: 14px; }
-            
-            .content-box { padding: 10px 0; } /* Remove padding extra no mobile */
-            
-            .modal-content { padding: 30px 20px; margin: 0 10px; max-width: 100%; }
-            .modal-title { font-size: 26px; }
-            .modal-subtitle { font-size: 18px; }
-            .price-now { font-size: 36px; }
-            .btn-accept { font-size: 18px; padding: 15px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Prayer</title>
+  <!-- Tailwind via CDN for clean, responsive design -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- UTMify script -->
+  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+  <!-- Digistore24 scripts -->
+  <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
+  <script>
+    // Digistore upsell function
+    digistoreUpsell();
+  </script>
+  <style>
+    /* Custom styles for flip-clock effect and urgency */
+    body {
+      background-color: #ffffff;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    /* Flip clock / mechanical counter styling */
+    .flip-clock {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+    }
+    .flip-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .flip-digit-group {
+      display: flex;
+      gap: 0.2rem;
+    }
+    .flip-digit {
+      background: #1a1a1a;
+      color: #facc15; /* gold-yellow numbers */
+      font-size: clamp(2.2rem, 10vw, 4rem);
+      font-weight: 800;
+      line-height: 1.2;
+      padding: 0.5rem 0.3rem;
+      border-radius: 0.5rem;
+      background: linear-gradient(180deg, #2d2d2d 0%, #0a0a0a 100%);
+      box-shadow: 0 6px 0 #4b0000, 0 8px 12px rgba(0,0,0,0.4);
+      min-width: 2.8rem;
+      text-align: center;
+      position: relative;
+      perspective: 800px;
+      display: inline-block;
+      letter-spacing: 1px;
+      transition: transform 0.1s ease;
+    }
+    .flip-label {
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      margin-top: 0.3rem;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px black;
+    }
+    /* fast blinking milliseconds effect */
+    .fast-ms {
+      font-size: clamp(1.8rem, 8vw, 3rem);
+      min-width: 2.8rem;
+    }
+    /* sticky elements */
+    .sticky-warning {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .floating-button {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #16a34a;
+      padding: 12px 20px;
+      text-align: center;
+      z-index: 40;
+      box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
+    }
+    .floating-button a {
+      background: #22c55e;
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+      padding: 14px 30px;
+      border-radius: 60px;
+      text-decoration: none;
+      display: inline-block;
+      width: auto;
+      min-width: 220px;
+      box-shadow: 0 8px 0 #15803d, 0 10px 20px rgba(0,0,0,0.3);
+      transition: 0.2s;
+      letter-spacing: 0.5px;
+    }
+    .floating-button a:active {
+      transform: translateY(4px);
+      box-shadow: 0 4px 0 #15803d, 0 8px 12px rgba(0,0,0,0.3);
+    }
+    /* gender buttons */
+    .gender-btn {
+      border-radius: 50px;
+      font-weight: bold;
+      padding: 1rem 2rem;
+      font-size: 1.3rem;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      transition: 0.2s;
+      box-shadow: 0 5px 0 rgba(0,0,0,0.2);
+    }
+    .pink-btn {
+      background: #ec4899;
+      color: white;
+    }
+    .blue-btn {
+      background: #3b82f6;
+      color: white;
+    }
+    /* responsive margins */
+    .content-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    hr {
+      border-color: #e5e7eb;
+    }
+  </style>
 </head>
-<body>
-    <div class="warning-banner">
-        <span class="warning-icon">⚠️</span>
-        <strong>WARNING:</strong> Do not close or refresh this page, <strong>as it may cause errors with your purchase</strong>.
-    </div>
-    
-    <div class="secure-badge">
-        <img src="https://upgradeyourorder.com/wp-content/uploads/2025/10/secure-3.png" alt="Secure Payment">
-    </div>
-    
-    <div class="nav-tabs">
-        <div class="nav-tab completed"><span class="checkmark">✓</span> PURCHASE INFO</div>
-        <div class="nav-tab active">NEW OPPORTUNITY!</div>
-        <div class="nav-tab pending"><div class="loader"></div> ORDER CONFIRMATION</div>
-    </div>
-    
-    <div class="container">
-        <div class="content-box">
-            <h1>Your Order Is Not Complete Yet</h1>
-            <p class="subtitle">Please watch this Urgent Message Below Now</p>
-            
-            <div class="arrow-down">↓</div>
-            
-            <div class="tsl-wrapper">
-              
-<vturb-smartplayer id="vid-698dcc2111e55d52a5bfb1d0" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/698dcc2111e55d52a5bfb1d0/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
+<body class="bg-white text-gray-900">
 
-              
-                <br>
+  <!-- 1. TOP RED WARNING BAR (sticky) -->
+  <div class="sticky-warning bg-red-600 text-white font-bold text-center py-3 px-2 shadow-md" style="font-size: 1.1rem;">
+    ⚠️ DO NOT LEAVE THIS PAGE OR CLICK BACK — If you do, the charge will be doubled.
+  </div>
 
+  <!-- 2. VSL VIDEO SECTION -->
+  <div class="w-full bg-white pt-4">
+    <div class="content-section">
+      <vturb-smartplayer id="vid-698dcc2111e55d52a5bfb1d0" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+      <script type="text/javascript">
+        var s=document.createElement("script");
+        s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/698dcc2111e55d52a5bfb1d0/v4/player.js";
+        s.async=!0;document.head.appendChild(s);
+      </script>
+    </div>
+  </div>
 
-<div class="decision-container">
-  <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="btn-yes">
-    ACCESS WITH DISCOUNT
-  </a>
+  <!-- HUGE RED COUNTDOWN TIMER + URGENCY TEXT -->
+  <div class="bg-red-600 py-5 px-3 mt-2 w-full">
+    <div class="content-section text-center">
+      <p class="text-white font-extrabold text-xl md:text-2xl mb-3 drop-shadow-md" style="text-shadow: 2px 2px 0 #991b1b;">
+        Click the green button before time runs out
+      </p>
+
+      
+      <!-- Flip calendar / mechanical counter -->
+      <div id="countdown-timer" class="flip-clock mt-3 mb-2">
+        <!-- minutes -->
+        <div class="flip-unit">
+          <div class="flip-digit-group">
+            <span id="min-tens" class="flip-digit">0</span>
+            <span id="min-ones" class="flip-digit">9</span>
+          </div>
+          <span class="flip-label">MIN</span>
+        </div>
+        <span class="text-white text-4xl font-bold mx-1 self-start mt-2">:</span>
+        <!-- seconds -->
+        <div class="flip-unit">
+          <div class="flip-digit-group">
+            <span id="sec-tens" class="flip-digit">4</span>
+            <span id="sec-ones" class="flip-digit">1</span>
+          </div>
+          <span class="flip-label">SEC</span>
+        </div>
+        <span class="text-white text-4xl font-bold mx-1 self-start mt-2">:</span>
+        <!-- milliseconds (fast moving) -->
+        <div class="flip-unit">
+          <div class="flip-digit-group">
+            <span id="ms-hundreds" class="flip-digit fast-ms">0</span>
+            <span id="ms-tens" class="flip-digit fast-ms">0</span>
+            <span id="ms-ones" class="flip-digit fast-ms">0</span>
+          </div>
+          <span class="flip-label">MS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING STICKY GREEN BUTTON (fixed bottom) -->
+  <div class="floating-button">
+    <a href="https://www.checkout-ds24.com/answer/yes?template=light" id="accessNowBtn">
+      ACCESS NOW
+    </a>
+  </div>
+
+  <!-- Spacer for floating button so content isn't hidden -->
+  <div style="height: 90px;"></div>
+
+  <!-- GENDER BUTTONS SECTION -->
+  <div class="content-section py-6 flex flex-col sm:flex-row gap-4 justify-center">
+    <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="gender-btn pink-btn flex-1">
+      WOMEN CLICK HERE
+    </a>
+    <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="gender-btn blue-btn flex-1">
+      MEN CLICK HERE
+    </a>
+  </div>
+
+  <!-- DISCOUNT TEXT LINK -->
+  <div class="content-section text-center pb-4">
+    <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="text-indigo-700 font-semibold underline text-lg hover:text-indigo-900">
+      Tap here to access with discount now
+    </a>
+  </div>
+
+  <!-- PRODUCT DESCRIPTION SECTION -->
+  <div class="content-section bg-white py-6 px-2">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 text-center">
+      The Miraculous Prayer of Saint Michael the Archangel
+    </h2>
+    <div class="space-y-4 text-gray-700 text-base md:text-lg leading-relaxed">
+      <p>For centuries, the <strong class="text-red-700">Prayer of Saint Michael the Archangel</strong> has been a divine shield against darkness. Now, for a limited time, you can unlock its full power to heal <strong>physical, emotional, and spiritual diseases</strong> that modern medicine cannot touch.</p>
+      <p>This is not just a prayer – it is a sacred weapon. Countless believers have experienced <strong>immediate protection, deliverance from evil attacks, and the breaking of generational curses</strong>. Whether you face anxiety, unexplainable fatigue, or spiritual oppression, Saint Michael’s intercession brings heavenly defense directly into your life.</p>
+      <p>Imagine waking up tomorrow feeling <strong>completely renewed</strong> – free from the weight that has been crushing your spirit. This prayer has the authority to <strong>cast out demonic influences, shield your home, and restore peace to your heart</strong>. The Archangel stands ready to fight for you.</p>
+      <p class="font-semibold text-black">By claiming this offer today for just <span class="line-through text-red-500">$99</span> <strong class="text-green-700 text-xl">$69</strong>, you receive the complete guided prayer and protection protocol. Do not let another night pass under attack. Your breakthrough is one prayer away.</p>
+    </div>
+  </div>
+
+  <!-- FINAL SECTION: Refuse link with large white margin -->
+  <div class="text-center pb-16 pt-6 bg-white">
+    <a href="https://www.checkout-ds24.com/answer/no" class="text-gray-500 underline text-sm hover:text-gray-700">
+      Refuse offer and pay the full price of $99 later
+    </a>
+  </div>
   
-  <a href="https://www.checkout-ds24.com/answer/no" class="btn-no">
-    decline offer, thank you
-  </a>
-</div>
+  <!-- Extra white margin at bottom -->
+  <div class="bg-white h-16"></div>
 
-<style>
-  /* Container principal para alinhar e espaçar os elementos */
-  .decision-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-
-  /* Estilo do botão SIM */
-  .btn-yes {
-    display: block;
-    width: 100%;
-    background-color: #25D366; /* Verde chamativo */
-    color: #ffffff;
-    text-align: center;
-    padding: 18px 20px;
-    font-size: 22px;
-    font-weight: 800;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-    animation: pulse-green 1.5s infinite; /* Chama a animação */
-    transition: transform 0.2s ease, background-color 0.2s ease;
-  }
-
-  /* Efeito Hover no SIM para desktop */
-  .btn-yes:hover {
-    background-color: #1ebc59;
-  }
-
-  /* Estilo do botão NÃO (Texto Clicável) */
-  .btn-no {
-    color: #6c757d; /* Cinza discreto */
-    font-size: 15px;
-    text-decoration: underline;
-    cursor: pointer;
-    text-align: center;
-    transition: color 0.2s ease;
-  }
-
-  /* Efeito Hover no NÃO */
-  .btn-no:hover {
-    color: #495057;
-  }
-
-  /* Animação de Pulsação */
-  @keyframes pulse-green {
-    0% { 
-      transform: scale(1); 
-      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); 
-    }
-    50% { 
-      transform: scale(1.04); 
-      box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); 
-    }
-    100% { 
-      transform: scale(1); 
-      box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); 
-    }
-  }
-
-  /* Ajustes finos para Mobile */
-  @media (max-width: 480px) {
-    .decision-container {
-      padding: 15px 10px;
-    }
-    .btn-yes {
-      font-size: 18px;
-      padding: 15px 15px;
-    }
-    .btn-no {
-      font-size: 13px;
-    }
-  }
-</style>
-
-
-                
-<br>
-
-
-
-    
+  <!-- Countdown script: 9 minutes 41 seconds, with fast milliseconds -->
+  <script>
+    (function() {
+      // Set initial time: 9 minutes, 41 seconds, 0 milliseconds
+      let totalMilliseconds = (9 * 60 + 41) * 1000; 
+      
+      const minTensEl = document.getElementById('min-tens');
+      const minOnesEl = document.getElementById('min-ones');
+      const secTensEl = document.getElementById('sec-tens');
+      const secOnesEl = document.getElementById('sec-ones');
+      const msHundredsEl = document.getElementById('ms-hundreds');
+      const msTensEl = document.getElementById('ms-tens');
+      const msOnesEl = document.getElementById('ms-ones');
+      
+      function padTwo(num) {
+        return num.toString().padStart(2, '0');
+      }
+      
+      function updateDisplay(minutes, seconds, ms) {
+        const minStr = padTwo(minutes);
+        const secStr = padTwo(seconds);
+        // milliseconds: always 3 digits (000-999)
+        const msStr = ms.toString().padStart(3, '0');
+        
+        minTensEl.textContent = minStr[0];
+        minOnesEl.textContent = minStr[1];
+        secTensEl.textContent = secStr[0];
+        secOnesEl.textContent = secStr[1];
+        msHundredsEl.textContent = msStr[0];
+        msTensEl.textContent = msStr[1];
+        msOnesEl.textContent = msStr[2];
+        
+        // Add subtle flip animation effect by briefly changing transform (mechanical feel)
+        [minTensEl, minOnesEl, secTensEl, secOnesEl, msHundredsEl, msTensEl, msOnesEl].forEach(el => {
+          el.style.transform = 'rotateX(5deg)';
+          setTimeout(() => { if(el) el.style.transform = 'rotateX(0deg)'; }, 80);
+        });
+      }
+      
+      function tick() {
+        if (totalMilliseconds <= 0) {
+          totalMilliseconds = 0;
+          updateDisplay(0, 0, 0);
+          // Optionally keep blinking zeros or stop; we'll stop interval.
+          return;
+        }
+        
+        // Decrease by a random amount between 35 and 85 ms to simulate fast movement & urgency
+        const decrement = Math.floor(Math.random() * 51) + 35; // 35-85 ms
+        totalMilliseconds = Math.max(0, totalMilliseconds - decrement);
+        
+        const totalSec = Math.floor(totalMilliseconds / 1000);
+        const minutes = Math.floor(totalSec / 60);
+        const seconds = totalSec % 60;
+        const ms = totalMilliseconds % 1000;
+        
+        updateDisplay(minutes, seconds, ms);
+      }
+      
+      // Initial display
+      const initMin = 9;
+      const initSec = 41;
+      updateDisplay(initMin, initSec, 0);
+      
+      // Run tick every 50ms for fast visual change
+      setInterval(tick, 50);
+      
+      // Ensure all links with YES upsell use correct URL (already set in HTML)
+      // Also make floating button work smoothly
+    })();
+  </script>
 </body>
 </html>
