@@ -23,7 +23,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px 16px 120px 16px; /* Aumentado o padding inferior para não cobrir o conteúdo com o timer fixo */
+            padding: 40px 16px 120px 16px;
             text-align: center;
         }
 
@@ -63,7 +63,7 @@
             border-radius: 16px;
             padding: 28px 20px;
             width: 100%;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
         }
 
@@ -84,22 +84,6 @@
             margin-bottom: 8px;
         }
 
-        /* Preço Antigo Risca em Vermelho */
-        .old-price {
-            font-size: 32px;
-            font-weight: 800;
-            color: #ef4444;
-            text-decoration: line-through;
-            text-decoration-color: #ef4444;
-            text-decoration-thickness: 3px;
-            opacity: 0.85;
-        }
-
-        .arrow {
-            font-size: 22px;
-            color: #52525b;
-        }
-
         /* Preço Novo em Verde */
         .new-price {
             font-size: 52px;
@@ -114,6 +98,19 @@
             color: #22c55e;
             font-weight: 600;
             margin-top: 8px;
+        }
+
+        /* Refund Policy Disclaimer */
+        .guarantee-disclaimer {
+            font-size: 14px;
+            color: #d4d4d8;
+            font-weight: 600;
+            margin-bottom: 24px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            border: 1px dashed #52525b;
+            width: 100%;
         }
 
         /* Botão Pulsando Verde */
@@ -166,14 +163,38 @@
             transition: color 0.2s ease;
             padding: 8px;
             line-height: 1.4;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
 
         .no-thanks-link:hover, .no-thanks-link:active {
             color: #f87171;
         }
 
-        /* Timer Barra Vermelha Fixa ou no Final (Responsiva) */
+        /* Footer Links */
+        .footer-links {
+            margin-top: 20px;
+            padding-top: 24px;
+            border-top: 1px solid #27272a;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 20px;
+            width: 100%;
+        }
+
+        .footer-links a {
+            color: #71717a;
+            font-size: 12px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #a1a1aa;
+            text-decoration: underline;
+        }
+
+        /* Timer Barra Vermelha Fixa */
         .timer-bar {
             position: fixed;
             bottom: 0;
@@ -208,7 +229,7 @@
             font-variant-numeric: tabular-nums;
         }
 
-        /* Margem preta no rodapé real (atrás do timer fixo) */
+        /* Margem preta no rodapé real */
         .bottom-margin {
             height: 60px;
             width: 100%;
@@ -219,36 +240,40 @@
 <body>
 
     <div class="container">
-        <!-- Título Superior -->
         <h1 class="top-headline">Is price a problem for you?</h1>
         
         <p class="sub-headline">
             We don't want price to stand between you and your success. Claim your exclusive one-time discount right now before it expires!
         </p>
 
-        <!-- Exibição do Preço -->
         <div class="price-card">
             <div class="price-label">Exclusive Downsell Offer</div>
             <div class="price-wrapper">
-                <span class="old-price">$59</span>
-                <span class="arrow">➜</span>
                 <span class="new-price">$29</span>
             </div>
             <div class="price-subtext">Instant $30 Discount Applied</div>
         </div>
 
-        <!-- Botão CTA Verde com Animação Pulsante -->
+        <div class="guarantee-disclaimer">
+            🛡️ 60-day money-back guarantee, no questions asked.
+        </div>
+
         <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="cta-button">
-            Click Here to Claim Your Unmissable Discount!
+            Add to My Order - $29
         </a>
 
-        <!-- Botão de Recusa (Texto Vermelho) -->
         <a href="https://www.checkout-ds24.com/answer/no" class="no-thanks-link">
             No thanks, I don't want this discount and I'll pass on this offer
         </a>
+
+        <div class="footer-links">
+            <a href="http://sacredchantguide.site/privacy-policy/">Privacy Policy</a>
+            <a href="https://sacredchantguide.site/terms/">Terms of Use</a>
+            <a href="https://sacredchantguide.site/contact/">Contact Us</a>
+            <a href="http://sacredchantguide.site/privacy-policy/#unsubscribe">Unsubscribe</a>
+        </div>
     </div>
 
-    <!-- Barra de Timer Fixa na Parte Inferior (Vermelha) -->
     <div class="timer-bar">
         <div class="timer-text" id="timer-container">
             <span>Click the green button to secure your discount!</span>
@@ -256,11 +281,9 @@
         </div>
     </div>
 
-    <!-- Margem preta no rodapé -->
     <div class="bottom-margin"></div>
 
     <script>
-        // Configuração do Timer de 1 minuto e meio (90 segundos)
         let timeLeft = 90; 
         const countdownDisplay = document.getElementById('countdown-display');
         const timerContainer = document.getElementById('timer-container');
@@ -271,13 +294,11 @@
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
                 countdownDisplay.textContent = "00:00";
-                // Texto alterado quando zera o contador
                 timerContainer.innerHTML = '<span>Click the green button now! This discount is about to disappear!</span>';
             } else {
                 let minutes = Math.floor(timeLeft / 60);
                 let seconds = timeLeft % 60;
 
-                // Formatação com dois dígitos (ex: 01:05)
                 minutes = minutes < 10 ? '0' + minutes : minutes;
                 seconds = seconds < 10 ? '0' + seconds : seconds;
 
