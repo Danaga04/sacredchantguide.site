@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special One-Time Offer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 16px 80px 16px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Título Principal */
+        .top-headline {
+            font-size: 26px;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.25;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .sub-headline {
+            font-size: 15px;
+            color: #a1a1aa;
+            line-height: 1.5;
+            margin-bottom: 32px;
+            font-weight: 400;
+            padding: 0 8px;
+        }
+
+        /* Cartão de Preço */
+        .price-card {
+            background: #09090b;
+            border: 1px solid #27272a;
+            border-radius: 16px;
+            padding: 28px 20px;
+            width: 100%;
+            margin-bottom: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .price-label {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #71717a;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .price-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 8px;
+        }
+
+        /* Preço Antigo Risca em Vermelho */
+        .old-price {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ef4444;
+            text-decoration: line-through;
+            text-decoration-color: #ef4444;
+            text-decoration-thickness: 3px;
+            opacity: 0.85;
+        }
+
+        .arrow {
+            font-size: 22px;
+            color: #52525b;
+        }
+
+        /* Preço Novo em Verde */
+        .new-price {
+            font-size: 52px;
+            font-weight: 900;
+            color: #22c55e;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        .price-subtext {
+            font-size: 13px;
+            color: #22c55e;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        /* Botão Pulsando Verde */
+        .cta-button {
+            display: block;
+            width: 100%;
+            background: linear-gradient(185deg, #22c55e 0%, #16a34a 100%);
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 800;
+            text-decoration: none;
+            padding: 20px 24px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+            animation: pulse-green 2s infinite;
+            transition: transform 0.2s ease;
+            margin-bottom: 24px;
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        @keyframes pulse-green {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+            70% {
+                transform: scale(1.03);
+                box-shadow: 0 0 0 18px rgba(34, 197, 94, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        /* Link de 'Não' em Texto Vermelho */
+        .no-thanks-link {
+            display: inline-block;
+            color: #ef4444;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            transition: color 0.2s ease;
+            padding: 8px;
+            line-height: 1.4;
+        }
+
+        .no-thanks-link:hover, .no-thanks-link:active {
+            color: #f87171;
+        }
+
+        /* Margem Preta Inferior */
+        .bottom-margin {
+            height: 60px;
+            width: 100%;
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="top-headline">Is price a problem for you?</h1>
+        
+        <p class="sub-headline">
+            We don't want price to stand between you and your success. Claim your exclusive one-time discount right now before it expires!
+        </p>
+
+        <div class="price-card">
+            <div class="price-label">Exclusive Downsell Offer</div>
+            <div class="price-wrapper">
+                <span class="old-price">$59</span>
+                <span class="arrow">➜</span>
+                <span class="new-price">$29</span>
+            </div>
+            <div class="price-subtext">Instant $30 Discount Applied</div>
+        </div>
+
+        <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="cta-button">
+            Click Here to Claim Your Unmissable Discount!
+        </a>
+
+        <a href="https://www.checkout-ds24.com/answer/no" class="no-thanks-link">
+            No thanks, I don't want this discount and I'll pass on this offer
+        </a>
+    </div>
+
+    <div class="bottom-margin"></div>
+
+</body>
+</html>
