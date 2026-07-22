@@ -11,6 +11,7 @@
         body {
             margin: 0;
             padding: 0;
+            padding-bottom: 120px; /* Aumentado para lidar com o aviso fixo e adicionar mais espaço */
             font-family: "Poppins", sans-serif;
             background: #000;
             color: #fff;
@@ -121,7 +122,9 @@
             text-transform: uppercase;
             border-radius: 8px;
             text-decoration: none;
+            box-sizing: border-box;
             animation: pulse-green 1.5s infinite;
+            display: inline-block;
         }
         .btn-no {
             color: #ffffff;
@@ -135,249 +138,23 @@
             50% { transform: scale(1.04); }
             100% { transform: scale(1); }
         }
-        /* CONFETTI */
-        #confetti {
+        /* STICKY FOOTER WARNING */
+        .sticky-warning-bar {
             position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 999;
-        }
-        /* FAQ */
-        .faq-section {
-            max-width: 800px;
-            margin: 0 auto 50px;
-            padding: 0 20px;
-            text-align: left;
-        }
-        .faq-title {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffcc00; /* Fundo Amarelo */
+            color: #000000; /* Texto Preto */
             text-align: center;
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 30px;
-        }
-        .faq-item {
-            background: #111;
-            margin-bottom: 12px;
-            border-radius: 8px;
-            border: 1px solid #333;
-        }
-        .faq-item summary {
-            padding: 18px 20px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-        }
-        .faq-answer {
-            padding: 20px;
+            padding: 12px 10px;
             font-size: 14px;
-            color: #ccc;
-        }
-        /* ----- BONUS SECTION ----- */
-        .bonus-section {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px 20px;
-            background: #111;
-            border-radius: 12px;
-            border: 2px solid #ffcc00;
-            box-shadow: 0 10px 30px rgba(255, 204, 0, 0.1);
-            text-align: center;
-            box-sizing: border-box;
-        }
-        .bonus-title {
-            color: #ffcc00;
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .bonus-card {
-            background: #1a1a1a;
-            margin-bottom: 15px;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 5px solid #25D366;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            transition: transform 0.2s ease;
-        }
-        .bonus-card:hover {
-            transform: scale(1.02);
-            background: #222;
-        }
-        .bonus-icon {
-            font-size: 40px;
-            min-width: 50px;
-            text-align: center;
-        }
-        .bonus-text h3 {
-            margin: 0 0 5px 0;
-            color: #fff;
-            font-size: 18px;
-            text-transform: uppercase;
-        }
-        .bonus-text p {
-            margin: 0;
-            color: #bbb;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-        /* SCROLL TO TOP BUTTON */
-        .btn-scroll-top {
-            display: block;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto 60px;
-            background: #25D366;
-            color: #fff;
-            padding: 16px 20px;
-            font-size: 16px;
-            font-weight: 800;
-            text-transform: uppercase;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
-        }
-        .btn-scroll-top:hover {
-            background: #20b858;
-            transform: translateY(-3px);
-        }
-        /* ===== URGENCY BLOCK ===== */
-        .urgency-block {
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto 30px;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-        /* Countdown */
-        .countdown-wrapper {
-            background: linear-gradient(135deg, #1a0000, #2d0000);
-            border: 2px solid #d80000;
-            border-radius: 10px;
-            padding: 16px 20px 18px;
-            margin-bottom: 14px;
-            box-shadow: 0 0 18px rgba(216,0,0,0.35);
-        }
-        .countdown-label {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #ffcc00;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-        .countdown-digits {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-        .cd-unit {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .cd-number {
-            background: #d80000;
-            color: #fff;
-            font-size: 34px;
-            font-weight: 800;
-            width: 62px;
-            height: 62px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 12px rgba(216,0,0,0.5);
-            font-variant-numeric: tabular-nums;
-            line-height: 1;
-        }
-        .cd-label {
-            font-size: 10px;
-            font-weight: 700;
-            color: #aaa;
-            margin-top: 5px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .cd-sep {
-            font-size: 30px;
-            font-weight: 800;
-            color: #d80000;
-            margin-bottom: 16px;
-            line-height: 1;
-        }
-        /* Spots bar */
-        .spots-wrapper {
-            background: #111;
-            border: 1px solid #333;
-            border-radius: 10px;
-            padding: 14px 18px;
-            margin-bottom: 14px;
-        }
-        .spots-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-        .spots-label {
-            font-size: 13px;
-            font-weight: 700;
-            color: #fff;
-        }
-        .spots-count {
-            font-size: 13px;
-            font-weight: 800;
-            color: #d80000;
-        }
-        .spots-bar-bg {
-            width: 100%;
-            height: 12px;
-            background: #222;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .spots-bar-fill {
-            height: 100%;
-            width: 87%;
-            background: linear-gradient(90deg, #d80000, #ff4444);
-            border-radius: 6px;
-            animation: pulse-bar 2s ease-in-out infinite;
-        }
-        @keyframes pulse-bar {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.75; }
-        }
-        .spots-note {
-            font-size: 11px;
-            color: #888;
-            margin-top: 6px;
-            text-align: right;
-        }
-        /* Urgency text banner */
-        .urgency-banner {
-            background: #ffcc00;
-            color: #000;
-            border-radius: 8px;
-            padding: 11px 16px;
-            font-size: 13px;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            animation: blink-bg 1.8s ease-in-out infinite;
-        }
-        @keyframes blink-bg {
-            0%, 100% { background: #ffcc00; }
-            50% { background: #ffd633; }
+            z-index: 9999;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+            box-sizing: border-box;
         }
         /* MOBILE */
         @media (max-width: 480px) {
@@ -394,28 +171,9 @@
             .header-msg {
                 font-size: 14px;
             }
-            .bonus-title {
-                font-size: 22px;
-            }
-            .bonus-card {
-                flex-direction: column;
-                text-align: center;
-                border-left: none;
-                border-top: 5px solid #25D366;
-                padding: 25px 15px;
-            }
-            .bonus-icon {
-                margin-bottom: 5px;
-            }
-            .btn-scroll-top {
-                font-size: 14px;
-                padding: 15px;
-                width: 90%;
-            }
-            .cd-number {
-                width: 52px;
-                height: 52px;
-                font-size: 28px;
+            .sticky-warning-bar {
+                font-size: 12px;
+                padding: 10px 5px;
             }
         }
     </style>
@@ -432,20 +190,22 @@
         <div class="progress-bar">75%</div>
     </div>
     <div class="warning">
-        <span>⚠</span> Watch the video below 👇 To go directly to the video, click the green button below it.
+        <span>⚠</span> Watch the video below 👇 Do not click “Back” or leave this page before watching...
     </div>
     <vturb-smartplayer id="ab-6a4d07a2a702faa2402f9ed4" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer>
     <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6a4d07a2a702faa2402f9ed4/player.js", s.async=!0,document.head.appendChild(s); </script>
     <br>
     <div class="decision-container">
-        <a href="https://www.checkout-ds24.com/answer/no" class="btn-no">
+        <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="btn-yes" id="esconder">
+            CLICK HERE TO ACCESS NOW
+        </a>
+        <a href="https://www.checkout-ds24.com/answer/no" class="btn-no" id="esconder">
             No, I'd rather pay the full price
         </a>
     </div>
-    <h2 style="color: red; font-weight: 800; text-align: center; padding: 10px 20px;">
-        93.6% of people click the green button above and confirm the pop-up to access the app right now.
-    </h2>
-    <div style="height:50px;"></div>
+
+    <!-- Grande margem no final da página -->
+    <div style="height: 150px; width: 100%;"></div>
 
     <script>
         // ALTERE O LINK PARA A PÁGINA QUE QUISER MOSTRAR QUANDO O USUÁRIO TENTAR SAIR
@@ -469,16 +229,8 @@
     </script>
     <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 
-    <div style="text-align: center; margin: 40px auto; padding: 20px; max-width: 800px; background: #111; border: 1px solid #333; border-radius: 8px;">
-        <h3 style="color: #ffcc00; margin-bottom: 15px; font-weight: 800; text-transform: uppercase;">This is the content you will receive:</h3>
-        <p style="font-size: 16px; margin-bottom: 25px; color: #ccc;">
-            The song of God to protect you, ensure the blessings stay with you, and keep you from getting lost along the way.
-        </p>
-        
-        <!-- IMAGEM COM LINK -->
-        <a href="https://www.checkout-ds24.com/answer/yes?template=light" style="display: inline-block;">
-            <img src="https://i.postimg.cc/V6YhFJGD/bubble5lbfjbv2yow.avif" alt="Content Preview" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); cursor: pointer;">
-        </a>
+    <div class="sticky-warning-bar">
+        ⚠️ It is mandatory to watch the video until the end to avoid errors.
     </div>
 </body>
 </html>
