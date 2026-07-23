@@ -1,325 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>Prayer</title>
-  <!-- Tailwind via CDN for clean, responsive design -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- UTMify script -->
-  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
-  <!-- Digistore24 scripts -->
-  <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
-  <script>
-    // Digistore upsell function
-    digistoreUpsell();
-  </script>
-  <style>
-    /* Custom styles for flip-clock effect and urgency */
-    body {
-      background-color: #ffffff;
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-    /* Flip clock / mechanical counter styling */
-    .flip-clock {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-      font-weight: 700;
-    }
-    .flip-unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .flip-digit-group {
-      display: flex;
-      gap: 0.2rem;
-    }
-    .flip-digit {
-      background: #1a1a1a;
-      color: #facc15; /* gold-yellow numbers */
-      font-size: clamp(2.2rem, 10vw, 4rem);
-      font-weight: 800;
-      line-height: 1.2;
-      padding: 0.5rem 0.3rem;
-      border-radius: 0.5rem;
-      background: linear-gradient(180deg, #2d2d2d 0%, #0a0a0a 100%);
-      box-shadow: 0 6px 0 #4b0000, 0 8px 12px rgba(0,0,0,0.4);
-      min-width: 2.8rem;
-      text-align: center;
-      position: relative;
-      perspective: 800px;
-      display: inline-block;
-      letter-spacing: 1px;
-      transition: transform 0.1s ease;
-    }
-    .flip-label {
-      color: white;
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      margin-top: 0.3rem;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 4px black;
-    }
-    /* fast blinking milliseconds effect */
-    .fast-ms {
-      font-size: clamp(1.8rem, 8vw, 3rem);
-      min-width: 2.8rem;
-    }
-    /* sticky elements */
-    .sticky-warning {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-    .floating-button {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #16a34a;
-      padding: 12px 20px;
-      text-align: center;
-      z-index: 40;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.3);
-    }
-    .floating-button a {
-      background: #22c55e;
-      color: white;
-      font-weight: bold;
-      font-size: 1.5rem;
-      padding: 14px 30px;
-      border-radius: 60px;
-      text-decoration: none;
-      display: inline-block;
-      width: auto;
-      min-width: 220px;
-      box-shadow: 0 8px 0 #15803d, 0 10px 20px rgba(0,0,0,0.3);
-      transition: 0.2s;
-      letter-spacing: 0.5px;
-    }
-    .floating-button a:active {
-      transform: translateY(4px);
-      box-shadow: 0 4px 0 #15803d, 0 8px 12px rgba(0,0,0,0.3);
-    }
-    /* gender buttons */
-    .gender-btn {
-      border-radius: 50px;
-      font-weight: bold;
-      padding: 1rem 2rem;
-      font-size: 1.3rem;
-      text-decoration: none;
-      display: block;
-      text-align: center;
-      transition: 0.2s;
-      box-shadow: 0 5px 0 rgba(0,0,0,0.2);
-    }
-    .pink-btn {
-      background: #ec4899;
-      color: white;
-    }
-    .blue-btn {
-      background: #3b82f6;
-      color: white;
-    }
-    /* responsive margins */
-    .content-section {
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    hr {
-      border-color: #e5e7eb;
-    }
-  </style>
-</head>
-<body class="bg-white text-gray-900">
-
-  <!-- 1. TOP RED WARNING BAR (sticky) -->
-  <div class="sticky-warning bg-red-600 text-white font-bold text-center py-3 px-2 shadow-md" style="font-size: 1.1rem;">
-    ⚠️ DO NOT LEAVE THIS PAGE OR CLICK BACK — If you do, the charge will be doubled.
-  </div>
-
-  <!-- 2. VSL VIDEO SECTION -->
-  <div class="w-full bg-white pt-4">
-    <div class="content-section">
-      <vturb-smartplayer id="vid-698dcc2111e55d52a5bfb1d0" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
-      <script type="text/javascript">
-        var s=document.createElement("script");
-        s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/698dcc2111e55d52a5bfb1d0/v4/player.js";
-        s.async=!0;document.head.appendChild(s);
-      </script>
-    </div>
-  </div>
-
-  <!-- HUGE RED COUNTDOWN TIMER + URGENCY TEXT -->
-  <div class="bg-red-600 py-5 px-3 mt-2 w-full">
-    <div class="content-section text-center">
-      <p class="text-white font-extrabold text-xl md:text-2xl mb-3 drop-shadow-md" style="text-shadow: 2px 2px 0 #991b1b;">
-        Click the green button before time runs out
-      </p>
-
-      
-      <!-- Flip calendar / mechanical counter -->
-      <div id="countdown-timer" class="flip-clock mt-3 mb-2">
-        <!-- minutes -->
-        <div class="flip-unit">
-          <div class="flip-digit-group">
-            <span id="min-tens" class="flip-digit">0</span>
-            <span id="min-ones" class="flip-digit">9</span>
-          </div>
-          <span class="flip-label">MIN</span>
-        </div>
-        <span class="text-white text-4xl font-bold mx-1 self-start mt-2">:</span>
-        <!-- seconds -->
-        <div class="flip-unit">
-          <div class="flip-digit-group">
-            <span id="sec-tens" class="flip-digit">4</span>
-            <span id="sec-ones" class="flip-digit">1</span>
-          </div>
-          <span class="flip-label">SEC</span>
-        </div>
-        <span class="text-white text-4xl font-bold mx-1 self-start mt-2">:</span>
-        <!-- milliseconds (fast moving) -->
-        <div class="flip-unit">
-          <div class="flip-digit-group">
-            <span id="ms-hundreds" class="flip-digit fast-ms">0</span>
-            <span id="ms-tens" class="flip-digit fast-ms">0</span>
-            <span id="ms-ones" class="flip-digit fast-ms">0</span>
-          </div>
-          <span class="flip-label">MS</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FLOATING STICKY GREEN BUTTON (fixed bottom) -->
-  <div class="floating-button">
-    <a href="https://www.checkout-ds24.com/answer/yes?template=light" id="accessNowBtn">
-      ACCESS NOW
-    </a>
-  </div>
-
-  <!-- Spacer for floating button so content isn't hidden -->
-  <div style="height: 90px;"></div>
-
-  <!-- GENDER BUTTONS SECTION -->
-  <div class="content-section py-6 flex flex-col sm:flex-row gap-4 justify-center">
-    <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="gender-btn pink-btn flex-1">
-      WOMEN CLICK HERE
-    </a>
-    <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="gender-btn blue-btn flex-1">
-      MEN CLICK HERE
-    </a>
-  </div>
-
-  <!-- DISCOUNT TEXT LINK -->
-  <div class="content-section text-center pb-4">
-    <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="text-indigo-700 font-semibold underline text-lg hover:text-indigo-900">
-      Tap here to access with discount now
-    </a>
-  </div>
-
-  <!-- PRODUCT DESCRIPTION SECTION -->
-  <div class="content-section bg-white py-6 px-2">
-    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 text-center">
-      The Miraculous Prayer of Saint Michael the Archangel
-    </h2>
-    <div class="space-y-4 text-gray-700 text-base md:text-lg leading-relaxed">
-      <p>For centuries, the <strong class="text-red-700">Prayer of Saint Michael the Archangel</strong> has been a divine shield against darkness. Now, for a limited time, you can unlock its full power to heal <strong>physical, emotional, and spiritual diseases</strong> that modern medicine cannot touch.</p>
-      <p>This is not just a prayer – it is a sacred weapon. Countless believers have experienced <strong>immediate protection, deliverance from evil attacks, and the breaking of generational curses</strong>. Whether you face anxiety, unexplainable fatigue, or spiritual oppression, Saint Michael’s intercession brings heavenly defense directly into your life.</p>
-      <p>Imagine waking up tomorrow feeling <strong>completely renewed</strong> – free from the weight that has been crushing your spirit. This prayer has the authority to <strong>cast out demonic influences, shield your home, and restore peace to your heart</strong>. The Archangel stands ready to fight for you.</p>
-      <p class="font-semibold text-black">By claiming this offer today for just <span class="line-through text-red-500">$99</span> <strong class="text-green-700 text-xl">$69</strong>, you receive the complete guided prayer and protection protocol. Do not let another night pass under attack. Your breakthrough is one prayer away.</p>
-    </div>
-  </div>
-
-  <!-- FINAL SECTION: Refuse link with large white margin -->
-  <div class="text-center pb-16 pt-6 bg-white">
-    <a href="https://www.checkout-ds24.com/answer/no" class="text-gray-500 underline text-sm hover:text-gray-700">
-      Refuse offer and pay the full price of $99 later
-    </a>
-  </div>
-  
-  <!-- Extra white margin at bottom -->
-  <div class="bg-white h-16"></div>
-
-  <!-- Countdown script: 9 minutes 41 seconds, with fast milliseconds -->
-  <script>
-    (function() {
-      // Set initial time: 9 minutes, 41 seconds, 0 milliseconds
-      let totalMilliseconds = (9 * 60 + 41) * 1000; 
-      
-      const minTensEl = document.getElementById('min-tens');
-      const minOnesEl = document.getElementById('min-ones');
-      const secTensEl = document.getElementById('sec-tens');
-      const secOnesEl = document.getElementById('sec-ones');
-      const msHundredsEl = document.getElementById('ms-hundreds');
-      const msTensEl = document.getElementById('ms-tens');
-      const msOnesEl = document.getElementById('ms-ones');
-      
-      function padTwo(num) {
-        return num.toString().padStart(2, '0');
-      }
-      
-      function updateDisplay(minutes, seconds, ms) {
-        const minStr = padTwo(minutes);
-        const secStr = padTwo(seconds);
-        // milliseconds: always 3 digits (000-999)
-        const msStr = ms.toString().padStart(3, '0');
-        
-        minTensEl.textContent = minStr[0];
-        minOnesEl.textContent = minStr[1];
-        secTensEl.textContent = secStr[0];
-        secOnesEl.textContent = secStr[1];
-        msHundredsEl.textContent = msStr[0];
-        msTensEl.textContent = msStr[1];
-        msOnesEl.textContent = msStr[2];
-        
-        // Add subtle flip animation effect by briefly changing transform (mechanical feel)
-        [minTensEl, minOnesEl, secTensEl, secOnesEl, msHundredsEl, msTensEl, msOnesEl].forEach(el => {
-          el.style.transform = 'rotateX(5deg)';
-          setTimeout(() => { if(el) el.style.transform = 'rotateX(0deg)'; }, 80);
-        });
-      }
-      
-      function tick() {
-        if (totalMilliseconds <= 0) {
-          totalMilliseconds = 0;
-          updateDisplay(0, 0, 0);
-          // Optionally keep blinking zeros or stop; we'll stop interval.
-          return;
+    <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
+    <script>digistoreUpsell()</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>purchase under review</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            padding-bottom: 150px;
+            font-family: "Poppins", sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.5;
+            text-align: center;
         }
-        
-        // Decrease by a random amount between 35 and 85 ms to simulate fast movement & urgency
-        const decrement = Math.floor(Math.random() * 51) + 35; // 35-85 ms
-        totalMilliseconds = Math.max(0, totalMilliseconds - decrement);
-        
-        const totalSec = Math.floor(totalMilliseconds / 1000);
-        const minutes = Math.floor(totalSec / 60);
-        const seconds = totalSec % 60;
-        const ms = totalMilliseconds % 1000;
-        
-        updateDisplay(minutes, seconds, ms);
-      }
-      
-      // Initial display
-      const initMin = 9;
-      const initSec = 41;
-      updateDisplay(initMin, initSec, 0);
-      
-      // Run tick every 50ms for fast visual change
-      setInterval(tick, 50);
-      
-      // Ensure all links with YES upsell use correct URL (already set in HTML)
-      // Also make floating button work smoothly
-    })();
-  </script>
+        .step {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 25px 0 10px;
+        }
+        .progress {
+            width: 90%;
+            margin: 0 auto;
+            height: 30px;
+            border-radius: 5px;
+            overflow: hidden;
+            background: #ddd;
+            position: relative;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #16a34a, #0d6b3a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: white;
+            animation: loadProgress 2.8s ease-in-out forwards;
+            position: relative;
+        }
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+            animation: shimmer 1.8s infinite;
+        }
+        .warning {
+            font-size: 15px;
+            margin: 15px 0;
+            color: #d80000;
+        }
+        vturb-smartplayer {
+            display: block;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .decision-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            width: 100%;
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .btn-yes {
+            width: 100%;
+            background: #25D366;
+            color: #fff;
+            padding: 18px 20px;
+            font-size: 22px;
+            font-weight: 800;
+            text-transform: uppercase;
+            border-radius: 8px;
+            text-decoration: none;
+            box-sizing: border-box;
+            animation: pulse-green 1.5s infinite;
+            display: inline-block;
+        }
+        .btn-no {
+            color: #d80000;
+            font-size: 17px;
+            font-weight: 700;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        #esconder-texto {
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: left;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #000;
+        }
+        #esconder-texto h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        @keyframes pulse-green {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+        @keyframes loadProgress {
+            from { width: 0%; }
+            to { width: 95%; }
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(400%); }
+        }
+        .sticky-warning-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffcc00;
+            color: #000000;
+            text-align: center;
+            padding: 12px 10px;
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            z-index: 9999;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+        }
+        @media (max-width: 480px) {
+            .btn-yes { font-size: 18px; padding: 16px; }
+            .btn-no { font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="step">STEP 4 OF 4</div>
+    <div class="progress">
+        <div class="progress-bar">95%</div>
+    </div>
+    <div class="warning">
+        ⚠ To access the app and verify your access, watch the video below.
+    </div>
+    
+    <!-- VÍDEO -->
+    <vturb-smartplayer id="vid-698dcc2111e55d52a5bfb1d0" style="display: block; margin: 0 auto; width: 100%; ">
+        <div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 56.25% 0 0; z-index: 0; background-color: black;"></div>
+    </vturb-smartplayer> 
+    <script type="text/javascript"> 
+        var s=document.createElement("script"); 
+        s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/698dcc2111e55d52a5bfb1d0/v4/player.js", 
+        s.async=!0,document.head.appendChild(s); 
+    </script>
+ 
+    <br><br>
+
+    <!-- BOTÕES -->
+    <div class="decision-container">
+        <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="btn-yes" id="esconder">
+            ACCESS THE APP NOW WITH A DISCOUNT
+        </a>
+        <a href="https://www.checkout-ds24.com/answer/no" class="btn-no" id="esconder">
+            DECLINE THE OFFER AND PAY THE FULL AMOUNT LATER
+        </a>
+    </div>
+
+    <!-- TEXTO DA ORAÇÃO COM ID ESCONDER -->
+    <div id="esconder">
+        <div id="esconder-texto">
+            <h2>The Miraculous Prayer of Saint Michael the Archangel</h2>
+            <p>For centuries, the Prayer of Saint Michael the Archangel has been a divine shield against darkness. Now, for a limited time, you can unlock its full power to heal physical, emotional, and spiritual diseases that modern medicine cannot touch.</p>
+            <p>This is not just a prayer – it is a sacred weapon. Countless believers have experienced immediate protection, deliverance from evil attacks, and the breaking of generational curses. Whether you face anxiety, unexplainable fatigue, or spiritual oppression, Saint Michael’s intercession brings heavenly defense directly into your life.</p>
+            <p>Imagine waking up tomorrow feeling completely renewed – free from the weight that has been crushing your spirit. This prayer has the authority to cast out demonic influences, shield your home, and restore peace to your heart. The Archangel stands ready to fight for you.</p>
+            <p>By claiming this offer today for just <strong>$69</strong>, you receive the complete guided prayer and protection protocol. Do not let another night pass under attack. Your breakthrough is one prayer away.</p>
+        </div>
+    </div>
+
+    <!-- BOTÃO FINAL -->
+    <div class="decision-container" style="margin-top: 40px;">
+        <a href="https://www.checkout-ds24.com/answer/yes?template=light" class="btn-yes" id="esconder">
+            ACCESS THE APP NOW
+        </a>
+    </div>
+
+    <div style="height: 300px; width: 100%; background: #ffffff;"></div>
+
+    <script>
+        const link = 'https://www.checkout-ds24.com/answer/yes?template=light';
+        function setBackRedirect(url) {
+            let urlBackRedirect = url;
+            urlBackRedirect = urlBackRedirect.trim() +
+                (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
+                document.location.search.replace('?', '').toString();
+            history.pushState({}, '', location.href);
+            history.pushState({}, '', location.href);
+            history.pushState({}, '', location.href);
+            window.addEventListener('popstate', () => {
+                setTimeout(() => {
+                    location.href = urlBackRedirect;
+                }, 1);
+            });
+        }
+        setBackRedirect(link);
+    </script>
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
+    
+    <div class="sticky-warning-bar">
+        ⚠️ It is mandatory to watch the video until the end to avoid errors.
+    </div>
 </body>
 </html>
