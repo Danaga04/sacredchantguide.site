@@ -10,7 +10,11 @@
   html,body{margin:0;padding:0;background:#fff;color:#050505;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
     -webkit-font-smoothing:antialiased}
-  .wrap{max-width:500px;margin:0 auto}
+  .livebar{width:100%;background:#7d0c0c;padding:12px 14px}
+  .livebar p{margin:0;text-align:center;color:#fff;font-weight:700;
+    font-size:14px;line-height:1.35}
+  .livebar u{text-decoration:underline}
+  .fbwrap{max-width:500px;margin:0 auto}
   .video{padding:16px}
   .cbar{display:flex;justify-content:space-between;align-items:center;
     padding:12px 12px 8px;border-bottom:1px solid #ced0d4;color:#65676b;font-weight:600;font-size:15px}
@@ -37,82 +41,127 @@
   .actions .time{font-weight:400}
   .actions button{background:none;border:0;padding:0;color:inherit;font:inherit;cursor:pointer}
   .actions button:hover{text-decoration:underline}
-  .more{margin-top:12px;padding:0 12px;background:none;border:0;
+  .more{margin:12px 12px 24px;padding:0;background:none;border:0;
     color:#65676b;font-weight:600;font-size:15px;cursor:pointer}
   .more:hover{text-decoration:underline}
+  .site-footer{width:100%;background:#000;padding:28px 20px 34px}
+  .site-footer .fin{max-width:500px;margin:0 auto;text-align:center}
+  .site-footer .copy{color:#e9e9e9;font-size:15px;line-height:1.4;margin:0}
+  .site-footer .links{margin:22px 0 0;font-size:11px;color:#cfcfcf}
+  .site-footer .links a{color:#cfcfcf;text-decoration:none}
+  .site-footer .links a:hover{text-decoration:underline}
+  .site-footer .disc{margin:26px 0 0;font-size:11px;line-height:1.7;color:#cfcfcf}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="video">
-      
 
-<vturb-smartplayer id="ab-6a69584040007b0b6fd289b8" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6a69584040007b0b6fd289b8/player.js", s.async=!0,document.head.appendChild(s); </script>
+<div class="livebar">
+  <p><u id="viewerCount">49,857</u> people watching live. Due to the high number of visitors, this live will only be available until: <span id="liveDate">01/08/2026</span>.</p>
+</div>
 
-     
-    </div>
-
-    <div class="cbar"><span>Comments</span><span class="sort">Most relevant ▾</span></div>
-
-    <div class="list" id="list"></div>
-    <button class="more">View more comments</button>
+<div class="fbwrap">
+  <div class="video">
+    <vturb-smartplayer id="ab-6a69584040007b0b6fd289b8" style="display:block;margin:0 auto;width:100%;"></vturb-smartplayer>
   </div>
 
+  <div class="cbar">
+    <span>Comments</span>
+    <span class="sort">Most relevant ▾</span>
+  </div>
+
+  <div class="list" id="comments"></div>
+
+  <button class="more">View more comments</button>
+</div>
+
+<footer class="site-footer">
+  <div class="fin">
+    <p class="copy">&copy; 2026 &ndash; All rights reserved</p>
+    <p class="links">
+      <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+    </p>
+    <p class="disc">
+      Disclaimer: The Prayer of Saint Rita is a spiritual practice with variable effects. It is not a treatment nor a promise of results. Educational content, it does not replace professional advice. Testimonials are individual; some may be dramatized. Copying images and texts is prohibited; legal sanctions apply if violated.
+    </p>
+  </div>
+</footer>
+
+<script src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6a69584040007b0b6fd289b8/player.js" async></script>
+<script src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/6a5a3b8dbda2d0a306c55c37/v4/player.js" async></script>
+
 <script>
-  var s=document.createElement("script");
-  s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/6a5a3b8dbda2d0a306c55c37/v4/player.js";
-  s.async=!0;document.head.appendChild(s);
+const likeIcon = '<svg viewBox="0 0 16 16" width="10" height="10" fill="#fff"><path d="M6.3 13.5H4V6.8h2.3V13.5zM13.7 7.4c0-.6-.5-1.1-1.1-1.1H9.2l.5-2.3c.1-.5-.2-1-.7-1.2-.5-.1-1 .1-1.2.5L5.6 6.8v6.7h6.4c.5 0 .9-.3 1.1-.8l1.1-3.9c0-.1 0-.2 0-.3V7.4z"/></svg>';
+const loveIcon = '<svg viewBox="0 0 16 16" width="10" height="10" fill="#fff"><path d="M8 14s-5-3.2-5-7.2c0-1.8 1.4-3.2 3.2-3.2 1 0 1.9.5 2.5 1.2.6-.7 1.5-1.2 2.5-1.2C13 3.6 14.4 5 14.4 6.8 14.4 10.8 8 14 8 14z"/></svg>';
 
-  const COMMENTS = [
-    {n:"Meredith Fields",a:47,t:"Guys, is this the video that explains why Pope Francis was receiving threats because of a prayer? I saw a video on TikTok of a woman saying she's reciting it and manifesting everything she desires…",r:["like"],c:13,tm:"3 h"},
-    {n:"Abigail Clark",a:45,t:"Yesss, it's this one... on TikTok there's only a clip but this video explains everything",r:["like","love"],c:15,tm:"1 h"},
-    {n:"Sarah Walker",a:44,t:"I think it's so unfair what they did to him",r:["like"],c:15,tm:"58 m"},
-    {n:"Emma Johnson",a:49,t:"He explains it in the middle of the video and you'll understand why as soon as you recite the prayer, it seems like a miracle.",r:["love"],c:15,tm:"50 m"},
-    {n:"Victoria Smith",a:48,t:"Is this video about the law of attraction? That doesn't work, I've already done everything they recommend and never attracted a single cent 🤬",r:["like"],c:9,tm:"1 h"},
-    {n:"Chris Garcia",a:12,t:"Nooooo, this is not the law of attraction. It's BIBLICAL! The pope took this prayer from the original Bible manuscripts 🙏✨",r:["like","love"],c:15,tm:"1 h"},
-    {n:"Matthew Barkley",a:15,t:"Actually, the law of attraction was taken over by charlatans. This prayer that the pope shared is the true way God returns everything we ask for, that's why it's so powerful and why he was being hunted!",r:["like"],c:15,tm:"59 m"},
-    {n:"Lucas Petry",a:13,t:"I saw in the news today that the pope even had to take refuge to hide from people who didn't want him to share the prayer",r:["like"],c:2,tm:"15 m"},
-    {n:"Frank Wilson",a:68,t:"😭😭 God bless you for showing this prayer! I'm reciting the sacred prayer every day for our Lord Jesus Christ to heal my mother's glaucoma. She's already showing small signs of improvement, I have faith she will be healed!",r:["love","like"],c:18,tm:"26 m"},
-    {n:"Ruth Perry",a:32,t:"Do you need to be very religious for this to work? I believe in God, but I'm not a churchgoer and I don't know if this prayer can really help me...",r:["like"],c:5,tm:"19 m"},
-    {n:"Maria Crandall",a:41,t:"Ruth, this prayer is not about religion, but about connection with God. I also don't attend churches, and I've been reciting it every single day, this week I received a job offer 🙏",r:["love"],c:15,tm:"1 h"},
-    {n:"Ernest Siaulys",a:52,t:"You don't need to be in a church to connect with God. And this prayer should be in our Bibles, but those corrupt crooks removed it and hid it for themselves!",r:["like"],c:15,tm:"1 h"},
-    {n:"William Brown",a:60,t:"Guys, am I mistaken or is this the Pope? 😱😱",r:["like"],c:9,tm:"17 m"},
-    {n:"Betty Escher",a:21,t:"It's him.",r:["like"],c:15,tm:"2 m"},
-    {n:"Vince Gallagher",a:53,t:"It's him. I just saw a publication on Vatican News stating that the pope had a massive soul-saving project, it has to do with this divine prayer he mentions",r:["like","love"],c:15,tm:"1 h"},
-    {n:"Robert Blanco",a:33,t:"I got goosebumps from beginning to end of the video. The pope was truly being used by God to bring to light this divine secret that was hidden for so long...",r:["love"],c:15,tm:"1 h"},
-    {n:"Carol Sinek",a:16,t:"Folks, I know for many this may seem silly or trivial but it's always been my dream to own a Mercedes, and after 18 days of religiously reciting the prayer, my credit was approved and I was able to buy one, I can't even believe it... 😭🙏❤️",r:["love","like"],c:10,tm:"13 m"},
-    {n:"Amelia Markle",a:24,t:"I was a bit wary about this miracle attraction thing, but seeing the number of positive comments, I can tell it really works. Thanks everyone! I'm going to try it...",r:["like"],c:4,tm:"1 h"},
-    {n:"Emily Johnson",a:26,t:"I've been struggling for two months, living on unemployment benefits, I've done several interviews and nobody hires me... Could this prayer help me?",r:["like"],c:15,tm:"50 m"},
-    {n:"Sarah Williams",a:25,t:"Emily, I was in a similar situation to yours, unemployed with 2 daughters to raise. I decided to believe and recite the prayer, after all I had nothing to lose. I couldn't stand up when I received a call offering me a management position at an insurance company 😍",r:["love","like"],c:15,tm:"37 m"},
-    {n:"Bryan Mallins",a:51,t:"I'm praying the prayer exactly as the video teaches and today I received news that my lung tumor has regressed... need more proof than that? God Bless 🙏❤️",r:["love"],c:15,tm:"3 m"},
-    {n:"Samantha White",a:36,t:"This video is worth every second! Achieve your dreams, prosper, everything is already inside you, it just needs to be vibrated. Jesus is our savior!",r:["like","love"],c:15,tm:"1 h"},
-    {n:"Lisa Taylor",a:38,t:"so you're saying our Bible is not complete? how so? I don't understand",r:["like"],c:12,tm:"11 m"},
-    {n:"Jennifer Wilson",a:43,t:"actually only this part of the prayer was removed, the Pope explains that billionaires did this on purpose",r:["like"],c:15,tm:"4 m"},
-    {n:"Melissa Thomas",a:27,t:"And if you go to the Bible page he mentions in the video, you'll notice that something was clearly cut from there",r:["like","love"],c:15,tm:"1 m"},
-    {n:"David Miller",a:8,t:"I've done novenas, prayer chains, attended services, fasted. I prayed a lot, asked God for my blessings but they never came, it seemed like I had been forgotten... I confess I was getting pretty tired of praying... Until I saw this video and the pope opened my eyes... everything he said made sense and I decided to test it myself... today I'm running my own dream business that's going really well, my marriage is good again like before. I can only thank the Pope for this prayer, it's wonderful ❤️🙏🙏",r:["love","like"],c:6,tm:"2 m"}
-  ];
+const comments = [
+  {n:"Meredith Fields",a:47,t:"Guys, is this the video that explains why Pope Francis was receiving threats because of a prayer? I saw a video on TikTok of a woman saying she's reciting it and manifesting everything she desires…",r:["like"],c:13,tm:"3 h"},
+  {n:"Abigail Clark",a:45,t:"Yesss, it's this one... on TikTok there's only a clip but this video explains everything",r:["like","love"],c:15,tm:"1 h"},
+  {n:"Sarah Walker",a:44,t:"I think it's so unfair what they did to him",r:["like"],c:15,tm:"58 m"},
+  {n:"Emma Johnson",a:49,t:"He explains it in the middle of the video and you'll understand why as soon as you recite the prayer, it seems like a miracle.",r:["love"],c:15,tm:"50 m"},
+  {n:"Victoria Smith",a:48,t:"Is this video about the law of attraction? That doesn't work, I've already done everything they recommend and never attracted a single cent 🤬",r:["like"],c:9,tm:"1 h"},
+  {n:"Chris Garcia",a:12,t:"Nooooo, this is not the law of attraction. It's BIBLICAL! The pope took this prayer from the original Bible manuscripts 🙏✨",r:["like","love"],c:15,tm:"1 h"},
+  {n:"Matthew Barkley",a:15,t:"Actually, the law of attraction was taken over by charlatans. This prayer that the pope shared is the true way God returns everything we ask for, that's why it's so powerful and why he was being hunted!",r:["like"],c:15,tm:"59 m"},
+  {n:"Lucas Petry",a:13,t:"I saw in the news today that the pope even had to take refuge to hide from people who didn't want him to share the prayer",r:["like"],c:2,tm:"15 m"},
+  {n:"Frank Wilson",a:68,t:"😭😭 God bless you for showing this prayer! I'm reciting the sacred prayer every day for our Lord Jesus Christ to heal my mother's glaucoma. She's already showing small signs of improvement, I have faith she will be healed!",r:["love","like"],c:18,tm:"26 m"},
+  {n:"Ruth Perry",a:32,t:"Do you need to be very religious for this to work? I believe in God, but I'm not a churchgoer and I don't know if this prayer can really help me...",r:["like"],c:5,tm:"19 m"},
+  {n:"Maria Crandall",a:41,t:"Ruth, this prayer is not about religion, but about connection with God. I also don't attend churches, and I've been reciting it every single day, this week I received a job offer 🙏",r:["love"],c:15,tm:"1 h"},
+  {n:"Ernest Siaulys",a:52,t:"You don't need to be in a church to connect with God. And this prayer should be in our Bibles, but those corrupt crooks removed it and hid it for themselves!",r:["like"],c:15,tm:"1 h"},
+  {n:"William Brown",a:60,t:"Guys, am I mistaken or is this the Pope? 😱😱",r:["like"],c:9,tm:"17 m"},
+  {n:"Betty Escher",a:21,t:"It's him.",r:["like"],c:15,tm:"2 m"},
+  {n:"Vince Gallagher",a:53,t:"It's him. I just saw a publication on Vatican News stating that the pope had a massive soul-saving project, it has to do with this divine prayer he mentions",r:["like","love"],c:15,tm:"1 h"},
+  {n:"Robert Blanco",a:33,t:"I got goosebumps from beginning to end of the video. The pope was truly being used by God to bring to light this divine secret that was hidden for so long...",r:["love"],c:15,tm:"1 h"},
+  {n:"Carol Sinek",a:16,t:"Folks, I know for many this may seem silly or trivial but it's always been my dream to own a Mercedes, and after 18 days of religiously reciting the prayer, my credit was approved and I was able to buy one, I can't even believe it... 😭🙏❤️",r:["love","like"],c:10,tm:"13 m"},
+  {n:"Amelia Markle",a:24,t:"I was a bit wary about this miracle attraction thing, but seeing the number of positive comments, I can tell it really works. Thanks everyone! I'm going to try it...",r:["like"],c:4,tm:"1 h"},
+  {n:"Emily Johnson",a:26,t:"I've been struggling for two months, living on unemployment benefits, I've done several interviews and nobody hires me... Could this prayer help me?",r:["like"],c:15,tm:"50 m"},
+  {n:"Sarah Williams",a:25,t:"Emily, I was in a similar situation to yours, unemployed with 2 daughters to raise. I decided to believe and recite the prayer, after all I had nothing to lose. I couldn't stand up when I received a call offering me a management position at an insurance company 😍",r:["love","like"],c:15,tm:"37 m"},
+  {n:"Bryan Mallins",a:51,t:"I'm praying the prayer exactly as the video teaches and today I received news that my lung tumor has regressed... need more proof than that? God Bless 🙏❤️",r:["love"],c:15,tm:"3 m"},
+  {n:"Samantha White",a:36,t:"This video is worth every second! Achieve your dreams, prosper, everything is already inside you, it just needs to be vibrated. Jesus is our savior!",r:["like","love"],c:15,tm:"1 h"},
+  {n:"Lisa Taylor",a:38,t:"so you're saying our Bible is not complete? how so? I don't understand",r:["like"],c:12,tm:"11 m"},
+  {n:"Jennifer Wilson",a:43,t:"actually only this part of the prayer was removed, the Pope explains that billionaires did this on purpose",r:["like"],c:15,tm:"4 m"},
+  {n:"Melissa Thomas",a:27,t:"And if you go to the Bible page he mentions in the video, you'll notice that something was clearly cut from there",r:["like","love"],c:15,tm:"1 m"},
+  {n:"David Miller",a:8,t:"I've done novenas, prayer chains, attended services, fasted. I prayed a lot, asked God for my blessings but they never came, it seemed like I had been forgotten... I confess I was getting pretty tired of praying... Until I saw this video and the pope opened my eyes... everything he said made sense and I decided to test it myself... today I'm running my own dream business that's going really well, my marriage is good again like before. I can only thank the Pope for this prayer, it's wonderful ❤️🙏🙏",r:["love","like"],c:6,tm:"2 m"},
+];
 
-  const LIKE_SVG = '<svg viewBox="0 0 16 16" width="10" height="10" fill="#fff"><path d="M6.3 13.5H4V6.8h2.3V13.5zM13.7 7.4c0-.6-.5-1.1-1.1-1.1H9.2l.5-2.3c.1-.5-.2-1-.7-1.2-.5-.1-1 .1-1.2.5L5.6 6.8v6.7h6.4c.5 0 .9-.3 1.1-.8l1.1-3.9c0-.1 0-.2 0-.3V7.4z"/></svg>';
-  const LOVE_SVG = '<svg viewBox="0 0 16 16" width="10" height="10" fill="#fff"><path d="M8 14s-5-3.2-5-7.2c0-1.8 1.4-3.2 3.2-3.2 1 0 1.9.5 2.5 1.2.6-.7 1.5-1.2 2.5-1.2C13 3.6 14.4 5 14.4 6.8 14.4 10.8 8 14 8 14z"/></svg>';
-  const esc = s => s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function renderReacts(r){
+  return r.map(x => `<span class="emo ${x}">${x==='like'?likeIcon:loveIcon}</span>`).join('');
+}
 
-  document.getElementById('list').innerHTML = COMMENTS.map(c => `
-    <div class="c">
-      <img class="av" src="https://i.pravatar.cc/80?img=${c.a}" alt="${esc(c.n)}" loading="lazy" />
-      <div class="body">
-        <div class="bubble">
-          <div class="name">${esc(c.n)}</div>
-          <div class="text">${esc(c.t)}</div>
-          <div class="reacts">
-            <span class="emos">${c.r.map(r=>`<span class="emo ${r}">${r==='like'?LIKE_SVG:LOVE_SVG}</span>`).join('')}</span>
-            <span class="count">${c.c}</span>
-          </div>
-        </div>
-        <div class="actions">
-          <button>Like</button><button>Reply</button><span class="time">${c.tm}</span>
-        </div>
+document.getElementById('comments').innerHTML = comments.map(c => `
+  <div class="c">
+    <img class="av" src="https://i.pravatar.cc/80?img=${c.a}" alt="${c.n}" loading="lazy" />
+    <div class="body">
+      <div class="bubble">
+        <div class="name">${c.n}</div>
+        <div class="text">${c.t}</div>
+        <div class="reacts"><span class="emos">${renderReacts(c.r)}</span><span class="count">${c.c}</span></div>
       </div>
-    </div>`).join('');
+      <div class="actions">
+        <button>Like</button>
+        <button>Reply</button>
+        <span class="time">${c.tm}</span>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+function todayLabel(){
+  const d = new Date();
+  const pad = n => String(n).padStart(2,'0');
+  return `${pad(d.getMonth()+1)}/${pad(d.getDate())}/${d.getFullYear()}`;
+}
+
+let viewers = 49857;
+const viewerEl = document.getElementById('viewerCount');
+const dateEl = document.getElementById('liveDate');
+
+function updateDate(){ dateEl.textContent = todayLabel(); }
+function updateViewers(){ viewers += Math.floor(Math.random()*24)+1; viewerEl.textContent = viewers.toLocaleString('en-US'); }
+
+updateDate();
+updateViewers();
+setInterval(updateDate, 60000);
+setInterval(updateViewers, 3000);
 </script>
+
 </body>
 </html>
