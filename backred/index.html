@@ -343,7 +343,7 @@
     </div>
   </div>
 
-  <a href="https://www.checkout-ds24.com/product/680704?voucher=back" class="cta-btn">
+  <a href="https://www.checkout-ds24.com/product/680704?voucher=back" class="cta-btn" id="checkout-link">
     ✅ &nbsp; YES! Claim My Discount Now →
   </a>
   <p class="cta-sub">🔒 Secure checkout · Instant access · 60-day money-back guarantee</p>
@@ -437,29 +437,257 @@
 </script>
 
 <script>
-  // ALTERE O LINK PARA A PÁGINA QUE QUISER MOSTRAR QUANDO O USUÁRIO TENTAR SAIR
-  const link = 'https://sacredchantguide.site/back2/';
+  /*
+   * RASTREAMENTO / ATRIBUIÇÃO
+   * Salva os parâmetros de aquisição da primeira visita e os mantém
+   * disponíveis mesmo depois de o usuário voltar pelo backredirect.
+   *
+   * Salva:
+   * - Todas as UTMs
+   * - fbclid, gclid, ttclid, msclkid, twclid, etc.
+   * - Referer
+   * - URL inicial
+   * - Data/hora da primeira visita
+   */
 
-  function setBackRedirect(url) {
-    let urlBackRedirect = url;
-    urlBackRedirect = urlBackRedirect =
-      urlBackRedirect.trim() +
-      (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
-      document.location.search.replace('?', '').toString();
+  (function () {
+    const STORAGE_KEY = 'traffic_attribution_v1';
 
-    history.pushState({}, '', location.href);
-    history.pushState({}, '', location.href);
-    history.pushState({}, '', location.href);
+    // Parâmetros normalmente usados para atribuição.
+    const TRACKED_PARAMS = [
+      'utm_source',
+      'utm_medium',
+      'utm_campaign',
+      'utm_content',
+      'utm_term',
+      'utm_id',
+      'fbclid',
+      'gclid',
+      'gbraid',
+      'wbraid',
+      'ttclid',
+      'msclkid',
+      'twclid',
+      'li_fat_id',
+      'epik',
+      'sccid',
+      'yclid',
+      'dclid'
+    ];
 
-    window.addEventListener('popstate', () => {
-      console.log('onpopstate', urlBackRedirect);
-      setTimeout(() => {
-        location.href = urlBackRedirect;
-      }, 1);
+    function getQueryParams() {
+      const params = {};
+      const searchParams = new URLSearchParams(window.location.search);
+
+      // Salva os parâmetros conhecidos.
+      TRACKED_PARAMS.forEach(function (key) {
+        const value = searchParams.get(key);
+        if (value !== null && value !== '') {
+          params[key] = value;
+        }
+      });
+
+      // Também salva qualquer outro parâmetro da URL.
+      // Isso evita perder parâmetros personalizados usados pelo seu funil.
+      searchParams.forEach(function (value, key) {
+        if (value !== '' && !(key in params)) {
+          params[key] = value;
+        }
+      });
+
+      return params;
+    }
+
+    function readSavedData() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveData(data) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      } catch (e) {}
+
+      // Cookie como segunda camada de persistência.
+      try {
+        document.cookie =
+          STORAGE_KEY + '=' +
+          encodeURIComponent(JSON.stringify(data)) +
+          '; path=/; max-age=' + (60 * 60 * 24 * 180) +
+          '; SameSite=Lax';
+      } catch (e) {}
+    }
+
+    function getCookieData() {
+      try {
+        const prefix = STORAGE_KEY + '=';
+        const cookies = document.cookie.split(';');
+
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+
+          if (cookie.indexOf(prefix) === 0) {
+            return JSON.parse(
+              decodeURIComponent(cookie.substring(prefix.length))
+            );
+          }
+        }
+      } catch (e) {}
+
+      return {};
+    }
+
+    const currentParams = getQueryParams();
+    const savedLocal = readSavedData();
+    const savedCookie = getCookieData();
+
+    // Prioridade:
+    // 1. dados já salvos
+    // 2. dados do cookie
+    // 3. parâmetros atuais da URL
+    const saved = Object.assign({}, savedCookie, savedLocal);
+
+    // Primeiro toque:
+    // só cria a atribuição inicial se ainda não existir.
+    if (!saved.first_visit_at) {
+      saved.first_visit_at = new Date().toISOString();
+    }
+
+    if (!saved.landing_page) {
+      saved.landing_page = window.location.href;
+    }
+
+    if (!saved.referrer && document.referrer) {
+      saved.referrer = document.referrer;
+    }
+
+    // Se chegaram novos parâmetros, eles entram na atribuição.
+    // O que já estava salvo não é apagado.
+    Object.keys(currentParams).forEach(function (key) {
+      if (
+        currentParams[key] !== null &&
+        currentParams[key] !== ''
+      ) {
+        saved[key] = currentParams[key];
+      }
     });
-  }
 
-  setBackRedirect(link);
+    saved.last_visit_at = new Date().toISOString();
+    saved.current_page = window.location.href;
+
+    saveData(saved);
+
+    /*
+     * Monta os parâmetros salvos para serem enviados ao próximo passo.
+     */
+    function buildTrackingQuery() {
+      const data = readSavedData();
+      const params = new URLSearchParams();
+
+      Object.keys(data).forEach(function (key) {
+        const value = data[key];
+
+        // Não envia campos internos de controle.
+        if (
+          key !== 'first_visit_at' &&
+          key !== 'last_visit_at' &&
+          key !== 'landing_page' &&
+          key !== 'current_page' &&
+          key !== 'referrer' &&
+          value !== null &&
+          value !== undefined &&
+          value !== ''
+        ) {
+          params.set(key, value);
+        }
+      });
+
+      return params.toString();
+    }
+
+    /*
+     * Adiciona os parâmetros preservados a uma URL.
+     * Se a URL já tiver parâmetros, eles são mantidos.
+     */
+    function appendTracking(url) {
+      try {
+        const finalUrl = new URL(url, window.location.href);
+        const savedParams = new URLSearchParams(buildTrackingQuery());
+
+        savedParams.forEach(function (value, key) {
+          // Não sobrescreve parâmetros específicos que a própria oferta
+          // já tenha definido.
+          if (!finalUrl.searchParams.has(key)) {
+            finalUrl.searchParams.set(key, value);
+          }
+        });
+
+        return finalUrl.toString();
+      } catch (e) {
+        return url;
+      }
+    }
+
+    /*
+     * 1) Checkout:
+     * mantém o voucher=back e adiciona a atribuição salva.
+     */
+    const checkoutLink = document.getElementById('checkout-link');
+
+    if (checkoutLink) {
+      checkoutLink.href = appendTracking(checkoutLink.href);
+
+      checkoutLink.addEventListener('click', function () {
+        // Atualiza novamente os dados imediatamente antes do clique.
+        const latest = readSavedData();
+        latest.last_click_at = new Date().toISOString();
+        saveData(latest);
+
+        this.href = appendTracking(this.href);
+      });
+    }
+
+    /*
+     * 2) BACKREDIRECT:
+     * o usuário volta e a URL de destino recebe os mesmos parâmetros.
+     */
+    const link = 'https://sacredchantguide.site/back2/';
+
+    function setBackRedirect(url) {
+      const urlBackRedirect = appendTracking(url);
+
+      history.pushState({}, '', location.href);
+      history.pushState({}, '', location.href);
+      history.pushState({}, '', location.href);
+
+      window.addEventListener('popstate', function () {
+        console.log('Backredirect:', urlBackRedirect);
+
+        // Registra que o usuário acionou o backredirect.
+        const latest = readSavedData();
+        latest.backredirect_at = new Date().toISOString();
+        saveData(latest);
+
+        setTimeout(function () {
+          location.href = urlBackRedirect;
+        }, 1);
+      });
+    }
+
+    setBackRedirect(link);
+
+    /*
+     * Disponibiliza a atribuição globalmente para outros scripts
+     * da página, se necessário.
+     */
+    window.getTrafficAttribution = function () {
+      return readSavedData();
+    };
+  })();
 </script>
 
  
