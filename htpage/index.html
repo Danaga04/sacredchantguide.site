@@ -1,83 +1,308 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Limited-time presentation</title> 
-<style>
-*{box-sizing:border-box}
-html,body{margin:0;padding:0;width:100%;min-height:100%;background:#fff}
-body{font-family:Arial,Helvetica,sans-serif;color:#000;overflow-x:hidden;-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
-.page{width:100%;max-width:100%;margin:0 auto}
-.header{width:100%;min-height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(14px,2.5vw,32px)}
-.logo{display:block;width:150px;height:278px;max-width:150px;object-fit:contain;flex:0 0 auto}
-.header-right{display:flex;align-items:center;justify-content:center;flex:0 0 auto}
-.bell{display:block;width:25px;height:29px;fill:currentColor}
-.content{width:100%;max-width:100%;margin:0 auto}
-.player-wrap{width:100%;max-width:100%;margin:0 auto;overflow:hidden}
-vturb-smartplayer{display:block;width:100%;max-width:100%;margin:0 auto}
-.status-row{width:100%;display:flex;align-items:center;justify-content:center;gap:clamp(12px,2vw,18px);margin:8px 0 0;padding:0 10px;flex-wrap:wrap}
-.status{display:inline-flex;align-items:center;gap:7px;font-size:13px;line-height:1.2;font-weight:400;white-space:nowrap}
-.dot{width:7px;height:7px;border-radius:50%;background:#000;display:inline-block;flex:0 0 7px}
-.news{display:block;width:750px;max-width:100%;height:auto;margin:14px auto 0}
-@media (max-width:1024px){
- .header{min-height:72px;padding-inline:clamp(14px,3vw,24px)}
- .logo{width:120px;height:auto;max-height:222px}
- .bell{width:23px;height:27px}
- .status-row{margin-top:7px}
-}
-@media (max-width:767px){
- .header{min-height:64px;padding-inline:14px}
- .logo{width:110px;max-height:204px}
- .bell{width:22px;height:25px}
- .status-row{gap:12px;margin-top:7px;padding-inline:8px}
- .status{font-size:12px}
- .news{margin-top:12px}
-}
-@media (max-width:480px){
- .header{min-height:58px;padding-inline:12px}
- .logo{width:96px;max-height:178px}
- .bell{width:20px;height:23px}
- .status-row{gap:9px;padding-inline:6px}
- .status{font-size:11px;gap:6px}
- .dot{width:6px;height:6px;flex-basis:6px}
- .news{margin-top:10px}
-}
-@media (min-width:1025px){
- .header{min-height:80px}
- .logo{width:150px;height:278px}
- .bell{width:25px;height:29px}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Limited-time presentation</title>
+  <style>
+    /* RESET + BASE */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      background: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #000;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-rendering: optimizeLegibility;
+    }
+    .page {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    .header {
+      width: 100%;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(14px, 2.5vw, 32px);
+    }
+    .logo {
+      display: block;
+      width: 150px;
+      height: 278px;
+      max-width: 150px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+    .bell {
+      display: block;
+      width: 25px;
+      height: 29px;
+      fill: currentColor;
+    }
+
+    /* CONTENT */
+    .content {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* PLAYER WRAP: elemento principal com padding lateral e centralizado */
+    .player-wrap {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 16px;          /* espaço lateral generoso em mobile */
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* container interno para centralizar e dar respiro */
+    .player-container {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* o web component do player ocupa toda largura disponível, mas com respiro lateral herdado do .player-wrap */
+    vturb-smartplayer {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    /* STATUS ROW */
+    .status-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(12px, 2vw, 18px);
+      margin: 8px 0 0;
+      padding: 0 10px;
+      flex-wrap: wrap;
+      box-sizing: border-box;
+    }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      line-height: 1.2;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #000;
+      display: inline-block;
+      flex: 0 0 7px;
+    }
+
+    /* NEWS IMG */
+    .news {
+      display: block;
+      width: 750px;
+      max-width: 100%;
+      height: auto;
+      margin: 14px auto 0;
+      padding: 0 16px;          /* mesmo respiro lateral do player */
+      box-sizing: border-box;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 1024px) {
+      .header {
+        min-height: 72px;
+        padding-inline: clamp(14px, 3vw, 24px);
+      }
+      .logo {
+        width: 120px;
+        height: auto;
+        max-height: 222px;
+      }
+      .bell {
+        width: 23px;
+        height: 27px;
+      }
+      .status-row {
+        margin-top: 7px;
+      }
+      .player-wrap {
+        padding: 0 14px;        /* respiro médio */
+      }
+      .news {
+        padding: 0 14px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .header {
+        min-height: 64px;
+        padding-inline: 14px;
+      }
+      .logo {
+        width: 110px;
+        max-height: 204px;
+      }
+      .bell {
+        width: 22px;
+        height: 25px;
+      }
+      .status-row {
+        gap: 12px;
+        margin-top: 7px;
+        padding-inline: 8px;
+      }
+      .status {
+        font-size: 12px;
+      }
+      .player-wrap {
+        padding: 0 12px;        /* respiro menor mas ainda presente */
+      }
+      .news {
+        margin-top: 12px;
+        padding: 0 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        min-height: 58px;
+        padding-inline: 12px;
+      }
+      .logo {
+        width: 96px;
+        max-height: 178px;
+      }
+      .bell {
+        width: 20px;
+        height: 23px;
+      }
+      .status-row {
+        gap: 9px;
+        padding-inline: 6px;
+      }
+      .status {
+        font-size: 11px;
+        gap: 6px;
+      }
+      .dot {
+        width: 6px;
+        height: 6px;
+        flex-basis: 6px;
+      }
+      .player-wrap {
+        padding: 0 10px;        /* respiro mínimo, mas NUNCA colado nas bordas */
+      }
+      .news {
+        margin-top: 10px;
+        padding: 0 10px;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .header {
+        min-height: 80px;
+      }
+      .logo {
+        width: 150px;
+        height: 278px;
+      }
+      .bell {
+        width: 25px;
+        height: 29px;
+      }
+      .player-wrap {
+        padding: 0 24px;        /* respiro mais generoso em telas grandes */
+      }
+      .news {
+        padding: 0 24px;
+      }
+    }
+
+    /* garantia extra: nenhum elemento filho ultrapassa as bordas */
+    .player-wrap,
+    .player-container,
+    vturb-smartplayer {
+      max-width: 100%;
+    }
+  </style>
 </head>
 <body>
-<main class="page">
-<header class="header">
-<img class="logo" src="https://forflashburn.com/wp-content/uploads/2025/12/logo.svg" width="150" height="278" alt="">
-<div class="header-right" aria-hidden="true"><svg class="bell" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><path d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z"/></svg></div>
-</header>
-<section class="content">
-<div class="player-wrap">
+  <main class="page">
+    <!-- HEADER -->
+    <header class="header">
+      <img class="logo" src="https://forflashburn.com/wp-content/uploads/2025/12/logo.svg" width="150" height="278" alt="">
+      <div class="header-right" aria-hidden="true">
+        <svg class="bell" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+          <path d="M224 512c35.32 0 63.97-28.65 63.97-64H160.03c0 35.35 28.65 64 63.97 64zm215.39-149.71c-19.32-20.76-55.47-51.99-55.47-154.29 0-77.7-54.48-139.9-127.94-155.16V32c0-17.67-14.32-32-31.98-32s-31.98 14.33-31.98 32v20.84C118.56 68.1 64.08 130.3 64.08 208c0 102.3-36.15 133.53-55.47 154.29-6 6.45-8.66 14.16-8.61 21.71.11 16.4 12.98 32 32.1 32h383.8c19.12 0 32-15.6 32.1-32 .05-7.55-2.61-15.27-8.61-21.71z"/>
+        </svg>
+      </div>
+    </header>
 
+    <!-- CONTENT -->
+    <section class="content">
+      <!-- PLAYER WRAP com padding lateral → NUNCA colado nas bordas -->
+      <div class="player-wrap">
+        <div class="player-container">
+          <vturb-smartplayer 
+            id="ab-6a4c42cfb386a41548e319bd" 
+            style="display: block; margin: 0 auto; width: 100%;">
+          </vturb-smartplayer>
+        </div>
+        <!-- scripts e preloads mantidos exatamente como no original -->
+        <script type="text/javascript">
+          var s = document.createElement("script");
+          s.src = "https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6a4c42cfb386a41548e319bd/player.js";
+          s.async = !0;
+          document.head.appendChild(s);
+        </script>
+        <script>
+          !function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);
+        </script>
+        <link rel="preload" href="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6a4c42cfb386a41548e319bd/player.js" as="script">
+        <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+        <link rel="dns-prefetch" href="https://cdn.converteai.net">
+        <link rel="dns-prefetch" href="https://scripts.converteai.net">
+        <link rel="dns-prefetch" href="https://images.converteai.net">
+        <link rel="dns-prefetch" href="https://m3u8.vturb.net">
+        <link rel="dns-prefetch" href="https://license.vturb.com">
+      </div>
 
-<vturb-smartplayer id="ab-6a4c42cfb386a41548e319bd" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6a4c42cfb386a41548e319bd/player.js", s.async=!0,document.head.appendChild(s); </script>
+      <!-- STATUS ROW -->
+      <div class="status-row">
+        <span class="status"><span class="dot"></span>Live</span>
+        <span class="status"><span class="dot"></span>THIS CONTENT MAY BE REMOVED SOON</span>
+      </div>
 
-
- <script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
-<link rel="preload" href="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6a4c42cfb386a41548e319bd/player.js" as="script">
-<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-<link rel="dns-prefetch" href="https://cdn.converteai.net">
-<link rel="dns-prefetch" href="https://scripts.converteai.net">
-<link rel="dns-prefetch" href="https://images.converteai.net">
-<link rel="dns-prefetch" href="https://m3u8.vturb.net">
-<link rel="dns-prefetch" href="https://license.vturb.com">
-
-
- 
-</div>
-<div class="status-row"><span class="status"><span class="dot"></span>Live</span><span class="status"><span class="dot"></span>THIS CONTENT MAY BE REMOVED SOON</span></div>
-<img class="news" src="https://vitalityhealthworld.online/wp-content/uploads/2025/12/news-logos-1-1.webp" width="750" height="123" alt="">
-</section>
-</main>
+      <!-- NEWS IMG com mesmo respiro lateral -->
+      <img class="news" src="https://vitalityhealthworld.online/wp-content/uploads/2025/12/news-logos-1-1.webp" width="750" height="123" alt="">
+    </section>
+  </main>
 </body>
 </html>
