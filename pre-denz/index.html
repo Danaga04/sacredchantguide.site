@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#070b19">
+<title>Angelic Revelation</title>
+
+<style>
+  :root {
+    --bg-top: #17264f;
+    --bg-bottom: #050b16;
+    --panel: #0a1730;
+    --panel-border: rgba(181, 166, 222, .22);
+    --gold: #e4c978;
+    --cream: #f5efd9;
+    --muted: #aaa8b8;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  body {
+    min-height: 100svh;
+    padding:
+      max(16px, env(safe-area-inset-top))
+      10px
+      max(28px, env(safe-area-inset-bottom));
+    background:
+      radial-gradient(circle at 50% 0%, rgba(91, 56, 145, .34), transparent 34%),
+      linear-gradient(180deg, var(--bg-top) 0%, #0b1830 35%, var(--bg-bottom) 100%);
+    color: var(--cream);
+    font-family: Georgia, "Times New Roman", serif;
+    display: flex;
+    justify-content: center;
+  }
+
+  .reading {
+    width: 100%;
+    max-width: 430px;
+    text-align: center;
+  }
+
+  /* MOBILE-FIRST BRAND */
+  .brand {
+    padding: 7px 0 18px;
+  }
+
+  .brand-name {
+    color: #f3ecd5;
+    font-size: clamp(21px, 6vw, 25px);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+
+  .brand-sub {
+    display: block;
+    margin-top: 5px;
+    color: #d2c7a4;
+    font: 700 7px/1 Arial, sans-serif;
+    letter-spacing: 2px;
+    opacity: .82;
+  }
+
+  .panel {
+    width: 100%;
+    border: 1px solid var(--panel-border);
+    border-radius: 25px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(67, 71, 130, .10), transparent 38%),
+      linear-gradient(180deg, rgba(18, 22, 49, .98), rgba(7, 11, 27, .99));
+    box-shadow:
+      0 18px 55px rgba(0,0,0,.38),
+      inset 0 1px rgba(255,255,255,.025);
+    padding: 27px 13px 31px;
+  }
+
+  .eyebrow {
+    color: var(--gold);
+    font: 700 10px/1.2 Arial, sans-serif;
+    letter-spacing: 2.8px;
+    margin-bottom: 16px;
+  }
+
+  .title {
+    margin: 0;
+    color: #f6f3e9;
+    font-size: clamp(25px, 7.1vw, 31px);
+    line-height: 1.05;
+    letter-spacing: -.3px;
+  }
+
+  .title em {
+    color: #efd98b;
+    font-style: italic;
+  }
+
+  .instruction {
+    margin: 12px 0 19px;
+    color: var(--muted);
+    font-size: clamp(15px, 4.3vw, 18px);
+    line-height: 1.25;
+    font-style: italic;
+  }
+
+  .divider {
+    width: 73%;
+    height: 1px;
+    margin: 0 auto 17px;
+    background: rgba(185,179,201,.20);
+  }
+
+  .tap-text {
+    min-height: 13px;
+    margin-bottom: 17px;
+    color: #d9d5c6;
+    font: 700 9px/1.2 Arial, sans-serif;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+  }
+
+  /* 3 x 2 MOBILE GRID */
+  .cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 9px;
+    justify-items: center;
+  }
+
+  .card {
+    width: min(100%, 108px);
+    aspect-ratio: .69;
+    perspective: 900px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    touch-action: manipulation;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform .68s cubic-bezier(.18,.75,.18,1);
+  }
+
+  .card.flipped .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: 11px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    box-shadow: 0 7px 15px rgba(0,0,0,.34);
+  }
+
+  /* ANGELIC CARD BACK — no tarot styling */
+  .card-back {
+    border: 3px solid #e8d7a0;
+    background:
+      radial-gradient(circle at 50% 43%,
+        rgba(255,239,177,.92) 0 3%,
+        rgba(255,239,177,.18) 3.5% 10%,
+        transparent 11%),
+      radial-gradient(ellipse at 25% 49%,
+        rgba(239,225,178,.24) 0 14%,
+        transparent 15%),
+      radial-gradient(ellipse at 75% 49%,
+        rgba(239,225,178,.24) 0 14%,
+        transparent 15%),
+      linear-gradient(145deg, #13284b 0%, #213d67 47%, #102342 100%);
+    box-shadow:
+      0 7px 15px rgba(0,0,0,.35),
+      inset 0 0 24px rgba(239,220,157,.08);
+  }
+
+  .card-back::before {
+    content: "✦";
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 42%;
+    aspect-ratio: 1;
+    border: 1px solid rgba(239,219,157,.62);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f2d982;
+    font-size: 22px;
+    box-shadow: 0 0 18px rgba(237,211,126,.16);
+  }
+
+  .card-back::after {
+    content: "☁   ⚡   ☁";
+    position: absolute;
+    left: 50%;
+    bottom: 22%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    color: rgba(242,226,180,.62);
+    font-size: 17px;
+    letter-spacing: 2px;
+  }
+
+  .tap {
+    position: absolute;
+    z-index: 2;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 11px;
+    border: 1px solid rgba(216,189,99,.4);
+    border-radius: 12px;
+    background: #15111b;
+    color: #d9bf61;
+    font: 700 7px/1 Arial, sans-serif;
+    letter-spacing: 1px;
+  }
+
+  /* CARD FRONT */
+  .card-front {
+    transform: rotateY(180deg);
+    border: 3px solid #ead8a1;
+    background:
+      radial-gradient(circle at 50% 25%, rgba(255,255,255,.65), transparent 32%),
+      linear-gradient(145deg, #fff8e5, #f4e7c2 52%, #d9c17d);
+    color: #183052;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .front-art {
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    border: 1px solid rgba(42,65,93,.38);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px 5px;
+    overflow: hidden;
+  }
+
+  .divine-icon {
+    width: 54%;
+    aspect-ratio: 1;
+    margin-bottom: 7px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ANGEL */
+  .angel {
+    font-size: 36px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 2px rgba(80,48,15,.22));
+  }
+
+  .angel::after {
+    content: "✦";
+    position: absolute;
+    top: -3px;
+    right: 5px;
+    font-size: 13px;
+  }
+
+  /* BIBLE */
+  .bible {
+    font-size: 40px;
+    line-height: 1;
+    color: #24466e;
+  }
+
+  .bible::after {
+    content: "✦";
+    position: absolute;
+    top: 0;
+    right: 2px;
+    font-size: 12px;
+  }
+
+  /* DIVINE STORM */
+  .storm {
+    font-size: 38px;
+    line-height: 1;
+    color: #31547b;
+  }
+
+  .storm::after {
+    content: "⚡";
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    font-size: 17px;
+  }
+
+  .front-name {
+    width: 100%;
+    max-width: 100%;
+    color: #193354;
+    font-size: clamp(8px, 2.45vw, 11px);
+    line-height: 1.08;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .25px;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+  }
+
+  .front-period {
+    margin-top: 6px;
+    color: #806b35;
+    font: 700 6.5px/1 Arial, sans-serif;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .selected-number {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    background: #171221;
+    color: #e4ca6d;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font: 700 9px Arial, sans-serif;
+  }
+
+  .card.selected .selected-number {
+    display: flex;
+  }
+
+  .card.disabled {
+    opacity: .43;
+    cursor: default;
+  }
+
+  .result {
+    display: none;
+    margin-top: 24px;
+    padding: 17px 13px;
+    border: 1px solid rgba(215,191,101,.30);
+    border-radius: 15px;
+    background: rgba(215,191,101,.055);
+  }
+
+  .result.show {
+    display: block;
+    animation: fadeUp .45s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(7px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-title {
+    margin-bottom: 9px;
+    color: #e0c76c;
+    font: 700 10px/1.2 Arial, sans-serif;
+    letter-spacing: 1.8px;
+  }
+
+  .result p {
+    margin: 0;
+    color: #ddd9cb;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .reset {
+    margin-top: 13px;
+    padding: 9px 17px;
+    border: 0;
+    border-radius: 20px;
+    background: #d6b95c;
+    color: #171222;
+    font: 700 10px Arial, sans-serif;
+    cursor: pointer;
+  }
+
+
+    .revelation-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 14px;
+      padding: 14px 18px;
+      border: 0;
+      border-radius: 12px;
+      background: #20c763;
+      color: #ffffff;
+      text-decoration: none;
+      font: 800 13px/1.2 Arial, sans-serif;
+      letter-spacing: .3px;
+      box-shadow: 0 7px 18px rgba(32,199,99,.28);
+      animation: greenPulse 1.5s ease-in-out infinite;
+    }
+
+    @keyframes greenPulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 7px 18px rgba(32,199,99,.28);
+      }
+      50% {
+        transform: scale(1.025);
+        box-shadow: 0 9px 25px rgba(32,199,99,.52);
+      }
+    }
+
+  @media (min-width: 600px) {
+    body { padding-top: 30px; }
+    .panel { padding: 32px 22px 38px; }
+    .cards { gap: 12px; }
+  }
+</style>
+</head>
+
+<body>
+<main class="reading">
+
+  <header class="brand">
+    <div class="brand-name">Denzel Washington</div>
+    <span class="brand-sub">THE VOICE OF TRUTH</span>
+  </header>
+
+  <section class="panel">
+    <div class="eyebrow">— &nbsp; ANGELIC REVELATION &nbsp; —</div>
+
+    <h1 class="title">
+      The life meant for you<br>
+      was <em>stolen</em>
+    </h1>
+
+    <div class="instruction">
+      Pick 3 cards. The order they appear<br>
+      is the answer.
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="tap-text" id="tapText">Tap your first card.</div>
+
+    <div class="cards" id="cards">
+
+      <div class="card" data-position="1">
+        <div class="card-inner">
+          <div class="card-face card-back">
+            <span class="tap">TAP</span>
+          </div>
+          <div class="card-face card-front">
+            <div class="front-art">
+              <div class="divine-icon"></div>
+              <div class="front-name"></div>
+              <div class="front-period"></div>
+            </div>
+            <span class="selected-number"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-position="2">
+        <div class="card-inner">
+          <div class="card-face card-back">
+            <span class="tap">TAP</span>
+          </div>
+          <div class="card-face card-front">
+            <div class="front-art">
+              <div class="divine-icon"></div>
+              <div class="front-name"></div>
+              <div class="front-period"></div>
+            </div>
+            <span class="selected-number"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-position="3">
+        <div class="card-inner">
+          <div class="card-face card-back">
+            <span class="tap">TAP</span>
+          </div>
+          <div class="card-face card-front">
+            <div class="front-art">
+              <div class="divine-icon"></div>
+              <div class="front-name"></div>
+              <div class="front-period"></div>
+            </div>
+            <span class="selected-number"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-position="4">
+        <div class="card-inner">
+          <div class="card-face card-back">
+            <span class="tap">TAP</span>
+          </div>
+          <div class="card-face card-front">
+            <div class="front-art">
+              <div class="divine-icon"></div>
+              <div class="front-name"></div>
+              <div class="front-period"></div>
+            </div>
+            <span class="selected-number"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-position="5">
+        <div class="card-inner">
+          <div class="card-face card-back">
+            <span class="tap">TAP</span>
+          </div>
+          <div class="card-face card-front">
+            <div class="front-art">
+              <div class="divine-icon"></div>
+              <div class="front-name"></div>
+              <div class="front-period"></div>
+            </div>
+            <span class="selected-number"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" data-position="6">
+        <div class="card-inner">
+          <div class="card-face card-back">
+            <span class="tap">TAP</span>
+          </div>
+          <div class="card-face card-front">
+            <div class="front-art">
+              <div class="divine-icon"></div>
+              <div class="front-name"></div>
+              <div class="front-period"></div>
+            </div>
+            <span class="selected-number"></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="result" id="result">
+      <div class="result-title">YOUR 3-CARD READING</div>
+      <p>
+        1. The Wheel of Destiny &nbsp;•&nbsp;
+        2. The Archangel of Manifestation &nbsp;•&nbsp;
+        3. The Awakening of the Storm
+      </p>
+      <a
+        class="revelation-cta"
+        id="revelationCta"
+        href="https://sacredchantguide.site/songingles/"
+      >WATCH THE VIDEO OF YOUR REVELATION</a>
+      <button class="reset" id="reset">READ AGAIN</button>
+    </div>
+  </section>
+</main>
+
+<script>
+  /*
+    SMART CARD REVEAL SYSTEM
+
+    The physical card clicked by the visitor has NO fixed revelation.
+
+    Every click:
+      1. Checks which revelations have already been shown.
+      2. Selects ONLY from revelations that are still unused.
+      3. Places that unused revelation on the physical card clicked.
+
+    Therefore:
+      - The user may click ANY card.
+      - The first 3 cards clicked are always 3 DIFFERENT revelations.
+      - A revelation can NEVER repeat.
+      - After 3 cards, no fourth card can be opened.
+  */
+
+  const cards = [...document.querySelectorAll('.card')];
+  const tapText = document.getElementById('tapText');
+  const result = document.getElementById('result');
+  const reset = document.getElementById('reset');
+
+  // The ONLY three possible revelations.
+  const revelationPool = [
+    {
+      id: 'wheel',
+      name: 'The Wheel of Destiny',
+      period: 'PAST',
+      iconClass: 'angel',
+      icon: '👼'
+    },
+    {
+      id: 'archangel',
+      name: 'The Archangel of Manifestation',
+      period: 'PRESENT',
+      iconClass: 'bible',
+      icon: '✝'
+    },
+    {
+      id: 'storm',
+      name: 'The Awakening of the Storm',
+      period: 'FUTURE',
+      iconClass: 'storm',
+      icon: '⚡'
+    }
+  ];
+
+  let selectedCount = 0;
+
+  // This array is the memory of what has already been revealed.
+  // Example: ['storm', 'wheel'] means those two can NEVER be selected again.
+  let revealedIds = [];
+
+  const messages = [
+    'Tap your second card.',
+    'Tap your third card.',
+    'Your three cards have been revealed.'
+  ];
+
+  /*
+    Find a revelation that has NOT been revealed yet.
+
+    This is the key protection against duplicates.
+    The clicked physical card is irrelevant to this decision.
+  */
+  function getUnusedRevelation() {
+    const unused = revelationPool.filter(
+      revelation => !revealedIds.includes(revelation.id)
+    );
+
+    if (unused.length === 0) {
+      return null;
+    }
+
+    // Randomly choose only from the remaining unused revelations.
+    const chosen = unused[Math.floor(Math.random() * unused.length)];
+
+    // Immediately record it so it cannot ever be selected again.
+    revealedIds.push(chosen.id);
+
+    return chosen;
+  }
+
+  function putRevelationOnCard(card, revelation) {
+    const icon = card.querySelector('.divine-icon');
+    const name = card.querySelector('.front-name');
+    const period = card.querySelector('.front-period');
+
+    icon.className = 'divine-icon ' + revelation.iconClass;
+    icon.textContent = revelation.icon;
+    name.textContent = revelation.name;
+    period.textContent = revelation.period;
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+
+      // This exact physical card has already been turned.
+      if (card.classList.contains('flipped')) {
+        return;
+      }
+
+      // Exactly 3 revelations per reading.
+      if (selectedCount >= 3) {
+        return;
+      }
+
+      /*
+        IMPORTANT:
+        We do NOT use data-position here.
+
+        The system looks at revealedIds and chooses an UNUSED revelation.
+        Thus, no matter which physical card the visitor clicks,
+        the revealed card can never be one that was already shown.
+      */
+      const revelation = getUnusedRevelation();
+
+      if (!revelation) {
+        return;
+      }
+
+      selectedCount++;
+
+      // Assign the unused revelation to the card the visitor clicked.
+      putRevelationOnCard(card, revelation);
+
+      card.classList.add('flipped', 'selected');
+
+      const number = card.querySelector('.selected-number');
+      number.textContent = selectedCount;
+
+      tapText.textContent = messages[selectedCount - 1];
+
+      if (selectedCount === 3) {
+
+        // Disable all physical cards that remain face down.
+        cards.forEach(other => {
+          if (!other.classList.contains('flipped')) {
+            other.classList.add('disabled');
+          }
+        });
+
+        // Show the result and video button.
+        setTimeout(() => {
+          result.classList.add('show');
+        }, 500);
+      }
+    });
+  });
+
+  reset.addEventListener('click', () => {
+    // Completely reset the intelligence/memory.
+    selectedCount = 0;
+    revealedIds = [];
+
+    cards.forEach(card => {
+      card.classList.remove('flipped', 'selected', 'disabled');
+
+      card.querySelector('.selected-number').textContent = '';
+
+      const icon = card.querySelector('.divine-icon');
+      const name = card.querySelector('.front-name');
+      const period = card.querySelector('.front-period');
+
+      icon.className = 'divine-icon';
+      icon.textContent = '';
+      name.textContent = '';
+      period.textContent = '';
+    });
+
+    result.classList.remove('show');
+    tapText.textContent = 'Tap your first card.';
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+</script>
+
+</body>
+</html>
