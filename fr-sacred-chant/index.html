@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>(1) Video</title>
+    <title>(1) Vidéo</title>
     <style>
         * {
             box-sizing: border-box;
@@ -23,7 +23,7 @@
             background-color: #ffffff;
         }
         
-        /* Faixa Superior Principal */
+        /* Bandeau supérieur principal */
         .main-header {
             background-color: #bd1414;
             color: white;
@@ -69,7 +69,7 @@
             display: block;
         }
 
-        /* Segunda Faixa (Sub-header) */
+        /* Deuxième bandeau (sous-en-tête) */
         .sub-header {
             background-color: #bd1414;
             display: flex;
@@ -121,7 +121,7 @@
             fill: white;
         }
 
-        /* Container da sua VSL */
+        /* Conteneur de votre VSL */
         .vsl-section {
             margin: 25px auto;
             padding: 0 15px;
@@ -130,7 +130,7 @@
             box-sizing: border-box;
         }
 
-        /* ===== OFFER SECTION STYLES (copied from file 1) ===== */
+        /* ===== STYLES DE LA SECTION OFFRE ===== */
         .offer-section {
             font-family: 'Poppins', Arial, Helvetica, sans-serif;
             text-align: center;
@@ -226,37 +226,26 @@
     </style>
 </head>
 
-    <div class="vsl-section">
+<div class="vsl-section">
 
+    <vturb-smartplayer id="vid-6aa3e59e895fdcef46901643" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 133.33333333333331% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/6aa3e59e895fdcef46901643/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
 
-        <vturb-smartplayer id="vid-6aa3e59e895fdcef46901643" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 133.33333333333331% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/6aa3e59e895fdcef46901643/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
-        
-
-
-
-        
-    </div>
-
-
+</div>
 
 <div style="display:flex;justify-content:center;align-items:center;width:100%;margin-top:20px;margin-bottom:20px;">
-            <p style="font-family:'Poppins',sans-serif;font-size:18px;color:#000;text-align:center;">
-                <span id="number"></span> people watching now
-            </p>
-        </div>
+    <p style="font-family:'Poppins',sans-serif;font-size:18px;color:#000;text-align:center;">
+        <span id="number"></span> personnes regardent actuellement
+    </p>
+</div>
 
-        <script>
-            let number;
-            function add(){number+=Math.floor((Math.random()*6)+1);document.getElementById("number").innerHTML=number;setTimeout(add,10000);}
-            function generate(){number=Math.floor(Math.random()*1143)+1578;document.getElementById("number").innerHTML=number;add();}
-            generate();
-        </script>
-    </div>
-</section>
+<script>
+    let number;
+    function add(){number+=Math.floor((Math.random()*6)+1);document.getElementById("number").innerHTML=number;setTimeout(add,10000);}
+    function generate(){number=Math.floor(Math.random()*1143)+1578;document.getElementById("number").innerHTML=number;add();}
+    generate();
+</script>
 
-
-
-<!-- IMAGEM ABAIXO DA VSL -->
+<!-- IMAGE SOUS LA VSL -->
 <div style="width:100%; display:flex; justify-content:center; padding:10px 15px 0; box-sizing:border-box;">
     <img 
         src="https://i.postimg.cc/hPSNXyNs/b3cbd72.webp"
@@ -271,41 +260,39 @@
     >
 </div>
 
-
-<!-- ===== OFFER SECTION (elementos do arquivo 1: price + congratulations + countdown) ===== -->
+<!-- ===== SECTION OFFRE ===== -->
 <div class="offer-section">
 <div id="esconder">
     <div class="container">
 
         <div class="price-old">
-            Normally: <span>$7,500</span>
+            Normalement : <span>7 500 $</span>
         </div>
 
         <div class="price-new">
-            Today Just: <span>$29 One Time</span>
+            Aujourd'hui seulement : <span>29 $ en un seul paiement</span>
         </div>
 
         <div class="special-text">
-            <strong>Congratulations, you're our 4,000th customer—you've unlocked a special price: $29.</strong><br>
-            This offer isn't available to the public and is valid for only 10 minutes.<br>
-            Click the button before it disappears.
+            <strong>Félicitations, vous êtes notre 4 000e client — vous avez débloqué un prix spécial : 29 $.</strong><br>
+            Cette offre n'est pas disponible au public et n'est valable que pendant 10 minutes.<br>
+            Cliquez sur le bouton avant que l'offre ne disparaisse.
         </div>
 
-<br>
-
+        <br>
 
         <div class="payments">
-            <img src="https://i.postimg.cc/44z0dTZR/gdegbo6498420.png" alt="payments">
+            <img src="https://i.postimg.cc/44z0dTZR/gdegbo6498420.png" alt="moyens de paiement">
         </div>
 
         <div class="secure">
-            🔒 Your information is safe and secure. The entire transaction will take place on a secure server using SSL technology.
+            🔒 Vos informations sont protégées et sécurisées. L'intégralité de la transaction sera effectuée sur un serveur sécurisé utilisant la technologie SSL.
         </div>
 
     </div>
 
     <div class="countdown-bar">
-        <h1><strong>Get The 7 Prayers of Jesus</strong> Before We Close Our Doors</h1>
+        <h1><strong>Obtenez les 7 prières de Jésus</strong> avant la fermeture de notre offre</h1>
         
         <div class="countdown-box">
             <div class="time">
@@ -314,17 +301,14 @@
             </div>
             <div class="time">
                 <span id="seconds">59</span>
-                <div class="label">Seconds</div>
+                <div class="label">Secondes</div>
             </div>
         </div>
     </div>
 
 </div>
 
-
-
-
-<!-- SCRIPT COUNTDOWN -->
+<!-- SCRIPT DU COMPTE À REBOURS -->
 <script>
 let totalSeconds = (59 * 60) + 59;
 
@@ -343,11 +327,10 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 </script>
 </div>
-<!-- ===== END OFFER SECTION ===== -->
-
+<!-- ===== FIN DE LA SECTION OFFRE ===== -->
 
 <style>
-    /* Estilos da Seção de Comentários */
+    /* Styles de la section des commentaires */
     .fb-comments-section {
         background-color: #fff;
         max-width: 100%;
@@ -427,7 +410,7 @@ setInterval(updateCountdown, 1000);
         text-decoration: none;
     }
 
-    /* Ícone de Verificado */
+    /* Icône vérifié */
     .verified-badge {
         width: 14px;
         height: 14px;
@@ -497,7 +480,7 @@ setInterval(updateCountdown, 1000);
 
 <div class="fb-comments-section">
     <div class="fb-header-info">
-        <span class="fb-count-text">Showing 26 of 322 comments</span>
+        <span class="fb-count-text">Affichage de 26 commentaires sur 322</span>
     </div>
 
     <div class="fb-comment-container">
@@ -505,16 +488,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Meredith Fields</span>
-                Guys, is this the video that explains why Pope Francis was receiving threats because of a prayer? I saw a video on TikTok of a woman saying she's reciting it and manifesting everything she desires…
+                Les amis, est-ce que c'est la vidéo qui explique pourquoi le pape François recevait des menaces à cause d'une prière ? J'ai vu une vidéo sur TikTok d'une femme disant qu'elle la récitait et qu'elle manifestait tout ce qu'elle désirait…
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">13</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>3 h</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 3 h</span>
             </div>
         </div>
     </div>
@@ -524,16 +507,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Abigail Clark</span>
-                Yesss, it's this one... on TikTok there's only a clip but this video explains everything
+                Ouiii, c'est bien celle-ci… Sur TikTok, il n'y a qu'un extrait, mais cette vidéo explique tout.
             </div>
             <div class="fb-reaction-badge">
                 <span>👍 ❤️</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>1 h</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 1 h</span>
             </div>
         </div>
     </div>
@@ -543,16 +526,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Sarah Walker</span>
-                I think it's so unfair what they're did to him
+                Je trouve tellement injuste ce qu'ils lui ont fait.
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>58 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 58 min</span>
             </div>
         </div>
     </div>
@@ -562,16 +545,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Emma Johnson</span>
-                He explains it in the middle of the video and you'll understand why as soon as you recite the prayer, it seems like a miracle.
+                Il l'explique au milieu de la vidéo et vous comprendrez pourquoi, dès que vous récitez la prière, cela semble être un miracle.
             </div>
             <div class="fb-reaction-badge">
                 <span>❤️</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>50 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 50 min</span>
             </div>
         </div>
     </div>
@@ -581,16 +564,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Victoria Smith</span>
-                Is this video about the law of attraction? That doesn't work, I've already done everything they recommend and never attracted a single cent 🤬
+                Cette vidéo parle de la loi de l'attraction ? Ça ne fonctionne pas, j'ai déjà fait tout ce qu'ils recommandent et je n'ai jamais attiré le moindre centime 🤬
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">9</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>1 h</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 1 h</span>
             </div>
         </div>
     </div>
@@ -600,16 +583,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Chris Garcia</span>
-                Nooooo, this is not the law of attraction. It's BIBLICAL! The pope took this prayer from the original Bible manuscripts🙏✨
+                Noooooon, ce n'est pas la loi de l'attraction. C'est BIBLIQUE ! Le pape a tiré cette prière des manuscrits originaux de la Bible 🙏✨
             </div>
             <div class="fb-reaction-badge">
                 <span>👍 ❤️</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>1 h</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 1 h</span>
             </div>
         </div>
     </div>
@@ -619,16 +602,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Matthew Barkley</span>
-                Actually, the law of attraction was taken over by charlatans. This prayer that the pope shared is the true way God returns everything we ask for, that's why it's so powerful and why he was being hunted!
+                En réalité, la loi de l'attraction a été récupérée par des charlatans. Cette prière que le pape a partagée est la véritable manière dont Dieu nous rend tout ce que nous demandons. C'est pourquoi elle est si puissante et pourquoi il était pourchassé !
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>59 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 59 min</span>
             </div>
         </div>
     </div>
@@ -638,16 +621,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Lucas Petry</span>
-                I saw in the news today that the pope even had to take refuge to hide from people who didn't want him to share the prayer
+                J'ai vu aux infos aujourd'hui que le pape avait même dû se réfugier pour se cacher de personnes qui ne voulaient pas qu'il partage cette prière.
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">2</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>15 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 15 min</span>
             </div>
         </div>
     </div>
@@ -657,16 +640,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Frank Wilson</span>
-                😭😭God bless you for showing this prayer! I'm reciting the sacred prayer every day for our Lord Jesus Christ to heal my mother's glaucoma. She's already showing small signs of improvement, I have faith she will be healed!
+                😭😭 Que Dieu vous bénisse de nous avoir montré cette prière ! Je récite cette prière sacrée chaque jour pour que notre Seigneur Jésus-Christ guérisse le glaucome de ma mère. Elle montre déjà de petits signes d'amélioration, j'ai foi qu'elle guérira !
             </div>
             <div class="fb-reaction-badge">
                 <span>❤️ 👍</span>
                 <span class="fb-reaction-count">18</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>26 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 26 min</span>
             </div>
         </div>
     </div>
@@ -676,16 +659,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Ruth Perry</span>
-                Do you need to be very religious for this to work? I believe in God, but I'm not a churchgoer and I don't know if this prayer can really help me...
+                Faut-il être très religieux pour que cela fonctionne ? Je crois en Dieu, mais je ne vais pas à l'église et je ne sais pas si cette prière peut vraiment m'aider…
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">5</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>19 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 19 min</span>
             </div>
         </div>
     </div>
@@ -695,16 +678,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Maria Crandall</span>
-                Ruth, this prayer is not about religion, but about connection with God. I also don't attend churches, and I've been reciting it every single day, this week I received a job offer 🙏
+                Ruth, cette prière ne concerne pas la religion, mais la connexion avec Dieu. Moi non plus, je ne vais pas à l'église, et je la récite tous les jours. Cette semaine, j'ai reçu une offre d'emploi 🙏
             </div>
             <div class="fb-reaction-badge">
                 <span>❤️</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>1 h</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 1 h</span>
             </div>
         </div>
     </div>
@@ -714,16 +697,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Ernest Siaulys</span>
-                You don't need to be in a church to connect with God. And this prayer should be in our Bibles, but those corrupt crooks removed it and hid it for themselves!
+                Vous n'avez pas besoin d'être à l'église pour vous connecter à Dieu. Et cette prière devrait être dans nos Bibles, mais ces escrocs corrompus l'ont retirée et l'ont cachée pour eux-mêmes !
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>1 h</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 1 h</span>
             </div>
         </div>
     </div>
@@ -733,16 +716,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">William Brown</span>
-                Guys, am I mistaken or is this the Pope?😱😱
+                Les amis, est-ce que je me trompe ou est-ce bien le pape ? 😱😱
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">9</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>17 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 17 min</span>
             </div>
         </div>
     </div>
@@ -752,16 +735,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Betty Escher</span>
-                It's him.
+                C'est bien lui.
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>2 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 2 min</span>
             </div>
         </div>
     </div>
@@ -771,16 +754,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Vince Gallagher</span>
-                It's him. I just saw a publication on Vatican News stating that the pope had a massive soul-saving project, it has to do with this divine prayer he mentions
+                C'est bien lui. Je viens de voir une publication de Vatican News indiquant que le pape avait un immense projet pour sauver les âmes. Cela aurait un rapport avec cette prière divine qu'il mentionne.
             </div>
             <div class="fb-reaction-badge">
                 <span>👍 ❤️</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>1 h</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 1 h</span>
             </div>
         </div>
     </div>
@@ -790,16 +773,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Robert Blanco</span>
-                I got goosebumps from beginning to end of the video. The pope was truly being used by God to bring to light this divine secret that was hidden for so long...
+                J'ai eu des frissons du début à la fin de la vidéo. Le pape était véritablement utilisé par Dieu pour révéler ce secret divin qui était caché depuis si longtemps…
             </div>
             <div class="fb-reaction-badge">
                 <span>❤️</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>1 h</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 1 h</span>
             </div>
         </div>
     </div>
@@ -809,16 +792,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Carol Sinek</span>
-                Folks, I know for many this may seem silly or trivial but it's always been my dream to own a Mercedes, and after 18 days of religiously reciting the prayer, my credit was approved and I was able to buy one, I can't even believe it... 😭🙏❤️
+                Les amis, je sais que pour beaucoup cela peut sembler ridicule ou insignifiant, mais j'ai toujours rêvé d'avoir une Mercedes. Après 18 jours à réciter religieusement cette prière, mon crédit a été approuvé et j'ai pu en acheter une. Je n'arrive toujours pas à y croire… 😭🙏❤️
             </div>
             <div class="fb-reaction-badge">
                 <span>❤️ 👍</span>
                 <span class="fb-reaction-count">10</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>13 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 13 min</span>
             </div>
         </div>
     </div>
@@ -828,16 +811,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Amelia Markle</span>
-                I was a bit wary about this miracle attraction thing, but seeing the number of positive comments, I can tell it really works. Thanks everyone! I'm going to try it...
+                J'étais un peu sceptique concernant cette histoire d'attraction des miracles, mais en voyant le nombre de commentaires positifs, je peux constater que cela fonctionne vraiment. Merci à tous ! Je vais essayer…
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">4</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>1 h</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 1 h</span>
             </div>
         </div>
     </div>
@@ -847,16 +830,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Emily Johnson</span>
-                I've been struggling for two months, living on unemployment benefits, I've done several interviews and nobody hires me... Could this prayer help me?
+                Je traverse une période difficile depuis deux mois, je vis avec des allocations chômage, j'ai passé plusieurs entretiens et personne ne m'embauche… Est-ce que cette prière pourrait m'aider ?
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>50 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 50 min</span>
             </div>
         </div>
     </div>
@@ -866,16 +849,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Sarah Willliams</span>
-                Emily, I was in a similar situation to yours, unemployed with 2 daughters to raise. I decided to believe and recite the prayer, after all I had nothing to lose. I couldn't stand up when I received a call offering me a management position at an insurance company😍
+                Emily, j'étais dans une situation similaire à la tienne, sans emploi et avec 2 filles à élever. J'ai décidé d'y croire et de réciter la prière, après tout, je n'avais rien à perdre. J'en ai été incapable de tenir debout quand j'ai reçu un appel me proposant un poste de responsable dans une compagnie d'assurance 😍
             </div>
             <div class="fb-reaction-badge">
                 <span>❤️ 👍</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>37 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 37 min</span>
             </div>
         </div>
     </div>
@@ -885,16 +868,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Bryan Mallins</span>
-                I'm praying the prayer exactly as the video teaches and today I received news that my lung tumor has regressed... need more proof than that? God Bless 🙏❤️
+                Je récite la prière exactement comme la vidéo l'enseigne et aujourd'hui j'ai reçu la nouvelle que ma tumeur pulmonaire avait régressé… Il faut une preuve supplémentaire ? Que Dieu vous bénisse 🙏❤️
             </div>
             <div class="fb-reaction-badge">
                 <span>❤️</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>3 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 3 min</span>
             </div>
         </div>
     </div>
@@ -904,16 +887,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Samantha White</span>
-                This video is worth every second! Achieve your dreams, prosper, everything is already inside you, it just needs to be vibrated. Jesus is our savior!
+                Cette vidéo vaut chaque seconde ! Réalisez vos rêves, prospérez, tout est déjà en vous, il suffit de le faire vibrer. Jésus est notre sauveur !
             </div>
             <div class="fb-reaction-badge">
                 <span>👍 ❤️</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>1 h</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 1 h</span>
             </div>
         </div>
     </div>
@@ -923,16 +906,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Lisa Taylor</span>
-                so you're saying our Bible is not complete? how so? I don't understand
+                Alors vous dites que notre Bible n'est pas complète ? Comment ça ? Je ne comprends pas.
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">12</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>11 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 11 min</span>
             </div>
         </div>
     </div>
@@ -942,16 +925,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Jennifer Wilson</span>
-                actually only this part of the prayer was removed, the Pope explains that billionaires did this on purpose
+                En réalité, seule cette partie de la prière a été retirée. Le pape explique que des milliardaires l'ont fait intentionnellement.
             </div>
             <div class="fb-reaction-badge">
                 <span>👍</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>4 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 4 min</span>
             </div>
         </div>
     </div>
@@ -961,16 +944,16 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">Melissa Thomas</span>
-                And if you go to the Bible page he mentions in the video, you'll notice that something was clearly cut from there
+                Et si vous allez à la page de la Bible qu'il mentionne dans la vidéo, vous remarquerez que quelque chose en a clairement été supprimé.
             </div>
             <div class="fb-reaction-badge">
                 <span>👍 ❤️</span>
                 <span class="fb-reaction-count">15</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>1 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 1 min</span>
             </div>
         </div>
     </div>
@@ -980,34 +963,31 @@ setInterval(updateCountdown, 1000);
         <div class="fb-comment-bubble-wrapper">
             <div class="fb-comment-bubble">
                 <span class="fb-author">David Miller</span>
-                vvvvvI've done novenas, prayer chains, attended services, fasted. I prayed a lot, asked God for my blessings but they never came, it seemed like I had been forgotten... I confess I was getting pretty tired of praying... Until I saw this video and the pope opened my eyes... everything he said made sense and I decided to test it myself... today I'm running my own dream business that's going really well, my marriage is good again like before. I can only thank the Pope for this prayer, it's wonderful ❤️🙏🙏
+                J'ai fait des neuvaines, des chaînes de prière, assisté à des offices, jeûné. J'ai beaucoup prié, demandé à Dieu de m'accorder mes bénédictions, mais elles ne sont jamais venues. J'avais l'impression d'avoir été oublié… J'avoue que je commençais à être vraiment fatigué de prier… Jusqu'à ce que je voie cette vidéo et que le pape m'ouvre les yeux… Tout ce qu'il disait avait du sens et j'ai décidé de l'essayer moi-même… Aujourd'hui, je dirige ma propre entreprise de rêve qui fonctionne très bien, et mon mariage va de nouveau aussi bien qu'avant. Je ne peux que remercier le pape pour cette prière, elle est merveilleuse ❤️🙏🙏
             </div>
             <div class="fb-reaction-badge">
                 <span>❤️ 👍</span>
                 <span class="fb-reaction-count">6</span>
             </div>
             <div class="fb-comment-actions">
-                <span class="fb-action-link">Like</span>
-                <span class="fb-action-link">Reply</span>
-                <span>2 m</span>
+                <span class="fb-action-link">J’aime</span>
+                <span class="fb-action-link">Répondre</span>
+                <span>il y a 2 min</span>
             </div>
         </div>
     </div>
 
     <div class="fb-load-more">
-        View more comments
+        Voir plus de commentaires
     </div>
 </div>
 
-
-
-    
 <footer class="footer">
   <p>
-    This site is not part of Facebook or Meta Platforms, Inc. Furthermore, this site is not endorsed by Facebook in any way.  
-    Facebook is a registered trademark of Meta Platforms, Inc.
+    Ce site ne fait pas partie de Facebook ou de Meta Platforms, Inc. De plus, ce site n'est en aucun cas approuvé ou soutenu par Facebook.
+    Facebook est une marque déposée de Meta Platforms, Inc.
   </p>
-  <p>© 2025 Guardian Angel — All rights reserved.</p>
+  <p>© 2025 Guardian Angel — Tous droits réservés.</p>
 </footer>
 
 <script
@@ -1018,7 +998,6 @@ setInterval(updateCountdown, 1000);
   defer
 ></script>
 
-
-
 </body>
 </html>
+
