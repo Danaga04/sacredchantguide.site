@@ -102,12 +102,26 @@ function applyCheckoutSettings() {
 	});
 }
 
-document.addEventListener('DOMContentLoaded', applyCheckoutSettings);
 document.addEventListener('DOMContentLoaded', function () {
-	var observer = new MutationObserver(function () {
-		applyCheckoutSettings();
+	applyCheckoutSettings();
+
+	var scheduled = false;
+	var observer = new MutationObserver(function (mutations) {
+		var hasAddedNodes = false;
+		for (var i = 0; i < mutations.length; i++) {
+			if (mutations[i].addedNodes && mutations[i].addedNodes.length) {
+				hasAddedNodes = true;
+				break;
+			}
+		}
+		if (!hasAddedNodes || scheduled) return;
+		scheduled = true;
+		requestAnimationFrame(function () {
+			scheduled = false;
+			applyCheckoutSettings();
+		});
 	});
-	observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style', 'class'] });
+	observer.observe(document.body, { childList: true, subtree: true });
 });
 </script>
 
@@ -304,13 +318,6 @@ i.fab, i.fa-brands, .fb-topbar i.fa-brands { font-family: "Font Awesome 6 Brands
 				<vturb-smartplayer id="ab-6a4c42cfb386a41548e319bd" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6a4c42cfb386a41548e319bd/player.js", s.async=!0,document.head.appendChild(s); </script>
 
 				<script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
-<link rel="preload" href="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6a4c42cfb386a41548e319bd/player.js" as="script">
-<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-<link rel="dns-prefetch" href="https://cdn.converteai.net">
-<link rel="dns-prefetch" href="https://scripts.converteai.net">
-<link rel="dns-prefetch" href="https://images.converteai.net">
-<link rel="dns-prefetch" href="https://m3u8.vturb.net">
-<link rel="dns-prefetch" href="https://license.vturb.com">
 				
 				
 			
@@ -350,7 +357,7 @@ i.fab, i.fa-brands, .fb-topbar i.fa-brands { font-family: "Font Awesome 6 Brands
 			<div id="fb-comments" style="display: block;">
 					<div class="comments-container">
 						<div class="comment" data-comment-id="1">
-							<img alt="" class="user-avatar" src="https://designurlifestyle.com/fb-cbs/images/151.webp">
+							<img alt="" class="user-avatar" loading="lazy" decoding="async" src="https://designurlifestyle.com/fb-cbs/images/151.webp">
 							<div class="comment-data">
 								<div class="user">
 									<p class="name">Sophie Robinson</p>
@@ -360,56 +367,56 @@ i.fab, i.fa-brands, .fb-topbar i.fa-brands { font-family: "Font Awesome 6 Brands
 							</div><likes>21</likes>
 						</div>
 						<div class="comment answer" data-comment-id="1a">
-							<img alt="" class="user-avatar" src="https://designurlifestyle.com/fb-cbs/images/160.webp">
+							<img alt="" class="user-avatar" loading="lazy" decoding="async" src="https://designurlifestyle.com/fb-cbs/images/160.webp">
 							<div class="comment-data"><div class="user">
 								<p class="name">Victoria Carter</p>
 								<p class="text">Yeah, they explain the ingredients and the morning routine. I watched the whole thing because I wanted to understand the idea.</p>
 							</div><div class="buttons"><time>1h</time><like>Like</like><answer>Reply</answer></div></div><likes>18</likes>
 						</div>
 						<div class="comment" data-comment-id="2">
-							<img alt="" class="user-avatar" src="https://designurlifestyle.com/fb-cbs/images/162.webp">
+							<img alt="" class="user-avatar" loading="lazy" decoding="async" src="https://designurlifestyle.com/fb-cbs/images/162.webp">
 							<div class="comment-data"><div class="user">
 								<p class="name">Lisa G.</p>
 								<p class="text">I clicked because of the honey, but the part about brain fog, insulin resistance and the Sardinian centenarians really caught my attention.</p>
 							</div><div class="buttons"><time>1h</time><like>Like</like><answer>Reply</answer></div></div><likes>46</likes>
 						</div>
 						<div class="comment" data-comment-id="3">
-							<img alt="" class="user-avatar" src="https://designurlifestyle.com/fb-cbs/images/164.webp">
+							<img alt="" class="user-avatar" loading="lazy" decoding="async" src="https://designurlifestyle.com/fb-cbs/images/164.webp">
 							<div class="comment-data"><div class="user">
 								<p class="name">Madison Scott</p>
 								<p class="text">The part about forgetting names, losing your train of thought and walking into a room and forgetting why you're there... way too relatable.</p>
 							</div><div class="buttons"><time>55 min</time><like>Like</like><answer>Reply</answer></div></div><likes>63</likes>
 						</div>
 						<div class="comment" data-comment-id="4">
-							<img alt="" class="user-avatar" src="https://designurlifestyle.com/fb-cbs/images/169.webp">
+							<img alt="" class="user-avatar" loading="lazy" decoding="async" src="https://designurlifestyle.com/fb-cbs/images/169.webp">
 							<div class="comment-data"><div class="user">
 								<p class="name">Charlotte Williams</p>
 								<p class="text">Okay, I almost scrolled past this. Then they started explaining why they looked at the eating habits of the oldest people in Sardinia. That was interesting.</p>
 							</div><div class="buttons"><time>40 min</time><like>Like</like><answer>Reply</answer></div></div><likes>58</likes>
 						</div>
 						<div class="comment" data-comment-id="5">
-							<img alt="" class="user-avatar" src="https://designurlifestyle.com/fb-cbs/images/115.webp">
+							<img alt="" class="user-avatar" loading="lazy" decoding="async" src="https://designurlifestyle.com/fb-cbs/images/115.webp">
 							<div class="comment-data"><div class="user">
 								<p class="name">Daisy Collins</p>
 								<p class="text">Is this actually about regular honey or is there something else in the protocol? I'm still watching to get to that part.</p>
 							</div><div class="buttons"><time>32 min</time><like>Like</like><answer>Reply</answer></div></div><likes>14</likes>
 						</div>
 						<div class="comment answer" data-comment-id="5a">
-							<img alt="" class="user-avatar" src="https://designurlifestyle.com/fb-cbs/images/095.webp">
+							<img alt="" class="user-avatar" loading="lazy" decoding="async" src="https://designurlifestyle.com/fb-cbs/images/095.webp">
 							<div class="comment-data"><div class="user">
 								<p class="name">Emily Lewis</p>
 								<p class="text">That's what I was wondering too. The video gets into the honey, anthocyanins and the other part of the protocol later on.</p>
 							</div><div class="buttons"><time>28 min</time><like>Like</like><answer>Reply</answer></div></div><likes>35</likes>
 						</div>
 						<div class="comment" data-comment-id="6">
-							<img alt="" class="user-avatar" src="https://designurlifestyle.com/fb-cbs/images/051.webp">
+							<img alt="" class="user-avatar" loading="lazy" decoding="async" src="https://designurlifestyle.com/fb-cbs/images/051.webp">
 							<div class="comment-data"><div class="user">
 								<p class="name">Olivia Martinez</p>
 								<p class="text">The brain diabetes explanation was the part that made me stop and actually listen. I've heard of insulin resistance, but never thought about it in this context.</p>
 							</div><div class="buttons"><time>20 min</time><like>Like</like><answer>Reply</answer></div></div><likes>49</likes>
 						</div>
 						<div class="comment" data-comment-id="7">
-							<img alt="" class="user-avatar" src="https://designurlifestyle.com/fb-cbs/images/013.webp">
+							<img alt="" class="user-avatar" loading="lazy" decoding="async" src="https://designurlifestyle.com/fb-cbs/images/013.webp">
 							<div class="comment-data"><div class="user">
 								<p class="name">Emma Clark</p>
 								<p class="text">I'm sending this to my dad. The idea of having a simple daily routine with ingredients you can actually find at a grocery store definitely got my attention.</p>
@@ -419,7 +426,18 @@ i.fab, i.fa-brands, .fb-topbar i.fa-brands { font-family: "Font Awesome 6 Brands
 					</div>
 				</div>
 
-	<script type="text/javascript" src="https://designurlifestyle.com/fb-cbs/js/bootstrap.bundle.min.js"></script>
+	<script>
+(function(){
+	function loadBootstrap(){
+		var s=document.createElement('script');
+		s.src='https://designurlifestyle.com/fb-cbs/js/bootstrap.bundle.min.js';
+		s.async=true;
+		document.body.appendChild(s);
+	}
+	if ('requestIdleCallback' in window) requestIdleCallback(loadBootstrap, {timeout:1500});
+	else window.addEventListener('load', loadBootstrap, {once:true});
+})();
+</script>
 	<script>
 		(function () {
 			const now = new Date();
