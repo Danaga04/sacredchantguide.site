@@ -1,5 +1,5 @@
 
-<html lang="es">
+<html lang="en">
 
 <head>
     <style>
@@ -25,60 +25,14 @@
 
 
 
-    <script>
-        // ALTERE O LINK PARA A PÁGINA QUE QUISER MOSTRAR QUANDO O USUÁRIO TENTAR SAIR
-        const link = 'https://oracion-sanbenito.site/divinegift/popup/';
-
-        function setBackRedirect(url) {
-            let urlBackRedirect = url;
-            urlBackRedirect = urlBackRedirect =
-                urlBackRedirect.trim() +
-                (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
-                document.location.search.replace('?', '').toString();
-
-            history.pushState({}, '', location.href);
-            history.pushState({}, '', location.href);
-            history.pushState({}, '', location.href);
-
-            window.addEventListener('popstate', () => {
-                console.log('onpopstate', urlBackRedirect);
-                setTimeout(() => {
-                    location.href = urlBackRedirect;
-                }, 1);
-            });
-        }
-
-        setBackRedirect(link);
-    </script>
 
 
 
-
-    <script>
-  window.pixelId = "695f23c8089ec2351d0c7913";
-  var a = document.createElement("script");
-  a.setAttribute("async", "");
-  a.setAttribute("defer", "");
-  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-  document.head.appendChild(a);
-</script>
 
 
     <!-- VTURB PRELOADS -->
 
 
-    <script>
-        ! function(i, n) {
-            i._plt = i._plt || (n && n.timeOrigin ? n.timeOrigin + n.now() : Date.now())
-        }(window, performance);
-    </script>
-    <link rel="preload" href="https://scripts.converteai.net/0309b949-b790-4df5-9378-333769a3d14f/ab-test/6a03e7a04d6e3177e1f88ee5/player.js" as="script">
-    <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
-    <link rel="dns-prefetch" href="https://cdn.converteai.net">
-    <link rel="dns-prefetch" href="https://scripts.converteai.net">
-    <link rel="dns-prefetch" href="https://images.converteai.net">
-    <link rel="dns-prefetch" href="https://m3u8.vturb.net">
-    <link rel="dns-prefetch" href="https://api.vturb.com.br">
 
     <style>
         /* ===== RESET ===== */
@@ -2525,7 +2479,7 @@
 
 
         <div class="yt-player-box">
-            <vturb-smartplayer id="vid-6a1e545251763a16ce39edda" style="display: block; margin: 0px auto; width: 100%; max-width: 100%;" original-id="ab-6a03e7a04d6e3177e1f88ee5" vturb-player-intersection-element="">
+            <vturb-smartplayer id="ab-6aaeb42848ba928c1d0d839b" style="display: block; margin: 0 auto; width: 100%; "></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/ab-test/6aaeb42848ba928c1d0d839b/player.js", s.async=!0,document.head.appendChild(s); </script>
                 <div slot="preload" class="preload preload--netflix" style=" position: relative; width: 100%; padding: 133.32999999999998% 0 0; z-index: 0;">
                     <div id="loading_ab-6a03e7a04d6e3177e1f88ee5" class="vt-loading-wrapper">
                         <div class="vt-loading-android-spinner"></div>
@@ -2697,10 +2651,7 @@
                     </vturb-anchor-button>
                 </div>
             </vturb-smartplayer>
-            <script type="text/javascript">
-                var s = document.createElement("script");
-                s.src = "https://scripts.converteai.net/0309b949-b790-4df5-9378-333769a3d14f/ab-test/6a03e7a04d6e3177e1f88ee5/player.js", s.async = !0, document.head.appendChild(s);
-            </script>
+            
         </div>
 
         <!-- TÍTULO -->
