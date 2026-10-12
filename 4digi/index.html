@@ -2,246 +2,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-     <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
+    <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
     <script>digistoreUpsell()</script>
-    
-     <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 
-    
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+        data-utmify-prevent-xcod-sck
+        data-utmify-prevent-subids
+        async defer></script>
 
-<title>Lifetime Access</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    box-sizing: border-box;
-}
+    <title>Keep the Mission Alive</title>
 
-body {
-    margin: 0;
-    padding: 22px 12px;
-    background: #000;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-.container {
-    width: 100%;
-    max-width: 540px;
-    margin: 0 auto;
-    text-align: center;
-}
+        body {
+            margin: 0;
+            padding: 22px 12px;
+            background: #000;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-.warning-title {
-    font-size: 31px;
-    line-height: 1.2;
-    font-weight: 900;
-    margin: 8px 0 12px;
-}
+        .container {
+            width: 100%;
+            max-width: 540px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-.subtitle {
-    color: #d0d0d0;
-    font-size: 19px;
-    line-height: 1.5;
-    margin: 0 auto 25px;
-}
+        .warning-title {
+            font-size: 31px;
+            line-height: 1.2;
+            font-weight: 900;
+            margin: 8px 0 12px;
+        }
 
-/* WARNING */
+        .subtitle {
+            color: #d0d0d0;
+            font-size: 19px;
+            line-height: 1.5;
+            margin: 0 auto 25px;
+        }
 
-.warning {
-    background: #160707;
-    border: 2px solid #8b2525;
-    border-radius: 13px;
-    padding: 20px 17px;
-    margin-bottom: 20px;
-    font-size: 18px;
-    line-height: 1.55;
-    color: #eee;
-}
+        .warning {
+            background: #160707;
+            border: 2px solid #8b2525;
+            border-radius: 13px;
+            padding: 20px 17px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            line-height: 1.55;
+            color: #eee;
+        }
 
-.warning strong {
-    color: #ff5757;
-    font-size: 18px;
-}
+        .warning strong {
+            color: #ff5757;
+            font-size: 18px;
+        }
 
-.days {
-    display: block;
-    color: #ff4d4d;
-    font-size: 31px;
-    font-weight: 900;
-    margin: 9px 0;
-}
+        .offer {
+            background: #07170c;
+            border: 2px solid #20c75a;
+            border-radius: 15px;
+            padding: 25px 18px;
+            box-shadow: 0 0 28px rgba(32,199,90,.14);
+        }
 
-/* OFFER */
+        .offer-title {
+            font-size: 29px;
+            line-height: 1.2;
+            font-weight: 900;
+            color: #39e66e;
+            margin: 0 0 14px;
+        }
 
-.offer {
-    background: #07170c;
-    border: 2px solid #20c75a;
-    border-radius: 15px;
-    padding: 25px 18px;
-    box-shadow: 0 0 28px rgba(32,199,90,.14);
-}
+        .lifetime {
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
 
-.offer-title {
-    font-size: 29px;
-    line-height: 1.2;
-    font-weight: 900;
-    color: #39e66e;
-    margin: 0 0 10px;
-}
+        .benefits {
+            text-align: center;
+            display: block;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #eee;
+            margin-bottom: 18px;
+        }
 
-.lifetime {
-    font-size: 21px;
-    font-weight: 700;
-    margin-bottom: 18px;
-}
+        .price {
+            font-size: 46px;
+            font-weight: 900;
+            color: #fff;
+            margin: 8px 0 2px;
+        }
 
-.benefits {
-    text-align: left;
-    display: inline-block;
-    font-size: 19px;
-    line-height: 1.8;
-    color: #eee;
-    margin-bottom: 8px;
-}
+        .one-time {
+            font-size: 14px;
+            color: #aaa;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
 
-.price {
-    font-size: 46px;
-    font-weight: 900;
-    color: #fff;
-    margin: 8px 0 2px;
-}
+        .yes-button {
+            display: block;
+            width: 100%;
+            padding: 21px 10px;
+            border-radius: 10px;
+            background: #20c75a;
+            color: #fff;
+            text-decoration: none;
+            font-size: 21px;
+            line-height: 1.25;
+            font-weight: 900;
+            box-shadow: 0 0 0 rgba(32,199,90,.8);
+            animation: pulse 1.6s infinite;
+            transition: transform .2s;
+        }
 
-.one-time {
-    font-size: 15px;
-    color: #aaa;
-    margin-bottom: 18px;
-}
+        .yes-button:hover {
+            transform: scale(1.02);
+            background: #25d963;
+        }
 
-/* GREEN BUTTON */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(32,199,90,.8);
+            }
 
-.yes-button {
-    display: block;
-    width: 100%;
-    padding: 21px 10px;
-    border-radius: 10px;
-    background: #20c75a;
-    color: #fff;
-    text-decoration: none;
-    font-size: 22px;
-    line-height: 1.25;
-    font-weight: 900;
-    box-shadow: 0 0 0 rgba(32,199,90,.8);
-    animation: pulse 1.6s infinite;
-    transition: transform .2s;
-}
+            70% {
+                box-shadow: 0 0 0 14px rgba(32,199,90,0);
+            }
 
-.yes-button:hover {
-    transform: scale(1.02);
-    background: #25d963;
-}
+            100% {
+                box-shadow: 0 0 0 0 rgba(32,199,90,0);
+            }
+        }
 
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(32,199,90,.8);
-    }
+        .no-button {
+            display: block;
+            width: 100%;
+            margin-top: 12px;
+            padding: 17px 10px;
+            border-radius: 9px;
+            background: #252525;
+            border: 1px solid #555;
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            line-height: 1.4;
+            font-weight: 700;
+        }
 
-    70% {
-        box-shadow: 0 0 0 14px rgba(32,199,90,0);
-    }
+        .no-button:hover {
+            background: #383838;
+        }
 
-    100% {
-        box-shadow: 0 0 0 0 rgba(32,199,90,0);
-    }
-}
+        .footer {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
 
-/* RED BUTTON */
+        @media (max-width: 480px) {
+            body {
+                padding: 18px 10px;
+            }
 
-.no-button {
-    display: block;
-    width: 100%;
-    margin-top: 12px;
-    padding: 17px 10px;
-    border-radius: 9px;
-    background: #b51f1f;
-    border: 1px solid #e04444;
-    color: #fff;
-    text-decoration: none;
-    font-size: 17px;
-    line-height: 1.3;
-    font-weight: 700;
-}
+            .warning-title {
+                font-size: 28px;
+            }
 
-.no-button:hover {
-    background: #d32626;
-}
+            .subtitle {
+                font-size: 18px;
+            }
 
-.footer {
-    color: #777;
-    font-size: 14px;
-    line-height: 1.5;
-    margin-top: 20px;
-}
+            .warning {
+                font-size: 17px;
+                padding: 19px 14px;
+            }
 
-/* MOBILE */
+            .offer {
+                padding: 23px 14px;
+            }
 
-@media (max-width: 480px) {
+            .offer-title {
+                font-size: 26px;
+            }
 
-    body {
-        padding: 18px 10px;
-    }
+            .lifetime {
+                font-size: 18px;
+            }
 
-    .warning-title {
-        font-size: 28px;
-    }
+            .benefits {
+                font-size: 17px;
+                line-height: 1.8;
+            }
 
-    .subtitle {
-        font-size: 18px;
-    }
+            .price {
+                font-size: 43px;
+            }
 
-    .warning {
-        font-size: 17px;
-        padding: 19px 14px;
-    }
+            .yes-button {
+                font-size: 19px;
+                padding: 21px 8px;
+            }
 
-    .days {
-        font-size: 30px;
-    }
-
-    .offer {
-        padding: 23px 14px;
-    }
-
-    .offer-title {
-        font-size: 26px;
-    }
-
-    .lifetime {
-        font-size: 20px;
-    }
-
-    .benefits {
-        font-size: 18px;
-        line-height: 1.9;
-    }
-
-    .price {
-        font-size: 43px;
-    }
-
-    .yes-button {
-        font-size: 21px;
-        padding: 21px 8px;
-    }
-
-    .no-button {
-        font-size: 17px;
-        padding: 17px 8px;
-    }
-}
-</style>
+            .no-button {
+                font-size: 15px;
+                padding: 17px 8px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -249,70 +229,66 @@ body {
 <div class="container">
 
     <div class="warning-title">
-        ⚠️ Before You Continue...
+        ⚠️ BEFORE YOU CONTINUE...
     </div>
 
     <div class="subtitle">
-        There's one important thing you should know about your app access.
+        $9/month support helps keep this app online and this sacred mission alive.
     </div>
 
     <div class="warning">
-
-        <strong>IF YOU DO NOT UPGRADE:</strong>
-
-        <span class="days">YOUR ACCESS LASTS 180 DAYS</span>
-
-        Your app access will remain active for 180 days.
-
-        After that, your access will be blocked and you will no longer receive future app updates.
-
+        <strong>YOUR SUPPORT MAKES A DIFFERENCE</strong>
+        <br><br>
+        Without support from people like you, this app may go offline.
+        <br><br>
+        Your monthly donation helps cover servers, maintenance, updates, and everything needed to keep this mission alive.
     </div>
-
 
     <div class="offer">
 
         <div class="offer-title">
-            🔓 MAKE MY ACCESS PERMANENT
+            🙏 KEEP THE MISSION ALIVE
         </div>
 
-        <div class="lifetime">
-            Keep your access for LIFE.
+        <div class="lifetime">          
+            As a gesture of gratitude, the Pope will pray for you and your family, asking for protection and prosperity.
+            <br><br>
+            The longer you stay with us, the more blessings and miracles you receive.
         </div>
 
         <div class="benefits">
-            ✅ Lifetime app access<br>
-            ✅ Future app updates<br>
-            ✅ Priority support for life<br>
-            ✅ No monthly payments<br>
-            ✅ No annual renewals
+            ❤️ Help keep the app online<br>
+            🙏 Support this sacred mission<br>
+            🕊️ Help fund maintenance and updates<br>
+            ✨ Support the continuation of this work
         </div>
 
         <div class="price">
-            $147
+            $9/month
         </div>
 
         <div class="one-time">
-            ONE-TIME PAYMENT • NO SUBSCRIPTION
+            A SMALL MONTHLY DONATION • CANCEL ANYTIME
         </div>
 
-        <!-- YES / PURCHASE BUTTON -->
+        <!-- YES / DONATION BUTTON -->
         <a
             href="https://www.checkout-ds24.com/answer/yes?template=light"
             class="yes-button">
-            BUY NOW FOR $147
+            DONATE $9/MONTH & KEEP IT ONLINE
         </a>
 
-        <!-- NO BUTTON -->
+        <!-- NO THANKS BUTTON -->
         <a
             href="https://www.checkout-ds24.com/answer/no"
             class="no-button">
-            NO THANKS — KEEP MY 180-DAY ACCESS
+            NO, THANK YOU — I'D LIKE TO CONTINUE WITHOUT DONATING
         </a>
 
     </div>
 
     <div class="footer">
-        The $147 payment is a one-time purchase. No recurring charges.
+        Your monthly donation helps cover the costs of keeping the app online. You can cancel anytime.
     </div>
 
 </div>
