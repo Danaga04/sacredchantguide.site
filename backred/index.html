@@ -119,11 +119,11 @@
     border: 3px solid #fff;
   }
 
-  /* Spin button */
+  /* ── SPIN BUTTON (GREEN & PULSING) ── */
   .spin-btn {
     display: inline-block;
     padding: 18px 40px;
-    background: #d9000d;
+    background: #16a34a;
     color: #fff;
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
@@ -132,23 +132,29 @@
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(217, 0, 13, 0.45);
-    animation: pulse-red 2s ease-in-out infinite;
+    box-shadow: 0 4px 20px rgba(22, 163, 74, 0.5);
+    animation: pulse-spin 1.8s ease-in-out infinite;
     transition: background 0.2s, transform 0.1s;
   }
 
-  .spin-btn:hover { background: #b8000b; }
+  .spin-btn:hover { background: #15803d; }
   .spin-btn:active { transform: scale(0.97); }
   .spin-btn:disabled {
-    background: #999;
+    background: #9ca3af;
     box-shadow: none;
     animation: none;
     cursor: not-allowed;
   }
 
-  @keyframes pulse-red {
-    0%, 100% { box-shadow: 0 4px 20px rgba(217,0,13,0.45); }
-    50% { box-shadow: 0 4px 36px rgba(217,0,13,0.85); transform: scale(1.02); }
+  @keyframes pulse-spin {
+    0%, 100% {
+      box-shadow: 0 4px 20px rgba(22, 163, 74, 0.5), 0 0 0 0 rgba(22, 163, 74, 0.6);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 6px 36px rgba(22, 163, 74, 0.85), 0 0 0 12px rgba(22, 163, 74, 0);
+      transform: scale(1.03);
+    }
   }
 
   .spin-note {
@@ -421,13 +427,13 @@
     <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
 
     <div class="modal-badge">🎉 CONGRATULATIONS!</div>
-    <div class="modal-title">You Won <span>26% OFF</span></div>
+    <div class="modal-title">You Won <span>45% OFF</span></div>
     <p class="modal-sub">Your exclusive gift has been unlocked. Claim it before this page expires.</p>
 
     <div class="modal-price-row">
-      <span class="modal-price-old">$29.00</span>
+      <span class="modal-price-old">$39.00</span>
       <span class="modal-price-new"><sup>$</sup>21<sup>.45</sup></span>
-      <span class="modal-discount-badge">−26%</span>
+      <span class="modal-discount-badge">−45%</span>
     </div>
 
     <p class="modal-desc">
@@ -445,7 +451,7 @@
 
     <a href="https://www.checkout-ds24.com/product/680704?voucher=back"
        class="modal-cta" id="checkout-link">
-      ✅ &nbsp; YES! Claim My 26% Discount Now →
+      ✅ &nbsp; YES! Claim My 45% Discount Now →
     </a>
     <p class="modal-cta-sub">🔒 Secure checkout · Instant access · 60-day money-back guarantee</p>
   </div>
@@ -458,17 +464,17 @@
    1. WHEEL DATA & CONFIG
    ═══════════════════════════════════════════════════════════════ */
 const SEGMENTS = [
-  { label: '5%',   color: '#6366f1' },
-  { label: '10%',  color: '#f59e0b' },
-  { label: '15%',  color: '#10b981' },
-  { label: '20%',  color: '#8b5cf6' },
-  { label: '26%',  color: '#d9000d' },  // ← WINNER (highest, index 4)
-  { label: '12%',  color: '#ec4899' },
-  { label: '18%',  color: '#14b8a6' },
-  { label: '22%',  color: '#ef4444' }
+  { label: '10%', color: '#6366f1' },
+  { label: '20%', color: '#f59e0b' },
+  { label: '30%', color: '#10b981' },
+  { label: '35%', color: '#8b5cf6' },
+  { label: '45%', color: '#d9000d' },  // ← WINNER (highest, index 4)
+  { label: '25%', color: '#ec4899' },
+  { label: '15%', color: '#14b8a6' },
+  { label: '5%',  color: '#ef4444' }
 ];
 
-const WINNING_INDEX = 4; // index of 26% segment
+const WINNING_INDEX = 4; // index of 45% segment
 const NUM_SEGMENTS = SEGMENTS.length;
 const SEGMENT_ANGLE = (2 * Math.PI) / NUM_SEGMENTS;
 
