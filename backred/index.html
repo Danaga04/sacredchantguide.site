@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wait — A Gift For You</title>
+<title>Wait — Spin & Win Your Gift</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,8 +58,8 @@
     margin-bottom: 28px;
   }
 
-  /* ── GIFT BOX ── */
-  .gift-box {
+  /* ── WHEEL SECTION ── */
+  .wheel-section {
     background: linear-gradient(145deg, #fffbea, #fff8d6);
     border: 2px dashed #f0c040;
     border-radius: 16px;
@@ -68,82 +68,243 @@
     position: relative;
   }
 
-  .gift-icon {
-    font-size: 72px;
-    line-height: 1;
-    margin-bottom: 10px;
-    display: block;
-    animation: bounce 1.8s ease-in-out infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  .gift-title {
+  .wheel-title {
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 2.5px;
     text-transform: uppercase;
     color: #b8860b;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
 
-  .gift-name {
-    font-size: clamp(18px, 4vw, 22px);
-    font-weight: 800;
-    color: #111;
-    margin-bottom: 6px;
-    line-height: 1.3;
-  }
-
-  .gift-desc {
-    font-size: 14px;
-    color: #666;
-    font-weight: 500;
+  .wheel-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 16px;
   }
 
-  .price-row {
+  canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 8px 24px rgba(240, 192, 64, 0.35));
+  }
+
+  /* Pointer */
+  .pointer {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 28px solid #d9000d;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.25));
+    z-index: 10;
+  }
+
+  .pointer::after {
+    content: '';
+    position: absolute;
+    top: -34px;
+    left: -8px;
+    width: 16px;
+    height: 16px;
+    background: #d9000d;
+    border-radius: 50%;
+    border: 3px solid #fff;
+  }
+
+  /* Spin button */
+  .spin-btn {
+    display: inline-block;
+    padding: 18px 40px;
+    background: #d9000d;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(217, 0, 13, 0.45);
+    animation: pulse-red 2s ease-in-out infinite;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .spin-btn:hover { background: #b8000b; }
+  .spin-btn:active { transform: scale(0.97); }
+  .spin-btn:disabled {
+    background: #999;
+    box-shadow: none;
+    animation: none;
+    cursor: not-allowed;
+  }
+
+  @keyframes pulse-red {
+    0%, 100% { box-shadow: 0 4px 20px rgba(217,0,13,0.45); }
+    50% { box-shadow: 0 4px 36px rgba(217,0,13,0.85); transform: scale(1.02); }
+  }
+
+  .spin-note {
+    font-size: 12px;
+    color: #888;
+    margin-top: 10px;
+  }
+
+  /* ── MODAL / POPUP ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    padding: 20px;
+  }
+
+  .modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 36px 28px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    transform: translateY(30px) scale(0.95);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .modal-overlay.active .modal-box {
+    transform: translateY(0) scale(1);
+  }
+
+  .modal-badge {
+    display: inline-block;
+    background: #d9000d;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+
+  .modal-title {
+    font-size: clamp(22px, 5vw, 28px);
+    font-weight: 800;
+    color: #111;
+    line-height: 1.25;
+    margin-bottom: 8px;
+  }
+
+  .modal-title span { color: #d9000d; }
+
+  .modal-sub {
+    font-size: 15px;
+    color: #666;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .modal-price-row {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 14px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
 
-  .price-old {
-    font-size: 16px;
+  .modal-price-old {
+    font-size: 18px;
     color: #999;
     text-decoration: line-through;
     font-weight: 600;
   }
 
-  .price-new {
-    font-size: 40px;
+  .modal-price-new {
+    font-size: 46px;
     font-weight: 800;
     color: #111;
     line-height: 1;
   }
 
-  .price-new sup {
-    font-size: 20px;
+  .modal-price-new sup {
+    font-size: 22px;
     vertical-align: super;
   }
 
-  .discount-badge {
+  .modal-discount-badge {
     background: #d9000d;
     color: #fff;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 800;
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 4px;
     letter-spacing: 1px;
   }
 
-  /* ── CTA BUTTON ── */
-  .cta-btn {
+  .modal-desc {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  /* Countdown inside modal */
+  .modal-countdown {
+    background: #fff5f5;
+    border: 1.5px solid #f5c2c7;
+    border-radius: 10px;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+  }
+
+  .countdown-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #d9000d;
+    margin-bottom: 6px;
+  }
+
+  .countdown-timer {
+    font-size: 34px;
+    font-weight: 800;
+    color: #d9000d;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .countdown-note {
+    font-size: 12px;
+    color: #b91c1c;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-top: 6px;
+  }
+
+  /* CTA inside modal */
+  .modal-cta {
     display: block;
     width: 100%;
     padding: 20px 24px;
@@ -162,6 +323,7 @@
     animation: pulse-green 2s ease-in-out infinite;
     line-height: 1.3;
     cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
   }
 
   @keyframes pulse-green {
@@ -169,150 +331,39 @@
     50% { box-shadow: 0 4px 36px rgba(22,163,74,0.75); transform: scale(1.015); }
   }
 
-  .cta-btn:hover { background: #15803d; }
-  .cta-btn:active { transform: scale(0.98); }
+  .modal-cta:hover { background: #15803d; }
+  .modal-cta:active { transform: scale(0.98); }
 
-  .cta-sub {
+  .modal-cta.expired {
+    background: #999;
+    box-shadow: none;
+    animation: none;
+    pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  .modal-cta-sub {
     font-size: 12px;
     color: #888;
-    margin-bottom: 24px;
+    margin-bottom: 4px;
   }
 
-  /* ── URGENCY STACK ── */
-  .urgency-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  /* Countdown */
-  .countdown-block {
-    background: #fff5f5;
-    border: 1.5px solid #f5c2c7;
-    border-radius: 10px;
-    padding: 14px 20px;
-  }
-
-  .cd-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #d9000d;
-    margin-bottom: 10px;
-  }
-
-  .cd-digits {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .cd-unit { text-align: center; }
-
-  .cd-num {
-    display: block;
-    font-size: 38px;
-    font-weight: 800;
-    color: #d9000d;
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    color: #aaa;
+    cursor: pointer;
     line-height: 1;
-    min-width: 54px;
-    background: #fff;
-    border: 1.5px solid #f5c2c7;
-    border-radius: 6px;
-    padding: 4px 8px;
+    padding: 4px;
   }
 
-  .cd-lbl {
-    display: block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #999;
-    margin-top: 4px;
-  }
+  .modal-close:hover { color: #333; }
 
-  .cd-sep {
-    font-size: 30px;
-    font-weight: 800;
-    color: #d9000d;
-    margin-bottom: 14px;
-  }
-
-  /* Spots bar */
-  .spots-block {
-    background: #f9fafb;
-    border: 1.5px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 14px 20px;
-  }
-
-  .spots-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-    font-weight: 700;
-    color: #374151;
-    margin-bottom: 8px;
-  }
-
-  .spots-label .spots-num { color: #d9000d; }
-
-  .bar-bg {
-    background: #e5e7eb;
-    border-radius: 99px;
-    height: 10px;
-    overflow: hidden;
-    margin-bottom: 8px;
-  }
-
-  .bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #f59e0b, #d9000d);
-    border-radius: 99px;
-    width: 83%;
-    animation: bar-grow 1.5s ease forwards;
-  }
-
-  @keyframes bar-grow {
-    from { width: 60%; }
-    to { width: 83%; }
-  }
-
-  .spots-note {
-    font-size: 12px;
-    color: #6b7280;
-    font-weight: 500;
-    text-align: left;
-  }
-
-  .spots-note span { color: #d9000d; font-weight: 700; }
-
-  /* Social proof */
-  .proof-block {
-    background: #f0fdf4;
-    border: 1.5px solid #bbf7d0;
-    border-radius: 10px;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-align: left;
-  }
-
-  .proof-icon { font-size: 22px; flex-shrink: 0; }
-
-  .proof-text {
-    font-size: 13px;
-    color: #166534;
-    font-weight: 600;
-    line-height: 1.4;
-  }
-
-  .proof-text span { color: #15803d; font-weight: 800; }
-
+  /* Secure row (fora do modal) */
   .secure-row {
     display: flex;
     justify-content: center;
@@ -323,62 +374,37 @@
     flex-wrap: wrap;
     margin-top: 20px;
   }
+
+  /* Confetti canvas (global) */
+  #confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1500;
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="top-tag">⚠️ Don't Close This Page</div>
-  <h1 class="headline">Wait — We have a <span>special gift</span><br>reserved just for you.</h1>
-  <p class="subline">Because you showed up today, we're unlocking an exclusive discount that is <strong>not available anywhere else.</strong></p>
+  <h1 class="headline">Spin the wheel &<br><span>win your special gift</span></h1>
+  <p class="subline">Because you showed up today, you have one spin to unlock an exclusive discount that is <strong>not available anywhere else.</strong></p>
 
-  <div class="gift-box">
-    <span class="gift-icon">🎁</span>
-    <div class="gift-title">Your Exclusive Gift</div>
-    <div class="gift-name">The Sacred Reconnection Prayer</div>
-    <p class="gift-desc">The complete ancient 7-minute prayer that reopens your divine channel to blessings.</p>
-    <div class="price-row">
-     
-      <span class="discount-badge">−45% OFF</span>
-    </div>
-  </div>
+  <!-- ═══════════ WHEEL SECTION ═══════════ -->
+  <div class="wheel-section">
+    <div class="wheel-title">🎡 Your Exclusive Spin</div>
 
-  <a href="https://www.checkout-ds24.com/product/680704?voucher=back" class="cta-btn" id="checkout-link">
-    ✅ &nbsp; YES! Claim My Discount Now →
-  </a>
-  <p class="cta-sub">🔒 Secure checkout · Instant access · 60-day money-back guarantee</p>
-
-  <div class="urgency-stack">
-
-    <div class="countdown-block">
-      <div class="cd-label">⏳ This discount expires in</div>
-      <div class="cd-digits">
-        <div class="cd-unit">
-          <span class="cd-num" id="cd-min">05</span>
-          <span class="cd-lbl">Min</span>
-        </div>
-        <span class="cd-sep">:</span>
-        <div class="cd-unit">
-          <span class="cd-num" id="cd-sec">00</span>
-          <span class="cd-lbl">Sec</span>
-        </div>
-      </div>
+    <div class="wheel-container">
+      <div class="pointer"></div>
+      <canvas id="wheelCanvas" width="480" height="480"></canvas>
     </div>
 
-    <div class="spots-block">
-      <div class="spots-label">
-        <span>🔥 Spots filling up fast</span>
-        <span class="spots-num" id="spots-left">Only 7 left</span>
-      </div>
-      <div class="bar-bg"><div class="bar-fill" id="bar-fill"></div></div>
-      <p class="spots-note"><span id="viewers">83 people</span> are looking at this offer right now. Once spots are gone, this price disappears.</p>
-    </div>
-
-    <div class="proof-block">
-      <div class="proof-icon">👥</div>
-      <div class="proof-text" id="proof-text"><span>Patricia from Ohio</span> just claimed her discount 2 minutes ago. Don't miss your spot.</div>
-    </div>
-
+    <button class="spin-btn" id="spinBtn">🎰 SPIN THE WHEEL</button>
+    <p class="spin-note">One spin per visitor · Guaranteed prize</p>
   </div>
 
   <div class="secure-row">
@@ -389,112 +415,428 @@
 
 </div>
 
+<!-- ═══════════ MODAL / POPUP ═══════════ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+
+    <div class="modal-badge">🎉 CONGRATULATIONS!</div>
+    <div class="modal-title">You Won <span>26% OFF</span></div>
+    <p class="modal-sub">Your exclusive gift has been unlocked. Claim it before this page expires.</p>
+
+    <div class="modal-price-row">
+      <span class="modal-price-old">$29.00</span>
+      <span class="modal-price-new"><sup>$</sup>21<sup>.45</sup></span>
+      <span class="modal-discount-badge">−26%</span>
+    </div>
+
+    <p class="modal-desc">
+      <strong>The Sacred Reconnection Prayer</strong> — The complete ancient 7-minute prayer that reopens your divine channel to blessings.
+    </p>
+
+    <!-- Countdown & Urgency -->
+    <div class="modal-countdown">
+      <div class="countdown-label">⏳ Your coupon expires in</div>
+      <div class="countdown-timer" id="modalCountdown">05:00</div>
+      <div class="countdown-note" id="countdownNote">
+        ⚠️ This coupon was generated just for you. If you leave this page, it will be offered to someone else.
+      </div>
+    </div>
+
+    <a href="https://www.checkout-ds24.com/product/680704?voucher=back"
+       class="modal-cta" id="checkout-link">
+      ✅ &nbsp; YES! Claim My 26% Discount Now →
+    </a>
+    <p class="modal-cta-sub">🔒 Secure checkout · Instant access · 60-day money-back guarantee</p>
+  </div>
+</div>
+
+<canvas id="confetti-canvas"></canvas>
+
 <script>
-  // Countdown
-  (function() {
-    const m = document.getElementById('cd-min');
-    const s = document.getElementById('cd-sec');
-    let total = 5 * 60;
-    function tick() {
-      m.textContent = String(Math.floor(total / 60)).padStart(2, '0');
-      s.textContent = String(total % 60).padStart(2, '0');
-      if (total > 0) { total--; setTimeout(tick, 1000); }
+/* ═══════════════════════════════════════════════════════════════
+   1. WHEEL DATA & CONFIG
+   ═══════════════════════════════════════════════════════════════ */
+const SEGMENTS = [
+  { label: '5%',   color: '#6366f1' },
+  { label: '10%',  color: '#f59e0b' },
+  { label: '15%',  color: '#10b981' },
+  { label: '20%',  color: '#8b5cf6' },
+  { label: '26%',  color: '#d9000d' },  // ← WINNER (highest, index 4)
+  { label: '12%',  color: '#ec4899' },
+  { label: '18%',  color: '#14b8a6' },
+  { label: '22%',  color: '#ef4444' }
+];
+
+const WINNING_INDEX = 4; // index of 26% segment
+const NUM_SEGMENTS = SEGMENTS.length;
+const SEGMENT_ANGLE = (2 * Math.PI) / NUM_SEGMENTS;
+
+/* ═══════════════════════════════════════════════════════════════
+   2. CANVAS SETUP
+   ═══════════════════════════════════════════════════════════════ */
+const canvas = document.getElementById('wheelCanvas');
+const ctx = canvas.getContext('2d');
+const size = 480;
+canvas.width = size;
+canvas.height = size;
+const cx = size / 2;
+const cy = size / 2;
+const radius = size / 2 - 12;
+
+let currentRotation = 0;
+let isSpinning = false;
+let lastTickSegment = -1;
+
+/* ═══════════════════════════════════════════════════════════════
+   3. DRAW THE WHEEL
+   ═══════════════════════════════════════════════════════════════ */
+function drawWheel(rotation) {
+  ctx.clearRect(0, 0, size, size);
+
+  // Outer glow ring
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius + 6, 0, 2 * Math.PI);
+  ctx.fillStyle = '#f0c040';
+  ctx.fill();
+  ctx.restore();
+
+  // Outer dark ring
+  ctx.beginPath();
+  ctx.arc(cx, cy, radius + 2, 0, 2 * Math.PI);
+  ctx.fillStyle = '#2d2d2d';
+  ctx.fill();
+
+  // Draw segments
+  for (let i = 0; i < NUM_SEGMENTS; i++) {
+    const startAngle = rotation + i * SEGMENT_ANGLE;
+    const endAngle = startAngle + SEGMENT_ANGLE;
+
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, radius, startAngle, endAngle);
+    ctx.closePath();
+    ctx.fillStyle = SEGMENTS[i].color;
+    ctx.fill();
+
+    ctx.strokeStyle = '#fff';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Text
+    ctx.save();
+    const midAngle = startAngle + SEGMENT_ANGLE / 2;
+    const textRadius = radius * 0.65;
+    const tx = cx + Math.cos(midAngle) * textRadius;
+    const ty = cy + Math.sin(midAngle) * textRadius;
+
+    ctx.translate(tx, ty);
+    ctx.rotate(midAngle + Math.PI / 2);
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.font = 'bold 22px Montserrat, sans-serif';
+    ctx.fillStyle = '#fff';
+    ctx.shadowColor = 'rgba(0,0,0,0.35)';
+    ctx.shadowBlur = 4;
+    ctx.fillText(SEGMENTS[i].label, 0, 0);
+    ctx.restore();
+  }
+
+  // Center hub
+  ctx.beginPath();
+  ctx.arc(cx, cy, 38, 0, 2 * Math.PI);
+  ctx.fillStyle = '#fff';
+  ctx.fill();
+  ctx.strokeStyle = '#d9000d';
+  ctx.lineWidth = 5;
+  ctx.stroke();
+
+  ctx.font = '32px Montserrat, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = '#d9000d';
+  ctx.fillText('🎁', cx, cy);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   4. WEB AUDIO – TICK & WIN SOUNDS
+   ═══════════════════════════════════════════════════════════════ */
+let audioCtx = null;
+
+function initAudio() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+}
+
+function playTick() {
+  if (!audioCtx) return;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  osc.type = 'sine';
+  osc.frequency.value = 880;
+  gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
+
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.05);
+}
+
+function playWinSound() {
+  if (!audioCtx) return;
+  const notes = [523.25, 659.25, 783.99, 1046.50];
+  notes.forEach((freq, i) => {
+    setTimeout(() => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.4);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.45);
+    }, i * 120);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   5. SPIN LOGIC
+   ═══════════════════════════════════════════════════════════════ */
+const spinBtn = document.getElementById('spinBtn');
+const modalOverlay = document.getElementById('modalOverlay');
+const modalClose = document.getElementById('modalClose');
+
+let spinStartTime = 0;
+let spinDuration = 0;
+let spinStartRotation = 0;
+let targetRotation = 0;
+let animationFrameId = null;
+
+function spin() {
+  if (isSpinning) return;
+
+  initAudio();
+  isSpinning = true;
+  spinBtn.disabled = true;
+  spinBtn.textContent = '🔄 SPINNING...';
+
+  const pointerAngle = -Math.PI / 2;
+  const winningSegmentMid = (WINNING_INDEX + 0.5) * SEGMENT_ANGLE;
+  let baseTarget = pointerAngle - winningSegmentMid;
+
+  const extraSpins = (5 + Math.floor(Math.random() * 3)) * 2 * Math.PI;
+  const currentMod = ((currentRotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+  const targetMod = ((baseTarget % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+  let delta = targetMod - currentMod;
+  if (delta < 0) delta += 2 * Math.PI;
+
+  targetRotation = currentRotation + delta + extraSpins;
+
+  spinStartRotation = currentRotation;
+  spinStartTime = performance.now();
+  spinDuration = 5200;
+
+  lastTickSegment = -1;
+
+  animationFrameId = requestAnimationFrame(animateSpin);
+}
+
+function animateSpin(now) {
+  const elapsed = now - spinStartTime;
+  let t = Math.min(elapsed / spinDuration, 1);
+  const eased = 1 - Math.pow(1 - t, 4);
+
+  currentRotation = spinStartRotation + (targetRotation - spinStartRotation) * eased;
+  drawWheel(currentRotation);
+
+  const pointerAngle = -Math.PI / 2;
+  const normRot = ((currentRotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+  let localAngle = pointerAngle - normRot;
+  localAngle = ((localAngle % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+  const segmentIndex = Math.floor(localAngle / SEGMENT_ANGLE);
+
+  if (segmentIndex !== lastTickSegment) {
+    lastTickSegment = segmentIndex;
+    if (t < 0.92) playTick();
+  }
+
+  if (t < 1) {
+    animationFrameId = requestAnimationFrame(animateSpin);
+  } else {
+    isSpinning = false;
+    currentRotation = targetRotation % (2 * Math.PI);
+    drawWheel(currentRotation);
+    playWinSound();
+    triggerConfetti();
+    setTimeout(() => {
+      modalOverlay.classList.add('active');
+      startModalCountdown();
+    }, 400);
+  }
+}
+
+spinBtn.addEventListener('click', spin);
+
+/* ═══════════════════════════════════════════════════════════════
+   6. CONFETTI EFFECT
+   ═══════════════════════════════════════════════════════════════ */
+const confettiCanvas = document.getElementById('confetti-canvas');
+const confettiCtx = confettiCanvas.getContext('2d');
+let confettiParticles = [];
+let confettiRunning = false;
+
+function resizeConfetti() {
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resizeConfetti);
+resizeConfetti();
+
+function triggerConfetti() {
+  confettiParticles = [];
+  const colors = ['#d9000d', '#f59e0b', '#10b981', '#6366f1', '#ec4899', '#14b8a6', '#fff'];
+  for (let i = 0; i < 140; i++) {
+    confettiParticles.push({
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2 - 50,
+      vx: (Math.random() - 0.5) * 16,
+      vy: (Math.random() - 0.8) * 18,
+      size: 4 + Math.random() * 8,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 12,
+      gravity: 0.35,
+      opacity: 1,
+      life: 0
+    });
+  }
+  if (!confettiRunning) {
+    confettiRunning = true;
+    animateConfetti();
+  }
+}
+
+function animateConfetti() {
+  confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  let anyAlive = false;
+
+  confettiParticles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += p.gravity;
+    p.vx *= 0.99;
+    p.rotation += p.rotSpeed;
+    p.life++;
+    p.opacity = Math.max(0, 1 - p.life / 180);
+
+    if (p.opacity > 0) {
+      anyAlive = true;
+      confettiCtx.save();
+      confettiCtx.translate(p.x, p.y);
+      confettiCtx.rotate((p.rotation * Math.PI) / 180);
+      confettiCtx.globalAlpha = p.opacity;
+      confettiCtx.fillStyle = p.color;
+      confettiCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+      confettiCtx.restore();
     }
-    tick();
-  })();
+  });
 
-  // Spots decreasing
-  (function() {
-    let spots = 7;
-    let viewers = 83;
-    setInterval(() => {
-      if (spots > 2 && Math.random() > 0.5) {
-        spots--;
-        document.getElementById('spots-left').textContent = 'Only ' + spots + ' left';
-        const fill = 70 + (10 - spots) * 3;
-        document.getElementById('bar-fill').style.width = fill + '%';
-      }
-      viewers = viewers + (Math.random() > 0.5 ? 1 : -1);
-      viewers = Math.max(70, Math.min(100, viewers));
-      document.getElementById('viewers').textContent = viewers + ' people';
-    }, 8000);
-  })();
+  if (anyAlive) {
+    requestAnimationFrame(animateConfetti);
+  } else {
+    confettiRunning = false;
+    confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+  }
+}
 
-  // Social proof rotator
-  (function() {
-    const names = [
-      'Patricia from Ohio', 'Linda from Texas', 'Rose from Arizona',
-      'Dorothy from Florida', 'Carol from Georgia', 'Barbara from Tennessee'
-    ];
-    const times = ['just now', '1 minute ago', '2 minutes ago', '3 minutes ago'];
-    const el = document.getElementById('proof-text');
-    setInterval(() => {
-      const name = names[Math.floor(Math.random() * names.length)];
-      const time = times[Math.floor(Math.random() * times.length)];
-      el.innerHTML = `<span>${name}</span> just claimed her discount ${time}. Don't miss your spot.`;
-    }, 7000);
-  })();
+/* ═══════════════════════════════════════════════════════════════
+   7. MODAL CLOSE & COUNTDOWN
+   ═══════════════════════════════════════════════════════════════ */
+modalClose.addEventListener('click', () => {
+  modalOverlay.classList.remove('active');
+});
+
+modalOverlay.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) {
+    modalOverlay.classList.remove('active');
+  }
+});
+
+let countdownInterval = null;
+let countdownStarted = false;
+
+function startModalCountdown() {
+  if (countdownStarted) return;
+  countdownStarted = true;
+
+  const timerEl = document.getElementById('modalCountdown');
+  const noteEl = document.getElementById('countdownNote');
+  const ctaBtn = document.getElementById('checkout-link');
+
+  let totalSeconds = 5 * 60; // 5 minutes
+
+  function updateDisplay() {
+    const mins = Math.floor(totalSeconds / 60);
+    const secs = totalSeconds % 60;
+    timerEl.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+
+  updateDisplay();
+
+  countdownInterval = setInterval(() => {
+    totalSeconds--;
+    if (totalSeconds <= 0) {
+      clearInterval(countdownInterval);
+      timerEl.textContent = '00:00';
+      noteEl.textContent = '❌ This coupon has expired and will be offered to someone else.';
+      ctaBtn.classList.add('expired');
+      ctaBtn.textContent = 'Offer Expired';
+      ctaBtn.removeAttribute('href');
+    } else {
+      updateDisplay();
+    }
+  }, 1000);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   8. INITIAL DRAW
+   ═══════════════════════════════════════════════════════════════ */
+drawWheel(currentRotation);
 </script>
 
+<!-- ═══════════════════════════════════════════════════════════════
+   9. ORIGINAL TRACKING / ATTRIBUTION SCRIPT
+   ═══════════════════════════════════════════════════════════════ -->
 <script>
-  /*
-   * RASTREAMENTO / ATRIBUIÇÃO
-   * Salva os parâmetros de aquisição da primeira visita e os mantém
-   * disponíveis mesmo depois de o usuário voltar pelo backredirect.
-   *
-   * Salva:
-   * - Todas as UTMs
-   * - fbclid, gclid, ttclid, msclkid, twclid, etc.
-   * - Referer
-   * - URL inicial
-   * - Data/hora da primeira visita
-   */
-
   (function () {
     const STORAGE_KEY = 'traffic_attribution_v1';
 
-    // Parâmetros normalmente usados para atribuição.
     const TRACKED_PARAMS = [
-      'utm_source',
-      'utm_medium',
-      'utm_campaign',
-      'utm_content',
-      'utm_term',
-      'utm_id',
-      'fbclid',
-      'gclid',
-      'gbraid',
-      'wbraid',
-      'ttclid',
-      'msclkid',
-      'twclid',
-      'li_fat_id',
-      'epik',
-      'sccid',
-      'yclid',
-      'dclid'
+      'utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_id',
+      'fbclid','gclid','gbraid','wbraid','ttclid','msclkid','twclid','li_fat_id',
+      'epik','sccid','yclid','dclid'
     ];
 
     function getQueryParams() {
       const params = {};
       const searchParams = new URLSearchParams(window.location.search);
-
-      // Salva os parâmetros conhecidos.
       TRACKED_PARAMS.forEach(function (key) {
         const value = searchParams.get(key);
-        if (value !== null && value !== '') {
-          params[key] = value;
-        }
+        if (value !== null && value !== '') params[key] = value;
       });
-
-      // Também salva qualquer outro parâmetro da URL.
-      // Isso evita perder parâmetros personalizados usados pelo seu funil.
       searchParams.forEach(function (value, key) {
-        if (value !== '' && !(key in params)) {
-          params[key] = value;
-        }
+        if (value !== '' && !(key in params)) params[key] = value;
       });
-
       return params;
     }
 
@@ -502,23 +844,17 @@
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         return raw ? JSON.parse(raw) : {};
-      } catch (e) {
-        return {};
-      }
+      } catch (e) { return {}; }
     }
 
     function saveData(data) {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
       } catch (e) {}
-
-      // Cookie como segunda camada de persistência.
       try {
         document.cookie =
-          STORAGE_KEY + '=' +
-          encodeURIComponent(JSON.stringify(data)) +
-          '; path=/; max-age=' + (60 * 60 * 24 * 180) +
-          '; SameSite=Lax';
+          STORAGE_KEY + '=' + encodeURIComponent(JSON.stringify(data)) +
+          '; path=/; max-age=' + (60 * 60 * 24 * 180) + '; SameSite=Lax';
       } catch (e) {}
     }
 
@@ -526,170 +862,95 @@
       try {
         const prefix = STORAGE_KEY + '=';
         const cookies = document.cookie.split(';');
-
         for (let i = 0; i < cookies.length; i++) {
           const cookie = cookies[i].trim();
-
           if (cookie.indexOf(prefix) === 0) {
-            return JSON.parse(
-              decodeURIComponent(cookie.substring(prefix.length))
-            );
+            return JSON.parse(decodeURIComponent(cookie.substring(prefix.length)));
           }
         }
       } catch (e) {}
-
       return {};
     }
 
     const currentParams = getQueryParams();
     const savedLocal = readSavedData();
     const savedCookie = getCookieData();
-
-    // Prioridade:
-    // 1. dados já salvos
-    // 2. dados do cookie
-    // 3. parâmetros atuais da URL
     const saved = Object.assign({}, savedCookie, savedLocal);
 
-    // Primeiro toque:
-    // só cria a atribuição inicial se ainda não existir.
-    if (!saved.first_visit_at) {
-      saved.first_visit_at = new Date().toISOString();
-    }
+    if (!saved.first_visit_at) saved.first_visit_at = new Date().toISOString();
+    if (!saved.landing_page) saved.landing_page = window.location.href;
+    if (!saved.referrer && document.referrer) saved.referrer = document.referrer;
 
-    if (!saved.landing_page) {
-      saved.landing_page = window.location.href;
-    }
-
-    if (!saved.referrer && document.referrer) {
-      saved.referrer = document.referrer;
-    }
-
-    // Se chegaram novos parâmetros, eles entram na atribuição.
-    // O que já estava salvo não é apagado.
     Object.keys(currentParams).forEach(function (key) {
-      if (
-        currentParams[key] !== null &&
-        currentParams[key] !== ''
-      ) {
+      if (currentParams[key] !== null && currentParams[key] !== '') {
         saved[key] = currentParams[key];
       }
     });
 
     saved.last_visit_at = new Date().toISOString();
     saved.current_page = window.location.href;
-
     saveData(saved);
 
-    /*
-     * Monta os parâmetros salvos para serem enviados ao próximo passo.
-     */
     function buildTrackingQuery() {
       const data = readSavedData();
       const params = new URLSearchParams();
-
       Object.keys(data).forEach(function (key) {
         const value = data[key];
-
-        // Não envia campos internos de controle.
         if (
-          key !== 'first_visit_at' &&
-          key !== 'last_visit_at' &&
-          key !== 'landing_page' &&
-          key !== 'current_page' &&
-          key !== 'referrer' &&
-          value !== null &&
-          value !== undefined &&
-          value !== ''
+          key !== 'first_visit_at' && key !== 'last_visit_at' &&
+          key !== 'landing_page' && key !== 'current_page' &&
+          key !== 'referrer' && value !== null && value !== undefined && value !== ''
         ) {
           params.set(key, value);
         }
       });
-
       return params.toString();
     }
 
-    /*
-     * Adiciona os parâmetros preservados a uma URL.
-     * Se a URL já tiver parâmetros, eles são mantidos.
-     */
     function appendTracking(url) {
       try {
         const finalUrl = new URL(url, window.location.href);
         const savedParams = new URLSearchParams(buildTrackingQuery());
-
         savedParams.forEach(function (value, key) {
-          // Não sobrescreve parâmetros específicos que a própria oferta
-          // já tenha definido.
           if (!finalUrl.searchParams.has(key)) {
             finalUrl.searchParams.set(key, value);
           }
         });
-
         return finalUrl.toString();
-      } catch (e) {
-        return url;
-      }
+      } catch (e) { return url; }
     }
 
-    /*
-     * 1) Checkout:
-     * mantém o voucher=back e adiciona a atribuição salva.
-     */
     const checkoutLink = document.getElementById('checkout-link');
-
     if (checkoutLink) {
       checkoutLink.href = appendTracking(checkoutLink.href);
-
       checkoutLink.addEventListener('click', function () {
-        // Atualiza novamente os dados imediatamente antes do clique.
         const latest = readSavedData();
         latest.last_click_at = new Date().toISOString();
         saveData(latest);
-
         this.href = appendTracking(this.href);
       });
     }
 
-    /*
-     * 2) BACKREDIRECT:
-     * o usuário volta e a URL de destino recebe os mesmos parâmetros.
-     */
     const link = 'https://sacredchantguide.site/back2/';
-
     function setBackRedirect(url) {
       const urlBackRedirect = appendTracking(url);
-
       history.pushState({}, '', location.href);
       history.pushState({}, '', location.href);
       history.pushState({}, '', location.href);
 
       window.addEventListener('popstate', function () {
         console.log('Backredirect:', urlBackRedirect);
-
-        // Registra que o usuário acionou o backredirect.
         const latest = readSavedData();
         latest.backredirect_at = new Date().toISOString();
         saveData(latest);
-
-        setTimeout(function () {
-          location.href = urlBackRedirect;
-        }, 1);
+        setTimeout(function () { location.href = urlBackRedirect; }, 1);
       });
     }
-
     setBackRedirect(link);
 
-    /*
-     * Disponibiliza a atribuição globalmente para outros scripts
-     * da página, se necessário.
-     */
-    window.getTrafficAttribution = function () {
-      return readSavedData();
-    };
+    window.getTrafficAttribution = function () { return readSavedData(); };
   })();
 </script>
 
- 
 </body>
 </html>
