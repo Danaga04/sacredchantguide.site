@@ -1054,23 +1054,7 @@ drawWheel(currentRotation);
       });
     }
 
-    /* Backredirect */
-    const link = 'https://sacredchantguide.site/back2/';
-    function setBackRedirect(url) {
-      const urlBackRedirect = appendTracking(url);
-      history.pushState({}, '', location.href);
-      history.pushState({}, '', location.href);
-      history.pushState({}, '', location.href);
-
-      window.addEventListener('popstate', function () {
-        console.log('Backredirect:', urlBackRedirect);
-        const latest = readSavedData();
-        latest.backredirect_at = new Date().toISOString();
-        saveData(latest);
-        setTimeout(function () { location.href = urlBackRedirect; }, 1);
-      });
-    }
-    setBackRedirect(link);
+   
 
     window.getTrafficAttribution = function () { return readSavedData(); };
   })();
