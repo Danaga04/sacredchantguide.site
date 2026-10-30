@@ -1,265 +1,174 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 <head>
-    <script src="https://www.digistore24-scripts.com/service/digistore.js"></script>
-    <script>digistoreUpsell()</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Last Step</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <script src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-        data-utmify-prevent-xcod-sck
-        data-utmify-prevent-subids
-        async defer></script>
+    body {
+      background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #222;
+    }
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
 
-    <title>Allow a Prayer for You</title>
+    /* Progress bar */
+    .progress-wrap {
+      margin-bottom: 20px;
+    }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #333;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 22px;
+      background: #e6e6e6;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      width: 99%;
+      height: 100%;
+      background: linear-gradient(90deg, #1fa83a, #2ecc55);
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(45deg, rgba(255,255,255,.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.2) 50%, rgba(255,255,255,.2) 75%, transparent 75%, transparent),
+        linear-gradient(90deg, #1fa83a, #2ecc55);
+      animation: stripes 1s linear infinite;
+      border-radius: 12px;
+    }
+    @keyframes stripes {
+      from { background-position: 40px 0, 0 0; }
+      to   { background-position: 0 0, 0 0; }
+    }
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    /* Headline */
+    h1 {
+      text-align: center;
+      font-size: 26px;
+      line-height: 1.3;
+      margin: 20px 0 25px;
+    }
+    h1 span { color: #d62828; }
 
-        body {
-            margin: 0;
-            padding: 22px 12px;
-            background: #000;
-            color: #fff;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+    .watch-text {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #444;
+      margin-bottom: 12px;
+    }
 
-        .container {
-            width: 100%;
-            max-width: 540px;
-            margin: 0 auto;
-            text-align: center;
-        }
+    /* Video */
+    .video-wrap {
+      width: 100%;
+      margin-bottom: 30px;
+    }
 
-        .warning-title {
-            font-size: 30px;
-            line-height: 1.25;
-            font-weight: 900;
-            margin: 8px 0 18px;
-        }
+    /* Buttons */
+    .buttons {
+      text-align: center;
+    }
+    .btn-yes {
+      display: block;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto 18px;
+      padding: 20px 15px;
+      background: #1fa83a;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-radius: 10px;
+      box-shadow: 0 0 0 0 rgba(31,168,58,.7);
+      animation: pulse 1.5s infinite;
+    }
+    .btn-yes:hover { background: #1b9333; }
 
-        .subtitle {
-            color: #eee;
-            font-size: 19px;
-            line-height: 1.6;
-            margin: 0 auto 22px;
-        }
+    @keyframes pulse {
+      0%   { transform: scale(1);    box-shadow: 0 0 0 0 rgba(31,168,58,.7); }
+      70%  { transform: scale(1.04); box-shadow: 0 0 0 18px rgba(31,168,58,0); }
+      100% { transform: scale(1);    box-shadow: 0 0 0 0 rgba(31,168,58,0); }
+    }
 
-        .warning {
-            background: #160707;
-            border: 2px solid #8b2525;
-            border-radius: 13px;
-            padding: 20px 17px;
-            margin-bottom: 22px;
-            font-size: 18px;
-            line-height: 1.6;
-            color: #eee;
-        }
+    .btn-no {
+      display: block;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 14px 15px;
+      background: #d62828;
+      color: #ffffff;
+      font-size: 16px;
+      text-decoration: none;
+      border-radius: 10px;
+    }
+    .btn-no:hover { background: #b71f1f; }
 
-        .warning strong {
-            color: #ff5757;
-            font-size: 19px;
-        }
+    .bottom-space {
+      height: 200px;
+    }
 
-        .offer {
-            background: #07170c;
-            border: 2px solid #20c75a;
-            border-radius: 15px;
-            padding: 25px 18px;
-            box-shadow: 0 0 28px rgba(32,199,90,.14);
-        }
-
-        .offer-title {
-            font-size: 28px;
-            line-height: 1.3;
-            font-weight: 900;
-            color: #39e66e;
-            margin: 0 0 18px;
-        }
-
-        .lifetime {
-            font-size: 19px;
-            font-weight: 600;
-            line-height: 1.65;
-            margin-bottom: 22px;
-        }
-
-        .price {
-            font-size: 43px;
-            font-weight: 900;
-            color: #fff;
-            margin: 8px 0 4px;
-        }
-
-        .one-time {
-            font-size: 14px;
-            color: #bbb;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .yes-button {
-            display: block;
-            width: 100%;
-            padding: 21px 10px;
-            border-radius: 10px;
-            background: #20c75a;
-            color: #fff;
-            text-decoration: none;
-            font-size: 21px;
-            line-height: 1.3;
-            font-weight: 900;
-            box-shadow: 0 0 0 rgba(32,199,90,.8);
-            animation: pulse 1.6s infinite;
-            transition: transform .2s;
-        }
-
-        .yes-button:hover {
-            transform: scale(1.02);
-            background: #25d963;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(32,199,90,.8);
-            }
-
-            70% {
-                box-shadow: 0 0 0 14px rgba(32,199,90,0);
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(32,199,90,0);
-            }
-        }
-
-        .no-button {
-            display: block;
-            width: 100%;
-            margin-top: 12px;
-            padding: 16px 10px;
-            border-radius: 9px;
-            background: #252525;
-            border: 1px solid #555;
-            color: #fff;
-            text-decoration: none;
-            font-size: 15px;
-            line-height: 1.5;
-            font-weight: 700;
-        }
-
-        .no-button:hover {
-            background: #383838;
-        }
-
-        .footer {
-            color: #999;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-top: 20px;
-        }
-
-        @media (max-width: 480px) {
-            body {
-                padding: 18px 10px;
-            }
-
-            .warning-title {
-                font-size: 27px;
-            }
-
-            .subtitle {
-                font-size: 18px;
-            }
-
-            .warning {
-                font-size: 17px;
-                padding: 19px 14px;
-            }
-
-            .offer {
-                padding: 23px 14px;
-            }
-
-            .offer-title {
-                font-size: 25px;
-            }
-
-            .lifetime {
-                font-size: 18px;
-            }
-
-            .price {
-                font-size: 40px;
-            }
-
-            .yes-button {
-                font-size: 19px;
-                padding: 21px 8px;
-            }
-
-            .no-button {
-                font-size: 14px;
-                padding: 16px 8px;
-            }
-        }
-    </style>
+    @media (max-width: 600px) {
+      h1 { font-size: 21px; }
+      .btn-yes { font-size: 17px; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+  <div class="container">
 
-    <div class="warning-title">
-        🙏 A SPECIAL PRAYER FOR YOU
+    <!-- Progress bar -->
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span>Processing your order...</span>
+        <span>99%</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
     </div>
 
-    <div class="subtitle">
-        We have secured a sponsorship with the Pope Leo 14, and he wants to pray for you by name and for everyone around you.
+    <!-- Headline -->
+    <h1>Wait! <span>This is the last step</span> to access your order.</h1>
+
+    <p class="watch-text">Watch the video below 👇</p>
+
+    <!-- Video -->
+    <div class="video-wrap">
+      <vturb-smartplayer id="vid-6ae36501a91a049aa9777f41" style="display: block; margin: 0 auto; width: 100%; "><div class="vturb-player-placeholder" style="position: relative; width: 100%; padding: 56.25% 0 0; z-index: 0; background-color: black;"></div></vturb-smartplayer> <script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/80d0b89d-7901-4c62-bf15-807e2dab2483/players/6ae36501a91a049aa9777f41/v4/player.js", s.async=!0,document.head.appendChild(s); </script>
     </div>
 
-    <div class="offer">
+    <!-- Buttons -->
+    <div class="buttons">
+      <a id="esconder" class="btn-yes" href="https://www.checkout-ds24.com/answer/yes?template=light">
+        Access Mark Personally for $67 per Month
+      </a>
 
-        <div class="offer-title">
-            🕊️ ALLOW A PRAYER
-        </div>
-
-        <div class="lifetime">
-            Allow a prayer to be offered for your name and your loved ones.
-            <br><br>
-            The longer you remain with us, the more opportunities you have to receive spiritual encouragement, blessings, and protection through prayer.
-        </div>
-
-        <div class="price">
-            $19/month
-        </div>
-
-        <div class="one-time">
-            MONTHLY SUPPORT • CANCEL ANYTIME
-        </div>
-
-        <a
-            href="https://www.checkout-ds24.com/answer/yes?template=light"
-            class="yes-button">
-            ALLOW PRAYER — $19/MONTH
-        </a>
-
-        <a
-            href="https://www.checkout-ds24.com/answer/no"
-            class="no-button">
-            NO, THANK YOU — CONTINUE
-        </a>
-
+      <a id="esconder" class="btn-no" href="https://www.checkout-ds24.com/answer/no">
+        Decline offer, thank you.
+      </a>
     </div>
 
-    <div class="footer">
-        Your monthly support helps maintain this digital mission and its prayer resources. You can cancel anytime.
-    </div>
+    <!-- Empty bottom margin -->
+    <div class="bottom-space"></div>
 
-</div>
+  </div>
 
 </body>
 </html>
