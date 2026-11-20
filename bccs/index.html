@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Congratulations!</title>
 
-
-    
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -25,12 +23,12 @@
             padding: 40px 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            max-width: 500px;
+            max-width: 520px;
             width: 100%;
             text-align: center;
         }
         .icon {
-            color: #10b981; 
+            color: #10b981;
             font-size: 70px;
             line-height: 1;
             margin-bottom: 20px;
@@ -42,16 +40,99 @@
             margin-top: 0;
         }
         p {
-            font-size: 16px;
+            font-size: 17px;
             line-height: 1.6;
             color: #4b5563;
             margin-bottom: 15px;
         }
-        
-        /* Estilos do Botão de Acesso */
+
+        /* ---------- Order summary ---------- */
+        .order-summary {
+            display: none; /* shown only when the purchased items are known */
+            text-align: left;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin: 25px 0 10px;
+            overflow: hidden;
+        }
+        .order-summary h2 {
+            font-size: 18px;
+            color: #111827;
+            margin: 0;
+            padding: 14px 16px;
+            background-color: #f9fafb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .order-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-bottom: 1px solid #f1f2f4;
+        }
+        .order-row:last-child { border-bottom: none; }
+        .mark {
+            flex: 0 0 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .mark.yes { background-color: #d1fae5; color: #047857; }
+        .mark.no  { background-color: #f3f4f6; color: #9ca3af; }
+        .item-info { flex: 1; }
+        .item-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+        }
+        .order-row.not-bought .item-name { color: #9ca3af; font-weight: 500; }
+        .item-note {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 2px;
+        }
+        .item-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            white-space: nowrap;
+        }
+        .order-row.not-bought .item-price { color: #9ca3af; font-weight: 500; }
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 16px;
+            background-color: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            font-size: 17px;
+            font-weight: 700;
+            color: #111827;
+        }
+        .payment-note {
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #065f46;
+            background-color: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin: 10px 0 5px;
+        }
+        .payment-note.has-subscription {
+            color: #92400e;
+            background-color: #fffbeb;
+            border-color: #fde68a;
+        }
+
+        /* ---------- Access button ---------- */
         .access-btn {
             display: inline-block;
-            background-color: #10b981; /* Verde chamativo para conversão/ação */
+            background-color: #10b981;
             color: #ffffff;
             text-decoration: none;
             font-size: 18px;
@@ -85,11 +166,9 @@
             display: inline-block;
             margin-top: 5px;
         }
-        .support-box a:hover {
-            text-decoration: underline;
-        }
+        .support-box a:hover { text-decoration: underline; }
         .billing-notice {
-            font-size: 13px;
+            font-size: 14px;
             color: #6b7280;
             margin-top: 25px;
             border-top: 1px solid #e5e7eb;
@@ -101,22 +180,141 @@
 
     <div class="thank-you-container">
         <div class="icon">✓</div>
-        
+
         <h1>Thank you for your purchase!</h1>
-        
+
         <p>Your access details have been sent to your email.</p>
-        
+
+        <!-- Order summary: filled in automatically from the page link (see notes at the bottom) -->
+        <div class="order-summary" id="orderSummary">
+            <h2>Your order summary</h2>
+            <div id="orderRows"></div>
+            <div class="order-total">
+                <span>Total charged today</span>
+                <span id="orderTotal">$0.00</span>
+            </div>
+        </div>
+        <div class="payment-note" id="paymentNote" style="display:none;"></div>
+
         <a href="https://appsell-software.com/app/sacred-chant" class="access-btn">Access My Product</a>
-        
+
         <div class="support-box">
             If you need any support, please contact:<br>
             <a href="https://appsell-software.com/app/sacred-chant">Click here to contact support</a>
         </div>
-        
+
         <p class="billing-notice">
-            The charge will appear as <strong>Digistore24.com</strong>
+            The charge will appear on your card statement as <strong>Digistore24.com</strong>
         </p>
     </div>
+
+    <script>
+        /*
+         * ================== EDIT HERE ==================
+         * List of funnel products. CONFIRM THE PRICES before publishing.
+         * - ids: Digistore24 product IDs (the same ones shown in UTMify)
+         * - key: short name you can also use in the link (e.g. ?items=m1,up1)
+         * - recurring: true only for subscriptions (DW1)
+         */
+        const PRODUCTS = [
+            { key: "m1",  ids: ["680704"], name: "Sacred Chant – Main Program",           price: 27, recurring: false },
+            { key: "up1", ids: ["680706"], name: "Daily Focus and Breathing Routine",      price: 69, recurring: false }, // CONFIRM PRICE
+            { key: "dw1", ids: ["717097"], name: "Daily Focus and Breathing Routine – Monthly Plan", price: 19, recurring: true, onlyIfBought: true },
+            { key: "up2", ids: ["680707"], name: "Complete Guided Session Pack",           price: 79, recurring: false },
+            { key: "up3", ids: ["680954"], name: "Guided Reflection Session",              price: 89, recurring: false }  // CONFIRM PRICE
+        ];
+        const CURRENCY = "$";
+        /* ================================================ */
+
+        function money(value) {
+            return CURRENCY + value.toFixed(2);
+        }
+
+        function getPurchasedCodes() {
+            // Accepts: ?items=m1,up1,up2  or  ?items=680704,680706  or Digistore's ?product_id=680704
+            const params = new URLSearchParams(window.location.search);
+            const raw = [params.get("items"), params.get("products"), params.get("product_id")]
+                .filter(Boolean)
+                .join(",");
+            return raw.split(/[,;\s]+/).map(function (c) { return c.trim().toLowerCase(); }).filter(Boolean);
+        }
+
+        function renderSummary() {
+            const codes = getPurchasedCodes();
+            const bought = PRODUCTS.filter(function (p) {
+                return codes.indexOf(p.key) !== -1 || p.ids.some(function (id) { return codes.indexOf(id) !== -1; });
+            });
+
+            // If we can't tell what was purchased, show nothing (never show a wrong summary)
+            if (bought.length === 0) return;
+
+            const rows = document.getElementById("orderRows");
+            let total = 0;
+            let hasSubscription = false;
+
+            PRODUCTS.forEach(function (p) {
+                const isBought = bought.indexOf(p) !== -1;
+
+                // The monthly plan only appears if the customer actually took it
+                if (p.onlyIfBought && !isBought) return;
+                // If they took the monthly plan, don't list the one-time version they declined
+                if (p.key === "up1" && !isBought && bought.some(function (b) { return b.key === "dw1"; })) return;
+
+                if (isBought) {
+                    total += p.price;
+                    if (p.recurring) hasSubscription = true;
+                }
+
+                const row = document.createElement("div");
+                row.className = "order-row" + (isBought ? "" : " not-bought");
+
+                const note = isBought
+                    ? (p.recurring ? "Monthly subscription – cancel anytime" : "One-time payment")
+                    : "Not purchased – you were not charged";
+
+                const price = isBought
+                    ? money(p.price) + (p.recurring ? "/month" : "")
+                    : "—";
+
+                row.innerHTML =
+                    '<div class="mark ' + (isBought ? "yes" : "no") + '">' + (isBought ? "✓" : "✕") + "</div>" +
+                    '<div class="item-info"><div class="item-name"></div><div class="item-note"></div></div>' +
+                    '<div class="item-price"></div>';
+                row.querySelector(".item-name").textContent = p.name;
+                row.querySelector(".item-note").textContent = note;
+                row.querySelector(".item-price").textContent = price;
+                rows.appendChild(row);
+            });
+
+            document.getElementById("orderTotal").textContent = money(total);
+            document.getElementById("orderSummary").style.display = "block";
+
+            const noteBox = document.getElementById("paymentNote");
+            if (hasSubscription) {
+                noteBox.className = "payment-note has-subscription";
+                noteBox.textContent =
+                    "Your purchases are one-time payments, except the Monthly Plan, which renews every month. " +
+                    "You can cancel it anytime by contacting our support.";
+            } else {
+                noteBox.className = "payment-note";
+                noteBox.textContent =
+                    "All of your purchases are one-time payments. This is NOT a subscription – " +
+                    "you will never be charged again for these items.";
+            }
+            noteBox.style.display = "block";
+        }
+
+        renderSummary();
+    </script>
+
+    <!--
+        HOW IT WORKS
+        The summary appears only when the page link tells which products were bought, for example:
+          .../thank-you.html?items=m1,up1,up3
+          .../thank-you.html?items=680704,680706,680954
+          .../thank-you.html?product_id=680704   (Digistore24 parameter)
+        Without that information the page looks exactly like before (no summary), so it never shows wrong data.
+    -->
 
 </body>
 </html>
